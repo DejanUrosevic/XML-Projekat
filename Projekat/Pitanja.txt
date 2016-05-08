@@ -1,0 +1,8 @@
+
+
+  1. Da li su zakoni, odredbe, odluke itd. u stvari tipovi akta?
+  2. Sta je bolje, da li vise sema i da li amandman treba da ref akte i obrnuto?
+  3. Da li treba omoguciti da se izabere vrsta akta i na osnovu toga pogleda u bazi kakva je njegova struktura i na taj nacin se i forma kreira zakoni za popunjavanje?
+  4. Da li su Jedinstvena metodoloska pravila u stvari struktura svih mogucih akata?
+  5. Da li programski refernciramo odredjene clanove ili propise u okviru amandmana, tj. kako uopste referncirati delove odredjenog clana ili propisa u okviru amandmana?
+  6. Da li su vise zakona u jednom dokumentu ili su odvojeni?
