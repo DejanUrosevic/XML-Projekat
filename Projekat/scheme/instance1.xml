@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akt:Akt xmlns:aman="http://www.parlament.gov.rs/amandman"
+ xmlns:clan="http://www.parlament.gov.rs/clan"
+ xmlns:pro="http://www.parlament.gov.rs/propis"
+ xmlns:akt="http://www.parlament.gov.rs/akt"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.parlament.gov.rs/akt file:/F:/My%20Documents/Faks/CETVRTA%20godina/XML%20deo/Projekat/Skupstina-sema.xsd">
+    <aman:Amandman>
+        <pro:Propis>
+            <pro:Naziv>YH</pro:Naziv>
+            <pro:Deo ID="614492483">
+                <pro:Naziv>p</pro:Naziv>
+                <pro:Glava>
+                    <pro:Naziv>UyJORu49CU6q0.3uOLrdo1PU</pro:Naziv>
+                    <pro:Odeljak>
+                        <clan:Clan ID="321321321">
+                            <clan:Naziv></clan:Naziv>
+                            <clan:Sadrzaj></clan:Sadrzaj>
+                        </clan:Clan>
+                    </pro:Odeljak>
+                    <pro:Odeljak>
+                    </pro:Odeljak>
+                    <pro:Odeljak>
+                    </pro:Odeljak>
+                </pro:Glava>
+                <pro:Glava>
+                    <pro:Naziv>meRR05</pro:Naziv>
+                    <pro:Odeljak>
+                    </pro:Odeljak>
+                    <pro:Odeljak>
+                    </pro:Odeljak>
+                    <pro:Odeljak>
+                    </pro:Odeljak>
+                </pro:Glava>
+                <pro:Glava>
+                    <pro:Naziv>rb-n_Ebv4BP2KJEs1v0qshAr2AFl</pro:Naziv>
+                    <pro:Odeljak>
+                        <pro:Pododeljak>
+                            <clan:Clan ID="2321312">
+                                <clan:Naziv></clan:Naziv>
+                                <clan:Sadrzaj></clan:Sadrzaj>
+                            </clan:Clan>
+                        </pro:Pododeljak>
+                    </pro:Odeljak>
+                    <pro:Odeljak>
+                    </pro:Odeljak>
+                    <pro:Odeljak>
+                    </pro:Odeljak>
+                </pro:Glava>
+            </pro:Deo>
+            <pro:Prilog>
+            </pro:Prilog>
+            <pro:Prilog>
+            </pro:Prilog>
+            <pro:Prilog>
+            </pro:Prilog>
+        </pro:Propis>
+        <aman:Resenje>JDVdlNgy</aman:Resenje>
+        <aman:Obrazlozenje>s</aman:Obrazlozenje>
+        <clan:Clan ID="698117330">
+            <clan:Opis>rW.TZqXtakmaZtQMD</clan:Opis>
+            <clan:Naziv>EZHK2K.xYu</clan:Naziv>
+            <clan:Sadrzaj>
+                <clan:Tekst>
+                    <clan:Clan ID="1800717903">
+                        <clan:Naziv>aRO5X8R.FHeriPPV69Qbnzg</clan:Naziv>
+                        <clan:Sadrzaj>
+                            <clan:Stav>ltVsXC8WqIbWj.V_</clan:Stav>
+                            <clan:Stav>druWN.3CI80ZeShHq98Zn.l0D</clan:Stav>
+                        </clan:Sadrzaj>
+                    </clan:Clan>
+                </clan:Tekst>
+                <clan:Stav>N34hdll.y.q</clan:Stav>
+                <clan:Tekst>
+                    <clan:Clan ID="730179046">
+                        <clan:Naziv>H1f</clan:Naziv>
+                        <clan:Sadrzaj>
+                        </clan:Sadrzaj>
+                    </clan:Clan>
+                </clan:Tekst>
+            </clan:Sadrzaj>
+        </clan:Clan>
+    </aman:Amandman>
+</akt:Akt>
