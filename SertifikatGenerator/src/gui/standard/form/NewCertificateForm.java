@@ -18,7 +18,9 @@ import java.util.Random;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -175,21 +177,26 @@ public class NewCertificateForm extends JDialog{
 					//cert.verify(anotherPair.getPublic());
 					
 					cg.saveCert(cert, name_text.getText());
-					
+					JOptionPane.showMessageDialog(new JFrame(), "Sertifikat * " + name_text.getText() + " * je uspesno kreiran.", "Potvrda sertifikata", JOptionPane.INFORMATION_MESSAGE);
 					
 				} catch (InvalidKeyException e) {
 					e.printStackTrace();
+					JOptionPane.showMessageDialog(new JFrame(), "Doslo je do sledece greske: " + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
 				} catch (CertificateException e) {
 					e.printStackTrace();
+					JOptionPane.showMessageDialog(new JFrame(), "Doslo je do sledece greske: " + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
 				} catch (NoSuchAlgorithmException e) {
 					e.printStackTrace();
+					JOptionPane.showMessageDialog(new JFrame(), "Doslo je do sledece greske: " + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
 				} catch (NoSuchProviderException e) {
 					e.printStackTrace();
+					JOptionPane.showMessageDialog(new JFrame(), "Doslo je do sledece greske: " + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
 				} catch (SignatureException e) {
 					e.printStackTrace();
+					JOptionPane.showMessageDialog(new JFrame(), "Doslo je do sledece greske: " + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
 				}
 			
-				
+				setVisible(false);
 				
 			}
 		});
