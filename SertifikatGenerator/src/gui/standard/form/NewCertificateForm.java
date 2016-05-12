@@ -184,6 +184,12 @@ public class NewCertificateForm extends JDialog{
 				// TODO Auto-generated method stub
 				
 				try {
+										
+					if(name_text.getText().trim().equals("") || oUnit_text.getText().trim().equals("") || oName_text.getText().trim().equals("") ||
+							lName_text.getText().trim().equals("") || sName_text.getText().trim().equals("") || country_text.getText().trim().equals("") || email_text.getText().trim().equals("")){
+						JOptionPane.showMessageDialog(new JFrame(), "Empty field!!", "Ok", JOptionPane.WARNING_MESSAGE);
+						return;
+					}
 					
 					Sertifikat sertifikat;
 					//par kljuceva

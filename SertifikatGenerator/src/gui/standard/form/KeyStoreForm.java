@@ -106,6 +106,11 @@ public class KeyStoreForm extends JDialog{
 				// TODO Auto-generated method stub
 				KeyStoreWriter keyStoreWriter = new KeyStoreWriter();
 				
+				if(alias_text.getText().trim().equals("") || key_pass_text.getText().trim().equals("") || alias_text.getText().equals("")){
+					JOptionPane.showMessageDialog(new JFrame(), "Empty field!!", "Ok", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+				
 				if(filePath == null){
 					keyStoreWriter.loadKeyStore(filePath, key_pass_text.getText().toCharArray());
 				}else{

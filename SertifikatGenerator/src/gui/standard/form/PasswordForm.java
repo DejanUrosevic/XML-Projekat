@@ -78,6 +78,10 @@ public class PasswordForm extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				if(pass_text.getText().trim().equals("")){
+					JOptionPane.showMessageDialog(new JFrame(), "Empty field!!", "Ok", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
 				if(pass_text.getText().equals(CAPass)){
 					try {
 						KeyStoreForm ksf = new KeyStoreForm(kp, certificat, alias, serNovi, "./data/" + serStari.getKs().getAlias()+".jks", serStari);
