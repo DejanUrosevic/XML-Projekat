@@ -21,7 +21,34 @@ public class Sertifikat implements Serializable{
 	private String oUnit;
 	private String country_text;
 	private String email;
+	private String uid;
+	private KeyStore ks;
+	private Map<Integer, KeyStore> keyset = new HashMap<Integer, KeyStore>();
 	
+	public KeyStore getKs() {
+		return ks;
+	}
+
+	public void setKs(KeyStore ks) {
+		this.ks = ks;
+	}
+
+	public Map<Integer, KeyStore> getKeyset() {
+		return keyset;
+	}
+
+	public void setKeyset(Map<Integer, KeyStore> keyset) {
+		this.keyset = keyset;
+	}
+
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
+
 	public String getCommon_name() {
 		return common_name;
 	}
@@ -78,8 +105,12 @@ public class Sertifikat implements Serializable{
 		this.email = email;
 	}
 	
+	public void addKS(KeyStore ks){
+		keyset.put(keyset.size()+1, ks);
+	}
+	
 	public Sertifikat(String common_name, String surname, String givenname, String oName,
-			String oUnit, String country_text, String email) {
+			String oUnit, String country_text, String email, String uid) {
 		super();
 		this.common_name = common_name;
 		this.surname = surname;
@@ -88,6 +119,7 @@ public class Sertifikat implements Serializable{
 		this.oUnit = oUnit;
 		this.country_text = country_text;
 		this.email = email;
+		this.uid = uid;
 	}
 	
 	public Sertifikat() {
@@ -108,6 +140,7 @@ public class Sertifikat implements Serializable{
 		out1.flush();
 		out1.close();
 	}
+	
 	
 	@SuppressWarnings("unchecked")
 	public HashMap<String, Sertifikat> load() throws FileNotFoundException, IOException, ClassNotFoundException{

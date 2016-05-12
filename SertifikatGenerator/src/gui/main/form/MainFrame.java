@@ -10,11 +10,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 
 public class MainFrame extends JFrame{
@@ -25,11 +29,28 @@ public class MainFrame extends JFrame{
 
 	public MainFrame(){
 
-		setSize(new Dimension(800,600));
+		try {
+			UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InstantiationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		setSize(new Dimension(700,700));
 		setLocationRelativeTo(null);
-		setTitle("Poslovna");
+		setTitle("Generisanje sertifikata");
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		setExtendedState(MAXIMIZED_BOTH);
+		//setExtendedState(MAXIMIZED_BOTH);
 		setUpMenu();
 
 		addWindowListener(new WindowAdapter() {
@@ -52,7 +73,7 @@ public class MainFrame extends JFrame{
 
 	private void setUpMenu(){
 		menuBar = new JMenuBar();
-
+		
 		JMenu file = new JMenu("File");
 		file.setMnemonic(KeyEvent.VK_O);
 		JMenuItem newSertificate = new JMenuItem("New Certificate");
@@ -67,7 +88,7 @@ public class MainFrame extends JFrame{
 				f.setVisible(true);
 			}
 		});
-		
+		add(new JLabel(new ImageIcon("img/cer-f.jpg")));
 	}
 
 	public static MainFrame getInstance(){
