@@ -1,0 +1,16 @@
+<html>
+	<head>
+		<script src="angular.js"></script>
+		<script src="angular-resource.js"></script>
+		<script src="primer01.js"></script>
+	</head>
+	<body ng-app="app">
+		<div ng-controller="blogEntriesCtrl">
+			<h1>Entries</h1>
+			<hr/>
+			<div ng-repeat="user in users">
+				{{user.firstname}} &nbsp {{user.lastname}}
+			</div>
+		</div>
+	</body>
+</html>
