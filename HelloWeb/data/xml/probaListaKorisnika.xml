@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<korisnici>
+    <korisnik>
+        <ID>3123</ID>
+        <ime>Pera</ime>
+        <password>p</password>
+        <prezime>Peric</prezime>
+        <username>p</username>
+        <vrsta>odbornik</vrsta>
+    </korisnik>
+    <korisnik>
+        <ID>123</ID>
+        <ime>Dragan</ime>
+        <password>d</password>
+        <prezime>Maric</prezime>
+        <username>d</username>
+        <vrsta>gradjanin</vrsta>
+    </korisnik>
+    <korisnik>
+        <ID>63</ID>
+        <ime>Das</ime>
+        <password>w</password>
+        <prezime>Asd</prezime>
+        <username>w</username>
+        <vrsta>predsednik skupstine</vrsta>
+    </korisnik>
+</korisnici>

@@ -1,16 +1,84 @@
-<html>
-	<head>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<script src="angular.js"></script>
 		<script src="angular-resource.js"></script>
+		<script src="angular-ui-router.js"></script>
 		<script src="primer01.js"></script>
-	</head>
-	<body ng-app="app">
-		<div ng-controller="blogEntriesCtrl">
-			<h1>Entries</h1>
-			<hr/>
-			<div ng-repeat="user in users">
-				{{user.firstname}} &nbsp {{user.lastname}}
-			</div>
-		</div>
-	</body>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<style>
+          #tableContainer-1 {
+            height: 100%;
+            width: 100%;
+            display: table;
+          }
+          #tableContainer-2 {
+            vertical-align: middle;
+            display: table-cell;
+            height: 100%;
+          }
+          #myTable {
+            margin: 0 auto;
+          }
+          td {
+          	border: 0;
+          }
+          .sredina
+          {
+          	text-align: center;
+            font-size: 21px;
+          }
+          .pravaTabela
+          {
+            border: 1px solid black;
+            text-align: center;
+          }
+
+    </style>
+</head>
+
+<body ng-app="app">
+    <div id="page">
+		
+        <div id="header">
+        	<h1>IssgNS</h1>
+            <ul>
+           	   	<li><a href="#">Home</a></li>
+               	<li><a href="#">Products</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+  
+        <div id="main">
+        
+        	<div class="main_top">
+            	<h1> </h1>
+            </div>
+            
+           	<div class="main_body">
+           	
+               <div ui-view>
+    		   </div>
+    		   
+            </div>
+            
+           	<div class="main_bottom"></div>
+            
+        </div>
+        
+        
+        
+        <div id="footer">
+        <p>
+        <a href="http://www.aszx.net">web development</a> by <a href="http://www.bryantsmith.com">bryant smith</a>
+        </p>
+        </div>
+        
+        </div>
+</body>
 </html>

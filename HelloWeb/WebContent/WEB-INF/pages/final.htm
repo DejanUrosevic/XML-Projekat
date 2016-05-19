@@ -3,14 +3,23 @@
 		<script src="angular.js"></script>
 		<script src="angular-resource.js"></script>
 		<script src="primer01.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	</head>
 	<body ng-app="app">
 		<div ng-controller="blogEntriesCtrl">
-			<h1>Entries</h1>
+			<h1>Entries </h1>
 			<hr/>
-			<div ng-repeat="user in users">
-				{{user.firstname}} &nbsp {{user.lastname}}
+			
+			<div ng-repeat="u in users">
+				<p> {{u.Ime}} </p>
+				<p> {{u.Prezime}} </p>
+				<p> {{u.Vrsta}} </p>
+				<p> {{u.Popis}} </p>
+				<br/>
+				<hr/>
 			</div>
+			
+
 		</div>
 	</body>
 </html>

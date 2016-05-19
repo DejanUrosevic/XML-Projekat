@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Korisnici xmlns="http://www.parlament.gov.rs/korisnik"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.parlament.gov.rs/korisnik file:/F:/My%20Documents/Faks/CETVRTA%20godina/XML%20deo/Projekat/Projekat/scheme/Korisnik.xsd">
+    <Korisnik>
+        <Ime>AzLr1gonCV5-UmPcFvZnZ</Ime>
+        <Prezime>qn4-QFXTYEIF</Prezime>
+        <Vrsta>Predsednik skupstine</Vrsta>
+        <ID>1916558986</ID>
+    </Korisnik>
+    <Korisnik>
+        <Ime>lRxujK8gTc7.FJwxy</Ime>
+        <Prezime>i</Prezime>
+        <Vrsta>Odbornik</Vrsta>
+        <ID>1134353311</ID>
+    </Korisnik>
+    <Korisnik>
+        <Ime>C1tiN</Ime>
+        <Prezime>pACdI-WM9HkuA27XQ_FThN7n_GHZ</Prezime>
+        <Vrsta>Odbornik</Vrsta>
+        <ID>382637253</ID>
+    </Korisnik>
+</Korisnici>
