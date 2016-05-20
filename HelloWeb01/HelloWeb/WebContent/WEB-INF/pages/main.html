@@ -1,0 +1,44 @@
+<div id="tableContainer-1">
+	<div id="tableContainer-2">
+		<h2 style="text-align: center; color: #0033cc;">
+			<u>Dobrodosli </u>
+		</h2>
+		<br />
+		<hr />
+		<br />
+		<table id="myTable">
+			<tr>
+				<th>Pretraga akata</th>
+				<th>Pregled svih akata</th>
+				<th ng-if="rolaUser.role === 'odbornik'">Predlaganje akta</th>
+				<th ng-if="rolaUser.role === 'odbornik'">Predlaganje amandmana</th>
+			</tr>
+			<tr>
+				<td class="sredina"><button type="button"
+						style="background-color: transparent; border-color: transparent;">
+						<img src="css/images/search.jpg" height="50" />
+					</button></td>
+				<td class="sredina"><button type="button"
+						style="background-color: transparent; border-color: transparent;">
+						<img src="css/images/data.jpg" height="50" />
+					</button></td>
+				<td class="sredina" ng-if="rolaUser.role === 'odbornik'"><button type="button"
+						style="background-color: transparent; border-color: transparent;">
+						<img src="css/images/addAkt.png" height="50" />
+					</button></td>
+				<td class="sredina" ng-if="rolaUser.role === 'odbornik'"><button type="button"
+						style="background-color: transparent; border-color: transparent;">
+						<img src="css/images/amandman.png" height="50" />
+					</button></td>
+			</tr>
+		</table>
+		<!--  
+	                <div ng-repeat="user in users">
+						<p> ID: -- {{user.id}} -- {{user.prezime}} &nbsp {{user.vrsta}}</p>
+					</div>
+	                <br/><br>	           
+	                <a ui-sref="main"> Proba za admina dash</a>
+	                -->
+
+	</div>
+</div>
