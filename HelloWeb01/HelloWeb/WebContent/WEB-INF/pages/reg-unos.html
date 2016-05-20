@@ -1,27 +1,51 @@
-<div id="tableContainer-1">
-            <div id="tableContainer-2">
-                <h2 style="text-align: center; color: #0033cc;"><u>  Sign up  </u></h2>
-                <br/>
-	                <form name="myForm" method="POST">
-	                    <table id="myTable">
-	                    	<tr>
-	                            <td class="sredina"> <input  type="text" size="30" placeholder="Unesite vase ime" ng-model="loginKor.ime" required /></td>
-	                        </tr>
-	                        <tr>
-	                            <td class="sredina" > <input  type="text"  size="30" placeholder="Unesite vase prezime" ng-model="loginKor.prezime" required /></td>
-	                        </tr>
-	                        <tr>
-	                            <td class="sredina"> <input  type="email" size="30" placeholder="Unesite vas username" ng-model="loginKor.username" required /></td>
-	                        </tr>
-	                        <tr>
-	                            <td class="sredina" > <input  type="password"  size="30" placeholder="Unesite vasu lozinku" ng-model="loginKor.password" required /></td>
-	                        </tr>
-	                        <tr>
-	                            <td style="text-align: center;">
-	                              <button type="submit" style="background-color:transparent; border-color:transparent;" ng-click="register()">
-	                              	 <img src="css/images/submit.jpg" height="35"/></button></td>
-	                        </tr>
-	                    </table>
-	                </form>
-         </div>
-</div> 
+<div id="header">
+	<h1>IssgNS</h1>
+	
+</div>
+<div id="main">
+	<div class="main_body">
+		<div id="tableContainer-1">
+			<div id="tableContainer-2">
+			<br/>
+				<h2 style="text-align: center; color: #0033cc;">
+					<u> Sign up </u>
+				</h2>
+				<br/>
+				<hr/>
+				<br />
+				<form name="myForm" method="POST">
+					<table id="myTable">
+						<tr>
+							<td class="sredina"><input type="text" size="30"
+								placeholder="Unesite vase ime" ng-model="loginKor.ime" required /></td>
+						</tr>
+						<tr>
+							<td class="sredina"><input type="text" size="30"
+								placeholder="Unesite vase prezime" ng-model="loginKor.prezime"
+								required /></td>
+						</tr>
+						<tr>
+							<td class="sredina"><input type="email" size="30"
+								placeholder="Unesite vas username" ng-model="loginKor.username"
+								required /></td>
+						</tr>
+						<tr>
+							<td class="sredina"><input type="password" size="30"
+								placeholder="Unesite vasu lozinku" ng-model="loginKor.password"
+								required /></td>
+						</tr>
+						<tr>
+							<td style="text-align: center;">
+								<button type="submit"
+									style="background-color: transparent; border-color: transparent;"
+									ng-click="register()">
+									<img src="css/images/submit.jpg" height="35" />
+								</button>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

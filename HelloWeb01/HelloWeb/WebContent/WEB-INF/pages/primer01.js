@@ -12,7 +12,7 @@
         $scope.predSkup = false;
         $scope.userName = '';
         $scope.passWord = '';
-        $scope.roleUsername = null;
+        $scope.rolaUser = null;
         
         //ovde ces nakon sto povuces podatke iz geta login-a dobiti token
         //medjutim, ako username i pass ne postoje, token se ne stvori i onda pukne u klasi ApiController
@@ -23,6 +23,10 @@
             mainService.login($scope.userName, $scope.passWord).then(function(token) {
                 $scope.token = token;
                 $http.defaults.headers.common.Authorization = 'Bearer ' + token;
+                if(localStorage)
+        		{
+                	localStorage.setItem('key', token);	
+        		}
                 
                 $scope.checkRoles();
                 
@@ -39,6 +43,7 @@
         {
         	$http.get('http://localhost:8080/HelloWeb/api/role').then(function(response)
         	{      
+        		
         		$scope.rolaUser = response.data;
         		if($scope.rolaUser.role === 'odbornik' || $scope.rolaUser.role === 'gradjanin' || $scope.rolaUser.role === 'predsednik skupstine')
         		{
@@ -55,6 +60,8 @@
             $scope.userName = '';
             $scope.token = null;
             $http.defaults.headers.common.Authorization = '';
+            localStorage.clear();
+            $state.go('login');
         }
 
         $scope.loggedIn = function() {
@@ -106,11 +113,15 @@
 	 */
 	var mainPageCtrl = function ($scope, $resource, $http, $location, $stateParams) 
 	{
+		//JAKO JAKO BITNO DA SE svaki put prilikom slanja request-a posalje i token
+		//mora opet da se postavlja Authorization header!!!
+		$http.defaults.headers.common.Authorization = 'Bearer ' + localStorage.getItem('key');
 		
 		$http.get('http://localhost:8080/HelloWeb/api/role').then(function(response)
 	    {      
 			$scope.rolaUser = response.data;       
 	    });
+	    
 	}
 	
 	
