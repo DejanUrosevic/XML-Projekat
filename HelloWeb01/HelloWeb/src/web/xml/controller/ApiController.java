@@ -43,6 +43,43 @@ public class ApiController {
 		return new RoleUsername(rola, claims.getSubject());
 	}
 	
+	/*
+	 //Pokusaj redirekcije, ali isto radi kao i klasa gore, ali ovo je jedino sto sam nasao da je obecavalo da ce raditi
+	  public ResponseEntity<Object> login(
+			final HttpServletRequest req, final HttpServletResponse res) throws ServletException, IOException, URISyntaxException {
+		
+		final HttpServletRequest request = (HttpServletRequest) req;
+		final HttpServletResponse response = (HttpServletResponse) res;
+		
+		final String authHeader = request.getHeader("Authorization");
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            throw new ServletException("Missing or invalid Authorization header.");
+        }
+
+        String token = authHeader.substring(7); // The part after "Bearer "
+   
+	    try {
+	    	Claims claims = Jwts.parser().setSigningKey("asdf").parseClaimsJws(token).getBody();
+			
+			//System.out.println(claims.getId());
+			
+			String rola = (String) claims.get("roles");
+			//return new RoleUsername(rola, claims.getSubject());
+			return new ResponseEntity<Object>(new RoleUsername(rola, claims.getSubject()), HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("uhvatio sam ga");
+			
+		}
+	    
+	    URI uri = new URI("http://localhost:8080/HelloWeb/pages/index.html#/login");
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setLocation(uri);
+	    return new ResponseEntity<Object>(httpHeaders, HttpStatus.SEE_OTHER);
+		
+	}
+	 */
+	
 	@SuppressWarnings("unused")
 	   private static class RoleUsername {
 	       public String role;

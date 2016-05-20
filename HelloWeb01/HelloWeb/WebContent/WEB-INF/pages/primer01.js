@@ -18,6 +18,7 @@
         //medjutim, ako username i pass ne postoje, token se ne stvori i onda pukne u klasi ApiController
         //zato sto mu saljes token koji nije validan, pa pukne u klasi.
         //TO DO -- Odradi validaciju, da ako nema korisnika, da ne pukne to sranje, da ga nekako vrati samo na login i sve ispocetka.
+        //Sredjen TO-DO na angularu, ali nije jos na back-end-u
         $scope.login = function() {
             $scope.error = null;
             mainService.login($scope.userName, $scope.passWord).then(function(token) {
@@ -111,17 +112,31 @@
 	/**
 	 * Kontroler za glavnu stranicu sistema
 	 */
-	var mainPageCtrl = function ($scope, $resource, $http, $location, $stateParams) 
+	var mainPageCtrl = function ($scope, $resource, $http, $location, $stateParams, $state) 
 	{
 		//JAKO JAKO BITNO DA SE svaki put prilikom slanja request-a posalje i token
 		//mora opet da se postavlja Authorization header!!!
+		console.log(localStorage.getItem('key') + "+++");
 		$http.defaults.headers.common.Authorization = 'Bearer ' + localStorage.getItem('key');
 		
-		$http.get('http://localhost:8080/HelloWeb/api/role').then(function(response)
-	    {      
+		/*
+		 * proverimo da li se u localStorage nalazi token, ako se ne nalazi onda treba prebaciti odmah na login posto nema token kod sebe
+		 */
+		if(localStorage.getItem('key') !== null){ 
+			$http.get('http://localhost:8080/HelloWeb/api/role').then(function(response)
+		    {      
+				$scope.rolaUser = response.data;       
+		    });
+		}else{
+			$state.go('login');
+		}   
+		
+		//ovako ne radi, iznad je zastita na front-end-u, ali koristim da bi testirao back-end
+		/*$http.get('http://localhost:8080/HelloWeb/api/role').then(function(response)
+		{      
 			$scope.rolaUser = response.data;       
-	    });
-	    
+		})*/
+		
 	}
 	
 	
