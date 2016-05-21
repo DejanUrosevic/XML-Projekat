@@ -16,6 +16,8 @@ import java.net.URL;
 
 
 import java.nio.charset.Charset;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,8 +30,10 @@ import javax.xml.bind.Unmarshaller;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.json.HTTP;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -46,6 +50,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import web.xml.model.User;
 import web.xml.model.Users;
+import web.xml.service.UserService;
 
 import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 
@@ -53,6 +58,10 @@ import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 @Controller
 @RequestMapping("/Index")
 public class UserController {
+	
+	
+	@Autowired
+	UserService userSer;
 	
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<User> getUser(@PathVariable(value="id") long id) throws IOException, JAXBException {
@@ -80,7 +89,7 @@ public class UserController {
 	
    
    @RequestMapping(value = "/checkUser", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
-   public @ResponseBody LoginResponse checkUser(@RequestBody String postPayload) throws IOException, JAXBException, ServletException {
+   public @ResponseBody LoginResponse checkUser(@RequestBody String postPayload) throws IOException, JAXBException, ServletException, NoSuchAlgorithmException, InvalidKeySpecException {
 	   
 	   JSONObject json = new JSONObject(postPayload);
 
@@ -120,7 +129,7 @@ public class UserController {
 		{
 			if(u.getUsername().equals(username))
 			{
-				if(u.getPassword().equals(password))
+				if(userSer.autenticate(password, u.getPassword(), u.getSalt()))
 				{
 					String token = Jwts.builder().setSubject(u.getUsername()).claim("roles", u.getVrsta()).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "asdf").compact();
 					return new LoginResponse(token); 
@@ -135,11 +144,16 @@ public class UserController {
    }
    
    @RequestMapping(value = "/registration", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
-   public @ResponseBody User registerUser(@RequestBody String postPayload) throws IOException, JAXBException 
+   public @ResponseBody User registerUser(@RequestBody String postPayload) throws IOException, JAXBException, NoSuchAlgorithmException, InvalidKeySpecException, JSONException 
    {
 	   JSONObject json = new JSONObject(postPayload);
 	   User user = new User(json.getString("ime"), json.getString("prezime"), 
-			   json.getString("username"), json.getString("password"), "gradjanin", 39);
+			   json.getString("username"), "gradjanin", 39);
+	   
+	   //ovde radimo hash password-a i takodje pamtimo u bazu i salt kojim je password odradjen
+	   byte[] salt = userSer.generateSalt();
+	   user.setSalt(salt);
+	   user.setPassword(userSer.hashPassword(json.getString("password"), salt));
 	   
 	   JAXBContext context = JAXBContext.newInstance(Users.class);
 		

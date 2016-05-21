@@ -19,9 +19,10 @@ public class User
 	private String ime;
 	private String prezime;
 	private String username;
-	private String password;
+	private byte[] password;
 	private String vrsta;
 	private long id;
+	private byte[] salt; 
 	
 	
 	public User()
@@ -29,13 +30,12 @@ public class User
 		
 	}
 
-	public User(String ime, String prezime, String username, String password,
+	public User(String ime, String prezime, String username,
 			String vrsta, long id) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
 		this.username = username;
-		this.password = password;
 		this.vrsta = vrsta;
 		this.id = id;
 	}
@@ -68,11 +68,11 @@ public class User
 	}
 
 	@XmlElement(required = true)
-	public String getPassword() {
+	public byte[] getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(byte[] password) {
 		this.password = password;
 	}
 
@@ -92,6 +92,15 @@ public class User
 
 	public void setID(long id) {
 		this.id = id;
+	}
+
+	@XmlElement(required = true)
+	public byte[] getSalt() {
+		return salt;
+	}
+
+	public void setSalt(byte[] salt) {
+		this.salt = salt;
 	}
 	
 	/*

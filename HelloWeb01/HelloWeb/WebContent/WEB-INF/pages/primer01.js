@@ -22,14 +22,23 @@
         $scope.login = function() {
             $scope.error = null;
             mainService.login($scope.userName, $scope.passWord).then(function(token) {
-                $scope.token = token;
-                $http.defaults.headers.common.Authorization = 'Bearer ' + token;
-                if(localStorage)
-        		{
-                	localStorage.setItem('key', token);	
-        		}
-                
-                $scope.checkRoles();
+            	if(token === undefined)
+            	{
+            		$state.go('login');
+            	}
+            	else
+            	{
+            		$scope.token = token;
+                    $http.defaults.headers.common.Authorization = 'Bearer ' + token;
+                    if(localStorage)
+              		{
+                      	localStorage.setItem('key', token);	
+              		}
+                      
+                    $scope.checkRoles();
+            	}
+            	
+              
                 
             },
             function(error){
@@ -39,7 +48,9 @@
                     
         }
         
-        
+        /**
+         * Ovde se proveravaju role i nakon provere se rediretkuje na /main stranicu.
+         */
         $scope.checkRoles = function() 
         {
         	$http.get('http://localhost:8080/HelloWeb/api/role').then(function(response)
@@ -110,7 +121,7 @@
 	
 	
 	/**
-	 * Kontroler za glavnu stranicu sistema
+	 * Kontroler za glavnu stranicu sistema, ovde lepimo na $scope klijenta koji se ulogovao.
 	 */
 	var mainPageCtrl = function ($scope, $resource, $http, $location, $stateParams, $state) 
 	{

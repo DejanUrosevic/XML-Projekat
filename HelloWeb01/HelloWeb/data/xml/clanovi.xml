@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<clanovi>
+	<clan>
+		<id> 433</id>
+		<opis> Ovo je opis</opis>
+		<naziv> Naziv tako se zovem, naziv </naziv>
+		<sadrzaj>
+			<stav> Ovbo je samo jedan stav</stav>
+		 </sadrzaj>
+	</clan>
+</clanovi>

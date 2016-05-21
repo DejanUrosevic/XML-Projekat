@@ -11,6 +11,7 @@
  http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  
     <context:component-scan base-package="web.xml.controller" />
+    <context:component-scan base-package="web.xml.service" />
      
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     <property name="prefix" value="/WEB-INF/jsp/" />

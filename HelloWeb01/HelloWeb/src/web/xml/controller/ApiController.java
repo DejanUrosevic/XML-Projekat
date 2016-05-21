@@ -29,6 +29,9 @@ public class ApiController {
 		
 		final HttpServletRequest request = (HttpServletRequest) req;
 		
+		/**
+		 * Provera da li je korisnik ulogovan(ima token), ako nije dovidjenja, nema pristupa.
+		 */
 		final String authHeader = request.getHeader("Authorization");
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             throw new ServletException("Missing or invalid Authorization header.");

@@ -1,43 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <korisnici>
     <korisnik>
-        <ID>3123</ID>
-        <ime>Pera</ime>
-        <password>p</password>
-        <prezime>Peric</prezime>
-        <username>p</username>
-        <vrsta>odbornik</vrsta>
-    </korisnik>
-    <korisnik>
-        <ID>123</ID>
-        <ime>Dragan</ime>
-        <password>d</password>
-        <prezime>Maric</prezime>
-        <username>d</username>
-        <vrsta>gradjanin</vrsta>
-    </korisnik>
-    <korisnik>
-        <ID>63</ID>
-        <ime>Das</ime>
-        <password>w</password>
-        <prezime>Asd</prezime>
-        <username>w</username>
-        <vrsta>predsednik skupstine</vrsta>
-    </korisnik>
-    <korisnik>
-        <ID>39</ID>
+        <ID>65</ID>
         <ime>marko</ime>
-        <password>marko</password>
-        <prezime>strisko</prezime>
+        <password>YpUD8cFvuoB8F907s33jdTbCe10=</password>
+        <prezime>markic</prezime>
+        <salt>spPIGtuZ58o=</salt>
         <username>marko@gmail.com</username>
         <vrsta>gradjanin</vrsta>
     </korisnik>
     <korisnik>
         <ID>39</ID>
-        <ime>dejan</ime>
-        <password>dejansuca11</password>
-        <prezime>urosevic</prezime>
-        <username>uros@gmail.com</username>
+        <ime>asd</ime>
+        <password>YVb2QQccaLhOG5aieLV+tcJo3dM=</password>
+        <prezime>asd</prezime>
+        <salt>ST9k5sg8idM=</salt>
+        <username>asd@asd</username>
         <vrsta>gradjanin</vrsta>
     </korisnik>
 </korisnici>
