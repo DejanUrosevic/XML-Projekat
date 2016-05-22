@@ -25,7 +25,7 @@ import web.xml.model.Users;
 @RequestMapping("/clan")
 public class ClanController 
 {
-
+	/*
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<Clanovi> getAll() throws IOException, JAXBException {
 		
@@ -41,5 +41,21 @@ public class ClanController
 		
 		
 	}
+	*/
 	
+	@RequestMapping(value = "/all", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<jaxb.from.xsd.Clan> getAll() throws IOException, JAXBException {
+		
+		JAXBContext context = JAXBContext.newInstance(jaxb.from.xsd.Clan.class);
+		
+		// Unmarshaller je objekat zadužen za konverziju iz XML-a u objektni model
+		Unmarshaller unmarshaller = context.createUnmarshaller(); 
+		 
+		// Unmarshalling generiše objektni model na osnovu XML fajla 
+		jaxb.from.xsd.Clan clanovi = (jaxb.from.xsd.Clan) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/clan.xml"));
+		
+		return new ResponseEntity<jaxb.from.xsd.Clan>(clanovi, HttpStatus.OK);
+		
+		
+	}
 }

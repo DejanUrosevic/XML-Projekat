@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.parlament.gov.rs/akt" xmlns:akt="http://www.parlament.gov.rs/akt"
+    xmlns:aman="http://www.parlament.gov.rs/amandman" xmlns:pro="http://www.parlament.gov.rs/propis">
+    <xs:import namespace="http://www.parlament.gov.rs/propis" schemaLocation="propis.xsd"/>
+    <xs:import namespace="http://www.parlament.gov.rs/amandman" schemaLocation="amandman.xsd"/>
+    <xs:element name="Akt">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="pro:Propis"/>
+                <xs:element ref="aman:Amandman"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

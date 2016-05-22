@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<clanovi>
-	<Clan xmlns="http://www.parlament.gov.rs/clan"
- 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- 	xsi:schemaLocation="http://www.parlament.gov.rs/clan file:/D:/4.%20godina/XML/app/HelloWeb01/HelloWeb/data/xsd/clan.xsd" ID="1582105513">
+<?xml version="1.0" encoding="UTF-8"?>
+<Clan xmlns="http://www.parlament.gov.rs/clan"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.parlament.gov.rs/clan file:/D:/4.%20godina/XML/app/HelloWeb01/HelloWeb/data/xsd/clan.xsd" ID="1582105513">
     <Opis>Opis clana</Opis>
     <Naziv>Clan br. 1</Naziv>
     <Sadrzaj>
@@ -23,4 +22,3 @@
         <Stav>Stab br. 3</Stav>
     </Sadrzaj>
 </Clan>
-</clanovi>

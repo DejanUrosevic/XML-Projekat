@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.parlament.gov.rs/clan" xmlns:clan="http://www.parlament.gov.rs/clan">
+
+    <xs:element name="Clan">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="Opis" type="xs:string"/>
+                <xs:element name="Naziv" type="xs:string"/>
+                <xs:element name="Sadrzaj">
+                    <xs:complexType mixed="true">
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element minOccurs="1" name="Stav" type="xs:string"/>
+                            <xs:element minOccurs="0" name="Tekst">
+                                <xs:complexType mixed="true">
+                                    <xs:choice>
+                                        <xs:element minOccurs="0" name="Neki_tekst" type="xs:string"/>
+                                        <xs:element ref="clan:Clan"/>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="ID" type="xs:positiveInteger" use="required"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
