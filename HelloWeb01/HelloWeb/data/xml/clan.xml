@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Clan xmlns="http://www.parlament.gov.rs/clan"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.parlament.gov.rs/clan file:/D:/4.%20godina/XML/app/HelloWeb01/HelloWeb/data/xsd/clan.xsd" ID="1582105513">
+ xsi:schemaLocation="http://www.parlament.gov.rs/clan ./data/xsd/clan.xsd" ID="1582105513">
     <Opis>Opis clana</Opis>
     <Naziv>Clan br. 1</Naziv>
     <Sadrzaj>
-        <Stav>Stav br. 1</Stav>
-        <Tekst>
-            <Clan ID="1572382299">
-                <Opis>Opis unutrasnjeg clana</Opis>
-                <Naziv>Naziv unutrasnjeg clana</Naziv>
-                <Sadrzaj>
-                    <Tekst>Samo obican tekst
-                    </Tekst>
-                    <Stav>Stav br. 2</Stav>
-                    <Tekst>
-                    </Tekst>
-                </Sadrzaj>
-            </Clan>
-        </Tekst>
+        <Stav>Stav br. 1
+        
+            	     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere sollicitudin metus. Vestibulum quis dui at ligula rhoncus tincidunt vitae sed arcu. Duis dapibus leo ut efficitur porta. Nulla varius mi in erat lobortis dignissim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum turpis ex, sagittis vitae dapibus et, placerat sit amet justo. Pellentesque cursus velit eget risus porta, at commodo leo convallis. Nam sagittis eget diam sed pretium. Ut mattis sit amet nisl eu vehicula. Sed id finibus neque. Suspendisse eget nisl quis justo gravida aliquet ut sed leo. Sed sit amet augue ut quam molestie suscipit a nec mauris. Vivamus hendrerit consequat rhoncus. Pellentesque ut metus condimentum, semper tellus in, molestie ipsum.
+
+Mauris placerat feugiat leo in tincidunt. Mauris accumsan pellentesque metus. Aliquam iaculis rutrum suscipit. Fusce vitae dapibus massa. Nulla eu bibendum mauris. Integer non ipsum eu massa dictum ornare egestas et sem. Ut interdum mauris in tortor tincidunt, sed posuere diam sagittis. Aenean mollis tortor dui, et facilisis est facilisis ut. Cras at ultrices diam. Sed quis libero at enim finibus egestas et sed ante. Nam fermentum purus ac ex mattis, at varius ligula finibus.
+
+Integer convallis sed nisl ac rhoncus. Curabitur posuere accumsan libero, egestas rutrum sapien sagittis at. Suspendisse dictum nec dui id molestie. Morbi fermentum velit tincidunt mi faucibus, id porta enim mattis. Sed aliquam pharetra nisl, vel gravida sem. Ut tempus erat vitae finibus pulvinar. Nam venenatis ut lorem vitae rhoncus. Duis tempor mollis velit at congue. Nullam vitae arcu tristique, mattis nulla ac, varius diam. Etiam aliquet consectetur urna eu gravida. Maecenas faucibus nec tortor in scelerisque. Mauris ligula leo, vehicula ac pulvinar at, facilisis feugiat velit. Sed quis felis vitae purus blandit cursus. Aenean imperdiet quam vitae libero suscipit congue.
+
+Aliquam dapibus, sem sed egestas ornare, dui enim ultrices sem, eget euismod augue ligula et risus. Nullam suscipit, odio sit amet venenatis vulputate, nulla elit pellentesque libero, vel lobortis nisi tellus eu ligula. Fusce facilisis leo sed mauris accumsan tempor. Morbi efficitur, erat ut pulvinar vehicula, dolor felis condimentum nibh, quis ornare nulla nulla ac sapien. Aliquam erat volutpat. Suspendisse lacus urna, blandit sed ex et, scelerisque pretium risus. Ut molestie, nibh sed tincidunt commodo, ligula odio blandit nibh, eu fermentum nisi orci vel est.
+         </Stav>  
         <Stav>Stab br. 3</Stav>
     </Sadrzaj>
 </Clan>

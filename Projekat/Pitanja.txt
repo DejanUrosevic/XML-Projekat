@@ -1,4 +1,4 @@
-
-  1. Kada preuzmemo neki xml fajl iz baze i preko parsera isparsiramo ono sto nam treba od podataka,
-  sta da posaljem Angularu da bi on prikazao podatke na html-u? Da li uzeti neki From XML to JSON converter, tj. Angularu poslati taj neki .xml fajl, convertovati ga u JSON i onda na HTML? i koliko je to pouzdano? 
-  https://github.com/abdmob/x2js
+1. Sta znaci pregledanje akata po referencama?
+2. Da li gradjanin treba da se loguje?
+3. Da ako ima token, da ga odmah sibne na main.
+4. Sta znaci usvajanje akata u nacelu, u pojedinostima ili u celini? 

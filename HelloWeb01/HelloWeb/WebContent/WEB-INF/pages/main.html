@@ -14,7 +14,7 @@
 			<div id="tableContainer-2">
 			<br/>
 				<h2 style="text-align: center; color: #0033cc;">
-					<u>Dobrodosli </u> <span style="color: red;"> {{rolaUser.username}} </span>
+					<u>Dobrodosli </u> <span style="color: red;"> &nbsp&nbsp {{rolaUser.username}} </span>
 				</h2>
 				<br />
 				<hr />
@@ -23,7 +23,7 @@
 					<tr>
 						<th>Pretraga akata</th>
 						<th>Pregled svih akata</th>
-						<th ng-if="rolaUser.role === 'odbornik' || rolaUser.role === 'predsednik skupstine'">Predlaganje akta</th>
+						<th ng-if="rolaUser.role === 'odbornik' || rolaUser.role === 'predsednik skupstine'">Predlaganje propisa</th>
 						<th ng-if="rolaUser.role === 'odbornik' || rolaUser.role === 'predsednik skupstine'">Predlaganje amandmana</th>
 					</tr>
 					<tr>
@@ -32,10 +32,10 @@
 								<img src="css/images/search.jpg" height="50" />
 							</button></td>
 						<td class="sredina"><button type="button"
-								style="background-color: transparent; border-color: transparent;">
+								style="background-color: transparent; border-color: transparent;" ng-click="sviAkti()">
 								<img src="css/images/data.jpg" height="50" />
 							</button></td>
-						<td class="sredina" ng-if="rolaUser.role === 'odbornik' || rolaUser.role === 'predsednik skupstine'"><button
+						<td class="sredina" ng-if="rolaUser.role === 'odbornik' || rolaUser.role === 'predsednik skupstine'" ng-click="addAkt()"><button
 								type="button"
 								style="background-color: transparent; border-color: transparent;">
 								<img src="css/images/addAkt.png" height="50" />
@@ -47,15 +47,9 @@
 							</button></td>
 					</tr>
 				</table>
-				<!--  
-	                <div ng-repeat="user in users">
-						<p> ID: -- {{user.id}} -- {{user.prezime}} &nbsp {{user.vrsta}}</p>
-					</div>
-	                <br/><br>	           
-	                <a ui-sref="main"> Proba za admina dash</a>
-	                -->
-
 			</div>
-		</div>
+		</div>	
+	
+		<div ng-bind-html="thisCanBeusedInsideNgBindHtml"></div>
 	</div>
 </div>

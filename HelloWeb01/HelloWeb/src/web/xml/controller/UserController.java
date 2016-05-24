@@ -63,6 +63,7 @@ public class UserController {
 	@Autowired
 	UserService userSer;
 	
+	
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<User> getUser(@PathVariable(value="id") long id) throws IOException, JAXBException {
 		JAXBContext context = JAXBContext.newInstance(Users.class);

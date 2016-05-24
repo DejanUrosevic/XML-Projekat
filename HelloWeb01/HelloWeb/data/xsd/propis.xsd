@@ -8,38 +8,27 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="Naziv" type="xs:string"/>
-                <xs:element name="Deo">
+                <xs:element name="Deo" maxOccurs="unbounded" minOccurs="1">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="Naziv" type="xs:string"/>
-                            <xs:element maxOccurs="unbounded" name="Glava">
+                            <xs:element maxOccurs="unbounded" name="Glava" minOccurs="0">
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="Naziv" type="xs:string"/>
-                                        <xs:element maxOccurs="unbounded" name="Odeljak">
-                                            <xs:complexType>
-                                                <xs:sequence>
-                                                  <xs:element maxOccurs="unbounded" minOccurs="0"
-                                                  ref="clan:Clan"/>
-                                                  <xs:element minOccurs="0" name="Pododeljak">
-                                                  <xs:complexType>
-                                                  <xs:sequence>
-                                                  <xs:element ref="clan:Clan"/>
-                                                  </xs:sequence>
-                                                  </xs:complexType>
-                                                  </xs:element>
-                                                </xs:sequence>
-                                            </xs:complexType>
-                                        </xs:element>
+                                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                                            ref="clan:Clan"/>
                                     </xs:sequence>
+                                    <xs:attribute name="ID" type="xs:positiveInteger"/>
                                 </xs:complexType>
                             </xs:element>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" ref="clan:Clan"/>
                         </xs:sequence>
                         <xs:attribute name="ID" type="xs:positiveInteger" use="required"/>
                     </xs:complexType>
                 </xs:element>
-                <xs:element maxOccurs="unbounded" minOccurs="0" name="Prilog"/>
             </xs:sequence>
+            <xs:attribute name="ID" type="xs:positiveInteger"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

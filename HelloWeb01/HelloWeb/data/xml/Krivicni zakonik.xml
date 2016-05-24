@@ -4,7 +4,7 @@
  xmlns:pro="http://www.parlament.gov.rs/propis"
  xmlns:clan="http://www.parlament.gov.rs/clan"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.parlament.gov.rs/propis file:/F:/My%20Documents/Faks/CETVRTA%20godina/XML%20deo/Projekat/Projekat/scheme/Skupstina-sema.xsd">
+ xsi:schemaLocation="http://www.parlament.gov.rs/propis ./data/xsd/propis.xsd">
     <pro:Naziv>Krivicni zakonik</pro:Naziv>
     <pro:Deo ID="428426860">
         <pro:Naziv>Opsti deo</pro:Naziv>
@@ -43,7 +43,6 @@
                             <clan:Tekst>
                                 Lorem ipsum
                             </clan:Tekst>
-              
                         </clan:Stav>
                     </clan:Sadrzaj>
                 </clan:Clan>

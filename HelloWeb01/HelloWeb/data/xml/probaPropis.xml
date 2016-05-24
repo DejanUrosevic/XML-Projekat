@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Propis xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" ID="1">
+    <Naziv>qegfqg</Naziv>
+    <Deo ID="1">
+        <Naziv>qgqwgwqw</Naziv>
+        <Glava ID="1">
+            <Naziv>qgwqg</Naziv>
+            <ns2:Clan ID="2">
+                <ns2:Opis>wqgwqgwq</ns2:Opis>
+                <ns2:Naziv>gwqgwqgwqgw</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>qwgqwwqgqqw</ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </Glava>
+        <Glava ID="2">
+            <Naziv>jjkuk jgj</Naziv>
+            <ns2:Clan ID="2">
+                <ns2:Opis>jjtty</ns2:Opis>
+                <ns2:Naziv>j jy y</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>tyjtyjt</ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </Glava>
+    </Deo>
+    <Deo ID="2">
+        <Naziv>2e2</Naziv>
+        <Glava ID="1">
+            <Naziv>21321</Naziv>
+            <ns2:Clan ID="2">
+                <ns2:Opis>2321</ns2:Opis>
+                <ns2:Naziv>22</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Stav>
+                        <ns2:Redni_broj>78</ns2:Redni_broj>
+                        <ns2:Tekst>fqwfwqefqw</ns2:Tekst>
+                    </ns2:Stav>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </Glava>
+    </Deo>
+</Propis>

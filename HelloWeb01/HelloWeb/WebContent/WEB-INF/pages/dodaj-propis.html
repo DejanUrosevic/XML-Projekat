@@ -1,0 +1,109 @@
+<div id="header" ng-controller="logInCtrl">
+	<h1>IssgNS</h1>
+	<ul>
+		<li><a ui-sref="main">Nazad</a></li>
+		<li><a href="#">Products</a></li>
+		<li><a href="#">Services</a></li>
+		<li><a href="#">About</a></li>
+		<li><a ng-click="logout()">Odjavi se </a></li>
+	</ul>
+
+</div>
+<div id="main">
+	<div class="main_body">
+		<div id="tableContainer-1">
+			<div id="tableContainer-2">
+				<br />
+				<h2 style="text-align: center; color: #0033cc;">
+					<u> Dodavanje novog propisa </u>
+				</h2>
+				<br />
+				<hr />
+				<br />
+				<form name="myForm" method="POST">
+					<table id="myTable">
+						<tr>
+							<th class="sredina">Unesite naziv propisa</th>					
+						</tr>
+						<tr>
+							<td class="sredina"><input type="text" size="30"
+								ng-model="propis.naziv" required /></td>
+						</tr>
+						<tr>
+							<th class="sredina">Unesite naziv dela</th>					
+						</tr>
+						<tr>
+							<td class="sredina"><input type="text" size="30"
+								ng-model="deo.naziv" required /></td>
+						</tr>
+						<tr>
+							<td class="sredina"><select ng-model="deo.izbor">
+									<option value=""></option>
+									<option value="Clan">Clan</option>
+									<option value="Glava">Glava</option>
+							</select></td>
+						</tr>
+						<tr ng-show="deo.izbor === 'Glava'">
+							<th class="sredina">Unesite naziv glave</th>					
+						</tr>
+						<tr  ng-show="deo.izbor === 'Glava'">
+							<td class="sredina"><input type="text" size="30"
+								ng-model="glavaNaziv" required /></td>
+						</tr>
+						<tr>
+							<th class="sredina">Unesite naziv clana</th>					
+						</tr>
+						<tr>
+							<td class="sredina"><input type="text" size="30"
+								ng-model="clan.naziv" required /></td>
+						</tr>
+						<tr>
+							<th class="sredina">Unesite opis clana</th>					
+						</tr>
+						<tr>
+							<td class="sredina"><input type="text" size="30"
+								ng-model="clan.opis" required /></td>
+						</tr>
+						<tr>
+							<td class="sredina"><select ng-model="clan.izbor">
+									<option value="">--Izaberite da li ce clan biti stav ili tekst</option>
+									<option value="Stav">Stav</option>
+									<option value="Tekst">Tekst</option>
+							</select></td>
+						</tr>
+						<tr ng-show="clan.izbor === 'Stav'">
+							<th class="sredina">Unesite redni broj stava</th>					
+						</tr>
+						<tr ng-show="clan.izbor === 'Stav'">
+							<td class="sredina"><input type="text" size="30"
+								ng-model="stavBroj" required /></td>
+						</tr>
+						<tr ng-show="clan.izbor === 'Stav'">
+							<th class="sredina">Unesite tekst stava</th>					
+						</tr>
+						<tr ng-show="clan.izbor === 'Stav'">
+							<td class="sredina"><input type="text" size="30"
+								ng-model="stavTekst" required /></td>
+						</tr>
+						<tr ng-show="clan.izbor === 'Tekst'">
+							<th class="sredina">Unesite tekst clana</th>					
+						</tr>
+						<tr ng-show="clan.izbor === 'Tekst'">
+							<td class="sredina"><input type="text" size="30"
+								ng-model="clanTekst" required /></td>
+						</tr>
+						<tr>
+							<td style="text-align: center;">
+								<button type="submit"
+									style="background-color: transparent; border-color: transparent;"
+									ng-click="zavrsiPropis()">
+									<img src="css/images/Next-icon.png" height="35" />
+								</button>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

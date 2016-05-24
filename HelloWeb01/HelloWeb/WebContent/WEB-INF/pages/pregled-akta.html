@@ -1,0 +1,34 @@
+<div id="header" ng-controller="logInCtrl">
+	<h1>IssgNS</h1>
+	<ul>
+		<li><a href="#">Home</a></li>
+		<li><a href="#">Products</a></li>
+		<li><a href="#">Services</a></li>
+		<li><a href="#">About</a></li>
+		<li><a ng-click="logout()">Odjavi se </a></li>
+	</ul>
+</div>
+<div id="main">
+	<div class="main_body">
+		<div id="tableContainer-1">
+			<div id="tableContainer-2">
+			<br/>
+				<h2 style="text-align: center; color: #0033cc;">
+					<u>Dobrodosli </u> <span style="color: red;"> &nbsp&nbsp {{rolaUser.username}} </span>
+				</h2>
+				<br />
+				<hr />
+				<br />
+				<table id="myTable">
+	
+								<tr>
+									Clan ID: <td class="sredina">{{akti.id}}</td>
+									Naziv clana <td class="sredina">{{akti.naziv}}</td>
+									Opis clana <td class="sredina">{{akti.opis}}</td>
+								</tr>
+					
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

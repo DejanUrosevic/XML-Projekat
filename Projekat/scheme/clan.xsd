@@ -8,18 +8,19 @@
                 <xs:element minOccurs="0" name="Opis" type="xs:string"/>
                 <xs:element name="Naziv" type="xs:string"/>
                 <xs:element name="Sadrzaj">
-                    <xs:complexType mixed="true">
-                        <xs:choice maxOccurs="unbounded">
-                            <xs:element minOccurs="1" name="Stav" type="xs:string"/>
-                            <xs:element minOccurs="0" name="Tekst">
-                                <xs:complexType mixed="true">
-                                    <xs:choice>
-                                        <xs:element minOccurs="0" name="Neki_tekst" type="xs:string"/>
-                                        <xs:element ref="clan:Clan"/>
-                                    </xs:choice>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="Stav" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Redni_broj" type="xs:long"/>
+                                        <xs:element name="Tekst" type="xs:string"/>
+                                    </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
-                        </xs:choice>
+                            <xs:element minOccurs="0" name="Tekst" type="xs:string"
+                                maxOccurs="unbounded"> </xs:element>
+                        </xs:sequence>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>

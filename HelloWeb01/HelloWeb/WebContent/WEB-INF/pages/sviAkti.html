@@ -1,0 +1,31 @@
+<div id="header" ng-controller="logInCtrl">
+	<h1>IssgNS</h1>
+	<ul>
+		<li><a ui-sref="main">Nazad</a></li>
+		<li><a href="#">Products</a></li>
+		<li><a href="#">Services</a></li>
+		<li><a href="#">About</a></li>
+		<li><a ng-click="logout()">Odjavi se </a></li>
+	</ul>
+</div>
+<div id="main">
+	<div class="main_body">
+		<div id="tableContainer-1">
+			<div id="tableContainer-2">
+			<br/>
+				<h2 style="text-align: center; color: #0033cc;">
+					<u>Svi doneseni akti </u> 
+				</h2>
+				<br />
+				<hr />
+				<br />
+				<table id="myTable" style="border: 1px solid black;">
+					<tr>
+						<td class="sredina"> Pregled akta <img src="css/images/right.jpg" height="25" /></td>
+						<td class="sredina"> <u><b> <a ng-click="pregledAkta(akti.id)"> {{akti.naziv}} </a> </b> </u> </td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

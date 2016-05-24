@@ -123,11 +123,10 @@
 	/**
 	 * Kontroler za glavnu stranicu sistema, ovde lepimo na $scope klijenta koji se ulogovao.
 	 */
-	var mainPageCtrl = function ($scope, $resource, $http, $location, $stateParams, $state) 
+	var mainPageCtrl = function ($scope, $resource, $http, $location, $stateParams, $state, $sce) 
 	{
 		//JAKO JAKO BITNO DA SE svaki put prilikom slanja request-a posalje i token
 		//mora opet da se postavlja Authorization header!!!
-		console.log(localStorage.getItem('key') + "+++");
 		$http.defaults.headers.common.Authorization = 'Bearer ' + localStorage.getItem('key');
 		
 		/*
@@ -137,23 +136,112 @@
 			$http.get('http://localhost:8080/HelloWeb/api/role').then(function(response)
 		    {      
 				$scope.rolaUser = response.data;       
+		    });		
+		}else{
+			$state.go('login');
+		}
+		
+		
+		$scope.sviAkti = function()
+		{
+			$state.go('pregledAkata');
+		}
+		
+		$scope.addAkt = function()
+		{
+			$state.go('dodPropis');
+			
+		}
+		
+	}
+	
+	var sviAktiCtrl = function ($scope, $resource, $http, $location, $stateParams, $state) 
+	{
+		//JAKO JAKO BITNO DA SE svaki put prilikom slanja request-a posalje i token
+		//mora opet da se postavlja Authorization header!!!
+		$http.defaults.headers.common.Authorization = 'Bearer ' + localStorage.getItem('key');
+		
+		/*
+		 * proverimo da li se u localStorage nalazi token, ako se ne nalazi onda treba prebaciti odmah na login posto nema token kod sebe
+		 */
+		if(localStorage.getItem('key') !== null){ 
+			$http.get('http://localhost:8080/HelloWeb/clan/all').then(function(response)
+		    {      
+				$scope.akti = response.data.deo.glava[0].odeljak[0].clan[0];       
 		    });
 		}else{
 			$state.go('login');
-		}   
+		}
 		
-		//ovako ne radi, iznad je zastita na front-end-u, ali koristim da bi testirao back-end
-		/*$http.get('http://localhost:8080/HelloWeb/api/role').then(function(response)
-		{      
-			$scope.rolaUser = response.data;       
-		})*/
+		$scope.pregledAkta = function(aktId) 
+		{
+			$location.path('/sviAkti/akt/' + aktId);
+		}
+	}
+	
+	var addPropisCtrl = function($scope, $resource, $http, $location, $stateParams, $state)
+	{
+		//predefinsane vrednosti, jer pravi problem na backend-u.
+		$scope.stavBroj = '';
+		$scope.stavTekst = '';
+		$scope.clanTekst = '';
+		$scope.glavaNaziv = '';
 		
+		
+		/**
+		 * Ovde bi faktikci trebalo da se posalje na bazu gotov propis,
+		 * ali u trenutku pisanja ovog koda, mi nemamo ni | slova B ob Baze.
+		 * Stoga samo kreira novi xml na hard disku.
+		 */
+		$scope.zavrsiPropis = function()
+		{	
+			$http.post('http://localhost:8080/HelloWeb/clan/noviPropis', {nazivPropisa: $scope.propis.naziv, nazivDeo: $scope.deo.naziv,
+				nazivGlave: $scope.glavaNaziv, nazivClana: $scope.clan.naziv, opisClana: $scope.clan.opis, redniBrojStava: $scope.stavBroj,
+				stavTekst: $scope.stavTekst, tekstClana: $scope.clanTekst})
+			.then(function(response)
+			{
+				$state.go('opcije');
+			});
+			
+		}
+		
+		/**
+		 * Mozemo dodati jos jedan novi deo.
+		 */
+		$scope.noviDeo = function()
+		{
+			$http.post('http://localhost:8080/HelloWeb/clan/noviDeo', {nazivDeo: $scope.deo.naziv,
+				nazivGlave: $scope.glavaNaziv, nazivClana: $scope.clan.naziv, opisClana: $scope.clan.opis, redniBrojStava: $scope.stavBroj,
+				stavTekst: $scope.stavTekst, tekstClana: $scope.clanTekst})
+			.then(function(response)
+			{
+				$state.go('opcije');
+			});
+			
+		}
+		
+		/**
+		 * Mozemo dodati jos jednu novu glavu.
+		 */
+		$scope.novaGlava = function()
+		{
+			$http.post('http://localhost:8080/HelloWeb/clan/novaGlava', {nazivGlave: $scope.glavaNaziv, nazivClana: $scope.clan.naziv, 
+				opisClana: $scope.clan.opis, redniBrojStava: $scope.stavBroj,
+				stavTekst: $scope.stavTekst, tekstClana: $scope.clanTekst})
+			.then(function(response)
+			{
+				$state.go('opcije');
+			});
+		}
+
 	}
 	
 	
 	var app = angular.module('app',['ui.router', 'ngResource']);
 	app.controller('logInCtrl', logInCtrl);
 	app.controller('mainPageCtrl', mainPageCtrl);
+	app.controller('sviAktiCtrl', sviAktiCtrl);
+	app.controller('addPropisCtrl', addPropisCtrl);
 	
 	app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -174,6 +262,36 @@
 	      url: '/register',
 	      templateUrl: 'reg-unos.html',
 	      controller: 'logInCtrl'
+	    })
+	    .state('pregledAkata', {
+	      url: '/sviAkti',
+	      templateUrl: 'sviAkti.html',
+	      controller: 'sviAktiCtrl'
+	    })
+	    .state('izabranAkt', {
+	      url: '/sviAkti/akt/:id',
+	      templateUrl: 'pregled-akta.html',
+	      controller: 'sviAktiCtrl'
+	    })
+	    .state('dodPropis', {
+	      url: '/noviPropis',
+	      templateUrl: 'dodaj-propis.html',
+	      controller: 'addPropisCtrl'
+	    })
+	    .state('opcije', {
+	      url: '/opcije',
+	      templateUrl: 'opcije.html',
+	      controller: 'addPropisCtrl'
+	    })
+	    .state('noviDeo', {
+	      url: '/noviDeo',
+	      templateUrl: 'dodaj-deo.html',
+	      controller: 'addPropisCtrl'
+	    })
+	    .state('novaGlava', {
+	      url: '/novaGlava',
+	      templateUrl: 'dodaj-glavu.html',
+	      controller: 'addPropisCtrl'
 	    })
 	    .state('greska', {
 	      url: '/greska',
