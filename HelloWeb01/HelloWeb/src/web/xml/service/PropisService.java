@@ -15,8 +15,8 @@ public interface PropisService extends CrudService<Propis>
 	
 	public Propis dodajGlavu(String requestData) throws JAXBException;
 	
-	public Propis dodajClan(String requestData);
+	public Propis dodajClan(String requestData) throws JAXBException;
 	
-	public Propis dodajStav(String requestData);
+	public Propis dodajStav(String requestData) throws JAXBException;
 	
 }

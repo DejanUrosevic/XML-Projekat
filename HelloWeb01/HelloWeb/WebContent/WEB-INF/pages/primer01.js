@@ -233,6 +233,25 @@
 				$state.go('opcije');
 			});
 		}
+		
+		$scope.noviClan = function(){
+			$http.post('http://localhost:8080/HelloWeb/clan/noviClan', {nazivClana: $scope.clan.naziv, 
+				opisClana: $scope.clan.opis, redniBrojStava: $scope.stavBroj,
+				stavTekst: $scope.stavTekst, tekstClana: $scope.clanTekst})
+			.then(function(response)
+			{
+				$state.go('opcije');
+			});
+		}
+		
+		$scope.noviStav = function(){
+			$http.post('http://localhost:8080/HelloWeb/clan/noviStav', {redniBrojStava: $scope.stavBroj,
+				stavTekst: $scope.stavTekst})
+			.then(function(response)
+			{
+				$state.go('opcije');
+			});
+		}
 
 	}
 	
@@ -292,6 +311,16 @@
 	      url: '/novaGlava',
 	      templateUrl: 'dodaj-glavu.html',
 	      controller: 'addPropisCtrl'
+	    })
+	    .state('noviClan', {
+	    	url: '/noviClan',
+	    	templateUrl: 'dodaj-clan.html',
+	    	controller: 'addPropisCtrl'
+	    })
+	    .state('noviStav', {
+	    	url: '/noviStav',
+	    	templateUrl: 'dodaj-stav.html',
+	    	controller: 'addPropisCtrl'
 	    })
 	    .state('greska', {
 	      url: '/greska',

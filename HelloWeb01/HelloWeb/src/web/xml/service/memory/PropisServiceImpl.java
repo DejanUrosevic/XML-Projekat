@@ -222,7 +222,7 @@ public class PropisServiceImpl implements PropisService
 		Unmarshaller unmarshaller = context.createUnmarshaller(); 
 		 
 		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshaller.unmarshal(new File("./data/xml/probaPropis.xml"));
+		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
 	
 		deo.setID(BigInteger.valueOf(propis.getDeo().size()+1));
 		deo.setNaziv(nazivDela);
@@ -241,12 +241,9 @@ public class PropisServiceImpl implements PropisService
 		Unmarshaller unmarshalle2r = context.createUnmarshaller(); 
 		 
 		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshalle2r.unmarshal(new File("./data/xml/probaPropis.xml"));
+		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshalle2r.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
 		
-		
-		
-		
-		
+
 		JSONObject json = new JSONObject(requestData);
 
 		String tekstClana = "";
@@ -294,10 +291,12 @@ public class PropisServiceImpl implements PropisService
 			stav.setTekst(tekstStava);
 			sadrzaj.getStav().add(stav);
 		}
+		
 		if(!tekstClana.equals(""))
 		{
 			sadrzaj.getTekst().add(tekstClana);
 		}
+		
 		if(!nazivGlave.equals(""))
 		{
 			glava.getClan().add(clan);
@@ -321,15 +320,123 @@ public class PropisServiceImpl implements PropisService
 	}
 
 	@Override
-	public Propis dodajClan(String requestData) {
-		// TODO Auto-generated method stub
-		return null;
+	public Propis dodajClan(String requestData) throws JAXBException {
+		JAXBContext context = JAXBContext.newInstance(Propis.class);
+		
+		Unmarshaller unmarshalle2r = context.createUnmarshaller(); 
+		 
+		// Unmarshalling generiše objektni model na osnovu XML fajla 
+		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshalle2r.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
+		
+
+		JSONObject json = new JSONObject(requestData);
+
+		String tekstClana = "";
+		String redniBroj = "";
+		String tekstStava = "";
+		
+		String nazivClana = json.getString("nazivClana");
+		String opisClana = json.getString("opisClana");
+		
+		try{
+			
+			tekstClana = json.getString("tekstClana");
+			
+		}catch(org.json.JSONException e){
+			//e.printStackTrace();
+		}
+		
+		try{
+			
+			redniBroj = json.getString("redniBrojStava");
+			tekstStava = json.getString("stavTekst");
+			
+		}catch(org.json.JSONException e){
+			//e.printStackTrace();
+		}
+		
+		Clan clan = new Clan();
+		Sadrzaj sadrzaj = new Sadrzaj();
+		Stav stav = new Stav();
+		
+		if(!redniBroj.equals(""))
+		{
+			stav.setRedniBroj(Long.parseLong(redniBroj));
+			stav.setTekst(tekstStava);
+			sadrzaj.getStav().add(stav);
+		}
+		if(!tekstClana.equals(""))
+		{
+			sadrzaj.getTekst().add(tekstClana);
+		}
+		
+		
+		if(propis.getDeo().get(0).getGlava().size() != 0 && propis.getDeo().get(0).getGlava() != null ){
+			clan.setID(BigInteger.valueOf(propis.getDeo().get(0).getGlava().get(0).getClan().size() +1));
+			clan.setNaziv(nazivClana);
+			clan.setOpis(opisClana);
+			clan.setSadrzaj(sadrzaj);
+			propis.getDeo().get(0).getGlava().get(0).getClan().add(clan);
+		}else {
+			clan.setID(BigInteger.valueOf(propis.getDeo().get(0).getClan().size() +1));
+			clan.setNaziv(nazivClana);
+			clan.setOpis(opisClana);
+			clan.setSadrzaj(sadrzaj);
+			propis.getDeo().get(0).getClan().add(clan);
+		}
+				
+		return propis;
 	}
 
 	@Override
-	public Propis dodajStav(String requestData) {
-		// TODO Auto-generated method stub
-		return null;
+	public Propis dodajStav(String requestData) throws JAXBException {
+		JAXBContext context = JAXBContext.newInstance(Propis.class);
+		
+		Unmarshaller unmarshalle2r = context.createUnmarshaller(); 
+		 
+		// Unmarshalling generiše objektni model na osnovu XML fajla 
+		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshalle2r.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
+		
+
+		JSONObject json = new JSONObject(requestData);
+
+
+		String redniBroj = "";
+		String tekstStava = "";		
+		
+		try{
+			
+			redniBroj = json.getString("redniBrojStava");
+			tekstStava = json.getString("stavTekst");
+			
+		}catch(org.json.JSONException e){
+			//e.printStackTrace();
+		}
+
+		Stav stav = new Stav();
+		
+		if(!redniBroj.equals("")){
+			stav.setRedniBroj(Long.parseLong(redniBroj));
+			stav.setTekst(tekstStava);
+			
+			for(int i = 0; i < propis.getDeo().size(); i++){
+				if(propis.getDeo().get(i).getGlava().size() != 0 && propis.getDeo().get(i).getGlava() != null){ //akp postoji glava
+					for(int j = 0; j < propis.getDeo().get(i).getGlava().size(); j++){
+						if(propis.getDeo().get(i).getGlava().get(j).getClan().size() != 0 && propis.getDeo().get(i).getGlava().get(j).getClan() != null){
+							for(int k = 0; k < propis.getDeo().get(i).getGlava().get(j).getClan().size(); k++){
+								if(propis.getDeo().get(i).getGlava().get(j).getClan().get(k).getSadrzaj().getStav().size() != 0 && propis.getDeo().get(i).getGlava().get(j).getClan().get(k).getSadrzaj().getStav() != null){
+									propis.getDeo().get(i).getGlava().get(j).getClan().get(k).getSadrzaj().getStav().add(stav);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+
+				
+		return propis;
 	}
 
 }

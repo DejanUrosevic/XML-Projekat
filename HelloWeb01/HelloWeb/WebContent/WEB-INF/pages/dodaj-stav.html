@@ -1,0 +1,53 @@
+<div id="header" ng-controller="logInCtrl">
+	<h1>IssgNS</h1>
+	<ul>
+		<li><a ui-sref="main">Nazad</a></li>
+		<li><a href="#">Products</a></li>
+		<li><a href="#">Services</a></li>
+		<li><a href="#">About</a></li>
+		<li><a ng-click="logout()">Odjavi se </a></li>
+	</ul>
+
+</div>
+<div id="main">
+	<div class="main_body">
+		<div id="tableContainer-1">
+			<div id="tableContainer-2">
+				<br />
+				<h2 style="text-align: center; color: #0033cc;">
+					<u> Dodavanje nove glave </u>
+				</h2>
+				<br />
+				<hr />
+				<br />
+				<form name="myForm" method="POST">
+					<table id="myTable">
+						<tr>
+							<th class="sredina">Unesite redni broj stava</th>					
+						</tr>
+						<tr>
+							<td class="sredina"><input type="text" size="30"
+								ng-model="stavBroj" required /></td>
+						</tr>
+						<tr>
+							<th class="sredina">Unesite tekst stava</th>					
+						</tr>
+						<tr>
+							<td class="sredina"><input type="text" size="30"
+								ng-model="stavTekst" required /></td>
+						</tr>
+						<tr>
+							<td style="text-align: center;">
+								<button type="submit"
+									style="background-color: transparent; border-color: transparent;"
+									ng-click="noviStav()">
+									<img src="css/images/Next-icon.png" height="35" />
+								</button>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

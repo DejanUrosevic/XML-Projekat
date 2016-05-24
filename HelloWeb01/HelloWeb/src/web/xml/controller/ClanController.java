@@ -69,9 +69,13 @@ public class ClanController
 		Unmarshaller unmarshaller = context.createUnmarshaller(); 
 		 
 		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		jaxb.from.xsd.Clan clanovi = (jaxb.from.xsd.Clan) unmarshaller.unmarshal(new File("./data/xml/clan.xml"));
+		//jaxb.from.xsd.Clan clanovi = (jaxb.from.xsd.Clan) unmarshaller.unmarshal(new File("./data/xml/clan.xml"));
 		
 		
+		///////////////////////
+		jaxb.from.xsd.Clan clanovi = (jaxb.from.xsd.Clan) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/clan.xml"));
+		
+		//////////////////////
 		/*
 		//ovako dobijamo vrednosti iz ugnjezdnenih tagova, ne moze jednostavnije
 		for( Serializable s: clanovi.getSadrzaj().getContent() ){
@@ -91,7 +95,11 @@ public class ClanController
 		Unmarshaller unmarshalle2r = context2.createUnmarshaller(); 
 		 
 		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshalle2r.unmarshal(new File("./data/xml/probaPropis.xml"));
+		//jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshalle2r.unmarshal(new File("./data/xml/probaPropis.xml"));
+		
+		//////////////////////////////////////////
+		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshalle2r.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
+		/////////////////////////////////////////
 		
 		return new ResponseEntity<Propis>(propis, HttpStatus.OK);
 	}
@@ -112,8 +120,11 @@ public class ClanController
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 		
 		// Umesto System.out-a, može se koristiti FileOutputStream
-		marshaller.marshal(noviPropis, new File("data\\xml\\probaPropis.xml"));
+		//marshaller.marshal(noviPropis, new File("data\\xml\\probaPropis.xml"));
 
+		////////////////////////////////
+		marshaller.marshal(noviPropis, new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
+		///////////////////////////////
 		
 		return null;
 		
@@ -132,8 +143,13 @@ public class ClanController
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 		
 		// Umesto System.out-a, može se koristiti FileOutputStream
-		marshaller.marshal(propis, new File("data\\xml\\probaPropis.xml"));
+		//marshaller.marshal(propis, new File("data\\xml\\probaPropis.xml"));
 
+		
+		///////////////////////////
+		marshaller.marshal(propis, new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
+		///////////////////////////
+		
 		return null;
 		
 	}
@@ -152,9 +168,57 @@ public class ClanController
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 		
 		// Umesto System.out-a, može se koristiti FileOutputStream
-		marshaller.marshal(propis, new File("data\\xml\\probaPropis.xml"));
+		//marshaller.marshal(propis, new File("data\\xml\\probaPropis.xml"));
+		
+		////////////////////////////////
+		marshaller.marshal(propis, new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
+		////////////////////////////////
 
 		return null;
 		
+	}
+	
+	@RequestMapping(value = "/noviClan", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<String> noviClan(@RequestBody String postPayload) throws IOException, JAXBException{
+		
+		Propis propis = propisSer.dodajClan(postPayload);
+		
+		
+		JAXBContext context = JAXBContext.newInstance(Propis.class);
+		Marshaller marshaller = context.createMarshaller();
+		
+		// Podešavanje marshaller-a
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+		
+		// Umesto System.out-a, može se koristiti FileOutputStream
+		//marshaller.marshal(propis, new File("data\\xml\\probaPropis.xml"));
+		
+		////////////////////////////////
+		marshaller.marshal(propis, new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
+		////////////////////////////////
+
+		return null;
+	}
+	
+	@RequestMapping(value = "/noviStav", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<String> noviStav(@RequestBody String postPayload) throws IOException, JAXBException{
+		
+		Propis propis = propisSer.dodajStav(postPayload);
+		
+		
+		JAXBContext context = JAXBContext.newInstance(Propis.class);
+		Marshaller marshaller = context.createMarshaller();
+		
+		// Podešavanje marshaller-a
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+		
+		// Umesto System.out-a, može se koristiti FileOutputStream
+		//marshaller.marshal(propis, new File("data\\xml\\probaPropis.xml"));
+		
+		////////////////////////////////
+		marshaller.marshal(propis, new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
+		////////////////////////////////
+
+		return null;
 	}
 }

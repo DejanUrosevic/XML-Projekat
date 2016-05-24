@@ -72,10 +72,10 @@ public class UserController {
 		Unmarshaller unmarshaller = context.createUnmarshaller(); 
 		 
 		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		Users usersi = (Users) unmarshaller.unmarshal(new File("./data/xml/probaKorisnik.xml"));
+		//Users usersi = (Users) unmarshaller.unmarshal(new File("./data/xml/probaKorisnik.xml"));
 		
 		//NEMOJTE DA BRISETE OVO, ZEZA ME ADRESA I NECE DA MI UCITA
-		//Users usersi = (Users) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
+		Users usersi = (Users) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
 		
 		for(User u: usersi.getKorisnik())
 		{
@@ -120,10 +120,10 @@ public class UserController {
 		Unmarshaller unmarshaller = context.createUnmarshaller(); 
 		
 		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		Users usersi = (Users) unmarshaller.unmarshal(new File("./data/xml/probaKorisnik.xml"));
+		//Users usersi = (Users) unmarshaller.unmarshal(new File("./data/xml/probaKorisnik.xml"));
 		
 		//NEMOJTE DA BRISETE OVO, ZEZA ME ADRESA I NECE DA MI UCITA
-		//Users usersi = (Users) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
+		Users usersi = (Users) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
 		
 		
 		for(User u: usersi.getKorisnik())
@@ -162,11 +162,11 @@ public class UserController {
 		Unmarshaller unmarshaller = context.createUnmarshaller(); 
 		
 		// Unmarshalling generiše objektni model na osnovu XML fajla
-		Users usersi = (Users) unmarshaller.unmarshal(new File("./data/xml/probaKorisnik.xml"));
+		//Users usersi = (Users) unmarshaller.unmarshal(new File("./data/xml/probaKorisnik.xml"));
 
 		
 		//NEMOJTE DA BRISETE OVO, ZEZA ME ADRESA I NECE DA MI UCITA
-		//Users usersi = (Users) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
+		Users usersi = (Users) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
 		
 		
 		usersi.getKorisnik().add(user);
@@ -177,10 +177,10 @@ public class UserController {
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 		
 		// Umesto System.out-a, može se koristiti FileOutputStream
-		marshaller.marshal(usersi, new File("data\\xml\\probaKorisnik.xml"));
+		//marshaller.marshal(usersi, new File("data\\xml\\probaKorisnik.xml"));
 
 		//NEMOJTE DA BRISETE OVO, ZEZA ME ADRESA I NECE DA MI UCITA
-		//marshaller.marshal(usersi, new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
+		marshaller.marshal(usersi, new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
 	   
 	   
 	   return new User();
