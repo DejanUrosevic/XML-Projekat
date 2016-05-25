@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<propisi xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/propis">
+    <propis ID="15167">
+        <ns3:Naziv>Propis</ns3:Naziv>
+        <ns3:Deo ID="39965">
+            <ns3:Naziv>deo 1</ns3:Naziv>
+            <ns3:Glava ID="5487">
+                <ns3:Naziv>glava 1</ns3:Naziv>
+                <ns2:Clan ID="19762">
+                    <ns2:Opis>opis clan 1</ns2:Opis>
+                    <ns2:Naziv>clan 1</ns2:Naziv>
+                    <ns2:Sadrzaj>
+                        <ns2:Tekst>tekst clan 1</ns2:Tekst>
+                    </ns2:Sadrzaj>
+                </ns2:Clan>
+            </ns3:Glava>
+        </ns3:Deo>
+    </propis>
+    <propis ID="34962">
+        <ns3:Naziv>Propis AA</ns3:Naziv>
+        <ns3:Deo ID="65997">
+            <ns3:Naziv>Deo AA</ns3:Naziv>
+            <ns3:Glava ID="3714">
+                <ns3:Naziv>Glava 11</ns3:Naziv>
+                <ns2:Clan ID="47237">
+                    <ns2:Opis>Opis 11AA</ns2:Opis>
+                    <ns2:Naziv>Clan 11AAA</ns2:Naziv>
+                    <ns2:Sadrzaj>
+                        <ns2:Tekst>Tekst 11AA</ns2:Tekst>
+                    </ns2:Sadrzaj>
+                </ns2:Clan>
+            </ns3:Glava>
+            <ns2:Clan ID="27193">
+                <ns2:Opis>Opis AA</ns2:Opis>
+                <ns2:Naziv>Clan AA</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>Tekst AA</ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+            <ns2:Clan ID="68799">
+                <ns2:Opis>Opis BBB</ns2:Opis>
+                <ns2:Naziv>Clan BBB</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>Tekst BB</ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </ns3:Deo>
+    </propis>
+</propisi>
