@@ -33,6 +33,8 @@ import org.json.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -63,7 +65,13 @@ public class UserController {
 	@Autowired
 	UserService userSer;
 	
-	
+	/**
+	 * Ovo koliko se secam sada nista ne radi, to smo koristili za probu, ali mozda zatreba
+	 * @param id
+	 * @return
+	 * @throws IOException
+	 * @throws JAXBException
+	 */
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<User> getUser(@PathVariable(value="id") long id) throws IOException, JAXBException {
 		JAXBContext context = JAXBContext.newInstance(Users.class);
@@ -72,10 +80,10 @@ public class UserController {
 		Unmarshaller unmarshaller = context.createUnmarshaller(); 
 		 
 		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		//Users usersi = (Users) unmarshaller.unmarshal(new File("./data/xml/probaKorisnik.xml"));
+		Users usersi = (Users) unmarshaller.unmarshal(new File("./data/xml/probaKorisnik.xml"));
 		
 		//NEMOJTE DA BRISETE OVO, ZEZA ME ADRESA I NECE DA MI UCITA
-		Users usersi = (Users) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
+	//	Users usersi = (Users) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
 		
 		for(User u: usersi.getKorisnik())
 		{
@@ -88,42 +96,47 @@ public class UserController {
 		return new ResponseEntity<User>(new User(), HttpStatus.NO_CONTENT);
 	}
 	
-   
+   /**
+    * Ovde se odradjuje provera korisnika prilikom login-a.
+    * @param postPayload
+    * @return
+    * @throws IOException
+    * @throws JAXBException
+    * @throws ServletException
+    * @throws NoSuchAlgorithmException
+    * @throws InvalidKeySpecException
+    */
    @RequestMapping(value = "/checkUser", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
-   public @ResponseBody LoginResponse checkUser(@RequestBody String postPayload) throws IOException, JAXBException, ServletException, NoSuchAlgorithmException, InvalidKeySpecException {
+   public @ResponseBody ResponseEntity<LoginResponse> checkUser(@RequestBody String postPayload) throws IOException, JAXBException, ServletException, NoSuchAlgorithmException, InvalidKeySpecException {
 	   
-	   JSONObject json = new JSONObject(postPayload);
+	   //ovo je navodno zastita od xss napada, nesto sam tako nasao na netu.
+	   String cleanPostPayload = Jsoup.clean(postPayload, Whitelist.basic());
+	   
+	   JSONObject json = null;
+	   try
+	   {
+		   json = new JSONObject(cleanPostPayload);
+	   }
+	   catch(Exception e)
+	   {
+		   return new ResponseEntity<UserController.LoginResponse>(HttpStatus.NOT_ACCEPTABLE);
+	   }
+	   
 
 	   String username = json.getString("username");
 	   String password = json.getString("password");
 	   
 	   
-	   
-	   /*
-	   Users users = new Users();
-	   List<User> sviUseri = new ArrayList<User>();   
-	   
-       
-       User us1 = new User("Pera", "Peric", "p", "p", "odbornik", 3123);
-       User us2 = new User("Dragan", "Maric", "p", "p", "gradjanin", 123);
-       User us3 = new User("Das", "Asd", "p", "p", "predsednik skupstine", 63);
-
-       sviUseri.add(us1);
-       sviUseri.add(us2);
-       sviUseri.add(us3);
-       
-       users.setKorisnik(sviUseri);
-	  */
         JAXBContext context = JAXBContext.newInstance(Users.class);
 		
 		// Unmarshaller je objekat zadužen za konverziju iz XML-a u objektni model
 		Unmarshaller unmarshaller = context.createUnmarshaller(); 
 		
 		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		//Users usersi = (Users) unmarshaller.unmarshal(new File("./data/xml/probaKorisnik.xml"));
+		Users usersi = (Users) unmarshaller.unmarshal(new File("./data/xml/probaKorisnik.xml"));
 		
 		//NEMOJTE DA BRISETE OVO, ZEZA ME ADRESA I NECE DA MI UCITA
-		Users usersi = (Users) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
+	//	Users usersi = (Users) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
 		
 		
 		for(User u: usersi.getKorisnik())
@@ -133,17 +146,27 @@ public class UserController {
 				if(userSer.autenticate(password, u.getPassword(), u.getSalt()))
 				{
 					String token = Jwts.builder().setSubject(u.getUsername()).claim("roles", u.getVrsta()).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "asdf").compact();
-					return new LoginResponse(token); 
+					return new ResponseEntity<LoginResponse>(new LoginResponse(token), HttpStatus.OK); 
 				}
 			}
 		}
-		return null;
+		return new ResponseEntity<LoginResponse>(HttpStatus.NO_CONTENT);
 	
 	   
 		
        	  
    }
    
+   /**
+    * Registracija korisnika
+    * @param postPayload
+    * @return
+    * @throws IOException
+    * @throws JAXBException
+    * @throws NoSuchAlgorithmException
+    * @throws InvalidKeySpecException
+    * @throws JSONException
+    */
    @RequestMapping(value = "/registration", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
    public @ResponseBody User registerUser(@RequestBody String postPayload) throws IOException, JAXBException, NoSuchAlgorithmException, InvalidKeySpecException, JSONException 
    {
@@ -156,17 +179,17 @@ public class UserController {
 	   user.setSalt(salt);
 	   user.setPassword(userSer.hashPassword(json.getString("password"), salt));
 	   
-	   JAXBContext context = JAXBContext.newInstance(Users.class);
+	    JAXBContext context = JAXBContext.newInstance(Users.class);
 		
 		// Unmarshaller je objekat zadužen za konverziju iz XML-a u objektni model
 		Unmarshaller unmarshaller = context.createUnmarshaller(); 
 		
 		// Unmarshalling generiše objektni model na osnovu XML fajla
-		//Users usersi = (Users) unmarshaller.unmarshal(new File("./data/xml/probaKorisnik.xml"));
+		Users usersi = (Users) unmarshaller.unmarshal(new File("./data/xml/probaKorisnik.xml"));
 
 		
 		//NEMOJTE DA BRISETE OVO, ZEZA ME ADRESA I NECE DA MI UCITA
-		Users usersi = (Users) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
+		//Users usersi = (Users) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
 		
 		
 		usersi.getKorisnik().add(user);
@@ -177,15 +200,20 @@ public class UserController {
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 		
 		// Umesto System.out-a, može se koristiti FileOutputStream
-		//marshaller.marshal(usersi, new File("data\\xml\\probaKorisnik.xml"));
+		marshaller.marshal(usersi, new File("data\\xml\\probaKorisnik.xml"));
 
 		//NEMOJTE DA BRISETE OVO, ZEZA ME ADRESA I NECE DA MI UCITA
-		marshaller.marshal(usersi, new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
+		//marshaller.marshal(usersi, new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
 	   
 	   
 	   return new User();
    }
    
+   /**
+    * Ova unutrasnja klasa samo pomaze da se kreira token prilikom registracije
+    * @author Marko
+    *
+    */
    @SuppressWarnings("unused")
    private static class LoginResponse {
        public String token;

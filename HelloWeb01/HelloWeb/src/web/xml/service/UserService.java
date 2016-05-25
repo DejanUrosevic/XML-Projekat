@@ -9,10 +9,6 @@ import web.xml.model.Users;
 
 public interface UserService extends CrudService<User>
 {
-	public Users unmarshall(File f);
-	
-	public void marshall(File f);
-	
 	
 	/**
 	 * Generisanje salt-a za pomoc u heshiranju lozinke

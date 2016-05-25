@@ -7,9 +7,18 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.Arrays;
 import java.util.List;
+
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+
+import jaxb.from.xsd.Propis;
+
 import org.springframework.stereotype.Service;
+
 import web.xml.model.User;
 import web.xml.model.Users;
 import web.xml.service.UserService;
@@ -19,7 +28,7 @@ public class UserServiceImpl implements UserService
 {
 
 	@Override
-	public User findOne(Long id) {
+	public User findOne(Long id) { 
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -42,17 +51,7 @@ public class UserServiceImpl implements UserService
 		
 	}
 
-	@Override
-	public Users unmarshall(File f) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public void marshall(File f) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public byte[] hashPassword(String password, byte[] salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -87,6 +86,37 @@ public class UserServiceImpl implements UserService
 		 byte[] salt = new byte[8];
 		 random.nextBytes(salt);
 		 return salt;
+	}
+
+
+
+	@Override
+	public User unmarshall(File f) throws JAXBException {
+		// TODO Auto-generated method stub
+		
+		 JAXBContext context = JAXBContext.newInstance(Users.class);
+			
+		// Unmarshaller je objekat zadužen za konverziju iz XML-a u objektni model
+		 Unmarshaller unmarshaller = context.createUnmarshaller(); 
+			
+		// Unmarshalling generiše objektni model na osnovu XML fajla
+		return (User) unmarshaller.unmarshal(f);
+	}
+
+	@Override
+	public void marshall(User t, File f) throws JAXBException {
+		// TODO Auto-generated method stub
+		
+		JAXBContext context = JAXBContext.newInstance(Propis.class);
+		
+		Marshaller marshaller = context.createMarshaller();
+		
+		// Podešavanje marshaller-a
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+		
+		// Umesto System.out-a, može se koristiti FileOutputStream
+	    marshaller.marshal(t, f);
+		
 	}
 
 }

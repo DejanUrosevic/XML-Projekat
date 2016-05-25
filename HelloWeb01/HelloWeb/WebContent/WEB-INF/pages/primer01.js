@@ -167,7 +167,7 @@
 		if(localStorage.getItem('key') !== null){ 
 			$http.get('http://localhost:8080/HelloWeb/clan/all').then(function(response)
 		    {      
-				$scope.akti = response.data.deo.glava[0].odeljak[0].clan[0];       
+				$scope.propis = response.data;     
 		    });
 		}else{
 			$state.go('login');

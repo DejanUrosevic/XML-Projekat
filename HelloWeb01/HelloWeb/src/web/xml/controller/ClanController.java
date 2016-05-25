@@ -60,165 +60,110 @@ public class ClanController
 	}
 	*/
 	
-	@RequestMapping(value = "/all", method = RequestMethod.GET)
+	/**
+	 * Pregled svih dostupnih propisa
+	 * @return
+	 * @throws IOException
+	 * @throws JAXBException
+	 */
+	@RequestMapping(value = "/all", method = RequestMethod.GET, produces="application/json; charset=UTF-8")
 	public @ResponseBody ResponseEntity<Propis> getAll() throws IOException, JAXBException {
-		
-		JAXBContext context = JAXBContext.newInstance(jaxb.from.xsd.Clan.class);
-		
-		// Unmarshaller je objekat zadužen za konverziju iz XML-a u objektni model
-		Unmarshaller unmarshaller = context.createUnmarshaller(); 
-		 
-		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		//jaxb.from.xsd.Clan clanovi = (jaxb.from.xsd.Clan) unmarshaller.unmarshal(new File("./data/xml/clan.xml"));
-		
-		
-		///////////////////////
-		jaxb.from.xsd.Clan clanovi = (jaxb.from.xsd.Clan) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/clan.xml"));
-		
-		//////////////////////
-		/*
-		//ovako dobijamo vrednosti iz ugnjezdnenih tagova, ne moze jednostavnije
-		for( Serializable s: clanovi.getSadrzaj().getContent() ){
-	        if( s instanceof String ){
-	        }
-	        else
-	        {
-	                String loremIpsum = (String)((JAXBElement)s).getValue();
-	              //  return new ResponseEntity<String>(loremIpsum, HttpStatus.OK); 
-	        
-	        }
-		}
-		*/
-		JAXBContext context2 = JAXBContext.newInstance(jaxb.from.xsd.Propis.class);
-		
-		// Unmarshaller je objekat zadužen za konverziju iz XML-a u objektni model
-		Unmarshaller unmarshalle2r = context2.createUnmarshaller(); 
-		 
-		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		//jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshalle2r.unmarshal(new File("./data/xml/probaPropis.xml"));
-		
-		//////////////////////////////////////////
-		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshalle2r.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
-		/////////////////////////////////////////
-		
-		return new ResponseEntity<Propis>(propis, HttpStatus.OK);
+			
+		return new ResponseEntity<Propis>(propisSer.unmarshall(new File("./data/xml/probaPropis.xml")), HttpStatus.OK);
 	}
 	
-	
+	/**
+	 * Dodavanja novog propisa, celokupnog.
+	 * @param postPayload
+	 * @return
+	 * @throws IOException
+	 * @throws JAXBException
+	 */
 	@RequestMapping(value = "/noviPropis", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> noviPropis(@RequestBody String postPayload) throws IOException, JAXBException {
 		
 		
 		Propis noviPropis = propisSer.dodajPropis(postPayload);
 		
-		
-		JAXBContext context = JAXBContext.newInstance(Propis.class);
-		
-		Marshaller marshaller = context.createMarshaller();
-		
-		// Podešavanje marshaller-a
-		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		
-		// Umesto System.out-a, može se koristiti FileOutputStream
-		//marshaller.marshal(noviPropis, new File("data\\xml\\probaPropis.xml"));
-
-		////////////////////////////////
-		marshaller.marshal(noviPropis, new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
-		///////////////////////////////
-		
-		return null;
+		propisSer.marshall(noviPropis, new File("data\\xml\\probaPropis.xml"));
+	
+		return new ResponseEntity<String>(HttpStatus.OK);
 		
 	}
 	
+	
+	/**
+	 * Dodavanje novog dela u okviru trenutnog propisa
+	 * @param postPayload
+	 * @return
+	 * @throws IOException
+	 * @throws JAXBException
+	 */
 	@RequestMapping(value = "/noviDeo", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> noviDeo(@RequestBody String postPayload) throws IOException, JAXBException {
 		
 		Propis propis = propisSer.dodajDeo(postPayload);
 		
-		JAXBContext context = JAXBContext.newInstance(Propis.class);
+		propisSer.marshall(propis, new File("data\\xml\\probaPropis.xml"));
 		
-		Marshaller marshaller = context.createMarshaller();
-		
-		// Podešavanje marshaller-a
-		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		
-		// Umesto System.out-a, može se koristiti FileOutputStream
-		//marshaller.marshal(propis, new File("data\\xml\\probaPropis.xml"));
-
-		
-		///////////////////////////
-		marshaller.marshal(propis, new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
-		///////////////////////////
-		
-		return null;
+		return new ResponseEntity<String>(HttpStatus.OK);
 		
 	}
 	
-	
+	/**
+	 * Dodavanje glave za izabrani deo.
+	 * Ovo za izabrani deo jos nije odradjeno --> TO DO (napraviti da se izabere u koji DEO se zeli ubaciti glava)
+	 * @param postPayload
+	 * @return
+	 * @throws IOException
+	 * @throws JAXBException
+	 */
 	@RequestMapping(value = "/novaGlava", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> novaGlava(@RequestBody String postPayload) throws IOException, JAXBException {
 		
 		Propis propis = propisSer.dodajGlavu(postPayload);
 		
 		
-		JAXBContext context = JAXBContext.newInstance(Propis.class);
-		Marshaller marshaller = context.createMarshaller();
+		propisSer.marshall(propis, new File("data\\xml\\probaPropis.xml"));
 		
-		// Podešavanje marshaller-a
-		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		
-		// Umesto System.out-a, može se koristiti FileOutputStream
-		//marshaller.marshal(propis, new File("data\\xml\\probaPropis.xml"));
-		
-		////////////////////////////////
-		marshaller.marshal(propis, new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
-		////////////////////////////////
-
-		return null;
+		return new ResponseEntity<String>(HttpStatus.OK);
 		
 	}
 	
+	/**
+	 * Dodavanja novog clana za izabranu glavu
+	 * TO DO isti kao i za glavu
+	 * @param postPayload
+	 * @return
+	 * @throws IOException
+	 * @throws JAXBException
+	 */
 	@RequestMapping(value = "/noviClan", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> noviClan(@RequestBody String postPayload) throws IOException, JAXBException{
 		
 		Propis propis = propisSer.dodajClan(postPayload);
 		
+		propisSer.marshall(propis, new File("data\\xml\\probaPropis.xml"));
 		
-		JAXBContext context = JAXBContext.newInstance(Propis.class);
-		Marshaller marshaller = context.createMarshaller();
-		
-		// Podešavanje marshaller-a
-		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		
-		// Umesto System.out-a, može se koristiti FileOutputStream
-		//marshaller.marshal(propis, new File("data\\xml\\probaPropis.xml"));
-		
-		////////////////////////////////
-		marshaller.marshal(propis, new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
-		////////////////////////////////
-
-		return null;
+		return new ResponseEntity<String>(HttpStatus.OK);
 	}
 	
+	
+	/**
+	 * Dodavanje novog stava za izabarni clan
+	 * TO DO isti kao i za clan
+	 * @param postPayload
+	 * @return
+	 * @throws IOException
+	 * @throws JAXBException
+	 */
 	@RequestMapping(value = "/noviStav", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> noviStav(@RequestBody String postPayload) throws IOException, JAXBException{
 		
 		Propis propis = propisSer.dodajStav(postPayload);
 		
+		propisSer.marshall(propis, new File("data\\xml\\probaPropis.xml"));
 		
-		JAXBContext context = JAXBContext.newInstance(Propis.class);
-		Marshaller marshaller = context.createMarshaller();
-		
-		// Podešavanje marshaller-a
-		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		
-		// Umesto System.out-a, može se koristiti FileOutputStream
-		//marshaller.marshal(propis, new File("data\\xml\\probaPropis.xml"));
-		
-		////////////////////////////////
-		marshaller.marshal(propis, new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
-		////////////////////////////////
-
-		return null;
+		return new ResponseEntity<String>(HttpStatus.OK);
 	}
 }

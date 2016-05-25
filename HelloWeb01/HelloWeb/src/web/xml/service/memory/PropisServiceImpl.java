@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import jaxb.from.xsd.Clan;
@@ -18,6 +19,7 @@ import jaxb.from.xsd.Propis.Deo.Glava;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
+import web.xml.model.Users;
 import web.xml.service.PropisService;
 
 @Service
@@ -25,7 +27,7 @@ public class PropisServiceImpl implements PropisService
 {
 
 	@Override
-	public Propis findOne(Long id) {
+	public Propis findOne(Long id) { 
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -37,7 +39,7 @@ public class PropisServiceImpl implements PropisService
 	}
 
 	@Override
-	public Propis save(Propis t) {
+	public Propis save(Propis t) { 
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -216,13 +218,8 @@ public class PropisServiceImpl implements PropisService
 		}
 		
 		
-		
-		JAXBContext context = JAXBContext.newInstance(Propis.class);
-		
-		Unmarshaller unmarshaller = context.createUnmarshaller(); 
-		 
 		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
+		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshall(new File("./data/xml/probaPropis.xml"));
 	
 		deo.setID(BigInteger.valueOf(propis.getDeo().size()+1));
 		deo.setNaziv(nazivDela);
@@ -236,12 +233,9 @@ public class PropisServiceImpl implements PropisService
 	public Propis dodajGlavu(String requestData) throws JAXBException {
 		// TODO Auto-generated method stub
 		
-		JAXBContext context = JAXBContext.newInstance(Propis.class);
-		
-		Unmarshaller unmarshalle2r = context.createUnmarshaller(); 
 		 
 		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshalle2r.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
+		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshall(new File("./data/xml/probaPropis.xml"));
 		
 
 		JSONObject json = new JSONObject(requestData);
@@ -321,12 +315,11 @@ public class PropisServiceImpl implements PropisService
 
 	@Override
 	public Propis dodajClan(String requestData) throws JAXBException {
-		JAXBContext context = JAXBContext.newInstance(Propis.class);
 		
-		Unmarshaller unmarshalle2r = context.createUnmarshaller(); 
+		
 		 
 		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshalle2r.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
+		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshall(new File("./data/xml/probaPropis.xml"));
 		
 
 		JSONObject json = new JSONObject(requestData);
@@ -390,12 +383,9 @@ public class PropisServiceImpl implements PropisService
 
 	@Override
 	public Propis dodajStav(String requestData) throws JAXBException {
-		JAXBContext context = JAXBContext.newInstance(Propis.class);
-		
-		Unmarshaller unmarshalle2r = context.createUnmarshaller(); 
 		 
 		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshalle2r.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaPropis.xml"));
+		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshall(new File("./data/xml/probaPropis.xml"));
 		
 
 		JSONObject json = new JSONObject(requestData);
@@ -420,7 +410,7 @@ public class PropisServiceImpl implements PropisService
 			stav.setTekst(tekstStava);
 			
 			for(int i = 0; i < propis.getDeo().size(); i++){
-				if(propis.getDeo().get(i).getGlava().size() != 0 && propis.getDeo().get(i).getGlava() != null){ //akp postoji glava
+				if(propis.getDeo().get(i).getGlava().size() != 0 && propis.getDeo().get(i).getGlava() != null){ //ako postoji glava
 					for(int j = 0; j < propis.getDeo().get(i).getGlava().size(); j++){
 						if(propis.getDeo().get(i).getGlava().get(j).getClan().size() != 0 && propis.getDeo().get(i).getGlava().get(j).getClan() != null){
 							for(int k = 0; k < propis.getDeo().get(i).getGlava().get(j).getClan().size(); k++){
@@ -437,6 +427,35 @@ public class PropisServiceImpl implements PropisService
 
 				
 		return propis;
+	}
+
+
+
+	@Override
+	public Propis unmarshall(File f) throws JAXBException {
+		// TODO Auto-generated method stub
+		
+		JAXBContext context = JAXBContext.newInstance(Propis.class); 
+		
+		// Unmarshaller je objekat zadužen za konverziju iz XML-a u objektni model
+		Unmarshaller unmarshaller = context.createUnmarshaller(); 
+		
+		// Unmarshalling generiše objektni model na osnovu XML fajla
+		return (Propis) unmarshaller.unmarshal(f);
+	}
+
+	@Override
+	public void marshall(Propis t, File f) throws JAXBException {
+		// TODO Auto-generated method stub
+		JAXBContext context = JAXBContext.newInstance(Propis.class);
+		
+		Marshaller marshaller = context.createMarshaller();
+		
+		// Podešavanje marshaller-a
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+		
+		// Umesto System.out-a, može se koristiti FileOutputStream
+	    marshaller.marshal(t, f);
 	}
 
 }

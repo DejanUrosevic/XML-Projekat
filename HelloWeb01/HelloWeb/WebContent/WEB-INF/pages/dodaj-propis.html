@@ -61,8 +61,8 @@
 							<th class="sredina">Unesite opis clana</th>					
 						</tr>
 						<tr>
-							<td class="sredina"><input type="text" size="30"
-								ng-model="clan.opis" required /></td>
+							<td class="sredina"><textarea type="text" size="30"
+								ng-model="clan.opis" required> </textarea></td>
 						</tr>
 						<tr>
 							<td class="sredina"><select ng-model="clan.izbor">
@@ -82,15 +82,15 @@
 							<th class="sredina">Unesite tekst stava</th>					
 						</tr>
 						<tr ng-show="clan.izbor === 'Stav'">
-							<td class="sredina"><input type="text" size="30"
-								ng-model="stavTekst" required /></td>
+							<td class="sredina"><textarea type="text" size="30"
+								ng-model="stavTekst" required> </textarea></td>
 						</tr>
 						<tr ng-show="clan.izbor === 'Tekst'">
 							<th class="sredina">Unesite tekst clana</th>					
 						</tr>
 						<tr ng-show="clan.izbor === 'Tekst'">
-							<td class="sredina"><input type="text" size="30"
-								ng-model="clanTekst" required /></td>
+							<td class="sredina"><textarea type="text" size="30"
+								ng-model="clanTekst" required></textarea></td>
 						</tr>
 						<tr>
 							<td style="text-align: center;">

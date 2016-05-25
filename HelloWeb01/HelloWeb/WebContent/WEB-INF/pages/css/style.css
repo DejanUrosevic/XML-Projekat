@@ -26,8 +26,11 @@ text-align: center;
 }
 p {text-align: left;}
 
-
-
+textarea
+{
+	width: 772px;
+	height: 99px;"
+}
 
 #header h1
 {
