@@ -1,49 +1,88 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Propis xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" ID="1">
-    <Naziv>fefwefwe</Naziv>
-    <Deo ID="1">
-        <Naziv>fwefwefwe</Naziv>
-        <Glava ID="1">
-            <Naziv>weffwef</Naziv>
-            <ns2:Clan ID="2">
-                <ns2:Opis>efwefwefweffwewefw wfwe fwefwef we we fwefwef wefwefwefefwefwe</ns2:Opis>
-                <ns2:Naziv>ffwefwe</ns2:Naziv>
+<Propis xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" ID="19729">
+    <Naziv>Propis</Naziv>
+    <Deo ID="2145">
+        <Naziv>Deo1</Naziv>
+        <Glava ID="54773">
+            <Naziv>Glava 1</Naziv>
+            <ns2:Clan ID="86819">
+                <ns2:Opis>Opis clan 1</ns2:Opis>
+                <ns2:Naziv>Clan 1</ns2:Naziv>
                 <ns2:Sadrzaj>
-                    <ns2:Tekst>ewfwfwefwe fewfwefwefwefwe</ns2:Tekst>
+                    <ns2:Tekst>Tekst clan 1</ns2:Tekst>
                 </ns2:Sadrzaj>
             </ns2:Clan>
-            <ns2:Clan ID="2">
-                <ns2:Opis>l0 0l0l00</ns2:Opis>
-                <ns2:Naziv>kiki0l0</ns2:Naziv>
+            <ns2:Clan ID="25558">
+                <ns2:Opis>Opis clan 2</ns2:Opis>
+                <ns2:Naziv>Clan 2</ns2:Naziv>
                 <ns2:Sadrzaj>
-                    <ns2:Stav>
-                        <ns2:Redni_broj>33</ns2:Redni_broj>
-                        <ns2:Tekst>dthyhuj vuki i</ns2:Tekst>
-                    </ns2:Stav>
-                    <ns2:Tekst>y</ns2:Tekst>
+                    <ns2:Tekst>Tekst clan 2</ns2:Tekst>
                 </ns2:Sadrzaj>
             </ns2:Clan>
         </Glava>
-        <Glava ID="2">
-            <Naziv>f3df32</Naziv>
-            <ns2:Clan ID="2">
-                <ns2:Opis>ffwff</ns2:Opis>
-                <ns2:Naziv>3223ff2f</ns2:Naziv>
+        <Glava ID="23026">
+            <Naziv>Glava 2</Naziv>
+            <ns2:Clan ID="39193">
+                <ns2:Opis>Opis clan 2.1</ns2:Opis>
+                <ns2:Naziv>Clan 2.1</ns2:Naziv>
                 <ns2:Sadrzaj>
-                    <ns2:Tekst>3f32f3f32f3ff2</ns2:Tekst>
+                    <ns2:Tekst>Tekst clan 2.1</ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+            <ns2:Clan ID="64018">
+                <ns2:Opis>Opis clan 2.2</ns2:Opis>
+                <ns2:Naziv>Clan 2.2</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>Tekst clan 2.2</ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+            <ns2:Clan ID="29224">
+                <ns2:Opis>Opis clan 2.3</ns2:Opis>
+                <ns2:Naziv>Clan 2.3</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Stav>
+                        <ns2:Redni_broj>1</ns2:Redni_broj>
+                        <ns2:Tekst>Tekst stav1</ns2:Tekst>
+                    </ns2:Stav>
+                    <ns2:Stav>
+                        <ns2:Redni_broj>2</ns2:Redni_broj>
+                        <ns2:Tekst>Tekst stav 2</ns2:Tekst>
+                    </ns2:Stav>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+            <ns2:Clan ID="88782">
+                <ns2:Opis>Opis 2.4</ns2:Opis>
+                <ns2:Naziv>Clan 2.4</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Stav>
+                        <ns2:Redni_broj>1</ns2:Redni_broj>
+                        <ns2:Tekst>Tekst stav 1</ns2:Tekst>
+                    </ns2:Stav>
+                    <ns2:Stav>
+                        <ns2:Redni_broj>2</ns2:Redni_broj>
+                        <ns2:Tekst>Tekst stav 2</ns2:Tekst>
+                    </ns2:Stav>
+                    <ns2:Stav>
+                        <ns2:Redni_broj>3333</ns2:Redni_broj>
+                        <ns2:Tekst>tekst 22233323</ns2:Tekst>
+                    </ns2:Stav>
                 </ns2:Sadrzaj>
             </ns2:Clan>
         </Glava>
     </Deo>
-    <Deo ID="2">
-        <Naziv>reg21</Naziv>
-        <ns2:Clan ID="1">
-            <ns2:Opis>fewqfe</ns2:Opis>
-            <ns2:Naziv>wef</ns2:Naziv>
+    <Deo ID="15728">
+        <Naziv>Deo 5555</Naziv>
+        <ns2:Clan ID="8416">
+            <ns2:Opis>Opis clan 55555</ns2:Opis>
+            <ns2:Naziv>Clan 55555</ns2:Naziv>
             <ns2:Sadrzaj>
                 <ns2:Stav>
-                    <ns2:Redni_broj>19</ns2:Redni_broj>
-                    <ns2:Tekst>dqwd qwdqwwqdwqdwqdqw fweerv evćšćšćšćššć</ns2:Tekst>
+                    <ns2:Redni_broj>111111</ns2:Redni_broj>
+                    <ns2:Tekst>22222222222</ns2:Tekst>
+                </ns2:Stav>
+                <ns2:Stav>
+                    <ns2:Redni_broj>2222222222222222222</ns2:Redni_broj>
+                    <ns2:Tekst>2222222222222222222</ns2:Tekst>
                 </ns2:Stav>
             </ns2:Sadrzaj>
         </ns2:Clan>

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.xml.bind.JAXBException;
 
+import web.xml.model.Propisi;
+
 
 /**
  * CRUD (Create/Read/Update/Delete) service.

@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import jaxb.from.xsd.Clan;
 import web.xml.model.Clanovi;
+import web.xml.model.Propisi;
 import jaxb.from.xsd.Clan.Sadrzaj;
 import web.xml.model.User;
 import web.xml.model.Users;
@@ -42,23 +43,22 @@ public class ClanController
 	
 	@Autowired
 	PropisService propisSer;
-	/*
-	@RequestMapping(value = "/all", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<Clanovi> getAll() throws IOException, JAXBException {
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces="application/json; charset=UTF-8")
+	public @ResponseBody ResponseEntity<Propis> getPropis(@PathVariable(value="id") String id) throws IOException, JAXBException {
+			
+		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
 		
-		JAXBContext context = JAXBContext.newInstance(Clanovi.class);
+		BigInteger idPropisa = BigInteger.valueOf(Long.parseLong(id));
 		
-		// Unmarshaller je objekat zadužen za konverziju iz XML-a u objektni model
-		Unmarshaller unmarshaller = context.createUnmarshaller(); 
-		 
-		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		Clanovi clanovi = (Clanovi) unmarshaller.unmarshal(new File("./data/xml/clanovi.xml"));
+		for(Propis p : propisi.getPropisi()){
+			if(idPropisa.equals(p.getID())){
+				return new ResponseEntity<Propis>(p, HttpStatus.OK);
+			}
+		}
 		
-		return new ResponseEntity<Clanovi>(clanovi, HttpStatus.OK);
-		
-		
+		return new ResponseEntity<Propis>(HttpStatus.NOT_FOUND);
 	}
-	*/
 	
 	/**
 	 * Pregled svih dostupnih propisa
@@ -67,9 +67,9 @@ public class ClanController
 	 * @throws JAXBException
 	 */
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces="application/json; charset=UTF-8")
-	public @ResponseBody ResponseEntity<Propis> getAll() throws IOException, JAXBException {
+	public @ResponseBody ResponseEntity<Propisi> getAll() throws IOException, JAXBException {
 			
-		return new ResponseEntity<Propis>(propisSer.unmarshall(new File("./data/xml/probaPropis.xml")), HttpStatus.OK);
+		return new ResponseEntity<Propisi>(propisSer.unmarshall(new File("./data/xml/propisi.xml")), HttpStatus.OK);
 	}
 	
 	/**
@@ -85,7 +85,10 @@ public class ClanController
 		
 		Propis noviPropis = propisSer.dodajPropis(postPayload);
 		
-		propisSer.marshall(noviPropis, new File("data\\xml\\probaPropis.xml"));
+		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
+		propisi.getPropisi().add(noviPropis);
+		
+		propisSer.marshall(propisi, new File("data\\xml\\propisi.xml"));
 	
 		return new ResponseEntity<String>(HttpStatus.OK);
 		
@@ -101,10 +104,10 @@ public class ClanController
 	 */
 	@RequestMapping(value = "/noviDeo", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> noviDeo(@RequestBody String postPayload) throws IOException, JAXBException {
-		
-		Propis propis = propisSer.dodajDeo(postPayload);
-		
-		propisSer.marshall(propis, new File("data\\xml\\probaPropis.xml"));
+			
+		Propisi propisi = propisSer.dodajDeo(postPayload);
+
+		propisSer.marshall(propisi, new File("data\\xml\\propisi.xml"));
 		
 		return new ResponseEntity<String>(HttpStatus.OK);
 		
@@ -121,10 +124,9 @@ public class ClanController
 	@RequestMapping(value = "/novaGlava", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> novaGlava(@RequestBody String postPayload) throws IOException, JAXBException {
 		
-		Propis propis = propisSer.dodajGlavu(postPayload);
+		Propisi propisi = propisSer.dodajGlavu(postPayload);
 		
-		
-		propisSer.marshall(propis, new File("data\\xml\\probaPropis.xml"));
+		propisSer.marshall(propisi, new File("data\\xml\\propisi.xml"));
 		
 		return new ResponseEntity<String>(HttpStatus.OK);
 		
@@ -141,9 +143,9 @@ public class ClanController
 	@RequestMapping(value = "/noviClan", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> noviClan(@RequestBody String postPayload) throws IOException, JAXBException{
 		
-		Propis propis = propisSer.dodajClan(postPayload);
+		Propisi propisi = propisSer.dodajClan(postPayload);
 		
-		propisSer.marshall(propis, new File("data\\xml\\probaPropis.xml"));
+		propisSer.marshall(propisi, new File("data\\xml\\propisi.xml"));
 		
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
@@ -160,9 +162,9 @@ public class ClanController
 	@RequestMapping(value = "/noviStav", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> noviStav(@RequestBody String postPayload) throws IOException, JAXBException{
 		
-		Propis propis = propisSer.dodajStav(postPayload);
+		Propisi propisi = propisSer.dodajStav(postPayload);
 		
-		propisSer.marshall(propis, new File("data\\xml\\probaPropis.xml"));
+		propisSer.marshall(propisi, new File("data\\xml\\propisi.xml"));
 		
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}

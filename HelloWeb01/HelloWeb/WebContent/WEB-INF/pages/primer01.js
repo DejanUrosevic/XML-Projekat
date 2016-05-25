@@ -167,15 +167,37 @@
 		if(localStorage.getItem('key') !== null){ 
 			$http.get('http://localhost:8080/HelloWeb/clan/all').then(function(response)
 		    {      
-				$scope.propis = response.data;     
+				$scope.propisi = response.data.propisi;     
 		    });
 		}else{
 			$state.go('login');
 		}
 		
-		$scope.pregledAkta = function(aktId) 
+		$scope.pregledAkta = function(propisId) 
 		{
-			$location.path('/sviAkti/akt/' + aktId);
+			$state.go('izabranPropis', {id: propisId});
+		}
+	}
+	
+	var pregledPropisaCtrl = function($scope, $resource, $http, $location, $stateParams, $state){
+		
+		$http.defaults.headers.common.Authorization = 'Bearer ' + localStorage.getItem('key');
+		
+		/*
+		 * proverimo da li se u localStorage nalazi token, ako se ne nalazi onda treba prebaciti odmah na login posto nema token kod sebe
+		 */
+		if(localStorage.getItem('key') !== null){ 
+			if(!angular.equals({},$stateParams)){
+				var propisId = $stateParams.id;
+			}
+		
+		
+			$http.get('http://localhost:8080/HelloWeb/clan/'+ propisId)
+			.then(function(response){
+				$scope.pronadjenPropis = response.data;
+			});
+		}else{
+			$state.go('login');
 		}
 	}
 	
@@ -261,6 +283,7 @@
 	app.controller('mainPageCtrl', mainPageCtrl);
 	app.controller('sviAktiCtrl', sviAktiCtrl);
 	app.controller('addPropisCtrl', addPropisCtrl);
+	app.controller('pregledPropisaCtrl', pregledPropisaCtrl);
 	
 	app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -287,10 +310,10 @@
 	      templateUrl: 'sviAkti.html',
 	      controller: 'sviAktiCtrl'
 	    })
-	    .state('izabranAkt', {
-	      url: '/sviAkti/akt/:id',
+	    .state('izabranPropis', {
+	      url: '/propisi/propis/:id',
 	      templateUrl: 'pregled-akta.html',
-	      controller: 'sviAktiCtrl'
+	      controller: 'pregledPropisaCtrl'
 	    })
 	    .state('dodPropis', {
 	      url: '/noviPropis',

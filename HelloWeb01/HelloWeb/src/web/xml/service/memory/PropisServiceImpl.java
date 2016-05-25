@@ -3,6 +3,7 @@ package web.xml.service.memory;
 import java.io.File;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Random;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -19,27 +20,33 @@ import jaxb.from.xsd.Propis.Deo.Glava;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
+import web.xml.model.Propisi;
 import web.xml.model.Users;
 import web.xml.service.PropisService;
 
 @Service
 public class PropisServiceImpl implements PropisService
 {
-
+	
+	public static int getID(){
+		Random broj = new Random();
+		return broj.nextInt(100000);
+	}
+	
 	@Override
-	public Propis findOne(Long id) { 
+	public Propisi findOne(Long id) { 
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Propis> findAll() {
+	public List<Propisi> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Propis save(Propis t) { 
+	public Propisi save(Propisi t) { 
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -113,13 +120,13 @@ public class PropisServiceImpl implements PropisService
 		if(!nazivGlave.equals(""))
 		{
 			glava.getClan().add(clan);
-			glava.setID(BigInteger.valueOf(deo.getGlava().size()+1));
+			glava.setID(BigInteger.valueOf(getID()));
 			glava.setNaziv(nazivGlave);
 			deo.getGlava().add(glava);
 		}
 		
 		
-		clan.setID(BigInteger.valueOf(glava.getClan().size()+1));
+		clan.setID(BigInteger.valueOf(getID()));
 		clan.setNaziv(nazivClana);
 		clan.setOpis(opisClana);
 		clan.setSadrzaj(sadrzaj);
@@ -129,11 +136,11 @@ public class PropisServiceImpl implements PropisService
 			deo.getClan().add(clan);
 		}
 		
-		deo.setID(BigInteger.valueOf(propis.getDeo().size()+1));
+		deo.setID(BigInteger.valueOf(getID()));
 		deo.setNaziv(nazivDela);
 		
 		
-		propis.setID(BigInteger.valueOf(1));
+		propis.setID(BigInteger.valueOf(getID()));
 		propis.setNaziv(propisNaziv);
 		propis.getDeo().add(deo);
 		
@@ -141,7 +148,7 @@ public class PropisServiceImpl implements PropisService
 	}
 
 	@Override
-	public Propis dodajDeo(String requestData) throws JAXBException {
+	public Propisi dodajDeo(String requestData) throws JAXBException {
 		// TODO Auto-generated method stub
 		
 		JSONObject json = new JSONObject(requestData);
@@ -201,13 +208,13 @@ public class PropisServiceImpl implements PropisService
 		if(!nazivGlave.equals(""))
 		{
 			glava.getClan().add(clan);
-			glava.setID(BigInteger.valueOf(deo.getGlava().size()+1));
+			glava.setID(BigInteger.valueOf(getID()));
 			glava.setNaziv(nazivGlave);
 			deo.getGlava().add(glava);
 		}
 		
 		
-		clan.setID(BigInteger.valueOf(glava.getClan().size()+1));
+		clan.setID(BigInteger.valueOf(getID()));
 		clan.setNaziv(nazivClana);
 		clan.setOpis(opisClana);
 		clan.setSadrzaj(sadrzaj);
@@ -219,23 +226,25 @@ public class PropisServiceImpl implements PropisService
 		
 		
 		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshall(new File("./data/xml/probaPropis.xml"));
-	
-		deo.setID(BigInteger.valueOf(propis.getDeo().size()+1));
+		Propisi propisi = (Propisi) unmarshall(new File("./data/xml/propisi.xml"));
+		
+		
+		
+		deo.setID(BigInteger.valueOf(getID()));
 		deo.setNaziv(nazivDela);
+		propisi.getPropisi().get(propisi.getPropisi().size()-1).getDeo().add(deo);
+
 		
-		propis.getDeo().add(deo);
-		
-		return propis;
+		return propisi;
 	}
 
 	@Override
-	public Propis dodajGlavu(String requestData) throws JAXBException {
+	public Propisi dodajGlavu(String requestData) throws JAXBException {
 		// TODO Auto-generated method stub
 		
 		 
 		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshall(new File("./data/xml/probaPropis.xml"));
+		Propisi propisi = (Propisi) unmarshall(new File("./data/xml/propisi.xml"));
 		
 
 		JSONObject json = new JSONObject(requestData);
@@ -294,33 +303,28 @@ public class PropisServiceImpl implements PropisService
 		if(!nazivGlave.equals(""))
 		{
 			glava.getClan().add(clan);
-			glava.setID(BigInteger.valueOf(propis.getDeo().get(0).getGlava().size()+1));
+			glava.setID(BigInteger.valueOf(getID()));
 			glava.setNaziv(nazivGlave);
-			propis.getDeo().get(0).getGlava().add(glava);
+			int brDelova = propisi.getPropisi().get(propisi.getPropisi().size()-1).getDeo().size();
+			propisi.getPropisi().get(propisi.getPropisi().size()-1).getDeo().get(brDelova-1).getGlava().add(glava);
 		}
 		
 		
-		clan.setID(BigInteger.valueOf(glava.getClan().size()+1));
+		clan.setID(BigInteger.valueOf(getID()));
 		clan.setNaziv(nazivClana);
 		clan.setOpis(opisClana);
 		clan.setSadrzaj(sadrzaj);
 		
-		if(nazivGlave.equals(""))
-		{
-			propis.getDeo().get(0).getClan().add(clan);
-		}
-		
-		return propis;
+		return propisi;
 	}
 
 	@Override
-	public Propis dodajClan(String requestData) throws JAXBException {
+	public Propisi dodajClan(String requestData) throws JAXBException {
 		
 		
 		 
 		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshall(new File("./data/xml/probaPropis.xml"));
-		
+		Propisi propisi = (Propisi) unmarshall(new File("./data/xml/propisi.xml"));
 
 		JSONObject json = new JSONObject(requestData);
 
@@ -363,30 +367,31 @@ public class PropisServiceImpl implements PropisService
 			sadrzaj.getTekst().add(tekstClana);
 		}
 		
+		int brDelova = propisi.getPropisi().get(propisi.getPropisi().size()-1).getDeo().size();
+		int brGlava = propisi.getPropisi().get(propisi.getPropisi().size()-1).getDeo().get(brDelova-1).getGlava().size();
 		
-		if(propis.getDeo().get(0).getGlava().size() != 0 && propis.getDeo().get(0).getGlava() != null ){
-			clan.setID(BigInteger.valueOf(propis.getDeo().get(0).getGlava().get(0).getClan().size() +1));
+		if(brGlava != 0 && propisi.getPropisi().get(propisi.getPropisi().size()-1).getDeo().get(brDelova-1).getGlava() != null ){
+			clan.setID(BigInteger.valueOf(getID()));
 			clan.setNaziv(nazivClana);
 			clan.setOpis(opisClana);
 			clan.setSadrzaj(sadrzaj);
-			propis.getDeo().get(0).getGlava().get(0).getClan().add(clan);
+			propisi.getPropisi().get(propisi.getPropisi().size()-1).getDeo().get(brDelova-1).getGlava().get(brGlava-1).getClan().add(clan);
 		}else {
-			clan.setID(BigInteger.valueOf(propis.getDeo().get(0).getClan().size() +1));
+			clan.setID(BigInteger.valueOf(getID()));
 			clan.setNaziv(nazivClana);
 			clan.setOpis(opisClana);
 			clan.setSadrzaj(sadrzaj);
-			propis.getDeo().get(0).getClan().add(clan);
+			propisi.getPropisi().get(propisi.getPropisi().size()-1).getDeo().get(brDelova-1).getClan().add(clan);
 		}
 				
-		return propis;
+		return propisi;
 	}
 
 	@Override
-	public Propis dodajStav(String requestData) throws JAXBException {
+	public Propisi dodajStav(String requestData) throws JAXBException {
 		 
 		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		jaxb.from.xsd.Propis propis = (jaxb.from.xsd.Propis) unmarshall(new File("./data/xml/probaPropis.xml"));
-		
+		Propisi propisi = (Propisi) unmarshall(new File("./data/xml/propisi.xml"));	
 
 		JSONObject json = new JSONObject(requestData);
 
@@ -404,50 +409,69 @@ public class PropisServiceImpl implements PropisService
 		}
 
 		Stav stav = new Stav();
-		
-		if(!redniBroj.equals("")){
-			stav.setRedniBroj(Long.parseLong(redniBroj));
-			stav.setTekst(tekstStava);
-			
-			for(int i = 0; i < propis.getDeo().size(); i++){
-				if(propis.getDeo().get(i).getGlava().size() != 0 && propis.getDeo().get(i).getGlava() != null){ //ako postoji glava
-					for(int j = 0; j < propis.getDeo().get(i).getGlava().size(); j++){
-						if(propis.getDeo().get(i).getGlava().get(j).getClan().size() != 0 && propis.getDeo().get(i).getGlava().get(j).getClan() != null){
-							for(int k = 0; k < propis.getDeo().get(i).getGlava().get(j).getClan().size(); k++){
-								if(propis.getDeo().get(i).getGlava().get(j).getClan().get(k).getSadrzaj().getStav().size() != 0 && propis.getDeo().get(i).getGlava().get(j).getClan().get(k).getSadrzaj().getStav() != null){
-									propis.getDeo().get(i).getGlava().get(j).getClan().get(k).getSadrzaj().getStav().add(stav);
-								}
+		try {
+			Long rbrStava = Long.parseLong(redniBroj);
+			if(!redniBroj.equals("")){
+				stav.setRedniBroj(rbrStava);
+				stav.setTekst(tekstStava);
+				int brGlava = 0;
+				int brClan = 0;
+				int brStav = 0;
+				int brDelova = propisi.getPropisi().get(propisi.getPropisi().size()-1).getDeo().size();
+				
+				/**
+				 * Dodavanje stava na poslednje dodati clan koji u sebi sadrzi stavove
+				 */
+				if(brDelova != 0){ //provera da li ima delove
+					brGlava = propisi.getPropisi().get(propisi.getPropisi().size()-1).getDeo().get(brDelova-1).getGlava().size();
+					if(brGlava != 0){ //provera da li deo ima glave
+						brClan = propisi.getPropisi().get(propisi.getPropisi().size()-1).getDeo().get(brDelova-1).getGlava().get(brGlava-1).getClan().size();
+						if(brClan != 0){ //provera da li glava ima clanove
+							if(propisi.getPropisi().get(propisi.getPropisi().size()-1).getDeo().get(brDelova-1).getGlava().get(brGlava-1).getClan().get(brClan-1).getSadrzaj().getStav().size() != 0 
+									&& propisi.getPropisi().get(propisi.getPropisi().size()-1).getDeo().get(brDelova-1).getGlava().get(brGlava-1).getClan().get(brClan-1).getSadrzaj().getStav() != null){ 
+								//provera da li clan ima u sebi stavove, ako ima na njega dodajemo
+								propisi.getPropisi().get(propisi.getPropisi().size()-1).getDeo().get(brDelova-1).getGlava().get(brGlava-1).getClan().get(brClan-1).getSadrzaj().getStav().add(stav);
+							}
+						}
+					}else{
+						brClan = propisi.getPropisi().get(propisi.getPropisi().size()-1).getDeo().get(brDelova - 1).getClan().size();
+						if(brClan != 0){ //provera da li deo ima clanove 
+							if(propisi.getPropisi().get(propisi.getPropisi().size()-1).getDeo().get(brDelova-1).getClan().get(brClan-1).getSadrzaj().getStav().size() != 0
+									&& propisi.getPropisi().get(propisi.getPropisi().size()-1).getDeo().get(brDelova-1).getClan().get(brClan-1).getSadrzaj().getStav() != null){
+								propisi.getPropisi().get(propisi.getPropisi().size()-1).getDeo().get(brDelova-1).getClan().get(brClan-1).getSadrzaj().getStav().add(stav);
 							}
 						}
 					}
 				}
 			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
-
-
-				
-		return propis;
+		
+		
+		return propisi;
 	}
 
 
 
 	@Override
-	public Propis unmarshall(File f) throws JAXBException {
+	public Propisi unmarshall(File f) throws JAXBException {
 		// TODO Auto-generated method stub
 		
-		JAXBContext context = JAXBContext.newInstance(Propis.class); 
+		JAXBContext context = JAXBContext.newInstance(Propisi.class); 
 		
 		// Unmarshaller je objekat zadužen za konverziju iz XML-a u objektni model
 		Unmarshaller unmarshaller = context.createUnmarshaller(); 
 		
 		// Unmarshalling generiše objektni model na osnovu XML fajla
-		return (Propis) unmarshaller.unmarshal(f);
+		return (Propisi) unmarshaller.unmarshal(f);
 	}
 
 	@Override
-	public void marshall(Propis t, File f) throws JAXBException {
+	public void marshall(Propisi t, File f) throws JAXBException {
 		// TODO Auto-generated method stub
-		JAXBContext context = JAXBContext.newInstance(Propis.class);
+		JAXBContext context = JAXBContext.newInstance(Propisi.class);
 		
 		Marshaller marshaller = context.createMarshaller();
 		
