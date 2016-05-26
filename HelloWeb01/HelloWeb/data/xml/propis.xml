@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><?xml-stylesheet type='text/xsl' href='propis.xsl' ?>
+<Propis xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" ID="34962">
+    <Naziv>Propis AA</Naziv>
+    <Deo ID="65997">
+        <Naziv>Deo AA</Naziv>
+        <Glava ID="3714">
+            <Naziv>Glava 11</Naziv>
+            <ns2:Clan ID="47237">
+                <ns2:Opis>Opis 11AA</ns2:Opis>
+                <ns2:Naziv>Clan 11AAA</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>Tekst 11AA</ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </Glava>
+        <ns2:Clan ID="27193">
+            <ns2:Opis>Opis AA</ns2:Opis>
+            <ns2:Naziv>Clan AA</ns2:Naziv>
+            <ns2:Sadrzaj>
+                <ns2:Tekst>Tekst AA</ns2:Tekst>
+            </ns2:Sadrzaj>
+        </ns2:Clan>
+        <ns2:Clan ID="68799">
+            <ns2:Opis>Opis BBB</ns2:Opis>
+            <ns2:Naziv>Clan BBB</ns2:Naziv>
+            <ns2:Sadrzaj>
+                <ns2:Tekst>Tekst BB</ns2:Tekst>
+            </ns2:Sadrzaj>
+        </ns2:Clan>
+    </Deo>
+</Propis>

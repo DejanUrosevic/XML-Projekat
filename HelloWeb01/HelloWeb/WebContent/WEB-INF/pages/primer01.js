@@ -158,7 +158,7 @@
 		
 		}
 		
-		$http.get('http://localhost:8080/HelloWeb/clan/proba')
+		$http.get('http://localhost:8080/HelloWeb/clan/generateXsl')
 		.then(function(response)
 		{
 			$scope.htmlXsl = response.data;

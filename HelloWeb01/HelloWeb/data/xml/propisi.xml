@@ -85,4 +85,20 @@
             </ns2:Clan>
         </ns3:Deo>
     </propis>
+    <propis ID="802211">
+        <ns3:Naziv>wqdwqdwwqd</ns3:Naziv>
+        <ns3:Deo ID="790482">
+            <ns3:Naziv>Delsad</ns3:Naziv>
+            <ns3:Glava ID="675429">
+                <ns3:Naziv>qwdwqd</ns3:Naziv>
+                <ns2:Clan ID="755099">
+                    <ns2:Opis>wqdwqdwq</ns2:Opis>
+                    <ns2:Naziv>wqdwqdwqdwq</ns2:Naziv>
+                    <ns2:Sadrzaj>
+                        <ns2:Tekst>qwdwqdwqdwqdwqd</ns2:Tekst>
+                    </ns2:Sadrzaj>
+                </ns2:Clan>
+            </ns3:Glava>
+        </ns3:Deo>
+    </propis>
 </propisi>

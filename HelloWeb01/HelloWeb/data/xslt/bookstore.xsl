@@ -13,29 +13,15 @@
                         margin: 50px auto 50px auto;
                         width: 90%;
                     }
-                    th, td {
-                        text-align: left;
-                        padding: 30px;
-                    }
-                    tr:nth-child(even){ background-color: #f2f2f2 }
-                    th {
-                        background-color: #4caf50;
-                        font-family: sans-serif;
-                        color: white;
-                    }
-                    tr { border: 1px solid darkgrey; }
-                    tr:hover {
-                        font-style: italic;
-                        background-color: #cae8cb;
-                    }
-                    body { font-family: sans-serif; }
-                    p { text-indent: 30px; }
-                    .sup {
-                        vertical-align: super;
-                        padding-left: 4px;
-                        font-size: small;
-                        text-transform: lowercase;
-                    }
+			        td {
+			          	border: 0;
+			          }
+			        th, td
+			        {
+			          	text-align: center;
+			            font-size: 14px;
+			            padding: 8px;
+			        }
                     
                 </style>
             </head>
@@ -60,7 +46,7 @@
                     <xsl:for-each select="b:bookstore/b:book">
                         <xsl:sort select="@category"/>
                         <xsl:sort select="b:price"/>
-                        <tr>
+                        <tr> 
                             <!-- Ordinal number -->
                             <td><xsl:value-of select="position()"/></td>
                             

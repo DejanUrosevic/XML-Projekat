@@ -1,8 +1,13 @@
 package web.xml.service.memory;
 
+import static org.apache.xerces.jaxp.JAXPConstants.JAXP_SCHEMA_LANGUAGE;
+import static org.apache.xerces.jaxp.JAXPConstants.W3C_XML_SCHEMA;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.StringWriter;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Random;
@@ -11,6 +16,17 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 import jaxb.from.xsd.Clan;
 import jaxb.from.xsd.Propis;
@@ -22,6 +38,7 @@ import jaxb.from.xsd.Propis.Deo.Glava;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
@@ -530,6 +547,19 @@ public class PropisServiceImpl implements PropisService
 	@Override
 	public Propis findPropisById(Long id) throws JAXBException 
 	{
+		//ideja ovde je da kada pronadjemo trazeni propis,
+		//da se napravi samo njegov xml, da bi posle mogli prikazati njegove podatke
+		//pomocu xsl-a
+		JAXBContext context = JAXBContext.newInstance(Propis.class);
+		
+		Marshaller marshaller = context.createMarshaller();
+		
+		// Podešavanje marshaller-a
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+		
+		marshaller.setProperty("com.sun.xml.bind.xmlHeaders", 
+				    "<?xml-stylesheet type='text/xsl' href='propis.xsl' ?>");
+		
 		Propisi propisi = findAll();
 		
 		BigInteger idPropis = BigInteger.valueOf(id);
@@ -538,10 +568,46 @@ public class PropisServiceImpl implements PropisService
 		{
 			if(idPropis.equals(p.getID()))
 			{
+				marshaller.marshal(p, new File("./data/xml/propis.xml"));   
 				return p;
 			}
 		}
 		return null;
 	}
+
+	@Override
+	public String generateHtmlFromXsl(File fileForXml, File fileForXsl) throws ParserConfigurationException, SAXException, IOException, TransformerFactoryConfigurationError, TransformerException 
+	{
+		 DocumentBuilderFactory factory;
+		
+		 Document document;
+		
+
+		 factory = DocumentBuilderFactory.newInstance();
+			
+			/* Ukljuèuje validaciju. */ 
+		 factory.setValidating(true);
+			
+		 factory.setNamespaceAware(true);
+		 factory.setIgnoringComments(true);
+		 factory.setIgnoringElementContentWhitespace(true);
+			
+			/* Validacija u odnosu na XML šemu. */
+		 factory.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);
+		
+			
+		 DocumentBuilder builder = factory.newDocumentBuilder();
+		 document = builder.parse(fileForXml);
+		
+		 //ovde se generise html kao string, koji se u stvari sastoji od podataka iz xml-a spojenog sa xsl-om.
+		 StreamSource streamSource = new StreamSource(fileForXsl);
+	     Transformer transformer = TransformerFactory.newInstance().newTransformer(streamSource);
+	     StringWriter writer = new StringWriter();
+	     transformer.transform(new DOMSource(document), new StreamResult(writer));
+	      
+		 return writer.getBuffer().toString();
+	}
+
+	
 
 }

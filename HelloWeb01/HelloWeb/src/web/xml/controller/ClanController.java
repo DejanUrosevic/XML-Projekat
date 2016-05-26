@@ -189,41 +189,11 @@ public class ClanController
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/proba", method = RequestMethod.GET, produces=MediaType.TEXT_HTML_VALUE)
+	@RequestMapping(value = "/generateXsl", method = RequestMethod.GET, produces=MediaType.TEXT_HTML_VALUE)
 	public @ResponseBody ResponseEntity<String> proba() throws IOException, JAXBException, ParserConfigurationException, SAXException, TransformerFactoryConfigurationError, TransformerException{
 		
-		DocumentBuilderFactory factory;
-		
-		Document document;
-		
-
-		factory = DocumentBuilderFactory.newInstance();
-			
-			/* Ukljuèuje validaciju. */ 
-		factory.setValidating(true);
-			
-		factory.setNamespaceAware(true);
-		factory.setIgnoringComments(true);
-		factory.setIgnoringElementContentWhitespace(true);
-			
-			/* Validacija u odnosu na XML šemu. */
-		factory.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);
-		
-			
-		DocumentBuilder builder = factory.newDocumentBuilder();
-		
-		
-		document = builder.parse(new File("./data/xslt/bookstore.xml"));
-		
-		
-		 StreamSource streamSource = new StreamSource(new File("./data/xslt/bookstore.xsl"));
-	     Transformer transformer = TransformerFactory.newInstance().newTransformer(streamSource);
-	     StringWriter writer = new StringWriter();
-	     transformer.transform(new DOMSource(document), new StreamResult(writer));
-	     String result = writer.getBuffer().toString();
-	 
-		
+		String resultHtml = propisSer.generateHtmlFromXsl(new File("data/xml/bookstore.xml"), new File("data/xml/bookstore.xsl"));
 	
-		return new ResponseEntity<String>(result, HttpStatus.OK);
+		return new ResponseEntity<String>(resultHtml, HttpStatus.OK);
 	}
 }
