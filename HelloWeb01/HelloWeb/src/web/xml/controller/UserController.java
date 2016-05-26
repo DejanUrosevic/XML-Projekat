@@ -73,21 +73,14 @@ public class UserController {
 	 * @throws JAXBException
 	 */
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<User> getUser(@PathVariable(value="id") long id) throws IOException, JAXBException {
-		JAXBContext context = JAXBContext.newInstance(Users.class);
+	public @ResponseBody ResponseEntity<User> getUser(@PathVariable(value="id") String username) throws IOException, JAXBException {
 		
-		// Unmarshaller je objekat zadužen za konverziju iz XML-a u objektni model
-		Unmarshaller unmarshaller = context.createUnmarshaller(); 
-		 
-		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		Users usersi = (Users) unmarshaller.unmarshal(new File("./data/xml/probaKorisnik.xml"));
+		Users usersi = (Users) userSer.findAll();
 		
-		//NEMOJTE DA BRISETE OVO, ZEZA ME ADRESA I NECE DA MI UCITA
-	//	Users usersi = (Users) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
 		
 		for(User u: usersi.getKorisnik())
 		{
-			if(u.getID() == id)
+			if(u.getUsername().equals(username))
 			{
 				return new ResponseEntity<User>(u, HttpStatus.OK);
 			}
@@ -133,7 +126,7 @@ public class UserController {
 		Unmarshaller unmarshaller = context.createUnmarshaller(); 
 		
 		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		Users usersi = (Users) unmarshaller.unmarshal(new File("./data/xml/probaKorisnik.xml"));
+		Users usersi = (Users) unmarshaller.unmarshal(new File("./data/xml/probaListaKorisnika.xml"));
 		
 		//NEMOJTE DA BRISETE OVO, ZEZA ME ADRESA I NECE DA MI UCITA
 	//	Users usersi = (Users) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
@@ -145,16 +138,14 @@ public class UserController {
 			{
 				if(userSer.autenticate(password, u.getPassword(), u.getSalt()))
 				{
+					
 					String token = Jwts.builder().setSubject(u.getUsername()).claim("roles", u.getVrsta()).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "asdf").compact();
 					return new ResponseEntity<LoginResponse>(new LoginResponse(token), HttpStatus.OK); 
 				}
 			}
 		}
-		return new ResponseEntity<LoginResponse>(HttpStatus.NO_CONTENT);
-	
-	   
 		
-       	  
+		return new ResponseEntity<LoginResponse>(HttpStatus.NO_CONTENT);	      	  
    }
    
    /**
@@ -170,40 +161,9 @@ public class UserController {
    @RequestMapping(value = "/registration", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
    public @ResponseBody User registerUser(@RequestBody String postPayload) throws IOException, JAXBException, NoSuchAlgorithmException, InvalidKeySpecException, JSONException 
    {
-	   JSONObject json = new JSONObject(postPayload);
-	   User user = new User(json.getString("ime"), json.getString("prezime"), 
-			   json.getString("username"), "gradjanin", 39);
+	   userSer.preSave(postPayload, new File("./data/xml/probaListaKorisnika.xml"));
 	   
-	   //ovde radimo hash password-a i takodje pamtimo u bazu i salt kojim je password odradjen
-	   byte[] salt = userSer.generateSalt();
-	   user.setSalt(salt);
-	   user.setPassword(userSer.hashPassword(json.getString("password"), salt));
-	   
-	    JAXBContext context = JAXBContext.newInstance(Users.class);
-		
-		// Unmarshaller je objekat zadužen za konverziju iz XML-a u objektni model
-		Unmarshaller unmarshaller = context.createUnmarshaller(); 
-		
-		// Unmarshalling generiše objektni model na osnovu XML fajla
-		Users usersi = (Users) unmarshaller.unmarshal(new File("./data/xml/probaKorisnik.xml"));
-
-		
-		//NEMOJTE DA BRISETE OVO, ZEZA ME ADRESA I NECE DA MI UCITA
-		//Users usersi = (Users) unmarshaller.unmarshal(new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
-		
-		
-		usersi.getKorisnik().add(user);
-		
-		Marshaller marshaller = context.createMarshaller();
-		
-		// Podešavanje marshaller-a
-		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		
-		// Umesto System.out-a, može se koristiti FileOutputStream
-		marshaller.marshal(usersi, new File("data\\xml\\probaKorisnik.xml"));
-
-		//NEMOJTE DA BRISETE OVO, ZEZA ME ADRESA I NECE DA MI UCITA
-		//marshaller.marshal(usersi, new File("D:/4. godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
+	   userSer.save(new File("./data/xml/probaListaKorisnika.xml"));
 	   
 	   
 	   return new User();

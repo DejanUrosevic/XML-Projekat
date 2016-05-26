@@ -134,8 +134,13 @@
 		 */
 		if(localStorage.getItem('key') !== null){ 
 			$http.get('http://localhost:8080/HelloWeb/api/role').then(function(response)
-		    {      
-				$scope.rolaUser = response.data;       
+		    {   
+				$http.get('http://localhost:8080/HelloWeb/Index/user/' + response.data.username)
+				.then(function(response2)
+				{
+					$scope.rolaUser = response2.data; 
+				});
+				      
 		    });		
 		}else{
 			$state.go('login');
@@ -273,6 +278,16 @@
 			{
 				$state.go('opcije');
 			});
+		}
+		
+		$scope.saveToDatabase = function()
+		{
+			$http.get('http://localhost:8080/HelloWeb/clan/save')
+			.then(function(response)
+			{
+				$state.go('main');
+			});
+			
 		}
 
 	}

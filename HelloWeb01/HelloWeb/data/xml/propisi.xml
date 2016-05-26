@@ -46,4 +46,43 @@
             </ns2:Clan>
         </ns3:Deo>
     </propis>
+    <propis ID="62383">
+        <ns3:Naziv>Propis1</ns3:Naziv>
+        <ns3:Deo ID="81260">
+            <ns3:Naziv>Deo 1</ns3:Naziv>
+            <ns3:Glava ID="53800">
+                <ns3:Naziv>Glavudza 1</ns3:Naziv>
+                <ns2:Clan ID="39960">
+                    <ns2:Opis>dqw dqw dqqwdqwdqw dw34t5 345645yhtrhrthhrthtr htrhrt hr</ns2:Opis>
+                    <ns2:Naziv>Clan 1</ns2:Naziv>
+                    <ns2:Sadrzaj>
+                        <ns2:Tekst>e her hge erhererhreherhtrhrthtrhtr rt h rhrt h rt jr jr rjrtrrt</ns2:Tekst>
+                    </ns2:Sadrzaj>
+                </ns2:Clan>
+            </ns3:Glava>
+        </ns3:Deo>
+    </propis>
+    <propis ID="32169">
+        <ns3:Naziv>fwe fwef w</ns3:Naziv>
+        <ns3:Deo ID="3251">
+            <ns3:Naziv>efew efwe</ns3:Naziv>
+            <ns2:Clan ID="48820">
+                <ns2:Opis>wefwefwwfefwe</ns2:Opis>
+                <ns2:Naziv>ewfweef</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>wefwefwefewfe</ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+            <ns2:Clan ID="15388">
+                <ns2:Opis>ewwefewf</ns2:Opis>
+                <ns2:Naziv>ewfwefewef</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Stav>
+                        <ns2:Redni_broj>1</ns2:Redni_broj>
+                        <ns2:Tekst>dqwwef ef</ns2:Tekst>
+                    </ns2:Stav>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </ns3:Deo>
+    </propis>
 </propisi>

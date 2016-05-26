@@ -1,14 +1,33 @@
 package web.xml.service;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+
+import javax.xml.bind.JAXBException;
+
+import org.json.JSONException;
 
 import web.xml.model.User;
 import web.xml.model.Users;
 
-public interface UserService extends CrudService<User>
+public interface UserService extends CrudService<Users>
 {
+	
+	/**
+	 * Podesavanja radi lakseg save-a na bazu,
+	 * ovde se takodje radi hash&salt metoda za lozinku
+	 * @param podaci koji su dobijeni sa fronta
+	 * @param f xml fajl koji se koristi
+	 * @return f fajl koji predstavlja xml koji cemo zapamtati na bazi
+	 * @throws NoSuchAlgorithmException 
+	 * @throws JSONException 
+	 * @throws InvalidKeySpecException 
+	 * @throws JAXBException 
+	 * @throws FileNotFoundException 
+	 */
+	public File preSave(String podaci, File f) throws NoSuchAlgorithmException, InvalidKeySpecException, JSONException, JAXBException, FileNotFoundException;
 	
 	/**
 	 * Generisanje salt-a za pomoc u heshiranju lozinke

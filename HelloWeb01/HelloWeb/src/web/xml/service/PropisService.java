@@ -1,5 +1,7 @@
 package web.xml.service;
 
+import java.util.List;
+
 import javax.xml.bind.JAXBException;
 
 import org.json.JSONObject;
@@ -9,7 +11,8 @@ import web.xml.model.Propisi;
 
 public interface PropisService extends CrudService<Propisi>
 {
-
+	public Propis findPropisById(Long id) throws JAXBException;
+	
 	public Propis dodajPropis(String requestData);
 	
 	public Propisi dodajDeo(String requestData) throws JAXBException;

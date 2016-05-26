@@ -46,18 +46,9 @@ public class ClanController
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces="application/json; charset=UTF-8")
 	public @ResponseBody ResponseEntity<Propis> getPropis(@PathVariable(value="id") String id) throws IOException, JAXBException {
-			
-		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
 		
-		BigInteger idPropisa = BigInteger.valueOf(Long.parseLong(id));
 		
-		for(Propis p : propisi.getPropisi()){
-			if(idPropisa.equals(p.getID())){
-				return new ResponseEntity<Propis>(p, HttpStatus.OK);
-			}
-		}
-		
-		return new ResponseEntity<Propis>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Propis>(propisSer.findPropisById(Long.parseLong(id)), HttpStatus.OK); 
 	}
 	
 	/**
@@ -69,7 +60,7 @@ public class ClanController
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces="application/json; charset=UTF-8")
 	public @ResponseBody ResponseEntity<Propisi> getAll() throws IOException, JAXBException {
 			
-		return new ResponseEntity<Propisi>(propisSer.unmarshall(new File("./data/xml/propisi.xml")), HttpStatus.OK);
+		return new ResponseEntity<Propisi>(propisSer.findAll(), HttpStatus.OK);
 	}
 	
 	/**
@@ -165,6 +156,15 @@ public class ClanController
 		Propisi propisi = propisSer.dodajStav(postPayload);
 		
 		propisSer.marshall(propisi, new File("data\\xml\\propisi.xml"));
+		
+		return new ResponseEntity<String>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/save", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<String> saveToDatabase() throws IOException, JAXBException{
+		
+		propisSer.save(new File("./data/xml/propisi.xml"));
+		
 		
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}

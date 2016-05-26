@@ -1,11 +1,11 @@
 package web.xml.service;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import javax.xml.bind.JAXBException;
 
-import web.xml.model.Propisi;
 
 
 /**
@@ -28,8 +28,9 @@ public interface CrudService<T> {
 	 * Return back all existing entities.
 	 * 
 	 * @return list of existing entities, empty list if there are no entities
+	 * @throws JAXBException 
 	 */
-	List<T> findAll();
+	T findAll() throws JAXBException;
 
 	/**
 	 * Save entity and return saved instance (with id set).
@@ -37,8 +38,9 @@ public interface CrudService<T> {
 	 * @param entity
 	 *            to be saved
 	 * @return saved instance
+	 * @throws FileNotFoundException 
 	 */
-	T save(T t);
+	void save(File f) throws FileNotFoundException;
 
 	/**
 	 * Remove entity with passed id.

@@ -3,7 +3,7 @@
     <korisnik>
         <ID>3123</ID>
         <ime>Pera</ime>
-        <password>p</password>
+        <password></password>
         <prezime>Peric</prezime>
         <username>p</username>
         <vrsta>odbornik</vrsta>
@@ -11,7 +11,7 @@
     <korisnik>
         <ID>123</ID>
         <ime>Dragan</ime>
-        <password>d</password>
+        <password></password>
         <prezime>Maric</prezime>
         <username>d</username>
         <vrsta>gradjanin</vrsta>
@@ -19,9 +19,18 @@
     <korisnik>
         <ID>63</ID>
         <ime>Das</ime>
-        <password>w</password>
+        <password></password>
         <prezime>Asd</prezime>
         <username>w</username>
         <vrsta>predsednik skupstine</vrsta>
+    </korisnik>
+    <korisnik>
+        <ID>39</ID>
+        <ime>dw</ime>
+        <password>NNijVfM/1Hr+Y7usoLZr011AddI=</password>
+        <prezime>dw</prezime>
+        <salt>BSNRn7oM9jA=</salt>
+        <username>dw@dw</username>
+        <vrsta>gradjanin</vrsta>
     </korisnik>
 </korisnici>

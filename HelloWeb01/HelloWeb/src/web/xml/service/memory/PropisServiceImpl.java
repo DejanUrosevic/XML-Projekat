@@ -1,6 +1,8 @@
 package web.xml.service.memory;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Random;
@@ -19,6 +21,15 @@ import jaxb.from.xsd.Propis.Deo.Glava;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
+import org.w3c.dom.Document;
+
+import com.marklogic.client.DatabaseClient;
+import com.marklogic.client.DatabaseClientFactory;
+import com.marklogic.client.DatabaseClientFactory.Authentication;
+import com.marklogic.client.document.XMLDocumentManager;
+import com.marklogic.client.io.DOMHandle;
+import com.marklogic.client.io.DocumentMetadataHandle;
+import com.marklogic.client.io.InputStreamHandle;
 
 import web.xml.model.Propisi;
 import web.xml.model.Users;
@@ -30,7 +41,7 @@ public class PropisServiceImpl implements PropisService
 	
 	public static int getID(){
 		Random broj = new Random();
-		return broj.nextInt(100000);
+		return broj.nextInt(1000000);
 	}
 	
 	@Override
@@ -40,15 +51,51 @@ public class PropisServiceImpl implements PropisService
 	}
 
 	@Override
-	public List<Propisi> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public Propisi findAll() throws JAXBException 
+	{
+		DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37" ,"tim37", "tim37", Authentication.valueOf("DIGEST")); 
+		
+		XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+
+		// A handle to receive the document's content.
+		DOMHandle content = new DOMHandle();
+		
+		DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+		
+		// A document URI identifier. 
+		String docId = "/propisi.xml";
+		
+		xmlManager.read(docId, metadata, content);
+
+		// Retrieving a document node form DOM handle.
+		Document doc = content.get();
+		
+		JAXBContext context = JAXBContext.newInstance(Propisi.class); 
+		
+		// Unmarshaller je objekat zadužen za konverziju iz XML-a u objektni model
+		Unmarshaller unmarshaller = context.createUnmarshaller(); 
+		
+		return (Propisi) unmarshaller.unmarshal(doc);
+		
+		
 	}
 
 	@Override
-	public Propisi save(Propisi t) { 
-		// TODO Auto-generated method stub
-		return null;
+	public void save(File f) throws FileNotFoundException  
+	{ 
+		DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37" ,"tim37", "tim37", Authentication.valueOf("DIGEST")); 
+		XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+		
+		String docId = "/propisi.xml";
+		String collId = "/skupstina/propisi";
+		
+		InputStreamHandle handle = new InputStreamHandle(new FileInputStream(f.getAbsolutePath()));
+		DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+		metadata.getCollections().add(collId);
+		
+		xmlManager.write(docId, metadata, handle);
+		
+		client.release();
 	}
 
 	@Override
@@ -321,8 +368,6 @@ public class PropisServiceImpl implements PropisService
 	@Override
 	public Propisi dodajClan(String requestData) throws JAXBException {
 		
-		
-		 
 		// Unmarshalling generiše objektni model na osnovu XML fajla 
 		Propisi propisi = (Propisi) unmarshall(new File("./data/xml/propisi.xml"));
 
@@ -480,6 +525,23 @@ public class PropisServiceImpl implements PropisService
 		
 		// Umesto System.out-a, može se koristiti FileOutputStream
 	    marshaller.marshal(t, f);
+	}
+
+	@Override
+	public Propis findPropisById(Long id) throws JAXBException 
+	{
+		Propisi propisi = findAll();
+		
+		BigInteger idPropis = BigInteger.valueOf(id);
+		
+		for(Propis p : propisi.getPropisi())
+		{
+			if(idPropis.equals(p.getID()))
+			{
+				return p;
+			}
+		}
+		return null;
 	}
 
 }
