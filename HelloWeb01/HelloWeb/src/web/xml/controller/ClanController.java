@@ -1,15 +1,33 @@
 package web.xml.controller;
 
+import static org.apache.xerces.jaxp.JAXPConstants.JAXP_SCHEMA_LANGUAGE;
+import static org.apache.xerces.jaxp.JAXPConstants.W3C_XML_SCHEMA;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
+import java.io.StringWriter;
 import java.math.BigInteger;
+import java.util.Scanner;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 import jaxb.from.xsd.Clan.Sadrzaj.Stav;
 import jaxb.from.xsd.Propis;
@@ -27,6 +45,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 import jaxb.from.xsd.Clan;
 import web.xml.model.Clanovi;
@@ -167,5 +187,43 @@ public class ClanController
 		
 		
 		return new ResponseEntity<String>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/proba", method = RequestMethod.GET, produces=MediaType.TEXT_HTML_VALUE)
+	public @ResponseBody ResponseEntity<String> proba() throws IOException, JAXBException, ParserConfigurationException, SAXException, TransformerFactoryConfigurationError, TransformerException{
+		
+		DocumentBuilderFactory factory;
+		
+		Document document;
+		
+
+		factory = DocumentBuilderFactory.newInstance();
+			
+			/* Ukljuèuje validaciju. */ 
+		factory.setValidating(true);
+			
+		factory.setNamespaceAware(true);
+		factory.setIgnoringComments(true);
+		factory.setIgnoringElementContentWhitespace(true);
+			
+			/* Validacija u odnosu na XML šemu. */
+		factory.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);
+		
+			
+		DocumentBuilder builder = factory.newDocumentBuilder();
+		
+		
+		document = builder.parse(new File("./data/xslt/bookstore.xml"));
+		
+		
+		 StreamSource streamSource = new StreamSource(new File("./data/xslt/bookstore.xsl"));
+	     Transformer transformer = TransformerFactory.newInstance().newTransformer(streamSource);
+	     StringWriter writer = new StringWriter();
+	     transformer.transform(new DOMSource(document), new StreamResult(writer));
+	     String result = writer.getBuffer().toString();
+	 
+		
+	
+		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
 }

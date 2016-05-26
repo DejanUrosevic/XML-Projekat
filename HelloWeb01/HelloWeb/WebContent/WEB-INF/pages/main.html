@@ -23,8 +23,8 @@
 					<tr>
 						<th>Pretraga akata</th>
 						<th>Pregled svih akata</th>
-						<th ng-if="rolaUser.role === 'odbornik' || rolaUser.role === 'predsednik skupstine'">Predlaganje propisa</th>
-						<th ng-if="rolaUser.role === 'odbornik' || rolaUser.role === 'predsednik skupstine'">Predlaganje amandmana</th>
+						<th ng-if="rolaUser.vrsta === 'odbornik' || rolaUser.vrsta === 'predsednik skupstine'">Predlaganje propisa</th>
+						<th ng-if="rolaUser.vrsta === 'odbornik' || rolaUser.vrsta === 'predsednik skupstine'">Predlaganje amandmana</th>
 					</tr>
 					<tr>
 						<td class="sredina"><button type="button"
@@ -35,12 +35,12 @@
 								style="background-color: transparent; border-color: transparent;" ng-click="sviAkti()">
 								<img src="css/images/data.jpg" height="50" />
 							</button></td>
-						<td class="sredina" ng-if="rolaUser.role === 'odbornik' || rolaUser.role === 'predsednik skupstine'" ng-click="addAkt()"><button
+						<td class="sredina" ng-if="rolaUser.vrsta === 'odbornik' || rolaUser.vrsta === 'predsednik skupstine'" ng-click="addAkt()"><button
 								type="button"
 								style="background-color: transparent; border-color: transparent;">
 								<img src="css/images/addAkt.png" height="50" />
 							</button></td>
-						<td class="sredina" ng-if="rolaUser.role === 'odbornik' || rolaUser.role === 'predsednik skupstine'"><button
+						<td class="sredina" ng-if="rolaUser.vrsta === 'odbornik' || rolaUser.vrsta === 'predsednik skupstine'"><button
 								type="button"
 								style="background-color: transparent; border-color: transparent;">
 								<img src="css/images/amandman.png" height="50" />
@@ -49,7 +49,7 @@
 				</table>
 			</div>
 		</div>	
-	
-		<div ng-bind-html="thisCanBeusedInsideNgBindHtml"></div>
+		
+		<div ng-bind-html="htmlXsl"></div>
 	</div>
 </div>

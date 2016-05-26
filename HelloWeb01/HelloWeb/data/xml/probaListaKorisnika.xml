@@ -1,36 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <korisnici>
     <korisnik>
-        <ID>3123</ID>
-        <ime>Pera</ime>
-        <password></password>
-        <prezime>Peric</prezime>
-        <username>p</username>
-        <vrsta>odbornik</vrsta>
-    </korisnik>
-    <korisnik>
-        <ID>123</ID>
-        <ime>Dragan</ime>
-        <password></password>
-        <prezime>Maric</prezime>
-        <username>d</username>
-        <vrsta>gradjanin</vrsta>
-    </korisnik>
-    <korisnik>
-        <ID>63</ID>
-        <ime>Das</ime>
-        <password></password>
-        <prezime>Asd</prezime>
-        <username>w</username>
-        <vrsta>predsednik skupstine</vrsta>
-    </korisnik>
-    <korisnik>
         <ID>39</ID>
         <ime>dw</ime>
         <password>NNijVfM/1Hr+Y7usoLZr011AddI=</password>
         <prezime>dw</prezime>
         <salt>BSNRn7oM9jA=</salt>
         <username>dw@dw</username>
+        <vrsta>odbornik</vrsta>
+    </korisnik>
+    <korisnik>
+        <ID>39</ID>
+        <ime>asd</ime>
+        <password>asaMRCUh5yqqibjsasdbt9/BJ3A=</password>
+        <prezime>asd</prezime>
+        <salt>aCuPpg36+OA=</salt>
+        <username>asd@asd</username>
         <vrsta>gradjanin</vrsta>
     </korisnik>
 </korisnici>

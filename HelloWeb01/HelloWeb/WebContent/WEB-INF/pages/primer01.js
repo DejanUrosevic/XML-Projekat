@@ -123,7 +123,7 @@
 	/**
 	 * Kontroler za glavnu stranicu sistema, ovde lepimo na $scope klijenta koji se ulogovao.
 	 */
-	var mainPageCtrl = function ($scope, $resource, $http, $location, $stateParams, $state, $sce) 
+	var mainPageCtrl = function ($scope, $resource, $http, $location, $stateParams, $state) 
 	{
 		//JAKO JAKO BITNO DA SE svaki put prilikom slanja request-a posalje i token
 		//mora opet da se postavlja Authorization header!!!
@@ -155,8 +155,15 @@
 		$scope.addAkt = function()
 		{
 			$state.go('dodPropis');
-			
+		
 		}
+		
+		$http.get('http://localhost:8080/HelloWeb/clan/proba')
+		.then(function(response)
+		{
+			$scope.htmlXsl = response.data;
+		});
+		
 		
 	}
 	
@@ -293,7 +300,7 @@
 	}
 	
 	
-	var app = angular.module('app',['ui.router', 'ngResource']);
+	var app = angular.module('app',['ui.router', 'ngResource', 'ngSanitize']);
 	app.controller('logInCtrl', logInCtrl);
 	app.controller('mainPageCtrl', mainPageCtrl);
 	app.controller('sviAktiCtrl', sviAktiCtrl);
