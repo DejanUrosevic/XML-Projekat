@@ -3,12 +3,24 @@ package web.xml.service.memory;
 import static org.apache.xerces.jaxp.JAXPConstants.JAXP_SCHEMA_LANGUAGE;
 import static org.apache.xerces.jaxp.JAXPConstants.W3C_XML_SCHEMA;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.math.BigInteger;
+
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.PrivateKey;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.List;
 import java.util.Random;
 
@@ -18,6 +30,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.FactoryConfigurationError;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -35,9 +48,11 @@ import jaxb.from.xsd.Clan.Sadrzaj.Stav;
 import jaxb.from.xsd.Propis.Deo;
 import jaxb.from.xsd.Propis.Deo.Glava;
 
+import org.apache.xml.utils.Constants;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 import com.marklogic.client.DatabaseClient;
@@ -47,6 +62,10 @@ import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.io.DOMHandle;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.InputStreamHandle;
+import com.sun.org.apache.xml.internal.security.algorithms.MessageDigestAlgorithm;
+import com.sun.org.apache.xml.internal.security.exceptions.XMLSecurityException;
+import com.sun.org.apache.xml.internal.security.signature.XMLSignature;
+import com.sun.org.apache.xml.internal.security.transforms.Transforms;
 
 import web.xml.model.Propisi;
 import web.xml.model.Users;
@@ -543,6 +562,30 @@ public class PropisServiceImpl implements PropisService
 		// Umesto System.out-a, može se koristiti FileOutputStream
 	    marshaller.marshal(t, f);
 	}
+	
+	@Override
+	public void marshallPropis(Propis propis, File f) throws JAXBException{
+		JAXBContext context = JAXBContext.newInstance(Propis.class);
+		
+		Marshaller marshaller = context.createMarshaller();
+	
+		// Podešavanje marshaller-a
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+		// Umesto System.out-a, može se koristiti FileOutputStream
+	    marshaller.marshal(propis, f);
+	}
+	
+	@Override
+	public Propis unmarshallPropis(File f) throws JAXBException{
+		JAXBContext context = JAXBContext.newInstance(Propis.class); 
+		
+		// Unmarshaller je objekat zadužen za konverziju iz XML-a u objektni model
+		Unmarshaller unmarshaller = context.createUnmarshaller(); 
+		
+		// Unmarshalling generiše objektni model na osnovu XML fajla
+		return (Propis) unmarshaller.unmarshal(f);
+	}
 
 	@Override
 	public Propis findPropisById(Long id) throws JAXBException 
@@ -606,6 +649,149 @@ public class PropisServiceImpl implements PropisService
 	     transformer.transform(new DOMSource(document), new StreamResult(writer));
 	      
 		 return writer.getBuffer().toString();
+	}
+
+	@Override
+	public Document loadDocument(String file) {
+		// TODO Auto-generated method stub
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		dbf.setNamespaceAware(true);
+		DocumentBuilder db;
+		try {
+			db = dbf.newDocumentBuilder();
+			Document document = db.parse(new File(file));
+			return document;
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (FactoryConfigurationError e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+
+	@Override
+	public PrivateKey readPrivateKey(String file, String alias, String password) {
+		// TODO Auto-generated method stub
+		KeyStore ks;
+		try {
+			ks = KeyStore.getInstance("JKS", "SUN");
+			BufferedInputStream in = new BufferedInputStream(new FileInputStream("data\\sertifikati\\qq.jks"));
+			ks.load(in, password.toCharArray());
+			
+			if(ks.isKeyEntry("qq")){
+				PrivateKey pk = (PrivateKey)ks.getKey("qq", "qq".toCharArray());
+				return pk;
+			}else{
+				return null;
+			}
+		} catch (KeyStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (NoSuchProviderException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (CertificateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (UnrecoverableKeyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+
+	@Override
+	public Certificate readCertificate(String file, String certNaziv) {
+		// TODO Auto-generated method stub
+		
+		try {
+			KeyStore ks = KeyStore.getInstance("JKS", "SUN");
+			BufferedInputStream in = new BufferedInputStream(new FileInputStream(new File("data\\sertifikati\\qq.jks")));
+
+			ks.load(in, "qq".toCharArray());
+			if(ks.isKeyEntry("qq")) {
+				Certificate cert = ks.getCertificate("qq");
+				return cert;
+			}
+			else
+				return null;
+		} catch (KeyStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (NoSuchProviderException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (CertificateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public Document signDocument(Document doc, PrivateKey privateKey, Certificate cert) throws XMLSecurityException {
+		// TODO Auto-generated method stub
+		Element rootEl = doc.getDocumentElement();
+		com.sun.org.apache.xml.internal.security.Init.init();
+		XMLSignature sig = new XMLSignature(doc, null, XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA1);
+		
+		Transforms transform = new Transforms(doc);
+		
+		transform.addTransform(Transforms.TRANSFORM_ENVELOPED_SIGNATURE);
+		
+		transform.addTransform(Transforms.TRANSFORM_C14N11_WITH_COMMENTS);
+		
+		sig.addDocument("", transform, MessageDigestAlgorithm.ALGO_ID_DIGEST_SHA1);
+		
+		sig.addKeyInfo(cert.getPublicKey());
+		sig.addKeyInfo((X509Certificate)cert);
+		
+		rootEl.appendChild(sig.getElement());
+		sig.sign(privateKey);
+		return doc;
+		
 	}
 
 	

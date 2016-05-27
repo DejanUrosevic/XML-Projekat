@@ -16,36 +16,6 @@
             </ns3:Glava>
         </ns3:Deo>
     </propis>
-    <propis ID="34962">
-        <ns3:Naziv>Propis AA</ns3:Naziv>
-        <ns3:Deo ID="65997">
-            <ns3:Naziv>Deo AA</ns3:Naziv>
-            <ns3:Glava ID="3714">
-                <ns3:Naziv>Glava 11</ns3:Naziv>
-                <ns2:Clan ID="47237">
-                    <ns2:Opis>Opis 11AA</ns2:Opis>
-                    <ns2:Naziv>Clan 11AAA</ns2:Naziv>
-                    <ns2:Sadrzaj>
-                        <ns2:Tekst>Tekst 11AA</ns2:Tekst>
-                    </ns2:Sadrzaj>
-                </ns2:Clan>
-            </ns3:Glava>
-            <ns2:Clan ID="27193">
-                <ns2:Opis>Opis AA</ns2:Opis>
-                <ns2:Naziv>Clan AA</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>Tekst AA</ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-            <ns2:Clan ID="68799">
-                <ns2:Opis>Opis BBB</ns2:Opis>
-                <ns2:Naziv>Clan BBB</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>Tekst BB</ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns3:Deo>
-    </propis>
     <propis ID="62383">
         <ns3:Naziv>Propis1</ns3:Naziv>
         <ns3:Deo ID="81260">
@@ -57,45 +27,6 @@
                     <ns2:Naziv>Clan 1</ns2:Naziv>
                     <ns2:Sadrzaj>
                         <ns2:Tekst>e her hge erhererhreherhtrhrthtrhtr rt h rhrt h rt jr jr rjrtrrt</ns2:Tekst>
-                    </ns2:Sadrzaj>
-                </ns2:Clan>
-            </ns3:Glava>
-        </ns3:Deo>
-    </propis>
-    <propis ID="32169">
-        <ns3:Naziv>fwe fwef w</ns3:Naziv>
-        <ns3:Deo ID="3251">
-            <ns3:Naziv>efew efwe</ns3:Naziv>
-            <ns2:Clan ID="48820">
-                <ns2:Opis>wefwefwwfefwe</ns2:Opis>
-                <ns2:Naziv>ewfweef</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>wefwefwefewfe</ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-            <ns2:Clan ID="15388">
-                <ns2:Opis>ewwefewf</ns2:Opis>
-                <ns2:Naziv>ewfwefewef</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Stav>
-                        <ns2:Redni_broj>1</ns2:Redni_broj>
-                        <ns2:Tekst>dqwwef ef</ns2:Tekst>
-                    </ns2:Stav>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns3:Deo>
-    </propis>
-    <propis ID="802211">
-        <ns3:Naziv>wqdwqdwwqd</ns3:Naziv>
-        <ns3:Deo ID="790482">
-            <ns3:Naziv>Delsad</ns3:Naziv>
-            <ns3:Glava ID="675429">
-                <ns3:Naziv>qwdwqd</ns3:Naziv>
-                <ns2:Clan ID="755099">
-                    <ns2:Opis>wqdwqdwq</ns2:Opis>
-                    <ns2:Naziv>wqdwqdwqdwq</ns2:Naziv>
-                    <ns2:Sadrzaj>
-                        <ns2:Tekst>qwdwqdwqdwqdwqd</ns2:Tekst>
                     </ns2:Sadrzaj>
                 </ns2:Clan>
             </ns3:Glava>
@@ -119,6 +50,22 @@
                     <ns2:Naziv>Clan 2</ns2:Naziv>
                     <ns2:Sadrzaj>
                         <ns2:Tekst>Nulla sodales nulla non leo tempus pretium. Etiam feugiat laoreet quam. Morbi tempor, tellus eu facilisis cursus, urna enim volutpat nisi, eu fringilla mauris ipsum ac purus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus quam nisi, mattis eu dolor eget, placerat bibendum nulla. Phasellus sagittis gravida tempus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras at mauris mattis nibh rutrum rhoncus ac sed ligula. Quisque lacinia euismod convallis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam vel sagittis tellus. Nulla at fringilla nisl. Sed semper ullamcorper sem et pellentesque. Morbi suscipit diam sapien.  Sed congue non justo ut imperdiet. Ut in purus turpis. Nullam mollis, massa eget pharetra ultrices, mi est ultrices turpis, sit amet scelerisque augue leo nec mauris. Pellentesque in suscipit felis. Sed quis ipsum aliquet, tempus quam id, blandit est. Vestibulum a posuere nulla, eu egestas lectus. Nullam consectetur odio in arcu condimentum, non molestie odio suscipit. Fusce venenatis neque lorem, sit amet commodo libero condimentum et. Integer tincidunt lorem magna, ut pellentesque ante hendrerit scelerisque. Vestibulum blandit consequat dolor. In in suscipit lectus, in vestibulum metus. Nunc ultrices ligula sollicitudin, ultricies elit sed, volutpat tortor. Nullam interdum aliquam ex ac semper.</ns2:Tekst>
+                    </ns2:Sadrzaj>
+                </ns2:Clan>
+            </ns3:Glava>
+        </ns3:Deo>
+    </propis>
+    <propis ID="540906">
+        <ns3:Naziv>PROPISI</ns3:Naziv>
+        <ns3:Deo ID="247586">
+            <ns3:Naziv>PROPISI</ns3:Naziv>
+            <ns3:Glava ID="54747">
+                <ns3:Naziv>PROPISI</ns3:Naziv>
+                <ns2:Clan ID="289389">
+                    <ns2:Opis>PROPISI</ns2:Opis>
+                    <ns2:Naziv>PROPISI</ns2:Naziv>
+                    <ns2:Sadrzaj>
+                        <ns2:Tekst>PROPISI</ns2:Tekst>
                     </ns2:Sadrzaj>
                 </ns2:Clan>
             </ns3:Glava>

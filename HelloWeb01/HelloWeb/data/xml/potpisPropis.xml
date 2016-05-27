@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><Propis xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" ID="540906">
+    <Naziv>PROPISI</Naziv>
+    <Deo ID="247586">
+        <Naziv>PROPISI</Naziv>
+        <Glava ID="54747">
+            <Naziv>PROPISI</Naziv>
+            <ns2:Clan ID="289389">
+                <ns2:Opis>PROPISI</ns2:Opis>
+                <ns2:Naziv>PROPISI</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>PROPISI</ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </Glava>
+    </Deo>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+<ds:Transform Algorithm="http://www.w3.org/2006/12/xml-c14n11#WithComments"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>6lEyl08V2AAcXqEIgN4Hmsdq/+g=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+aYrWxol3pychNjk2ml+xPscg6VWiN13mAGnMRj2CsDewif37zd9VK6MQlNCcA8H9XKBUEMIGOBTc
++PnLne6hC3DUlvaMdS07zHQzkJ14eBV2BmKLyGcIHthTRcn5pUxklggQkTRnzfq4ELoNCzS//NNm
++xfOknxKrwRl9R8YZ9k=
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+jq5UJKzQPLKA/AL/SAf1E0CnKVseLJ7c3skQgnfLeBEzJC7Akz0c/7n2mI+Ra05EChriGlCg9nb5
+YopSsZYkTj8+cHdPhZbd1jyoQXvNuBYsisHpMELWImHlO/j4/ralkA5hav5AVyZUSPIoNvOwoYG8
+fXXulJ7vpWg7Mhyx1fM=
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+<ds:X509Data>
+<ds:X509Certificate>
+MIICpjCCAg+gAwIBAgIDVhLxMA0GCSqGSIb3DQEBBQUAMIGXMQswCQYDVQQDDAJhYTELMAkGA1UE
+BAwCYWExCzAJBgNVBCoMAmFhMQswCQYDVQQKDAJhYTELMAkGA1UECwwCYWExCzAJBgNVBAYTAmFh
+MREwDwYJKoZIhvcNAQkBFgJhYTE0MDIGCgmSJomT8ixkAQEMJDg5NWZiOGE0LWNhYzgtNDBmNi1i
+NDA0LWMyZDI5ODI4NmE0ZTAeFw0xNjA1MTIxNjI3NTlaFw0xNzA1MTIxNjI3NTlaMIGXMQswCQYD
+VQQDDAJxcTELMAkGA1UEBAwCcXExCzAJBgNVBCoMAnFxMQswCQYDVQQKDAJxcTELMAkGA1UECwwC
+cXExCzAJBgNVBAYTAnFxMREwDwYJKoZIhvcNAQkBFgJxcTE0MDIGCgmSJomT8ixkAQEMJDk0NTI4
+OGIzLTU2NTktNGJlMi04OWUwLWNmODg3NTgwMWQxNTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkC
+gYEAjq5UJKzQPLKA/AL/SAf1E0CnKVseLJ7c3skQgnfLeBEzJC7Akz0c/7n2mI+Ra05EChriGlCg
+9nb5YopSsZYkTj8+cHdPhZbd1jyoQXvNuBYsisHpMELWImHlO/j4/ralkA5hav5AVyZUSPIoNvOw
+oYG8fXXulJ7vpWg7Mhyx1fMCAwEAATANBgkqhkiG9w0BAQUFAAOBgQCIHmihxoCTYCpeknn3g20r
+CJxca0+MuCVT8+X3hITd0HXabUtYa177aRHRlyFhjyAgsJZ/bWmJu9pqpDqKOwDaiwu8/0t3j/8k
+P4QOSyMhsx+jWZkb+RFHVJiy6FlG+6sRns354Agi4rdNzQsjQTYT9UFKi4HgLUaH9zNUqphmNA==
+</ds:X509Certificate>
+</ds:X509Data>
+</ds:KeyInfo>
+</ds:Signature></Propis>

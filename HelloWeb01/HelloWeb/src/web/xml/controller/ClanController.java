@@ -5,11 +5,16 @@ import static org.apache.xerces.jaxp.JAXPConstants.W3C_XML_SCHEMA;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
 import java.io.StringWriter;
 import java.math.BigInteger;
+import java.net.MalformedURLException;
+import java.security.PrivateKey;
+import java.security.cert.Certificate;
 import java.util.Scanner;
 
 import javax.xml.bind.JAXBContext;
@@ -47,6 +52,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
+
+import com.sun.org.apache.xml.internal.security.exceptions.XMLSecurityException;
 
 import jaxb.from.xsd.Clan;
 import web.xml.model.Clanovi;
@@ -101,8 +108,61 @@ public class ClanController
 		
 		Propis noviPropis = propisSer.dodajPropis(postPayload);
 		
+		
+		propisSer.marshallPropis(noviPropis, new File("data\\xml\\potpisPropis.xml"));
+		Document doc = propisSer.loadDocument("data\\xml\\potpisPropis.xml");
+		
+		PrivateKey pk = propisSer.readPrivateKey("data\\sertifikati\\qq.jks", "qq", "qq");
+		Certificate cert = propisSer.readCertificate("data\\sertifikati\\qq.cer", "qq");
+		try {
+			doc = propisSer.signDocument(doc, pk, cert);
+		} catch (XMLSecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		try {
+			FileOutputStream f = new FileOutputStream(new File("data\\xml\\potpisPropis.xml"));
+
+			TransformerFactory factory = TransformerFactory.newInstance();
+			Transformer transformer = factory.newTransformer();
+			
+			DOMSource source = new DOMSource(doc);
+			StreamResult result = new StreamResult(f);
+			
+			transformer.transform(source, result);
+
+			f.close();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (TransformerConfigurationException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (TransformerFactoryConfigurationError e) {
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Propis propis = propisSer.unmarshallPropis(new File("data\\xml\\potpisPropis.xml"));
+		System.out.println(propis);
 		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
-		propisi.getPropisi().add(noviPropis);
+		propisi.getPropisi().add(propis);
+		BufferedReader br = new BufferedReader(new FileReader(new File("data\\xml\\potpisPropis.xml")));
+		String line;
+		StringBuilder sb = new StringBuilder();
+
+		while((line=br.readLine())!= null){
+		    sb.append(line.trim());
+		}
+		
 		
 		propisSer.marshall(propisi, new File("data\\xml\\propisi.xml"));
 	

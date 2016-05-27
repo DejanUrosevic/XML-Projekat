@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?><?xml-stylesheet type='text/xsl' href='propis.xsl' ?>
-<Propis xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" ID="22463">
-    <Naziv>Krivicni zakon</Naziv>
-    <Deo ID="140653">
-        <Naziv>Deo prvi</Naziv>
-        <Glava ID="71432">
-            <Naziv>Glava prva</Naziv>
-            <ns2:Clan ID="617057">
-                <ns2:Opis>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis condimentum purus laoreet gravida. Pellentesque pulvinar lorem mauris, et consectetur lectus vestibulum pretium.</ns2:Opis>
-                <ns2:Naziv>Clan 1</ns2:Naziv>
+<Propis xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" ID="15167">
+    <Naziv>Propis</Naziv>
+    <Deo ID="39965">
+        <Naziv>deo 1</Naziv>
+        <Glava ID="5487">
+            <Naziv>glava 1</Naziv>
+            <ns2:Clan ID="19762">
+                <ns2:Opis>opis clan 1</ns2:Opis>
+                <ns2:Naziv>clan 1</ns2:Naziv>
                 <ns2:Sadrzaj>
-                    <ns2:Tekst>Etiam at tellus a est congue iaculis sed vel felis. Duis sit amet quam est. Integer et lacinia erat. Morbi dictum nisi ac ligula ullamcorper malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lectus ex, posuere a urna nec, ullamcorper finibus nulla. Nulla gravida lorem nec purus volutpat vulputate. Nulla rhoncus, tellus varius vehicula fermentum, orci sapien porta nulla, eu egestas ex ante eu ligula. Sed ultrices sem mauris. Sed fermentum sagittis posuere.</ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-            <ns2:Clan ID="906034">
-                <ns2:Opis>Etiam at tellus a est congue iaculis sed vel felis. Duis sit amet quam est. Integer et lacinia erat. Morbi dictum nisi ac ligula ullamcorper malesuada. Lorem ipsum dolor sit amet,.</ns2:Opis>
-                <ns2:Naziv>Clan 2</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>Nulla sodales nulla non leo tempus pretium. Etiam feugiat laoreet quam. Morbi tempor, tellus eu facilisis cursus, urna enim volutpat nisi, eu fringilla mauris ipsum ac purus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus quam nisi, mattis eu dolor eget, placerat bibendum nulla. Phasellus sagittis gravida tempus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras at mauris mattis nibh rutrum rhoncus ac sed ligula. Quisque lacinia euismod convallis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam vel sagittis tellus. Nulla at fringilla nisl. Sed semper ullamcorper sem et pellentesque. Morbi suscipit diam sapien.  Sed congue non justo ut imperdiet. Ut in purus turpis. Nullam mollis, massa eget pharetra ultrices, mi est ultrices turpis, sit amet scelerisque augue leo nec mauris. Pellentesque in suscipit felis. Sed quis ipsum aliquet, tempus quam id, blandit est. Vestibulum a posuere nulla, eu egestas lectus. Nullam consectetur odio in arcu condimentum, non molestie odio suscipit. Fusce venenatis neque lorem, sit amet commodo libero condimentum et. Integer tincidunt lorem magna, ut pellentesque ante hendrerit scelerisque. Vestibulum blandit consequat dolor. In in suscipit lectus, in vestibulum metus. Nunc ultrices ligula sollicitudin, ultricies elit sed, volutpat tortor. Nullam interdum aliquam ex ac semper.</ns2:Tekst>
+                    <ns2:Tekst>tekst clan 1</ns2:Tekst>
                 </ns2:Sadrzaj>
             </ns2:Clan>
         </Glava>

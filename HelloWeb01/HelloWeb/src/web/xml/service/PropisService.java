@@ -2,6 +2,9 @@ package web.xml.service;
 
 import java.io.File;
 import java.io.IOException;
+
+import java.security.PrivateKey;
+import java.security.cert.Certificate;
 import java.util.List;
 
 import javax.xml.bind.JAXBException;
@@ -13,6 +16,8 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
+
+import com.sun.org.apache.xml.internal.security.exceptions.XMLSecurityException;
 
 import jaxb.from.xsd.Propis;
 import web.xml.model.Propisi;
@@ -33,4 +38,15 @@ public interface PropisService extends CrudService<Propisi>
 	
 	public String generateHtmlFromXsl(File fileForXml, File fileForXsl) throws ParserConfigurationException, SAXException, IOException, TransformerConfigurationException, TransformerFactoryConfigurationError, TransformerException;
 	
+	public Document loadDocument(String file);
+	
+	public PrivateKey readPrivateKey(String file, String alias, String password);
+	
+	public Certificate readCertificate(String file, String certNaziv);
+	
+	public Document signDocument(Document doc, PrivateKey privateKey, Certificate cert) throws XMLSecurityException;
+	
+	public void marshallPropis(Propis propis, File f) throws JAXBException;
+	
+	public Propis unmarshallPropis(File f) throws JAXBException;
 }
