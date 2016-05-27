@@ -25,6 +25,7 @@
 						<th>Pregled svih akata</th>
 						<th ng-if="rolaUser.vrsta === 'odbornik' || rolaUser.vrsta === 'predsednik skupstine'">Predlaganje propisa</th>
 						<th ng-if="rolaUser.vrsta === 'odbornik' || rolaUser.vrsta === 'predsednik skupstine'">Predlaganje amandmana</th>
+						<th ng-if="rolaUser.vrsta === 'predsednik skupstine'">Rukovodjenje sednicom</th>
 					</tr>
 					<tr>
 						<td class="sredina"><button type="button"
@@ -45,11 +46,14 @@
 								style="background-color: transparent; border-color: transparent;">
 								<img src="css/images/amandman.png" height="50" />
 							</button></td>
+						<td class="sredina" ng-if="rolaUser.vrsta === 'predsednik skupstine'"><button
+								type="button"
+								style="background-color: transparent; border-color: transparent;" ng-click="sednica()">
+								<img src="css/images/predsednik.png" height="50" />
+							</button></td>
 					</tr>
 				</table>
 			</div>
 		</div>	
-		
-		<div ng-bind-html="htmlXsl"></div>
 	</div>
 </div>

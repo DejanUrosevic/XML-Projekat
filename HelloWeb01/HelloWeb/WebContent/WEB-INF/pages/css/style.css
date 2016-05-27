@@ -184,5 +184,26 @@ color:#CCCCCC;
 
 .tekst_sredina {
 	text-align: center;
+	color: black;
+	padding-bottom:10px;
 }
+.bodySlika
+{
+	background-color: white;
+}
+
+.slikaPadding
+{
+	padding-left: 30px;
+}
+
+.naslovSize
+{
+	text-align: center;
+	color: black;
+	padding-bottom:10px;
+	font-size: 60px;
+}
+
+
 

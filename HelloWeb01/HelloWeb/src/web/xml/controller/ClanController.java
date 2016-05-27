@@ -64,11 +64,16 @@ public class ClanController
 	@Autowired
 	PropisService propisSer;
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces="application/json; charset=UTF-8")
-	public @ResponseBody ResponseEntity<Propis> getPropis(@PathVariable(value="id") String id) throws IOException, JAXBException {
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces=MediaType.TEXT_HTML_VALUE)
+	public @ResponseBody ResponseEntity<String> getPropis(@PathVariable(value="id") String id) throws IOException, JAXBException, TransformerConfigurationException, ParserConfigurationException, SAXException, TransformerFactoryConfigurationError, TransformerException {
 		
+		//ovim kreiramo taj propis.xml
+		propisSer.findPropisById(Long.parseLong(id));
 		
-		return new ResponseEntity<Propis>(propisSer.findPropisById(Long.parseLong(id)), HttpStatus.OK); 
+		String resultHtml = propisSer.generateHtmlFromXsl(new File("data/xml/propis.xml"), new File("data/xml/propis.xsl"));
+		
+		return new ResponseEntity<String>(resultHtml, HttpStatus.OK);
+		
 	}
 	
 	/**
@@ -192,7 +197,7 @@ public class ClanController
 	@RequestMapping(value = "/generateXsl", method = RequestMethod.GET, produces=MediaType.TEXT_HTML_VALUE)
 	public @ResponseBody ResponseEntity<String> proba() throws IOException, JAXBException, ParserConfigurationException, SAXException, TransformerFactoryConfigurationError, TransformerException{
 		
-		String resultHtml = propisSer.generateHtmlFromXsl(new File("data/xml/bookstore.xml"), new File("data/xml/bookstore.xsl"));
+		String resultHtml = propisSer.generateHtmlFromXsl(new File("data/xml/propis.xml"), new File("data/xml/propis.xsl"));
 	
 		return new ResponseEntity<String>(resultHtml, HttpStatus.OK);
 	}

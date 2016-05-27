@@ -158,12 +158,10 @@
 		
 		}
 		
-		$http.get('http://localhost:8080/HelloWeb/clan/generateXsl')
-		.then(function(response)
+		$scope.sednica = function()
 		{
-			$scope.htmlXsl = response.data;
-		});
-		
+			$state.go('sednica');
+		}	
 		
 	}
 	
@@ -203,10 +201,10 @@
 				var propisId = $stateParams.id;
 			}
 		
-		
 			$http.get('http://localhost:8080/HelloWeb/clan/'+ propisId)
-			.then(function(response){
-				$scope.pronadjenPropis = response.data;
+			.then(function(response)
+			{
+				$scope.htmlXsl = response.data;
 			});
 		}else{
 			$state.go('login');
@@ -299,6 +297,11 @@
 
 	}
 	
+	var sednicaCtrl = function($scope, $resource, $http, $location, $stateParams, $state)
+	{
+		
+	}
+	
 	
 	var app = angular.module('app',['ui.router', 'ngResource', 'ngSanitize']);
 	app.controller('logInCtrl', logInCtrl);
@@ -306,6 +309,7 @@
 	app.controller('sviAktiCtrl', sviAktiCtrl);
 	app.controller('addPropisCtrl', addPropisCtrl);
 	app.controller('pregledPropisaCtrl', pregledPropisaCtrl);
+	app.controller('sednicaCtrl', sednicaCtrl);
 	
 	app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -331,6 +335,11 @@
 	      url: '/sviAkti',
 	      templateUrl: 'sviAkti.html',
 	      controller: 'sviAktiCtrl'
+	    })
+	     .state('sednica', {
+	      url: '/sednica',
+	      templateUrl: 'sednica-izbor.html',
+	      controller: 'sednicaCtrl'
 	    })
 	    .state('izabranPropis', {
 	      url: '/propisi/propis/:id',

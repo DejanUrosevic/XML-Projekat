@@ -1,0 +1,47 @@
+<div id="header" ng-controller="logInCtrl">
+	<h1>IssgNS</h1>
+	<ul>
+		<li><a href="#">Home</a></li>
+		<li><a href="#">Products</a></li>
+		<li><a href="#">Services</a></li>
+		<li><a href="#">About</a></li>
+		<li><a ng-click="logout()">Odjavi se </a></li>
+	</ul>
+</div>
+<div id="main">
+	<div class="main_body">
+		<div id="tableContainer-1">
+			<div id="tableContainer-2">
+				<br />
+				<h2 style="text-align: center; color: #0033cc;">
+					<u>Izaberite opciju </u>
+				</h2>
+				<br />
+				<hr />
+				<br />
+				<table id="myTable">
+					<tr>
+						<th>Usvajanje u nacelu</th>
+						<th>Usvajanje u pojedinostima</th>
+						<th>Usvajanje u celini</th>
+					</tr>
+					<tr>
+						<td class="sredina"><button type="button"
+								style="background-color: transparent; border-color: transparent;">
+								<img src="css/images/potvrdaUNacelu.jpg" height="50" />
+							</button></td>
+						<td class="sredina"><button type="button"
+								style="background-color: transparent; border-color: transparent;"
+								ng-click="sviAkti()">
+								<img src="css/images/uPojedinostima.png" height="50" />
+							</button></td>
+						<td><button type="button"
+								style="background-color: transparent; border-color: transparent;">
+								<img src="css/images/uCelini.jpg" height="50" />
+							</button></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
