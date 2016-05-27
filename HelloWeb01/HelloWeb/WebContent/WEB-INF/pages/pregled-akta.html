@@ -10,45 +10,6 @@
 </div>
 <div id="main">
 	<div class="main_body">
-		<div id="tableContainer-1">
-			<div id="tableContainer-2">
-			<br/>
-				<h2 style="text-align: center; color: #0033cc;">
-					Pregled propisa &nbsp <u>{{pronadjenPropis.naziv}}</u>
-				</h2>
-				<br />
-				<hr />
-				<br />
-				
-					<u><h1 class="tekst_sredina">{{pronadjenPropis.naziv}}</h1></u>
-					<br/><br/>
-					<div ng-repeat="deo in pronadjenPropis.deo">
-						<h3 class="tekst_sredina">{{deo.naziv}}</h3> <br/>
-						<div ng-repeat="glava in deo.glava">
-							<h4 class="tekst_sredina">{{glava.naziv}}</h4><br/>
-							<div ng-repeat="clan in glava.clan">
-								<h4 class="tekst_sredina">{{clan.naziv}}</h4>
-								<p class="tekst_sredina">{{clan.opis}}</p>
-								<div>
-									<p ng-repeat="tekst in clan.sadrzaj.tekst" class="tekst_sredina">{{tekst}}</p>
-									<p ng-repeat="stav in clan.sadrzaj.stav" class="tekst_sredina">
-										({{stav.redniBroj}}) &nbsp {{stav.tekst}}
-									</p>
-								</div>
-							</div>
-						</div>
-						<div ng-repeat="clan in deo.clan">
-								<h4 class="tekst_sredina">{{clan.naziv}}</h4>
-								<p class="tekst_sredina">{{clan.opis}}</p>
-								<div>
-									<p ng-repeat="tekst in clan.sadrzaj.tekst" class="tekst_sredina">{{tekst}}</p>
-									<p ng-repeat="stav in clan.sadrzaj.stav" class="tekst_sredina">
-										({{stav.redniBroj}}) &nbsp {{stav.tekst}}
-									</p>
-								</div>
-							</div>
-					</div>				
-			</div>
-		</div>
+		<div ng-bind-html="htmlXsl"> </div>
 	</div>
 </div>
