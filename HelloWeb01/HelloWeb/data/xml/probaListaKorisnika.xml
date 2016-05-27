@@ -7,7 +7,7 @@
         <prezime>dw</prezime>
         <salt>BSNRn7oM9jA=</salt>
         <username>dw@dw</username>
-        <vrsta>odbornik</vrsta>
+        <vrsta>predsednik skupstine</vrsta>
     </korisnik>
     <korisnik>
         <ID>39</ID>
@@ -16,6 +16,15 @@
         <prezime>asd</prezime>
         <salt>aCuPpg36+OA=</salt>
         <username>asd@asd</username>
+        <vrsta>odbornik</vrsta>
+    </korisnik>
+    <korisnik>
+        <ID>39</ID>
+        <ime>fdwdw</ime>
+        <password>Iuyp71Jmm7bINWFsMqY9x7GlbDg=</password>
+        <prezime>wdwwd</prezime>
+        <salt>7dZZs+qXJa8=</salt>
+        <username>wdd@dwdw</username>
         <vrsta>gradjanin</vrsta>
     </korisnik>
 </korisnici>
