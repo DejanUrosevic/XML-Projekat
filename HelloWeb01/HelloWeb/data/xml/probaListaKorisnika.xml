@@ -36,4 +36,22 @@
         <username>koli@koli</username>
         <vrsta>gradjanin</vrsta>
     </korisnik>
+    <korisnik>
+        <ID>39</ID>
+        <ime>pera</ime>
+        <password>nIiddsXP80KaW6hIu1/Tbd5n22Y=</password>
+        <prezime>peric</prezime>
+        <salt>e6o/WofUpRM=</salt>
+        <username>pera@pera</username>
+        <vrsta>gradjanin</vrsta>
+    </korisnik>
+    <korisnik>
+        <ID>39</ID>
+        <ime>pera</ime>
+        <password>Yva+KsDPszWXP3jvNOOBNkhst4E=</password>
+        <prezime>peric</prezime>
+        <salt>8tc7oQxk2AE=</salt>
+        <username>pera@pera</username>
+        <vrsta>gradjanin</vrsta>
+    </korisnik>
 </korisnici>

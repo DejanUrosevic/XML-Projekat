@@ -214,9 +214,9 @@ public class ClanController
 		
 		propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), "data\\sertifikati\\qq.jks", "qq", "qq", "data\\sertifikati\\qq.cer", "qq");
 		
-		propisSer.save(new File("data\\xml\\potpisPropis.xml"));
+		propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\qq.jks"), "qq");
 		
-	//	propisSer.save(new File("./data/xml/propisi.xml"));
+		propisSer.save(new File("data\\xml\\potpisPropis.xml"));
 		
 		
 		return new ResponseEntity<String>(HttpStatus.OK);

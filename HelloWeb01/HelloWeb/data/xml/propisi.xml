@@ -1,249 +1,77 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <propisi xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/propis">
-    <propis ID="15167">
-        <ns3:Naziv>Propis</ns3:Naziv>
-        <ns3:Deo ID="39965">
-            <ns3:Naziv>deo 1</ns3:Naziv>
-            <ns3:Glava ID="5487">
-                <ns3:Naziv>glava 1</ns3:Naziv>
-                <ns2:Clan ID="19762">
-                    <ns2:Opis>opis clan 1</ns2:Opis>
-                    <ns2:Naziv>clan 1</ns2:Naziv>
-                    <ns2:Sadrzaj>
-                        <ns2:Tekst>tekst clan 1</ns2:Tekst>
-                    </ns2:Sadrzaj>
-                </ns2:Clan>
-            </ns3:Glava>
-        </ns3:Deo>
-    </propis>
-    <propis ID="62383">
-        <ns3:Naziv>Propis1</ns3:Naziv>
-        <ns3:Deo ID="81260">
-            <ns3:Naziv>Deo 1</ns3:Naziv>
-            <ns3:Glava ID="53800">
-                <ns3:Naziv>Glavudza 1</ns3:Naziv>
-                <ns2:Clan ID="39960">
-                    <ns2:Opis>dqw dqw dqqwdqwdqw dw34t5 345645yhtrhrthhrthtr htrhrt hr</ns2:Opis>
-                    <ns2:Naziv>Clan 1</ns2:Naziv>
-                    <ns2:Sadrzaj>
-                        <ns2:Tekst>e her hge erhererhreherhtrhrthtrhtr rt h rhrt h rt jr jr rjrtrrt</ns2:Tekst>
-                    </ns2:Sadrzaj>
-                </ns2:Clan>
-            </ns3:Glava>
-        </ns3:Deo>
-    </propis>
-    <propis ID="22463">
-        <ns3:Naziv>Krivicni zakon</ns3:Naziv>
-        <ns3:Deo ID="140653">
-            <ns3:Naziv>Deo prvi</ns3:Naziv>
-            <ns3:Glava ID="71432">
-                <ns3:Naziv>Glava prva</ns3:Naziv>
-                <ns2:Clan ID="617057">
-                    <ns2:Opis>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis condimentum purus laoreet gravida. Pellentesque pulvinar lorem mauris, et consectetur lectus vestibulum pretium.</ns2:Opis>
-                    <ns2:Naziv>Clan 1</ns2:Naziv>
-                    <ns2:Sadrzaj>
-                        <ns2:Tekst>Etiam at tellus a est congue iaculis sed vel felis. Duis sit amet quam est. Integer et lacinia erat. Morbi dictum nisi ac ligula ullamcorper malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lectus ex, posuere a urna nec, ullamcorper finibus nulla. Nulla gravida lorem nec purus volutpat vulputate. Nulla rhoncus, tellus varius vehicula fermentum, orci sapien porta nulla, eu egestas ex ante eu ligula. Sed ultrices sem mauris. Sed fermentum sagittis posuere.</ns2:Tekst>
-                    </ns2:Sadrzaj>
-                </ns2:Clan>
-                <ns2:Clan ID="906034">
-                    <ns2:Opis>Etiam at tellus a est congue iaculis sed vel felis. Duis sit amet quam est. Integer et lacinia erat. Morbi dictum nisi ac ligula ullamcorper malesuada. Lorem ipsum dolor sit amet,.</ns2:Opis>
-                    <ns2:Naziv>Clan 2</ns2:Naziv>
-                    <ns2:Sadrzaj>
-                        <ns2:Tekst>Nulla sodales nulla non leo tempus pretium. Etiam feugiat laoreet quam. Morbi tempor, tellus eu facilisis cursus, urna enim volutpat nisi, eu fringilla mauris ipsum ac purus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus quam nisi, mattis eu dolor eget, placerat bibendum nulla. Phasellus sagittis gravida tempus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras at mauris mattis nibh rutrum rhoncus ac sed ligula. Quisque lacinia euismod convallis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam vel sagittis tellus. Nulla at fringilla nisl. Sed semper ullamcorper sem et pellentesque. Morbi suscipit diam sapien.  Sed congue non justo ut imperdiet. Ut in purus turpis. Nullam mollis, massa eget pharetra ultrices, mi est ultrices turpis, sit amet scelerisque augue leo nec mauris. Pellentesque in suscipit felis. Sed quis ipsum aliquet, tempus quam id, blandit est. Vestibulum a posuere nulla, eu egestas lectus. Nullam consectetur odio in arcu condimentum, non molestie odio suscipit. Fusce venenatis neque lorem, sit amet commodo libero condimentum et. Integer tincidunt lorem magna, ut pellentesque ante hendrerit scelerisque. Vestibulum blandit consequat dolor. In in suscipit lectus, in vestibulum metus. Nunc ultrices ligula sollicitudin, ultricies elit sed, volutpat tortor. Nullam interdum aliquam ex ac semper.</ns2:Tekst>
-                    </ns2:Sadrzaj>
-                </ns2:Clan>
-            </ns3:Glava>
-        </ns3:Deo>
-    </propis>
-    <propis ID="540906">
-        <ns3:Naziv>PROPISI</ns3:Naziv>
-        <ns3:Deo ID="247586">
-            <ns3:Naziv>PROPISI</ns3:Naziv>
-            <ns3:Glava ID="54747">
-                <ns3:Naziv>PROPISI</ns3:Naziv>
-                <ns2:Clan ID="289389">
-                    <ns2:Opis>PROPISI</ns2:Opis>
-                    <ns2:Naziv>PROPISI</ns2:Naziv>
-                    <ns2:Sadrzaj>
-                        <ns2:Tekst>PROPISI</ns2:Tekst>
-                    </ns2:Sadrzaj>
-                </ns2:Clan>
-            </ns3:Glava>
-        </ns3:Deo>
-    </propis>
-    <propis ID="782437">
-        <ns3:Naziv>fffe</ns3:Naziv>
-        <ns3:Deo ID="9257">
-            <ns3:Naziv>weffwfwe</ns3:Naziv>
-            <ns2:Clan ID="746819">
-                <ns2:Opis>wefefwwfewef</ns2:Opis>
-                <ns2:Naziv>wefewffwe</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>wefweffweewf</ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns3:Deo>
-    </propis>
-    <propis ID="641469">
-        <ns3:Naziv>ewfwef</ns3:Naziv>
-        <ns3:Deo ID="266389">
-            <ns3:Naziv>fweefwe</ns3:Naziv>
-            <ns2:Clan ID="608033">
-                <ns2:Opis>EWCEWWECEWW</ns2:Opis>
-                <ns2:Naziv>WCEWE</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>EWCEWW</ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns3:Deo>
-    </propis>
-    <propis ID="372913">
-        <ns3:Naziv>EWWECE</ns3:Naziv>
-        <ns3:Deo ID="310280">
-            <ns3:Naziv>EWWEGWE</ns3:Naziv>
-            <ns2:Clan ID="515324">
-                <ns2:Opis>WGWEGWE</ns2:Opis>
-                <ns2:Naziv>WEGWEG</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Stav>
-                        <ns2:Redni_broj>11</ns2:Redni_broj>
-                        <ns2:Tekst>WEGWEGWEGWEGWEG</ns2:Tekst>
-                    </ns2:Stav>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns3:Deo>
-    </propis>
-    <propis ID="45767">
-        <ns3:Naziv>popo</ns3:Naziv>
-        <ns3:Deo ID="489555">
-            <ns3:Naziv>popoop</ns3:Naziv>
-            <ns2:Clan ID="709544">
-                <ns2:Opis>popoo</ns2:Opis>
-                <ns2:Naziv>opo</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>popoppoop</ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns3:Deo>
-    </propis>
-    <propis ID="425403">
-        <ns3:Naziv>rhtrhtrh</ns3:Naziv>
-        <ns3:Deo ID="635875">
-            <ns3:Naziv>trhtrhrt</ns3:Naziv>
-            <ns2:Clan ID="352384">
-                <ns2:Opis>trhtrhtrh</ns2:Opis>
-                <ns2:Naziv>thtrh</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>trhrthrthrt</ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns3:Deo>
-    </propis>
-    <propis ID="699987">
-        <ns3:Naziv>TYTRT</ns3:Naziv>
-        <ns3:Deo ID="552097">
-            <ns3:Naziv>TRHHRTHTR</ns3:Naziv>
-            <ns2:Clan ID="759403">
-                <ns2:Opis>RTHTRRHT</ns2:Opis>
-                <ns2:Naziv>HRTHRT</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Stav>
-                        <ns2:Redni_broj>32</ns2:Redni_broj>
-                        <ns2:Tekst>GREGREGGREGR</ns2:Tekst>
-                    </ns2:Stav>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns3:Deo>
-    </propis>
-    <propis ID="702687">
-        <ns3:Naziv>dqw</ns3:Naziv>
-        <ns3:Deo ID="253371">
-            <ns3:Naziv>dq</ns3:Naziv>
-            <ns2:Clan ID="716140">
-                <ns2:Opis>qwdwqd</ns2:Opis>
-                <ns2:Naziv>wqdqw</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>wq</ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-            <ns2:Clan ID="797359">
-                <ns2:Opis>ADDA</ns2:Opis>
-                <ns2:Naziv>wqdwwqdqwdwqdwqdwqdDASD</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>DADAAA</ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns3:Deo>
-    </propis>
-    <propis ID="709338">
-        <ns3:Naziv>WEFEWF</ns3:Naziv>
-        <ns3:Deo ID="265964">
-            <ns3:Naziv>WEFWEFE</ns3:Naziv>
-            <ns3:Glava ID="929950">
-                <ns3:Naziv>WEFWE</ns3:Naziv>
-                <ns2:Clan ID="274617">
-                    <ns2:Opis>EWFWE</ns2:Opis>
-                    <ns2:Naziv>EWFEF</ns2:Naziv>
-                    <ns2:Sadrzaj>
-                        <ns2:Stav>
-                            <ns2:Redni_broj>22</ns2:Redni_broj>
-                            <ns2:Tekst>FWEFWEFEWF</ns2:Tekst>
-                        </ns2:Stav>
-                    </ns2:Sadrzaj>
-                </ns2:Clan>
-            </ns3:Glava>
-        </ns3:Deo>
-        <ns3:Deo ID="305509">
-            <ns3:Naziv>FWEFWEF</ns3:Naziv>
-            <ns3:Glava ID="248080">
-                <ns3:Naziv>WEFWEF</ns3:Naziv>
-                <ns2:Clan ID="779003">
-                    <ns2:Opis>FEWEFWE</ns2:Opis>
-                    <ns2:Naziv>WEFFE</ns2:Naziv>
-                    <ns2:Sadrzaj>
-                        <ns2:Tekst>WEFWEFWE</ns2:Tekst>
-                    </ns2:Sadrzaj>
-                </ns2:Clan>
-                <ns2:Clan ID="613725">
-                    <ns2:Opis>REGR</ns2:Opis>
-                    <ns2:Naziv>ERGE</ns2:Naziv>
-                    <ns2:Sadrzaj>
-                        <ns2:Tekst>REGERGR</ns2:Tekst>
-                    </ns2:Sadrzaj>
-                </ns2:Clan>
-            </ns3:Glava>
-        </ns3:Deo>
-    </propis>
-    <propis ID="424256">
-        <ns3:Naziv>Vucicev zakon</ns3:Naziv>
-        <ns3:Deo ID="651426">
-            <ns3:Naziv>Deo prvi</ns3:Naziv>
-            <ns3:Glava ID="140455">
+    <propis ID="38929">
+        <ns3:Naziv>Zakon o zakonu</ns3:Naziv>
+        <ns3:Deo ID="499152">
+            <ns3:Naziv>Deo prvi prvcati</ns3:Naziv>
+            <ns3:Glava ID="1210">
                 <ns3:Naziv>Glava 1</ns3:Naziv>
-                <ns2:Clan ID="888765">
-                    <ns2:Opis>Phasellus velit mi, ultrices ac ornare nec, vulputate vel ligula. Pellentesque consectetur mattis laoreet. Donec sodales elit tortor. Fusce eget enim ac orci porta feugiat mattis ut ipsum. Praesent posuere ultricies urna id ullamcorper. Donec eu odio quis nisl feugiat pharetra. Donec vitae tempor augue, vel mattis leo. Quisque lacinia id ipsum et dignissim. Nullam ut laoreet erat.</ns2:Opis>
+                <ns2:Clan ID="466872">
+                    <ns2:Opis>Bacon ipsum dolor amet pork loin turducken jowl pork chop shankle doner. Tenderloin spare ribs fatback short ribs bacon, pastrami kevin. Ribeye beef ribs venison leberkas. Strip steak porchetta ham frankfurter alcatra leberkas prosciutto ham hock t-bone swine bresaola pork loin picanha tail chuck. Turducken corned beef cupim pancetta filet mignon. Shank ball tip chuck strip steak tongue shankle pork chop salami chicken shoulder tenderloin.</ns2:Opis>
                     <ns2:Naziv>Clan 1</ns2:Naziv>
                     <ns2:Sadrzaj>
-                        <ns2:Tekst>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae porta augue. Proin eu quam ut orci dictum egestas mattis vel tellus. Ut mattis at sem consequat accumsan. Pellentesque ultrices sagittis velit at malesuada. Curabitur suscipit ipsum lacus, at sodales est consequat eget. Etiam ut pulvinar quam. Pellentesque cursus massa a dapibus facilisis. Sed ultrices dui enim, eu congue libero molestie vitae. In id leo mattis, mattis nisi a, laoreet ex. Vivamus ornare est et risus suscipit cursus. Morbi mattis consectetur ultrices. Donec imperdiet ante eget turpis viverra hendrerit. Vestibulum velit eros, sollicitudin eget pellentesque quis, porta eget purus.</ns2:Tekst>
+                        <ns2:Tekst>Meatloaf ribeye kielbasa pastrami beef ribs, cow shoulder corned beef tongue chuck. Meatball pastrami drumstick shank venison cupim. Porchetta chuck pancetta shankle. Tri-tip strip steak sausage, pastrami meatloaf landjaeger fatback alcatra tongue shoulder boudin turducken pork belly chuck. Pancetta meatloaf chuck pork chop, cupim shankle ham hamburger leberkas brisket. Pastrami jerky ball tip, hamburger meatball tenderloin t-bone beef cow kevin sausage short ribs pig doner porchetta. Cupim andouille ham hock bacon short loin shank pig tail brisket hamburger leberkas sausage rump.</ns2:Tekst>
                     </ns2:Sadrzaj>
                 </ns2:Clan>
-                <ns2:Clan ID="496019">
-                    <ns2:Opis>asdas</ns2:Opis>
+            </ns3:Glava>
+            <ns3:Glava ID="806770">
+                <ns3:Naziv>Glava 2</ns3:Naziv>
+                <ns2:Clan ID="312976">
+                    <ns2:Opis>Meatloaf ribeye kielbasa pastrami beef ribs, cow shoulder corned beef tongue chuck. Meatball pastrami drumstick shank venison cupim. Porchetta chuck pancetta shankle. Tri-tip strip steak sausage, pastrami meatloaf landjaeger fatback alcatra tongue shoulder boudin turducken pork belly chuck. Pancetta meatloaf chuck pork chop, cupim shankle ham hamburger leberkas brisket. Pastrami jerky ball tip, hamburger meatball tenderloin t-bone beef cow kevin sausage short ribs pig doner porchetta. Cupim andouille ham hock bacon short loin shank pig tail brisket hamburger leberkas sausage rump.</ns2:Opis>
                     <ns2:Naziv>Clan 2</ns2:Naziv>
                     <ns2:Sadrzaj>
+                        <ns2:Tekst>Ground round pork loin boudin ball tip, fatback jerky rump tail landjaeger alcatra pancetta. Capicola frankfurter short ribs pig andouille, brisket cupim boudin shoulder tail shank bacon meatloaf. Tail brisket pancetta, jerky landjaeger ribeye chicken rump meatloaf frankfurter swine ball tip. Ribeye flank capicola, spare ribs landjaeger chicken bacon jerky beef sirloin. Pancetta landjaeger meatball filet mignon. Landjaeger pork belly leberkas doner tenderloin, fatback shankle meatloaf andouille turkey beef. Meatloaf brisket rump jerky andouille strip steak sausage cow ham hock corned beef fatback.</ns2:Tekst>
+                    </ns2:Sadrzaj>
+                </ns2:Clan>
+            </ns3:Glava>
+        </ns3:Deo>
+    </propis>
+    <propis ID="503954">
+        <ns3:Naziv>DDAD</ns3:Naziv>
+        <ns3:Deo ID="915497">
+            <ns3:Naziv>DADA</ns3:Naziv>
+            <ns3:Glava ID="670283">
+                <ns3:Naziv>DADA</ns3:Naziv>
+                <ns2:Clan ID="515253">
+                    <ns2:Opis>DAD</ns2:Opis>
+                    <ns2:Naziv>DDA</ns2:Naziv>
+                    <ns2:Sadrzaj>
                         <ns2:Stav>
-                            <ns2:Redni_broj>1</ns2:Redni_broj>
-                            <ns2:Tekst>Vestibulum ut orci ac sapien ultrices vestibulum. Nulla semper ultricies magna, venenatis condimentum libero luctus et. Quisque in quam ac nulla eleifend ultricies non pellentesque nunc. Sed sed orci ac diam dignissim condimentum lacinia ac metus. Donec pharetra eros faucibus turpis pulvinar, eu pharetra mauris venenatis. Vestibulum aliquet est eget justo placerat, et semper sem fringilla. Aenean euismod porta efficitur. Fusce semper metus non dolor facilisis, ut aliquet dui aliquam.</ns2:Tekst>
+                            <ns2:Redni_broj>11</ns2:Redni_broj>
+                            <ns2:Tekst>dwqdqwwqdwq</ns2:Tekst>
+                        </ns2:Stav>
+                        <ns2:Stav>
+                            <ns2:Redni_broj>12</ns2:Redni_broj>
+                            <ns2:Tekst>qwdwqdqdwq dwqdwqd wq dwq dwqdwqdwqd</ns2:Tekst>
                         </ns2:Stav>
                     </ns2:Sadrzaj>
                 </ns2:Clan>
-                <ns2:Clan ID="210421">
-                    <ns2:Opis>asdasds</ns2:Opis>
-                    <ns2:Naziv>Clan 3</ns2:Naziv>
+            </ns3:Glava>
+        </ns3:Deo>
+    </propis>
+    <propis ID="621056">
+        <ns3:Naziv>Ddad</ns3:Naziv>
+        <ns3:Deo ID="860055">
+            <ns3:Naziv>Dsadsadas dsd</ns3:Naziv>
+            <ns3:Glava ID="130060">
+                <ns3:Naziv>asdsdasdsa</ns3:Naziv>
+                <ns2:Clan ID="979055">
+                    <ns2:Opis>dsadasdsad asbhas ui huh fj hujhfddkwgfdsygfukfgdsak hdsak fagh uiafa aui uauif uigiufgasfayuf dgdsfsdgfsd isdif sduifdsiufdsu dsui gdsiu gds gfdsui gsdiusdiu gsdiugsdiu gsdiuasdisdfi usdisui sfdiu gsdui fdsfhdsgf</ns2:Opis>
+                    <ns2:Naziv>sadasdasdas</ns2:Naziv>
+                    <ns2:Sadrzaj>
+                        <ns2:Tekst>a s jfdasi hfaiuaiu fgsdiy gsdgdsigdsiygsdiugsdui sui uigsuiuifiudsgifdsguidsgfuids gdfuish fdsuk hfdsiusduifsduifsdgiufdsusduklf ifgwiouwehfgwje wnioeghwibtvweuwie geu fwehfuefuefvwiotvbuityuiofhvuk b bwfhweuifwfvwbiu ofwe we fwfwefwew</ns2:Tekst>
+                    </ns2:Sadrzaj>
+                </ns2:Clan>
+            </ns3:Glava>
+            <ns3:Glava ID="150369">
+                <ns3:Naziv>wqdqw</ns3:Naziv>
+                <ns2:Clan ID="239789">
+                    <ns2:Opis>5h6h 56j76j  7j 67 67j  j67jj</ns2:Opis>
+                    <ns2:Naziv>wqdgtrh56y</ns2:Naziv>
                     <ns2:Sadrzaj>
                         <ns2:Stav>
-                            <ns2:Redni_broj>2</ns2:Redni_broj>
-                            <ns2:Tekst>Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce tortor neque, tristique vitae orci ac, rhoncus ultrices nulla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas lobortis sollicitudin lacus non malesuada. Proin nec semper orci. Morbi a elementum mauris. Suspendisse faucibus metus vitae lectus finibus ullamcorper. Sed tincidunt, lacus a condimentum pellentesque, odio ligula auctor purus, nec condimentum lectus massa dapibus dolor. Phasellus sagittis tempor nisi, ultrices vehicula leo mattis non. Nulla sodales ultrices arcu eget posuere. Sed et velit interdum nibh interdum suscipit. Cras consectetur est at dictum egestas. Mauris sodales viverra purus, et vestibulum libero suscipit ac. Quisque vehicula neque id auctor cursus.</ns2:Tekst>
+                            <ns2:Redni_broj>11</ns2:Redni_broj>
+                            <ns2:Tekst>rgg4g 545h 5 56 h65 h6 h56h56 h</ns2:Tekst>
                         </ns2:Stav>
                     </ns2:Sadrzaj>
                 </ns2:Clan>

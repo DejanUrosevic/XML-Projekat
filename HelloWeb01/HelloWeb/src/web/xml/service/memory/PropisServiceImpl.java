@@ -19,6 +19,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
+import java.security.Security;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
@@ -26,6 +27,8 @@ import java.security.cert.X509Certificate;
 import java.util.List;
 import java.util.Random;
 
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -50,11 +53,18 @@ import jaxb.from.xsd.Clan.Sadrzaj.Stav;
 import jaxb.from.xsd.Propis.Deo;
 import jaxb.from.xsd.Propis.Deo.Glava;
 
+import org.apache.xml.security.encryption.EncryptedData;
+import org.apache.xml.security.encryption.EncryptedKey;
+import org.apache.xml.security.encryption.XMLCipher;
+import org.apache.xml.security.encryption.XMLEncryptionException;
+import org.apache.xml.security.keys.KeyInfo;
 import org.apache.xml.utils.Constants;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.marklogic.client.DatabaseClient;
@@ -600,9 +610,9 @@ public class PropisServiceImpl implements PropisService
 	@Override
 	public Document findPropisById(String docId) throws JAXBException 
 	{
-		//ideja ovde je da kada pronadjemo trazeni propis,
-		//da se napravi samo njegov xml, da bi posle mogli prikazati njegove podatke
-		//pomocu xsl-a
+		//ideja ovde je da kada pronadjemo trazeni propis sa baze,
+		//on se preuzme kao dokument, pa se posle prosledi u metodu za generisanje xsl-a, da bi posle mogli prikazati njegove podatke
+		//pomocu xsl-a.
 		DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37" ,"tim37", "tim37", Authentication.valueOf("DIGEST"));
 		
 		
@@ -613,9 +623,14 @@ public class PropisServiceImpl implements PropisService
 		String nazivDoc = docId.replaceAll("\\s","")+".xml";
 		DocumentMetadataHandle metadata = new DocumentMetadataHandle();
 		xmlManager.read(nazivDoc, metadata, content);
-
-		// Retrieving a document node form DOM handle.
 		Document doc = content.get();
+		
+		// Pozivi metoda za dekripciju
+		Security.addProvider(new BouncyCastleProvider());
+        org.apache.xml.security.Init.init();
+		
+		PrivateKey pk = readPrivateKey("data\\sertifikati\\qq.jks", "qq", "qq");
+		doc = decryptXml(doc, pk);
 
 		return doc;
 	}
@@ -819,6 +834,150 @@ public class PropisServiceImpl implements PropisService
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public SecretKey generateDataEncryptionKey() {
+		// TODO Auto-generated method stub
+		
+		try {
+				KeyGenerator keyGenerator = KeyGenerator.getInstance("DESede"); //Triple DES
+				return keyGenerator.generateKey();
+			
+	        } catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+				return null;
+			}
+	}
+
+	@Override
+	public Document encrypt(Document doc, SecretKey key, Certificate certificate) {
+		// TODO Auto-generated method stub
+		try {
+			//cipher za kriptovanje tajnog kljuca,
+			//Koristi se Javni RSA kljuc za kriptovanje
+			XMLCipher keyCipher = XMLCipher.getInstance(XMLCipher.RSA_v1dot5);
+		      //inicijalizacija za kriptovanje tajnog kljuca javnim RSA kljucem(1024 bita!!!!)
+		    keyCipher.init(XMLCipher.WRAP_MODE, certificate.getPublicKey());
+		    EncryptedKey encryptedKey = keyCipher.encryptKey(doc, key);
+			
+		    //cipher za kriptovanje XML-a(AES 128 bita!!!!)
+		    XMLCipher xmlCipher = XMLCipher.getInstance(XMLCipher.TRIPLEDES);
+		    //inicijalizacija za kriptovanje
+		    xmlCipher.init(XMLCipher.ENCRYPT_MODE, key);
+		    
+		    //u EncryptedData elementa koji se kriptuje kao KeyInfo stavljamo kriptovan tajni kljuc
+		    EncryptedData encryptedData = xmlCipher.getEncryptedData();
+	        //kreira se KeyInfo
+		    KeyInfo keyInfo = new KeyInfo(doc);
+		    keyInfo.addKeyName("Kriptovani tajni kljuc");
+	        //postavljamo kriptovani kljuc
+		    keyInfo.add(encryptedKey);
+		    //postavljamo KeyInfo za element koji se kriptuje
+	        encryptedData.setKeyInfo(keyInfo);
+			
+			//trazi se element ciji sadrzaj se kriptuje
+			NodeList odseci = doc.getElementsByTagName("Deo");
+			Element odsek = (Element) odseci.item(0);
+			
+			xmlCipher.doFinal(doc, odsek, true); //kriptuje sa sadrzaj
+			
+			return doc;
+			
+		} catch (XMLEncryptionException e) {
+			e.printStackTrace();
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public void saveDocument(Document doc, String fileName) 
+	{
+		try {
+			File outFile = new File(fileName);
+			FileOutputStream f = new FileOutputStream(outFile);
+
+			TransformerFactory factory = TransformerFactory.newInstance();
+			Transformer transformer = factory.newTransformer();
+			
+			DOMSource source = new DOMSource(doc);
+			StreamResult result = new StreamResult(f);
+			
+			transformer.transform(source, result);
+
+			f.close();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (TransformerConfigurationException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (TransformerFactoryConfigurationError e) {
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void encryptXml(File xmlDocument, File jks, String nazivCert) throws IOException 
+	{
+		// TODO Auto-generated method stub
+		//inicijalizacija
+		Security.addProvider(new BouncyCastleProvider());
+        org.apache.xml.security.Init.init();
+        
+      	Document doc = loadDocument(xmlDocument.getCanonicalPath());
+      	//generise tajni kljuc
+      	
+      	SecretKey secretKey = generateDataEncryptionKey();
+      	//ucitava sertifikat za kriptovanje tajnog kljuca
+      	Certificate cert = readCertificate(jks.getCanonicalPath(), nazivCert);
+      	//kriptuje se dokument
+      	
+      	doc = encrypt(doc ,secretKey, cert);
+      	//snima se tajni kljuc
+      	//snima se dokument
+      	saveDocument(doc, xmlDocument.getCanonicalPath());
+		
+	}
+
+	@Override
+	public Document decryptXml(Document doc, PrivateKey privateKey) 
+	{
+		try {
+			//cipher za dekritpovanje XML-a
+			XMLCipher xmlCipher = XMLCipher.getInstance();
+			//inicijalizacija za dekriptovanje
+			xmlCipher.init(XMLCipher.DECRYPT_MODE, null);
+			//postavlja se kljuc za dekriptovanje tajnog kljuca
+			xmlCipher.setKEK(privateKey);
+			
+			//trazi se prvi EncryptedData element
+			NodeList encDataList = doc.getElementsByTagNameNS("http://www.w3.org/2001/04/xmlenc#", "EncryptedData");
+			Element encData = (Element) encDataList.item(0);
+			
+			//dekriptuje se
+			//pri cemu se prvo dekriptuje tajni kljuc, pa onda njime podaci
+			xmlCipher.doFinal(doc, encData); 
+			
+			return doc;
+		} catch (XMLEncryptionException e) {
+			e.printStackTrace();
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
 		
 	}
