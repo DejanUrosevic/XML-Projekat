@@ -27,4 +27,13 @@
         <username>wdd@dwdw</username>
         <vrsta>gradjanin</vrsta>
     </korisnik>
+    <korisnik>
+        <ID>39</ID>
+        <ime>koli</ime>
+        <password>qcDgZPzzACAqFRe8deNdU/bS8mw=</password>
+        <prezime>koli</prezime>
+        <salt>Vx0X8/+HjTM=</salt>
+        <username>koli@koli</username>
+        <vrsta>gradjanin</vrsta>
+    </korisnik>
 </korisnici>

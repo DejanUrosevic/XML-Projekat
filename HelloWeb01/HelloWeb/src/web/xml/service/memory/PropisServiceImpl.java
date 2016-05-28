@@ -7,10 +7,12 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.math.BigInteger;
-
+import java.net.MalformedURLException;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.MessageDigest;
@@ -59,6 +61,9 @@ import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.DatabaseClientFactory.Authentication;
 import com.marklogic.client.document.XMLDocumentManager;
+import com.marklogic.client.eval.EvalResult;
+import com.marklogic.client.eval.EvalResultIterator;
+import com.marklogic.client.eval.ServerEvaluationCall;
 import com.marklogic.client.io.DOMHandle;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.InputStreamHandle;
@@ -89,6 +94,7 @@ public class PropisServiceImpl implements PropisService
 	@Override
 	public Propisi findAll() throws JAXBException 
 	{
+		/*
 		DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37" ,"tim37", "tim37", Authentication.valueOf("DIGEST")); 
 		
 		XMLDocumentManager xmlManager = client.newXMLDocumentManager();
@@ -105,25 +111,27 @@ public class PropisServiceImpl implements PropisService
 
 		// Retrieving a document node form DOM handle.
 		Document doc = content.get();
-		
+		*/
 		JAXBContext context = JAXBContext.newInstance(Propisi.class); 
 		
 		// Unmarshaller je objekat zadužen za konverziju iz XML-a u objektni model
 		Unmarshaller unmarshaller = context.createUnmarshaller(); 
 		
-		return (Propisi) unmarshaller.unmarshal(doc);
+		return (Propisi) unmarshall(new File("./data/xml/propisi.xml"));
 		
 		
 	}
 
 	@Override
-	public void save(File f) throws FileNotFoundException  
+	public void save(File f) throws FileNotFoundException, JAXBException  
 	{ 
 		DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37" ,"tim37", "tim37", Authentication.valueOf("DIGEST")); 
 		XMLDocumentManager xmlManager = client.newXMLDocumentManager();
 		
-		String docId = "/propisi.xml";
-		String collId = "/skupstina/propisi";
+		Propisi propisi = unmarshall(new File("./data/xml/propisi.xml"));
+		//svaki novi propis ce imati svoje ime kao naziv xml fajla
+		String docId = propisi.getPropisi().get(propisi.getPropisi().size()-1).getNaziv().replaceAll("\\s","") + ".xml";
+		String collId = "/skupstina/safePropisi";
 		
 		InputStreamHandle handle = new InputStreamHandle(new FileInputStream(f.getAbsolutePath()));
 		DocumentMetadataHandle metadata = new DocumentMetadataHandle();
@@ -571,6 +579,8 @@ public class PropisServiceImpl implements PropisService
 	
 		// Podešavanje marshaller-a
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+		marshaller.setProperty("com.sun.xml.bind.xmlHeaders", 
+				    "<?xml-stylesheet type='text/xsl' href='propis.xsl' ?>");
 
 		// Umesto System.out-a, može se koristiti FileOutputStream
 	    marshaller.marshal(propis, f);
@@ -588,65 +598,37 @@ public class PropisServiceImpl implements PropisService
 	}
 
 	@Override
-	public Propis findPropisById(Long id) throws JAXBException 
+	public Document findPropisById(String docId) throws JAXBException 
 	{
 		//ideja ovde je da kada pronadjemo trazeni propis,
 		//da se napravi samo njegov xml, da bi posle mogli prikazati njegove podatke
 		//pomocu xsl-a
-		JAXBContext context = JAXBContext.newInstance(Propis.class);
+		DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37" ,"tim37", "tim37", Authentication.valueOf("DIGEST"));
 		
-		Marshaller marshaller = context.createMarshaller();
 		
-		// Podešavanje marshaller-a
-		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		
-		marshaller.setProperty("com.sun.xml.bind.xmlHeaders", 
-				    "<?xml-stylesheet type='text/xsl' href='propis.xsl' ?>");
-		
-		Propisi propisi = findAll();
-		
-		BigInteger idPropis = BigInteger.valueOf(id);
-		
-		for(Propis p : propisi.getPropisi())
-		{
-			if(idPropis.equals(p.getID()))
-			{
-				marshaller.marshal(p, new File("./data/xml/propis.xml"));   
-				return p;
-			}
-		}
-		return null;
+		XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+
+		// A handle to receive the document's content.
+		DOMHandle content = new DOMHandle();
+		String nazivDoc = docId.replaceAll("\\s","")+".xml";
+		DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+		xmlManager.read(nazivDoc, metadata, content);
+
+		// Retrieving a document node form DOM handle.
+		Document doc = content.get();
+
+		return doc;
 	}
 
 	@Override
-	public String generateHtmlFromXsl(File fileForXml, File fileForXsl) throws ParserConfigurationException, SAXException, IOException, TransformerFactoryConfigurationError, TransformerException 
+	public String generateHtmlFromXsl(Document doc, File fileForXsl) throws ParserConfigurationException, SAXException, IOException, TransformerFactoryConfigurationError, TransformerException 
 	{
-		 DocumentBuilderFactory factory;
-		
-		 Document document;
-		
-
-		 factory = DocumentBuilderFactory.newInstance();
-			
-			/* Ukljuèuje validaciju. */ 
-		 factory.setValidating(true);
-			
-		 factory.setNamespaceAware(true);
-		 factory.setIgnoringComments(true);
-		 factory.setIgnoringElementContentWhitespace(true);
-			
-			/* Validacija u odnosu na XML šemu. */
-		 factory.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);
-		
-			
-		 DocumentBuilder builder = factory.newDocumentBuilder();
-		 document = builder.parse(fileForXml);
 		
 		 //ovde se generise html kao string, koji se u stvari sastoji od podataka iz xml-a spojenog sa xsl-om.
 		 StreamSource streamSource = new StreamSource(fileForXsl);
 	     Transformer transformer = TransformerFactory.newInstance().newTransformer(streamSource);
 	     StringWriter writer = new StringWriter();
-	     transformer.transform(new DOMSource(document), new StreamResult(writer));
+	     transformer.transform(new DOMSource(doc), new StreamResult(writer));
 	      
 		 return writer.getBuffer().toString();
 	}
@@ -791,6 +773,53 @@ public class PropisServiceImpl implements PropisService
 		rootEl.appendChild(sig.getElement());
 		sig.sign(privateKey);
 		return doc;
+		
+	}
+
+	@Override
+	public void signPropis(File propis, String jks, String allias, String password, String cer, String cerNaziv) throws IOException {
+		// TODO Auto-generated method stub
+		
+		Document doc = loadDocument(propis.getCanonicalPath());
+		
+		PrivateKey pk = readPrivateKey(jks, allias, password);
+		Certificate cert = readCertificate(cer, cerNaziv);
+		try {
+			doc = signDocument(doc, pk, cert);
+		} catch (XMLSecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		try {
+			FileOutputStream f = new FileOutputStream(propis);
+
+			TransformerFactory factory = TransformerFactory.newInstance();
+			Transformer transformer = factory.newTransformer();
+			
+			DOMSource source = new DOMSource(doc);
+			StreamResult result = new StreamResult(f);
+			
+			transformer.transform(source, result);
+
+			f.close();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (TransformerConfigurationException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (TransformerFactoryConfigurationError e) {
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

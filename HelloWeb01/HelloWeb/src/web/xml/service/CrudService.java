@@ -39,8 +39,9 @@ public interface CrudService<T> {
 	 *            to be saved
 	 * @return saved instance
 	 * @throws FileNotFoundException 
+	 * @throws JAXBException 
 	 */
-	void save(File f) throws FileNotFoundException;
+	void save(File f) throws FileNotFoundException, JAXBException;
 
 	/**
 	 * Remove entity with passed id.

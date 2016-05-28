@@ -75,9 +75,21 @@ public class ClanController
 	public @ResponseBody ResponseEntity<String> getPropis(@PathVariable(value="id") String id) throws IOException, JAXBException, TransformerConfigurationException, ParserConfigurationException, SAXException, TransformerFactoryConfigurationError, TransformerException {
 		
 		//ovim kreiramo taj propis.xml
-		propisSer.findPropisById(Long.parseLong(id));
+		BigInteger idPropis = BigInteger.valueOf(Long.parseLong(id));
+		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
+		Document dokument = null;
 		
-		String resultHtml = propisSer.generateHtmlFromXsl(new File("data/xml/propis.xml"), new File("data/xml/propis.xsl"));
+		for(Propis p : propisi.getPropisi())
+		{ 
+			if(p.getID().equals(idPropis))
+			{
+				dokument = propisSer.findPropisById(p.getNaziv());
+				break;
+			}
+		}
+		
+		
+		String resultHtml = propisSer.generateHtmlFromXsl(dokument, new File("data/xml/propis.xsl"));
 		
 		return new ResponseEntity<String>(resultHtml, HttpStatus.OK);
 		
@@ -107,62 +119,9 @@ public class ClanController
 		
 		
 		Propis noviPropis = propisSer.dodajPropis(postPayload);
-		
-		
-		propisSer.marshallPropis(noviPropis, new File("data\\xml\\potpisPropis.xml"));
-		Document doc = propisSer.loadDocument("data\\xml\\potpisPropis.xml");
-		
-		PrivateKey pk = propisSer.readPrivateKey("data\\sertifikati\\qq.jks", "qq", "qq");
-		Certificate cert = propisSer.readCertificate("data\\sertifikati\\qq.cer", "qq");
-		try {
-			doc = propisSer.signDocument(doc, pk, cert);
-		} catch (XMLSecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		try {
-			FileOutputStream f = new FileOutputStream(new File("data\\xml\\potpisPropis.xml"));
-
-			TransformerFactory factory = TransformerFactory.newInstance();
-			Transformer transformer = factory.newTransformer();
-			
-			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(f);
-			
-			transformer.transform(source, result);
-
-			f.close();
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (TransformerConfigurationException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (TransformerFactoryConfigurationError e) {
-			e.printStackTrace();
-		} catch (TransformerException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		Propis propis = propisSer.unmarshallPropis(new File("data\\xml\\potpisPropis.xml"));
-		System.out.println(propis);
+	
 		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
-		propisi.getPropisi().add(propis);
-		BufferedReader br = new BufferedReader(new FileReader(new File("data\\xml\\potpisPropis.xml")));
-		String line;
-		StringBuilder sb = new StringBuilder();
-
-		while((line=br.readLine())!= null){
-		    sb.append(line.trim());
-		}
-		
+		propisi.getPropisi().add(noviPropis);
 		
 		propisSer.marshall(propisi, new File("data\\xml\\propisi.xml"));
 	
@@ -248,17 +207,20 @@ public class ClanController
 	@RequestMapping(value = "/save", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<String> saveToDatabase() throws IOException, JAXBException{
 		
-		propisSer.save(new File("./data/xml/propisi.xml"));
+		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
+		//jos uvek ne potpisan propis
+		
+		propisSer.marshallPropis(propisi.getPropisi().get(propisi.getPropisi().size()-1), new File("data\\xml\\potpisPropis.xml"));
+		
+		propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), "data\\sertifikati\\qq.jks", "qq", "qq", "data\\sertifikati\\qq.cer", "qq");
+		
+		propisSer.save(new File("data\\xml\\potpisPropis.xml"));
+		
+	//	propisSer.save(new File("./data/xml/propisi.xml"));
 		
 		
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/generateXsl", method = RequestMethod.GET, produces=MediaType.TEXT_HTML_VALUE)
-	public @ResponseBody ResponseEntity<String> proba() throws IOException, JAXBException, ParserConfigurationException, SAXException, TransformerFactoryConfigurationError, TransformerException{
-		
-		String resultHtml = propisSer.generateHtmlFromXsl(new File("data/xml/propis.xml"), new File("data/xml/propis.xsl"));
 	
-		return new ResponseEntity<String>(resultHtml, HttpStatus.OK);
-	}
 }

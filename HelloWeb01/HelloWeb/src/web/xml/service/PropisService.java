@@ -2,7 +2,6 @@ package web.xml.service;
 
 import java.io.File;
 import java.io.IOException;
-
 import java.security.PrivateKey;
 import java.security.cert.Certificate;
 import java.util.List;
@@ -24,7 +23,7 @@ import web.xml.model.Propisi;
 
 public interface PropisService extends CrudService<Propisi>
 {
-	public Propis findPropisById(Long id) throws JAXBException;
+	public Document findPropisById(String docId) throws JAXBException;
 	
 	public Propis dodajPropis(String requestData);
 	
@@ -36,7 +35,7 @@ public interface PropisService extends CrudService<Propisi>
 	
 	public Propisi dodajStav(String requestData) throws JAXBException;
 	
-	public String generateHtmlFromXsl(File fileForXml, File fileForXsl) throws ParserConfigurationException, SAXException, IOException, TransformerConfigurationException, TransformerFactoryConfigurationError, TransformerException;
+	public String generateHtmlFromXsl(Document doc, File fileForXsl) throws ParserConfigurationException, SAXException, IOException, TransformerConfigurationException, TransformerFactoryConfigurationError, TransformerException;
 	
 	public Document loadDocument(String file);
 	
@@ -49,4 +48,6 @@ public interface PropisService extends CrudService<Propisi>
 	public void marshallPropis(Propis propis, File f) throws JAXBException;
 	
 	public Propis unmarshallPropis(File f) throws JAXBException;
+	
+	public void signPropis(File propis, String jks, String allias, String password, String cer, String cerNaziv) throws IOException;
 }
