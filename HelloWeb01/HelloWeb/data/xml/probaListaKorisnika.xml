@@ -54,4 +54,13 @@
         <username>pera@pera</username>
         <vrsta>gradjanin</vrsta>
     </korisnik>
+    <korisnik>
+        <ID>39</ID>
+        <ime>ak</ime>
+        <password>sxKO3OQrd4Cy3tHOv8WnQvNjOa8=</password>
+        <prezime>sdfa</prezime>
+        <salt>krf0vc7r3uQ=</salt>
+        <username>a@k</username>
+        <vrsta>gradjanin</vrsta>
+    </korisnik>
 </korisnici>

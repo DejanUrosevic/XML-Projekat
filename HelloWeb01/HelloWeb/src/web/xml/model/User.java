@@ -11,10 +11,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 @XmlRootElement(name = "korisnik")
-public class User 
-{
+public class User {
 
 	private String ime;
 	private String prezime;
@@ -22,16 +20,13 @@ public class User
 	private byte[] password;
 	private String vrsta;
 	private long id;
-	private byte[] salt; 
-	
-	
-	public User()
-	{
-		
+	private byte[] salt;
+
+	public User() {
+
 	}
 
-	public User(String ime, String prezime, String username,
-			String vrsta, long id) {
+	public User(String ime, String prezime, String username, String vrsta, long id) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
@@ -102,21 +97,19 @@ public class User
 	public void setSalt(byte[] salt) {
 		this.salt = salt;
 	}
-	
+
 	/*
-	
-	public Users getAllUsers() throws JAXBException
-	{
-		JAXBContext context = JAXBContext.newInstance(User.class);
-		
-		// Unmarshaller je objekat zadužen za konverziju iz XML-a u objektni model
-		Unmarshaller unmarshaller = context.createUnmarshaller(); 
-		
-		// Unmarshalling generiše objektni model na osnovu XML fajla 
-		Users users = (Users) unmarshaller.unmarshal(new File("./data/xml/korisnik1.xml"));
-		
-		return users;
-	}
-	
-	*/	
+	 * 
+	 * public Users getAllUsers() throws JAXBException { JAXBContext context =
+	 * JAXBContext.newInstance(User.class);
+	 * 
+	 * // Unmarshaller je objekat zaduï¿½en za konverziju iz XML-a u objektni
+	 * model Unmarshaller unmarshaller = context.createUnmarshaller();
+	 * 
+	 * // Unmarshalling generiï¿½e objektni model na osnovu XML fajla Users users
+	 * = (Users) unmarshaller.unmarshal(new File("./data/xml/korisnik1.xml"));
+	 * 
+	 * return users; }
+	 * 
+	 */
 }

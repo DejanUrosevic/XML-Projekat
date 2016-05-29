@@ -10,20 +10,16 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
-
-@XmlRootElement(name="korisnici")
-public class Users 
-{
+@XmlRootElement(name = "korisnici")
+public class Users {
 
 	private List<User> korisnik = new ArrayList<User>();
-	
-	public Users()
-	{
-		 
+
+	public Users() {
+
 	}
 
-	@XmlElement(name="korisnik")
+	@XmlElement(name = "korisnik")
 	public List<User> getKorisnik() {
 		return korisnik;
 	}
@@ -32,8 +28,4 @@ public class Users
 		this.korisnik = korisnik;
 	}
 
-	
-
-	
-	
 }

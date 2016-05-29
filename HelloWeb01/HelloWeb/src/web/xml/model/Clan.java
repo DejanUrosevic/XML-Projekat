@@ -10,18 +10,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "clan")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Clan 
-{
+public class Clan {
 	private long id;
 	private String opis;
 	private String naziv;
 	private Sadrzaj sadrzaj;
 	private TekstSadrzaja tekstSadrzaja;
 
-	
-	public Clan()
-	{
-		
+	public Clan() {
+
 	}
 
 	@XmlElement(required = true)
@@ -69,7 +66,4 @@ public class Clan
 		this.tekstSadrzaja = tekstSadrzaja;
 	}
 
-	
-	
-	
 }
