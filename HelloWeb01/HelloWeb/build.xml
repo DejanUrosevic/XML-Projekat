@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<project name="XMLParser JAXB" basedir=".">
+	<property file="${basedir}/build.properties" />
+	
+	<property name="lib.dir"  value="${basedir}/WebContent/WEB-INF/lib" />
+	<property name="bin.dir"  value="${basedir}/bin" />
+	<property name="data.dir" value="${basedir}/data/xsd/${schema.filename}" />
+	<property name="gen.dir"  value="${basedir}/gen" />
+	
+	<property name="schema.file" value="${data.dir}/" /><!-- Dopuniti -->
+	
+	<!-- Generisanje objektnog modela na osnovu XSD šeme -->
+	<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+		<classpath>
+			<fileset dir="${lib.dir}" includes="*.jar" />
+		</classpath>
+	</taskdef>
+	
+	<!-- Generisanje XSD šeme na osnovu ogjektnog modela -->
+	<taskdef name="schemagen" classname="com.sun.tools.jxc.SchemaGenTask">
+		<classpath>
+			<fileset dir="${lib.dir}" includes="*.jar" />	
+		</classpath>
+	</taskdef>
+	
+	<target name="clear">
+		<delete dir="${gen.dir}" />
+	</target>
+	
+	<target name="init" depends="clear">
+		<mkdir dir="${gen.dir}"/>
+	</target>
+	
+	<target name="generate_classes" depends="init">
+		<xjc schema="${schema.file}" destdir="${gen.dir}" />
+	</target>
+</project>
