@@ -154,7 +154,7 @@
 		$scope.pretragaAkata = function() {
 			$state.go('pretragaAkata');
 		};
-		
+
 		$scope.sviAkti = function() {
 			$state.go('pregledAkata');
 		};
@@ -221,8 +221,26 @@
 		}
 	}
 
-	var addPropisCtrl = function($scope, $resource, $http, $location,
+	var addPropisCtrl = function($scope, mainService, $resource, $http, $location,
 			$stateParams, $state) {
+		//provera da li ima token u localStorage-u
+		if (localStorage.getItem('key') === null) {
+			$state.go('login');
+		}
+		//ako ima, zalepi ga na http
+		$http.defaults.headers.common.Authorization = 'Bearer '
+			+ localStorage.getItem('key');
+		//posto imamo token, proveravamo koja je rola, ako je obican gradjanin, onda dovidjenja!
+		$http.get('http://localhost:8080/HelloWeb/api/role')
+		.success(function(data)
+		{
+			if(data.role === 'gradjanin')
+			{
+				$state.go('main');
+			}
+		})
+		
+		
 		// predefinsane vrednosti, jer pravi problem na backend-u.
 		$scope.stavBroj = '';
 		$scope.stavTekst = '';
@@ -235,6 +253,9 @@
 		 * samo kreira novi xml na hard disku.
 		 */
 		$scope.zavrsiPropis = function() {
+			if (localStorage.getItem('key') === null) {
+				mainService.logOut();
+			}
 			$http.post(serverUrl+'/clan/noviPropis', {
 				nazivPropisa : $scope.propis.naziv,
 				nazivDeo : $scope.deo.naziv,
@@ -246,8 +267,16 @@
 				tekstClana : $scope.clanTekst
 			}).success(function(data, header, status) {
 				$state.go('opcije');
-			}).error(function(data, header, status){
-				alert("Your certificate is invalid.");
+			}).error(function(data, header, status) {
+				if(header === 406)
+				{
+					alert("Your certificate is invalid.");
+				}
+				else
+				{
+					alert("Something went wrong, log in again, please.");
+				}
+				
 				$state.go('main');
 			});
 
@@ -257,6 +286,9 @@
 		 * Mozemo dodati jos jedan novi deo.
 		 */
 		$scope.noviDeo = function() {
+			if (localStorage.getItem('key') === null) {
+				mainService.logOut();
+			}
 			$http.post(serverUrl+'/clan/noviDeo', {
 				nazivDeo : $scope.deo.naziv,
 				nazivGlave : $scope.glavaNaziv,
@@ -265,8 +297,19 @@
 				redniBrojStava : $scope.stavBroj,
 				stavTekst : $scope.stavTekst,
 				tekstClana : $scope.clanTekst
-			}).then(function(response) {
+			}).success(function(data, header, status) {
 				$state.go('opcije');
+			}).error(function(data, header, status) {
+				if(header === 406)
+				{
+					alert("Your certificate is invalid.");
+				}
+				else
+				{
+					alert("Something went wrong, log in again, please.");
+				}
+				
+				$state.go('main');
 			});
 
 		}
@@ -275,6 +318,9 @@
 		 * Mozemo dodati jos jednu novu glavu.
 		 */
 		$scope.novaGlava = function() {
+			if (localStorage.getItem('key') === null) {
+				mainService.logOut();
+			}
 			$http.post(serverUrl+'/clan/novaGlava', {
 				nazivGlave : $scope.glavaNaziv,
 				nazivClana : $scope.clan.naziv,
@@ -282,29 +328,68 @@
 				redniBrojStava : $scope.stavBroj,
 				stavTekst : $scope.stavTekst,
 				tekstClana : $scope.clanTekst
-			}).then(function(response) {
+			}).success(function(data, header, status) {
 				$state.go('opcije');
+			}).error(function(data, header, status) {
+				if(header === 406)
+				{
+					alert("Your certificate is invalid.");
+				}
+				else
+				{
+					alert("Something went wrong, log in again, please.");
+				}
+				
+				$state.go('main');
 			});
 		}
 
 		$scope.noviClan = function() {
+			if (localStorage.getItem('key') === null) {
+				mainService.logOut();
+			}
 			$http.post(serverUrl+'/clan/noviClan', {
 				nazivClana : $scope.clan.naziv,
 				opisClana : $scope.clan.opis,
 				redniBrojStava : $scope.stavBroj,
 				stavTekst : $scope.stavTekst,
 				tekstClana : $scope.clanTekst
-			}).then(function(response) {
+			}).success(function(data, header, status) {
 				$state.go('opcije');
+			}).error(function(data, header, status) {
+				if(header === 406)
+				{
+					alert("Your certificate is invalid.");
+				}
+				else
+				{
+					alert("Something went wrong, log in again, please.");
+				}
+				
+				$state.go('main');
 			});
 		}
 
 		$scope.noviStav = function() {
+			if (localStorage.getItem('key') === null) {
+				mainService.logOut();
+			}
 			$http.post(serverUrl+'/clan/noviStav', {
 				redniBrojStava : $scope.stavBroj,
 				stavTekst : $scope.stavTekst
-			}).then(function(response) {
+			}).success(function(data, header, status) {
 				$state.go('opcije');
+			}).error(function(data, header, status) {
+				if(header === 406)
+				{
+					alert("Your certificate is invalid.");
+				}
+				else
+				{
+					alert("Something went wrong, log in again, please.");
+				}
+				
+				$state.go('main');
 			});
 		}
 
@@ -313,6 +398,23 @@
 					function(response) {
 						$state.go('main');
 					});
+			if (localStorage.getItem('key') === null) {
+				mainService.logOut();
+			}
+			$http.get(serverUrl+'/clan/save')
+			.success(function(data, header, status) {
+				$state.go('main');
+			}).error(function(data, header, status) {
+				if(header === 406)
+				{
+					alert("Your certificate is invalid.");
+				}
+				else
+				{
+					alert("Something went wrong, log in again, please.");
+				}
+				$state.go('main');
+			});
 
 		}
 
@@ -322,7 +424,7 @@
 			$stateParams, $state) {
 
 	}
-	
+
 	/**
 	 * Angular kontroler zadužen za pronalaženje akata po različitim kriterijuma i sadržajima.
 	 * Za sada je implementirana mogućnost pretreaživanja po sadržaju.
@@ -336,7 +438,7 @@
 		$scope.pretraga = {};
 		$scope.pretraga.upit = "";
 		$scope.pretraga.rezultat = [];
-		
+
 		$scope.pretraga.pretrazi = function() {
 			PretragaAkataResurs.pretrazi({
 				upit: $scope.pretraga.upit
@@ -445,7 +547,15 @@
 							console.log(response);
 							return response.data;
 						});
+			},
+			logOut: function()
+			{
+					$http.defaults.headers.common.Authorization = '';
+					localStorage.clear();
+					$state.go('login');
 			}
+			
+			
 		};
 	});
 

@@ -33,4 +33,26 @@
         <username>o2@o2</username>
         <vrsta>odbornik</vrsta>
     </korisnik>
+    <korisnik>
+        <alias>prazno</alias>
+        <ID>38215</ID>
+        <ime>gradjanin</ime>
+        <jksPutanja>prazno</jksPutanja>
+        <password>zhrnxfyHj3hLVqxEflC+bqctUZE=</password>
+        <prezime>gradjanin</prezime>
+        <salt>ZG4vZCRm9G4=</salt>
+        <username>g@g</username>
+        <vrsta>gradjanin</vrsta>
+    </korisnik>
+    <korisnik>
+        <alias>odbornik3</alias>
+        <ID>13105</ID>
+        <ime>odbornik3</ime>
+        <jksPutanja>data\\sertifikati\\odbornik3.jks</jksPutanja>
+        <password>+7cAY+zAXSAwpl74i+n42lEQlGw=</password>
+        <prezime>odbornik3</prezime>
+        <salt>pNePcHSU0eo=</salt>
+        <username>o3@o3</username>
+        <vrsta>odbornik</vrsta>
+    </korisnik>
 </korisnici>

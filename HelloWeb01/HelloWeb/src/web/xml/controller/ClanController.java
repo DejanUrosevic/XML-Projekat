@@ -147,10 +147,13 @@ public class ClanController {
 	public @ResponseBody ResponseEntity<String> noviPropis(@RequestBody String postPayload, final HttpServletRequest req)
 			throws IOException, JAXBException, ServletException {
 		
-		
+		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
+		//ako ne postoji korisnik tj. JWT bacice exception
 		User korisnik = userSer.getUserFromJWT(req);
 		
-		if(userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
+		//ova metoda ne sme da bude koriscena od strane gradjanina
+		//provera da li taj korisnika ima validan sertifikat iz CRL liste.
+		if(korisnik.getVrsta().equals("gradjanin") || userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
 			return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
 		}
 		
@@ -172,11 +175,22 @@ public class ClanController {
 	 * @return
 	 * @throws IOException
 	 * @throws JAXBException
+	 * @throws ServletException 
 	 */
 	@RequestMapping(value = "/noviDeo", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<String> noviDeo(@RequestBody String postPayload)
-			throws IOException, JAXBException {
+	public @ResponseBody ResponseEntity<String> noviDeo(@RequestBody String postPayload, final HttpServletRequest req)
+			throws IOException, JAXBException, ServletException {
 
+		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
+		//ako ne postoji korisnik tj. JWT bacice exception
+		User korisnik = userSer.getUserFromJWT(req);
+				
+		//ova metoda ne sme da bude koriscena od strane gradjanina
+		//provera da li taj korisnika ima validan sertifikat iz CRL liste.
+		if(korisnik.getVrsta().equals("gradjanin") || userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
+			return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
+		}
+		
 		Propisi propisi = propisSer.dodajDeo(postPayload);
 
 		propisSer.marshall(propisi, new File("data\\xml\\propisi.xml"));
@@ -193,10 +207,21 @@ public class ClanController {
 	 * @return
 	 * @throws IOException
 	 * @throws JAXBException
+	 * @throws ServletException 
 	 */
 	@RequestMapping(value = "/novaGlava", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<String> novaGlava(@RequestBody String postPayload)
-			throws IOException, JAXBException {
+	public @ResponseBody ResponseEntity<String> novaGlava(@RequestBody String postPayload, final HttpServletRequest req)
+			throws IOException, JAXBException, ServletException {
+		
+		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
+		//ako ne postoji korisnik tj. JWT bacice exception
+		User korisnik = userSer.getUserFromJWT(req);
+						
+		//ova metoda ne sme da bude koriscena od strane gradjanina
+		//provera da li taj korisnika ima validan sertifikat iz CRL liste.
+		if(korisnik.getVrsta().equals("gradjanin") || userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
+			return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
+		}
 
 		Propisi propisi = propisSer.dodajGlavu(postPayload);
 
@@ -213,11 +238,22 @@ public class ClanController {
 	 * @return
 	 * @throws IOException
 	 * @throws JAXBException
+	 * @throws ServletException 
 	 */
 	@RequestMapping(value = "/noviClan", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<String> noviClan(@RequestBody String postPayload)
-			throws IOException, JAXBException {
+	public @ResponseBody ResponseEntity<String> noviClan(@RequestBody String postPayload, final HttpServletRequest req)
+			throws IOException, JAXBException, ServletException {
 
+		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
+		//ako ne postoji korisnik tj. JWT bacice exception
+		User korisnik = userSer.getUserFromJWT(req);
+								
+		//ova metoda ne sme da bude koriscena od strane gradjanina
+		//provera da li taj korisnika ima validan sertifikat iz CRL liste.
+		if(korisnik.getVrsta().equals("gradjanin") || userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
+			return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
+		}
+		
 		Propisi propisi = propisSer.dodajClan(postPayload);
 
 		propisSer.marshall(propisi, new File("data\\xml\\propisi.xml"));
@@ -232,10 +268,21 @@ public class ClanController {
 	 * @return
 	 * @throws IOException
 	 * @throws JAXBException
+	 * @throws ServletException 
 	 */
 	@RequestMapping(value = "/noviStav", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<String> noviStav(@RequestBody String postPayload)
-			throws IOException, JAXBException {
+	public @ResponseBody ResponseEntity<String> noviStav(@RequestBody String postPayload, final HttpServletRequest req)
+			throws IOException, JAXBException, ServletException {
+		
+		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
+		//ako ne postoji korisnik tj. JWT bacice exception
+		User korisnik = userSer.getUserFromJWT(req);
+								
+		//ova metoda ne sme da bude koriscena od strane gradjanina
+		//provera da li taj korisnika ima validan sertifikat iz CRL liste.
+		if(korisnik.getVrsta().equals("gradjanin") || userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
+			return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
+		}
 
 		Propisi propisi = propisSer.dodajStav(postPayload);
 
@@ -247,7 +294,16 @@ public class ClanController {
 	@RequestMapping(value = "/save", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<String> saveToDatabase(final HttpServletRequest req) throws IOException, JAXBException, ServletException {
 		
+		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
+		//ako ne postoji korisnik tj. JWT bacice exception
 		User korisnik = userSer.getUserFromJWT(req);
+		
+		//ova metoda ne sme da bude koriscena od strane gradjanina
+		//provera da li taj korisnika ima validan sertifikat iz CRL liste.
+		if(korisnik.getVrsta().equals("gradjanin") || userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
+			return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
+		}
+		
 		
 		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
 		// jos uvek ne potpisan propis
