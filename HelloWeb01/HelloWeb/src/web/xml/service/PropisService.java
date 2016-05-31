@@ -30,6 +30,15 @@ public interface PropisService extends CrudService<Propisi> {
 	 * @throws JAXBException
 	 */
 	public Document findPropisById(String docId) throws JAXBException;
+	
+	/**
+	 * Pronalaženje propisa prema odgovarajućem upitu
+	 * 
+	 * @param reqBody
+	 * @return
+	 * @throws JAXBException
+	 */
+	public Propisi pretrazi(String reqBody) throws JAXBException;
 
 	/**
 	 * Podaci sa klijenta kojima se puni objekat Propis

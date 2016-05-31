@@ -130,6 +130,19 @@ public class PropisServiceImpl implements PropisService {
 		return (Propisi) unmarshall(new File("./data/xml/propisi.xml"));
 
 	}
+	
+	@Override
+	public Propisi pretrazi(String reqBody) throws JAXBException {
+		JSONObject reqBodyJson = new JSONObject(reqBody);
+		
+		String upit = reqBodyJson.getString("upit");
+		
+		Propisi propisi = new Propisi();
+		
+		// TODO Implementirati pretragu
+		
+		return propisi;
+	}
 
 	@Override
 	public void save(File f) throws FileNotFoundException, JAXBException {

@@ -5,7 +5,7 @@
 		<li><a href="#">Products</a></li>
 		<li><a href="#">Services</a></li>
 		<li><a href="#">About</a></li>
-		<li><a ng-click="logout()">Odrjavi se</a></li>
+		<li><a ng-click="logout()">Odjavi se</a></li>
 	</ul>
 </div>
 <div id="main">
@@ -19,11 +19,48 @@
 				<br />
 				<hr />
 				<br />
-				<form name="myForm">
+				<form name="myForm" ng-submit="pretraga.pretrazi()">
 					<table id="myTable">
-					
+						<tr>
+							<th class="sredina">Unesite upit za pretragu</th>
+						</tr>
+						<tr>
+							<td class="sredina">
+								<input type="text" size="30" ng-model="pretraga.upit" />
+							</td>
+						</tr>
+						
+						<tr>
+							<td style="text-align">
+								<button type="submit"
+										style="background-color: transparent; border-color: transparent;">
+									<img src="css/images/search.jpg" height="35" />
+								</button>
+							</td>
+						</tr>
 					</table>
 				</form>
+				
+				<br />
+				<hr />
+				<br />
+				
+				<div>
+					<h2 style="text-align: center; color: #0033cc;">
+						<u>Rezultati pretrage</u>
+					</h2>
+					
+					<br />
+					<hr />
+					<br />
+					
+					<table style="border: 1px solid black;">
+						<tr ng-repeat="akt in pretraga.rezultat">
+							<td class="sredina"> Pregled akta <img src="css/images/right.jpg" height="25" /></td>
+							<td class="sredina"> <u><b> <a ng-click="pretraga.pregledAkta(akt.id)"> {{akt.naziv}}</a></b></u></td>
+						</tr>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -123,6 +123,18 @@ public class ClanController {
 	}
 
 	/**
+	 * Preuzimanje akata tj. propisa koji zadovoljavaju uslov pretrage
+	 * 
+	 * @param requestBody 
+	 * @return
+	 * @throws JAXBException
+	 */
+	@RequestMapping(value = "/pretragaPropisa", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	public @ResponseBody ResponseEntity<Propisi> pretragaPropisa(@RequestBody String reqBody) throws JAXBException {
+		return new ResponseEntity<Propisi>(propisSer.findAll(), HttpStatus.OK);
+	}
+	
+	/**
 	 * Dodavanja novog propisa, celokupnog.
 	 * 
 	 * @param postPayload
