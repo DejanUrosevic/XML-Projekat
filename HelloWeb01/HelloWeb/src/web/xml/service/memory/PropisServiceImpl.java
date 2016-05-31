@@ -594,7 +594,7 @@ public class PropisServiceImpl implements PropisService {
 		Security.addProvider(new BouncyCastleProvider());
 		org.apache.xml.security.Init.init();
 
-		PrivateKey pk = readPrivateKey("data\\sertifikati\\qq.jks", "qq", "qq");
+		PrivateKey pk = readPrivateKey("data\\sertifikati\\iasgns.jks", "iasgns", "iasgns");
 		doc = decryptXml(doc, pk);
 
 		return doc;
@@ -650,11 +650,11 @@ public class PropisServiceImpl implements PropisService {
 		KeyStore ks;
 		try {
 			ks = KeyStore.getInstance("JKS", "SUN");
-			BufferedInputStream in = new BufferedInputStream(new FileInputStream("data\\sertifikati\\qq.jks"));
+			BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
 			ks.load(in, password.toCharArray());
 
-			if (ks.isKeyEntry("qq")) {
-				PrivateKey pk = (PrivateKey) ks.getKey("qq", "qq".toCharArray());
+			if (ks.isKeyEntry(alias)) {
+				PrivateKey pk = (PrivateKey) ks.getKey(alias, password.toCharArray());
 				return pk;
 			} else {
 				return null;
@@ -698,11 +698,11 @@ public class PropisServiceImpl implements PropisService {
 		try {
 			KeyStore ks = KeyStore.getInstance("JKS", "SUN");
 			BufferedInputStream in = new BufferedInputStream(
-					new FileInputStream(new File("data\\sertifikati\\qq.jks")));
+					new FileInputStream(new File(file)));
 
-			ks.load(in, "qq".toCharArray());
-			if (ks.isKeyEntry("qq")) {
-				Certificate cert = ks.getCertificate("qq");
+			ks.load(in, certNaziv.toCharArray());
+			if (ks.isKeyEntry(certNaziv.toLowerCase())) {
+				Certificate cert = ks.getCertificate(certNaziv);
 				return cert;
 			} else
 				return null;
@@ -765,7 +765,7 @@ public class PropisServiceImpl implements PropisService {
 		Document doc = loadDocument(propis.getCanonicalPath());
 
 		PrivateKey pk = readPrivateKey(jks, allias, password);
-		Certificate cert = readCertificate(cer, cerNaziv);
+		Certificate cert = readCertificate(jks, cerNaziv);
 		try {
 			doc = signDocument(doc, pk, cert);
 		} catch (XMLSecurityException e) {

@@ -19,6 +19,8 @@ public class User {
 	private String username;
 	private byte[] password;
 	private String vrsta;
+	private String jksPutanja;
+	private String alias; //alias i password su iste vrednosti
 	private long id;
 	private byte[] salt;
 
@@ -26,13 +28,15 @@ public class User {
 
 	}
 
-	public User(String ime, String prezime, String username, String vrsta, long id) {
+	public User(String ime, String prezime, String username, String vrsta, long id, String jksPutanja, String alias) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
 		this.username = username;
 		this.vrsta = vrsta;
 		this.id = id;
+		this.jksPutanja = jksPutanja;
+		this.alias = alias;
 	}
 
 	@XmlElement(required = true)
@@ -97,19 +101,21 @@ public class User {
 	public void setSalt(byte[] salt) {
 		this.salt = salt;
 	}
+	
+	public String getJksPutanja() {
+		return jksPutanja;
+	}
 
-	/*
-	 * 
-	 * public Users getAllUsers() throws JAXBException { JAXBContext context =
-	 * JAXBContext.newInstance(User.class);
-	 * 
-	 * // Unmarshaller je objekat zadu�en za konverziju iz XML-a u objektni
-	 * model Unmarshaller unmarshaller = context.createUnmarshaller();
-	 * 
-	 * // Unmarshalling generi�e objektni model na osnovu XML fajla Users users
-	 * = (Users) unmarshaller.unmarshal(new File("./data/xml/korisnik1.xml"));
-	 * 
-	 * return users; }
-	 * 
-	 */
+	public void setJksPutanja(String jksPutanja) {
+		this.jksPutanja = jksPutanja;
+	}
+
+	public String getAlias() {
+		return alias;
+	}
+
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
+
 }

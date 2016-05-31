@@ -95,6 +95,8 @@
 		$scope.loginKor.prezime = '';
 		$scope.loginKor.username = '';
 		$scope.loginKor.password = '';
+		$scope.loginKor.jksPutanja = '';
+		$scope.loginKor.alias = '';
 
 		/**
 		 * Metoda za registraciju korisnika na sistem
@@ -104,9 +106,11 @@
 				ime : $scope.loginKor.ime,
 				prezime : $scope.loginKor.prezime,
 				username : $scope.loginKor.username,
-				password : $scope.loginKor.password
+				password : $scope.loginKor.password,
+				jksPutanja : $scope.loginKor.jksPutanja,
+				alias : $scope.loginKor.alias
 			}).success(function(user, status, headers) {
-				$location.path('/login');
+				$location.path('/main');
 			});
 		}
 
@@ -236,8 +240,11 @@
 				redniBrojStava : $scope.stavBroj,
 				stavTekst : $scope.stavTekst,
 				tekstClana : $scope.clanTekst
-			}).then(function(response) {
+			}).success(function(data, header, status) {
 				$state.go('opcije');
+			}).error(function(data, header, status){
+				alert("Your certificate is invalid.");
+				$state.go('main');
 			});
 
 		}

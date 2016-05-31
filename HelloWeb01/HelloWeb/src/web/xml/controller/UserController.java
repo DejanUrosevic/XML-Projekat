@@ -49,6 +49,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import web.xml.model.User;
 import web.xml.model.Users;
+import web.xml.service.PropisService;
 import web.xml.service.UserService;
 
 import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
@@ -59,6 +60,9 @@ public class UserController {
 
 	@Autowired
 	UserService userSer;
+	
+	@Autowired
+	PropisService propisSer;
 
 	/**
 	 * Ovo koliko se secam sada nista ne radi, to smo koristili za probu, ali
@@ -99,6 +103,9 @@ public class UserController {
 	public @ResponseBody ResponseEntity<LoginResponse> checkUser(@RequestBody String postPayload)
 			throws IOException, JAXBException, ServletException, NoSuchAlgorithmException, InvalidKeySpecException {
 
+		//sluzi za potpis crl liste
+		//propisSer.signPropis(new File("data\\sertifikati\\crl.xml"), "data\\sertifikati\\sgns.jks", "sgns", "sgns", "data\\sertifikati\\sgns.cer", "sgns");
+		
 		// ovo je navodno zastita od xss napada, nesto sam tako nasao na netu.
 		String cleanPostPayload = Jsoup.clean(postPayload, Whitelist.basic());
 

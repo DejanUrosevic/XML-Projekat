@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <korisnici>
     <korisnik>
+        <alias>predsednik</alias>
         <ID>39</ID>
         <ime>dw</ime>
+        <jksPutanja>data\\sertifikati\\predsednik.jks</jksPutanja>
         <password>NNijVfM/1Hr+Y7usoLZr011AddI=</password>
         <prezime>dw</prezime>
         <salt>BSNRn7oM9jA=</salt>
@@ -10,57 +12,25 @@
         <vrsta>predsednik skupstine</vrsta>
     </korisnik>
     <korisnik>
-        <ID>39</ID>
-        <ime>asd</ime>
-        <password>asaMRCUh5yqqibjsasdbt9/BJ3A=</password>
-        <prezime>asd</prezime>
-        <salt>aCuPpg36+OA=</salt>
-        <username>asd@asd</username>
+        <alias>odbornik1</alias>
+        <ID>33128</ID>
+        <ime>Odbornik1</ime>
+        <jksPutanja>data\\sertifikati\\odbornik1.jks</jksPutanja>
+        <password>16DZkUXoIrI0KrKz0BX4yEIrUhQ=</password>
+        <prezime>Odbornik1</prezime>
+        <salt>DuCxCf+cUB4=</salt>
+        <username>o1@o1</username>
         <vrsta>odbornik</vrsta>
     </korisnik>
     <korisnik>
-        <ID>39</ID>
-        <ime>fdwdw</ime>
-        <password>Iuyp71Jmm7bINWFsMqY9x7GlbDg=</password>
-        <prezime>wdwwd</prezime>
-        <salt>7dZZs+qXJa8=</salt>
-        <username>wdd@dwdw</username>
-        <vrsta>gradjanin</vrsta>
-    </korisnik>
-    <korisnik>
-        <ID>39</ID>
-        <ime>koli</ime>
-        <password>qcDgZPzzACAqFRe8deNdU/bS8mw=</password>
-        <prezime>koli</prezime>
-        <salt>Vx0X8/+HjTM=</salt>
-        <username>koli@koli</username>
-        <vrsta>gradjanin</vrsta>
-    </korisnik>
-    <korisnik>
-        <ID>39</ID>
-        <ime>pera</ime>
-        <password>nIiddsXP80KaW6hIu1/Tbd5n22Y=</password>
-        <prezime>peric</prezime>
-        <salt>e6o/WofUpRM=</salt>
-        <username>pera@pera</username>
-        <vrsta>gradjanin</vrsta>
-    </korisnik>
-    <korisnik>
-        <ID>39</ID>
-        <ime>pera</ime>
-        <password>Yva+KsDPszWXP3jvNOOBNkhst4E=</password>
-        <prezime>peric</prezime>
-        <salt>8tc7oQxk2AE=</salt>
-        <username>pera@pera</username>
-        <vrsta>gradjanin</vrsta>
-    </korisnik>
-    <korisnik>
-        <ID>39</ID>
-        <ime>ak</ime>
-        <password>sxKO3OQrd4Cy3tHOv8WnQvNjOa8=</password>
-        <prezime>sdfa</prezime>
-        <salt>krf0vc7r3uQ=</salt>
-        <username>a@k</username>
-        <vrsta>gradjanin</vrsta>
+        <alias>odbornik2</alias>
+        <ID>14910</ID>
+        <ime>Odbornik2</ime>
+        <jksPutanja>data\\sertifikati\\odbornik2.jks</jksPutanja>
+        <password>u7CGfsaDhluuZhR2ax5r+rT0DKk=</password>
+        <prezime>Odbornik2</prezime>
+        <salt>iu5RBcn5Byo=</salt>
+        <username>o2@o2</username>
+        <vrsta>odbornik</vrsta>
     </korisnik>
 </korisnici>

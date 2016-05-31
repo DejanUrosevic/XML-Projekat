@@ -26,6 +26,7 @@
 						<th ng-if="rolaUser.vrsta === 'odbornik' || rolaUser.vrsta === 'predsednik skupstine'">Predlaganje propisa</th>
 						<th ng-if="rolaUser.vrsta === 'odbornik' || rolaUser.vrsta === 'predsednik skupstine'">Predlaganje amandmana</th>
 						<th ng-if="rolaUser.vrsta === 'predsednik skupstine'">Rukovodjenje sednicom</th>
+						<th ng-if="rolaUser.vrsta === 'predsednik skupstine'">Dodavanje odbornika</th>
 					</tr>
 					<tr>
 						<td class="sredina"><button type="button"
@@ -51,6 +52,14 @@
 								style="background-color: transparent; border-color: transparent;" ng-click="sednica()">
 								<img src="css/images/predsednik.png" height="50" />
 							</button></td>
+						<td class="sredina" ng-if="rolaUser.vrsta === 'predsednik skupstine'">
+							<a ui-sref="register">
+								<button type="submit"
+									style="background-color: transparent; border-color: transparent;">
+									<img src="css/images/addUser.png" height="50" />
+								</button>
+							</a>
+						</td>
 					</tr>
 				</table>
 			</div>

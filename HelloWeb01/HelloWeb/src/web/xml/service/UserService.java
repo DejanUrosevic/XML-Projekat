@@ -3,12 +3,16 @@ package web.xml.service;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.security.NoSuchAlgorithmException;
+import java.security.cert.Certificate;
 import java.security.spec.InvalidKeySpecException;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.xml.bind.JAXBException;
 
 import org.json.JSONException;
 
+import web.xml.model.User;
 import web.xml.model.Users;
 
 public interface UserService extends CrudService<Users> {
@@ -62,4 +66,10 @@ public interface UserService extends CrudService<Users> {
 	 */
 	public boolean autenticate(String loginPassword, byte[] databasePassword, byte[] salt)
 			throws NoSuchAlgorithmException, InvalidKeySpecException;
+	
+	public String getCertificateSerialNumber(Certificate cert);
+	
+	public boolean isValidCertificate(String serialNumber) throws JAXBException;
+	
+	public User getUserFromJWT(HttpServletRequest req) throws ServletException, JAXBException;
 }

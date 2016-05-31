@@ -3,14 +3,20 @@ package web.xml.service.memory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.security.cert.Certificate;
+import java.security.cert.X509Certificate;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.Arrays;
+import java.util.Random;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -29,6 +35,9 @@ import com.marklogic.client.io.DOMHandle;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.InputStreamHandle;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import web.xml.crl.Sertifikati;
 import web.xml.model.User;
 import web.xml.model.Users;
 import web.xml.service.UserService;
@@ -161,9 +170,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public File preSave(String podaci, File f) throws NoSuchAlgorithmException, InvalidKeySpecException, JSONException,
 			JAXBException, FileNotFoundException {
+		
+		Random rand = new Random();
+		
 		JSONObject json = new JSONObject(podaci);
-		User user = new User(json.getString("ime"), json.getString("prezime"), json.getString("username"), "gradjanin",
-				39);
+		User user = new User(json.getString("ime"), json.getString("prezime"), json.getString("username"), "odbornik",
+				Long.parseLong(String.valueOf(rand.nextInt(50000))), json.getString("jksPutanja"), json.getString("alias"));
 
 		// ovde radimo hash password-a i takodje pamtimo u bazu i salt kojim je
 		// password odradjen
@@ -177,6 +189,61 @@ public class UserServiceImpl implements UserService {
 
 		marshall(usersi, f);
 
+		return null;
+	}
+
+	@Override
+	public String getCertificateSerialNumber(Certificate cert) {
+		// TODO Auto-generated method stub
+		X509Certificate cer = (X509Certificate) cert;
+ 
+		return cer.getSerialNumber().toString(16);
+	}
+
+	@Override
+	public boolean isValidCertificate(String serialNumber) throws JAXBException {
+		// TODO Auto-generated method stub
+		JAXBContext context = JAXBContext.newInstance(Sertifikati.class);
+
+		// Unmarshaller je objekat zadu�en za konverziju iz XML-a u objektni
+		// model
+		Unmarshaller unmarshaller = context.createUnmarshaller();
+
+		// Unmarshalling generi�e objektni model na osnovu XML fajla
+		Sertifikati sertifikati = (Sertifikati) unmarshaller.unmarshal(new File("data\\sertifikati\\crl.xml"));
+		
+		for(int i = 0; i < sertifikati.getSerijskiBroj().size(); i++){
+			if(sertifikati.getSerijskiBroj().get(i).equals(serialNumber)){
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	@Override
+	public User getUserFromJWT(HttpServletRequest req) throws ServletException, JAXBException {
+		// TODO Auto-generated method stub
+		
+		final HttpServletRequest request = (HttpServletRequest) req;
+		final String authHeader = request.getHeader("Authorization");
+		
+		if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+			throw new ServletException("Missing or invalid Authorization header.");
+		}
+		
+		String token = authHeader.substring(7); // The part after "Bearer "
+
+		Claims claims = Jwts.parser().setSigningKey("asdf").parseClaimsJws(token).getBody();
+
+		Users korisnici = unmarshall(new File("data\\xml\\probaListaKorisnika.xml"));
+		
+		for(User kor : korisnici.getKorisnik()){
+			if(kor.getUsername().equals(claims.getSubject())){
+				return kor;
+			}
+		}
+		
 		return null;
 	}
 

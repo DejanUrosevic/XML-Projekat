@@ -3,8 +3,10 @@ package web.xml.controller;
 import static org.apache.xerces.jaxp.JAXPConstants.JAXP_SCHEMA_LANGUAGE;
 import static org.apache.xerces.jaxp.JAXPConstants.W3C_XML_SCHEMA;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -13,10 +15,18 @@ import java.io.Serializable;
 import java.io.StringWriter;
 import java.math.BigInteger;
 import java.net.MalformedURLException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
 import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.Scanner;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
@@ -56,12 +66,14 @@ import org.xml.sax.SAXException;
 import com.sun.org.apache.xml.internal.security.exceptions.XMLSecurityException;
 
 import jaxb.from.xsd.Clan;
+import web.xml.crl.Sertifikati;
 import web.xml.model.Clanovi;
 import web.xml.model.Propisi;
 import jaxb.from.xsd.Clan.Sadrzaj;
 import web.xml.model.User;
 import web.xml.model.Users;
 import web.xml.service.PropisService;
+import web.xml.service.UserService;
 
 @Controller
 @RequestMapping("/clan")
@@ -69,6 +81,10 @@ public class ClanController {
 
 	@Autowired
 	PropisService propisSer;
+	
+	@Autowired
+	UserService userSer;
+
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
 	public @ResponseBody ResponseEntity<String> getPropis(@PathVariable(value = "id") String id)
@@ -113,16 +129,24 @@ public class ClanController {
 	 * @return
 	 * @throws IOException
 	 * @throws JAXBException
+	 * @throws ServletException 
 	 */
-	@RequestMapping(value = "/noviPropis", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<String> noviPropis(@RequestBody String postPayload)
-			throws IOException, JAXBException {
-
+	@RequestMapping(value = "/noviPropis", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<String> noviPropis(@RequestBody String postPayload, final HttpServletRequest req)
+			throws IOException, JAXBException, ServletException {
+		
+		
+		User korisnik = userSer.getUserFromJWT(req);
+		
+		if(userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
+			return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
+		}
+		
 		Propis noviPropis = propisSer.dodajPropis(postPayload);
 
 		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
 		propisi.getPropisi().add(noviPropis);
-
+		
 		propisSer.marshall(propisi, new File("data\\xml\\propisi.xml"));
 
 		return new ResponseEntity<String>(HttpStatus.OK);
@@ -209,22 +233,85 @@ public class ClanController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<String> saveToDatabase() throws IOException, JAXBException {
-
+	public @ResponseBody ResponseEntity<String> saveToDatabase(final HttpServletRequest req) throws IOException, JAXBException, ServletException {
+		
+		User korisnik = userSer.getUserFromJWT(req);
+		
 		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
 		// jos uvek ne potpisan propis
 
 		propisSer.marshallPropis(propisi.getPropisi().get(propisi.getPropisi().size() - 1),
 				new File("data\\xml\\potpisPropis.xml"));
+		
+		propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
+				"", korisnik.getAlias());
 
-		propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), "data\\sertifikati\\qq.jks", "qq", "qq",
-				"data\\sertifikati\\qq.cer", "qq");
-
-		propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\qq.jks"), "qq");
+		//svaki put se kriptuje javnim kljucem istorijskog arhiva, posto se tamo salju propisi
+		propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
 
 		propisSer.save(new File("data\\xml\\potpisPropis.xml"));
 
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
+	
+	/*public static void main(String[] args) throws JAXBException, FileNotFoundException{
+		JAXBContext context = JAXBContext.newInstance(Sertifikati.class);
+		Unmarshaller unmarshaller = context.createUnmarshaller();
+
+		// Unmarshalling generi�e objektni model na osnovu XML fajla
+		
+		
+		Sertifikati serti = (Sertifikati) unmarshaller.unmarshal(new File("data\\sertifikati\\crl.xml"));
+		Certificate cert = null;
+		try {
+			KeyStore ks = KeyStore.getInstance("JKS", "SUN");
+			BufferedInputStream in = new BufferedInputStream(
+					new FileInputStream(new File("data\\sertifikati\\odbornik1.jks")));
+
+			ks.load(in, "odbornik1".toCharArray());
+			if (ks.isKeyEntry("odbornik1")) {
+				cert = ks.getCertificate("odbornik1");
+	
+			} else{}
+			
+		} catch (KeyStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		
+		} catch (NoSuchProviderException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+	
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+	
+		} catch (CertificateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		X509Certificate sertif = (X509Certificate) cert;
+		serti.getSerijskiBroj().add(sertif.getSerialNumber().toString(16));
+		
+
+		Marshaller marshaller = context.createMarshaller();
+
+		// Pode�avanje marshaller-a
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+		// Umesto System.out-a, mo�e se koristiti FileOutputStream
+		marshaller.marshal(serti, new File("data\\sertifikati\\crl.xml"));
+		
+		
+	}*/
 
 }

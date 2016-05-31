@@ -1,78 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <propisi xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/propis">
-    <propis ID="38929">
-        <ns3:Naziv>Zakon o zakonu</ns3:Naziv>
-        <ns3:Deo ID="499152">
-            <ns3:Naziv>Deo prvi prvcati</ns3:Naziv>
-            <ns3:Glava ID="1210">
-                <ns3:Naziv>Glava 1</ns3:Naziv>
-                <ns2:Clan ID="466872">
-                    <ns2:Opis>Bacon ipsum dolor amet pork loin turducken jowl pork chop shankle doner. Tenderloin spare ribs fatback short ribs bacon, pastrami kevin. Ribeye beef ribs venison leberkas. Strip steak porchetta ham frankfurter alcatra leberkas prosciutto ham hock t-bone swine bresaola pork loin picanha tail chuck. Turducken corned beef cupim pancetta filet mignon. Shank ball tip chuck strip steak tongue shankle pork chop salami chicken shoulder tenderloin.</ns2:Opis>
-                    <ns2:Naziv>Clan 1</ns2:Naziv>
+    <propis ID="664696">
+        <ns3:Naziv>aaaaaaaa</ns3:Naziv>
+        <ns3:Deo ID="73172">
+            <ns3:Naziv>ssss</ns3:Naziv>
+            <ns3:Glava ID="334747">
+                <ns3:Naziv>ddddddddddddd</ns3:Naziv>
+                <ns2:Clan ID="153694">
+                    <ns2:Opis>gggggggggg</ns2:Opis>
+                    <ns2:Naziv>fffffffffffff</ns2:Naziv>
                     <ns2:Sadrzaj>
-                        <ns2:Tekst>Meatloaf ribeye kielbasa pastrami beef ribs, cow shoulder corned beef tongue chuck. Meatball pastrami drumstick shank venison cupim. Porchetta chuck pancetta shankle. Tri-tip strip steak sausage, pastrami meatloaf landjaeger fatback alcatra tongue shoulder boudin turducken pork belly chuck. Pancetta meatloaf chuck pork chop, cupim shankle ham hamburger leberkas brisket. Pastrami jerky ball tip, hamburger meatball tenderloin t-bone beef cow kevin sausage short ribs pig doner porchetta. Cupim andouille ham hock bacon short loin shank pig tail brisket hamburger leberkas sausage rump.</ns2:Tekst>
-                    </ns2:Sadrzaj>
-                </ns2:Clan>
-            </ns3:Glava>
-            <ns3:Glava ID="806770">
-                <ns3:Naziv>Glava 2</ns3:Naziv>
-                <ns2:Clan ID="312976">
-                    <ns2:Opis>Meatloaf ribeye kielbasa pastrami beef ribs, cow shoulder corned beef tongue chuck. Meatball pastrami drumstick shank venison cupim. Porchetta chuck pancetta shankle. Tri-tip strip steak sausage, pastrami meatloaf landjaeger fatback alcatra tongue shoulder boudin turducken pork belly chuck. Pancetta meatloaf chuck pork chop, cupim shankle ham hamburger leberkas brisket. Pastrami jerky ball tip, hamburger meatball tenderloin t-bone beef cow kevin sausage short ribs pig doner porchetta. Cupim andouille ham hock bacon short loin shank pig tail brisket hamburger leberkas sausage rump.</ns2:Opis>
-                    <ns2:Naziv>Clan 2</ns2:Naziv>
-                    <ns2:Sadrzaj>
-                        <ns2:Tekst>Ground round pork loin boudin ball tip, fatback jerky rump tail landjaeger alcatra pancetta. Capicola frankfurter short ribs pig andouille, brisket cupim boudin shoulder tail shank bacon meatloaf. Tail brisket pancetta, jerky landjaeger ribeye chicken rump meatloaf frankfurter swine ball tip. Ribeye flank capicola, spare ribs landjaeger chicken bacon jerky beef sirloin. Pancetta landjaeger meatball filet mignon. Landjaeger pork belly leberkas doner tenderloin, fatback shankle meatloaf andouille turkey beef. Meatloaf brisket rump jerky andouille strip steak sausage cow ham hock corned beef fatback.</ns2:Tekst>
+                        <ns2:Tekst>hhhhhhhhhh</ns2:Tekst>
                     </ns2:Sadrzaj>
                 </ns2:Clan>
             </ns3:Glava>
         </ns3:Deo>
     </propis>
-    <propis ID="503954">
-        <ns3:Naziv>DDAD</ns3:Naziv>
-        <ns3:Deo ID="915497">
-            <ns3:Naziv>DADA</ns3:Naziv>
-            <ns3:Glava ID="670283">
-                <ns3:Naziv>DADA</ns3:Naziv>
-                <ns2:Clan ID="515253">
-                    <ns2:Opis>DAD</ns2:Opis>
-                    <ns2:Naziv>DDA</ns2:Naziv>
+    <propis ID="181583">
+        <ns3:Naziv>qqqqqq</ns3:Naziv>
+        <ns3:Deo ID="254981">
+            <ns3:Naziv>wwwwwww</ns3:Naziv>
+            <ns3:Glava ID="280757">
+                <ns3:Naziv>eeeeeeeeeee</ns3:Naziv>
+                <ns2:Clan ID="786627">
+                    <ns2:Opis>ttttttttt</ns2:Opis>
+                    <ns2:Naziv>rrrrrrrrr</ns2:Naziv>
                     <ns2:Sadrzaj>
-                        <ns2:Stav>
-                            <ns2:Redni_broj>11</ns2:Redni_broj>
-                            <ns2:Tekst>dwqdqwwqdwq</ns2:Tekst>
-                        </ns2:Stav>
-                        <ns2:Stav>
-                            <ns2:Redni_broj>12</ns2:Redni_broj>
-                            <ns2:Tekst>qwdwqdqdwq dwqdwqd wq dwq dwqdwqdwqd</ns2:Tekst>
-                        </ns2:Stav>
+                        <ns2:Tekst>yyyyyyyyy</ns2:Tekst>
                     </ns2:Sadrzaj>
                 </ns2:Clan>
             </ns3:Glava>
         </ns3:Deo>
     </propis>
-    <propis ID="621056">
-        <ns3:Naziv>Ddad</ns3:Naziv>
-        <ns3:Deo ID="860055">
-            <ns3:Naziv>Dsadsadas dsd</ns3:Naziv>
-            <ns3:Glava ID="130060">
-                <ns3:Naziv>asdsdasdsa</ns3:Naziv>
-                <ns2:Clan ID="979055">
-                    <ns2:Opis>dsadasdsad asbhas ui huh fj hujhfddkwgfdsygfukfgdsak hdsak fagh uiafa aui uauif uigiufgasfayuf dgdsfsdgfsd isdif sduifdsiufdsu dsui gdsiu gds gfdsui gsdiusdiu gsdiugsdiu gsdiuasdisdfi usdisui sfdiu gsdui fdsfhdsgf</ns2:Opis>
-                    <ns2:Naziv>sadasdasdas</ns2:Naziv>
+    <propis ID="694887">
+        <ns3:Naziv>zzzzzzzzzz</ns3:Naziv>
+        <ns3:Deo ID="427585">
+            <ns3:Naziv>xxxxxxxxxxxxx</ns3:Naziv>
+            <ns3:Glava ID="987191">
+                <ns3:Naziv>cccccccc</ns3:Naziv>
+                <ns2:Clan ID="533810">
+                    <ns2:Opis>bbbbbb</ns2:Opis>
+                    <ns2:Naziv>vvvvvvvvv</ns2:Naziv>
                     <ns2:Sadrzaj>
-                        <ns2:Tekst>a s jfdasi hfaiuaiu fgsdiy gsdgdsigdsiygsdiugsdui sui uigsuiuifiudsgifdsguidsgfuids gdfuish fdsuk hfdsiusduifsduifsdgiufdsusduklf ifgwiouwehfgwje wnioeghwibtvweuwie geu fwehfuefuefvwiotvbuityuiofhvuk b bwfhweuifwfvwbiu ofwe we fwfwefwew</ns2:Tekst>
-                    </ns2:Sadrzaj>
-                </ns2:Clan>
-            </ns3:Glava>
-            <ns3:Glava ID="150369">
-                <ns3:Naziv>wqdqw</ns3:Naziv>
-                <ns2:Clan ID="239789">
-                    <ns2:Opis>5h6h 56j76j  7j 67 67j  j67jj</ns2:Opis>
-                    <ns2:Naziv>wqdgtrh56y</ns2:Naziv>
-                    <ns2:Sadrzaj>
-                        <ns2:Stav>
-                            <ns2:Redni_broj>11</ns2:Redni_broj>
-                            <ns2:Tekst>rgg4g 545h 5 56 h65 h6 h56h56 h</ns2:Tekst>
-                        </ns2:Stav>
+                        <ns2:Tekst>nnnnnnnnnnnn</ns2:Tekst>
                     </ns2:Sadrzaj>
                 </ns2:Clan>
             </ns3:Glava>
