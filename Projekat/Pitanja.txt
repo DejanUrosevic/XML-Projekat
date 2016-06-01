@@ -1,4 +1,0 @@
-1. Sta znaci pregledanje akata po referencama?
-2. Da li gradjanin treba da se loguje?
-3. Da ako ima token, da ga odmah sibne na main.
-4. Sta znaci usvajanje akata u nacelu, u pojedinostima ili u celini? 

@@ -1,4 +1,8 @@
 (function(angular) {
+	/**
+	 * Url web server na kome se nalazi aplikacija
+	 */
+	var serverUrl = "http://localhost:8080/HelloWeb";
 
 	/**
 	 * Ovo je kontroler za logovanje i registraciju korisnika sistema
@@ -53,7 +57,7 @@
 		 */
 		$scope.checkRoles = function() {
 			$http
-					.get('http://localhost:8080/HelloWeb/api/role')
+					.get(serverUrl+'/api/role')
 					.then(
 							function(response) {
 
@@ -102,7 +106,7 @@
 		 * Metoda za registraciju korisnika na sistem
 		 */
 		$scope.register = function() {
-			$http.post('http://localhost:8080/HelloWeb/Index/registration', {
+			$http.post(serverUrl+'/Index/registration', {
 				ime : $scope.loginKor.ime,
 				prezime : $scope.loginKor.prezime,
 				username : $scope.loginKor.username,
@@ -133,10 +137,10 @@
 		 * treba prebaciti odmah na login posto nema token kod sebe
 		 */
 		if (localStorage.getItem('key') !== null) {
-			$http.get('http://localhost:8080/HelloWeb/api/role').then(
+			$http.get(serverUrl+'/api/role').then(
 					function(response) {
 						$http.get(
-								'http://localhost:8080/HelloWeb/Index/user/'
+								serverUrl+'/Index/user/'
 										+ response.data.username).then(
 								function(response2) {
 									$scope.rolaUser = response2.data;
@@ -178,7 +182,7 @@
 		 * treba prebaciti odmah na login posto nema token kod sebe
 		 */
 		if (localStorage.getItem('key') !== null) {
-			$http.get('http://localhost:8080/HelloWeb/clan/all').then(
+			$http.get(serverUrl+'/clan/all').then(
 					function(response) {
 						$scope.propisi = response.data.propisi;
 					});
@@ -208,7 +212,7 @@
 				var propisId = $stateParams.id;
 			}
 
-			$http.get('http://localhost:8080/HelloWeb/clan/' + propisId).then(
+			$http.get(serverUrl+'/clan/' + propisId).then(
 					function(response) {
 						$scope.htmlXsl = response.data;
 					});
@@ -252,7 +256,7 @@
 			if (localStorage.getItem('key') === null) {
 				mainService.logOut();
 			}
-			$http.post('http://localhost:8080/HelloWeb/clan/noviPropis', {
+			$http.post(serverUrl+'/clan/noviPropis', {
 				nazivPropisa : $scope.propis.naziv,
 				nazivDeo : $scope.deo.naziv,
 				nazivGlave : $scope.glavaNaziv,
@@ -285,7 +289,7 @@
 			if (localStorage.getItem('key') === null) {
 				mainService.logOut();
 			}
-			$http.post('http://localhost:8080/HelloWeb/clan/noviDeo', {
+			$http.post(serverUrl+'/clan/noviDeo', {
 				nazivDeo : $scope.deo.naziv,
 				nazivGlave : $scope.glavaNaziv,
 				nazivClana : $scope.clan.naziv,
@@ -317,7 +321,7 @@
 			if (localStorage.getItem('key') === null) {
 				mainService.logOut();
 			}
-			$http.post('http://localhost:8080/HelloWeb/clan/novaGlava', {
+			$http.post(serverUrl+'/clan/novaGlava', {
 				nazivGlave : $scope.glavaNaziv,
 				nazivClana : $scope.clan.naziv,
 				opisClana : $scope.clan.opis,
@@ -344,7 +348,7 @@
 			if (localStorage.getItem('key') === null) {
 				mainService.logOut();
 			}
-			$http.post('http://localhost:8080/HelloWeb/clan/noviClan', {
+			$http.post(serverUrl+'/clan/noviClan', {
 				nazivClana : $scope.clan.naziv,
 				opisClana : $scope.clan.opis,
 				redniBrojStava : $scope.stavBroj,
@@ -370,7 +374,7 @@
 			if (localStorage.getItem('key') === null) {
 				mainService.logOut();
 			}
-			$http.post('http://localhost:8080/HelloWeb/clan/noviStav', {
+			$http.post(serverUrl+'/clan/noviStav', {
 				redniBrojStava : $scope.stavBroj,
 				stavTekst : $scope.stavTekst
 			}).success(function(data, header, status) {
@@ -390,10 +394,14 @@
 		}
 
 		$scope.saveToDatabase = function() {
+			$http.get(serverUrl+'/clan/save').then(
+					function(response) {
+						$state.go('main');
+					});
 			if (localStorage.getItem('key') === null) {
 				mainService.logOut();
 			}
-			$http.get('http://localhost:8080/HelloWeb/clan/save')
+			$http.get(serverUrl+'/clan/save')
 			.success(function(data, header, status) {
 				$state.go('main');
 			}).error(function(data, header, status) {
@@ -418,10 +426,32 @@
 	}
 
 	/**
-	 * Angular kontroler zadužen za pronalaženje akata po različitim kriterijuma
+	 * Angular kontroler zadužen za pronalaženje akata po različitim kriterijuma i sadržajima.
+	 * Za sada je implementirana mogućnost pretreaživanja po sadržaju.
 	 */
 	var pretragaAkataCtrl = function($scope, $state, $resource, $http) {
+		var PretragaAkataResurs = $resource(serverUrl+'/clan/pretragaPropisa',
+									  null,{
+										pretrazi:{method:'POST'}
+									  });
+				
+		$scope.pretraga = {};
+		$scope.pretraga.upit = "";
+		$scope.pretraga.rezultat = [];
 
+		$scope.pretraga.pretrazi = function() {
+			PretragaAkataResurs.pretrazi({
+				upit: $scope.pretraga.upit
+			},function(data) {
+				$scope.pretraga.rezultat = data.propisi;
+			});
+		};
+				
+		$scope.pretraga.pregledAkta = function(propisId) {
+			$state.go('izabranPropis', {
+				id : propisId
+			});
+		};
 	};
 
 	var app = angular
@@ -501,7 +531,7 @@
 		return {
 			login : function(email, lozinka) {
 				return $http.post(
-						'http://localhost:8080/HelloWeb/Index/checkUser', {
+						serverUrl+'/Index/checkUser', {
 							username : email,
 							password : lozinka
 						}).then(function(response) {
@@ -512,7 +542,7 @@
 			},
 
 			hasRole : function() {
-				return $http.get('http://localhost:8080/HelloWeb/api/role')
+				return $http.get(serverUrl+'/api/role')
 						.then(function(response) {
 							console.log(response);
 							return response.data;
