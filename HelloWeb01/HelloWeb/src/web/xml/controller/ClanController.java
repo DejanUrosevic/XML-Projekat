@@ -131,7 +131,7 @@ public class ClanController {
 	 */
 	@RequestMapping(value = "/pretragaPropisa", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public @ResponseBody ResponseEntity<Propisi> pretragaPropisa(@RequestBody String reqBody) throws JAXBException {
-		return new ResponseEntity<Propisi>(propisSer.findAll(), HttpStatus.OK);
+		return new ResponseEntity<Propisi>(propisSer.pretrazi(reqBody), HttpStatus.OK);
 	}
 	
 	/**

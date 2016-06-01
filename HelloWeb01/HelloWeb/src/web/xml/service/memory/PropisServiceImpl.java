@@ -77,6 +77,10 @@ import com.marklogic.client.eval.ServerEvaluationCall;
 import com.marklogic.client.io.DOMHandle;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.InputStreamHandle;
+import com.marklogic.client.io.SearchHandle;
+import com.marklogic.client.query.MatchDocumentSummary;
+import com.marklogic.client.query.QueryManager;
+import com.marklogic.client.query.StringQueryDefinition;
 import com.sun.org.apache.xml.internal.security.algorithms.MessageDigestAlgorithm;
 import com.sun.org.apache.xml.internal.security.exceptions.XMLSecurityException;
 import com.sun.org.apache.xml.internal.security.signature.XMLSignature;
@@ -133,14 +137,81 @@ public class PropisServiceImpl implements PropisService {
 	
 	@Override
 	public Propisi pretrazi(String reqBody) throws JAXBException {
-		JSONObject reqBodyJson = new JSONObject(reqBody);
-		
+		JSONObject reqBodyJson = new JSONObject(reqBody);	
 		String upit = reqBodyJson.getString("upit");
+		System.out.println(upit);
 		
-		Propisi propisi = new Propisi();
+		// Inicijalizacija klijenta za bazu podataka
+		DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37", "tim37", "tim37", Authentication.valueOf("DIGEST"));
 		
-		// TODO Implementirati pretragu
+		// Pretraživanje...
+		// Inicijalizacija menadžera za upit
+		QueryManager queryManager = client.newQueryManager();
 		
+		// Formiranje definicije upita
+		StringQueryDefinition queryDefinition = queryManager.newStringDefinition();
+		
+		// Postavljane kriterijuma pretragae
+		String criteria = "\""+upit+"\"";
+		queryDefinition.setCriteria(criteria);
+		
+		// Postavljanje kolekcije u kojoj se pretražuje
+		String collId = "/skupstina/safePropisi";
+		queryDefinition.setCollections(collId);
+		
+		// Izvršavanje pretrage
+		SearchHandle searchHandle = queryManager.search(queryDefinition, new SearchHandle());
+		
+		// Preuzimanje rezultata pretrage
+		MatchDocumentSummary[] matches = searchHandle.getMatchResults();
+		//
+		
+		// Menadžer za rad sa XML fajlovima
+		XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+		
+		DOMHandle content = new DOMHandle();
+		
+		DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+		//
+		
+		// JAXB
+		JAXBContext context = JAXBContext.newInstance(Propis.class);
+		
+		Unmarshaller unmarshaller = context.createUnmarshaller();
+		//
+		
+		MatchDocumentSummary result;
+		Propisi propisi = new Propisi();	
+		for (int i=0; i<matches.length; i++) {
+			/*
+			result = matches[i];
+			
+			String resultUri = result.getUri();
+			System.out.println(resultUri);
+			
+			String propisName = resultUri.substring(0, resultUri.length()-4);	// WARNING 
+			System.out.println(propisName);
+			
+			Propis propis = new Propis();
+			
+			propis.setNaziv(propisName);
+						
+			propisi.getPropisi().add(propis);
+			*/
+			result = matches[i];
+			
+			String docId = result.getUri();
+			System.out.println("docId: "+docId);
+			
+			xmlManager.read(docId, metadata, content);
+			Document doc = content.get();
+			
+			Propis propis = (Propis) unmarshaller.unmarshal(doc);
+			propisi.getPropisi().add(propis);
+		}
+		
+		client.release();
+					
 		return propisi;
 	}
 
