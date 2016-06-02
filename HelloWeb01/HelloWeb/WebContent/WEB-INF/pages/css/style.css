@@ -205,5 +205,11 @@ color:#CCCCCC;
 	font-size: 60px;
 }
 
+.wrapper {
+    text-align: center;
+}
 
+.buttonSredina {
+    top: 50%;
+}
 

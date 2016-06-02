@@ -2,7 +2,7 @@
 	/**
 	 * Url web server na kome se nalazi aplikacija
 	 */
-	var serverUrl = "http://localhost:8080/HelloWeb";
+	var serverUrl = "https://localhost:8443/HelloWeb/";
 
 	/**
 	 * Ovo je kontroler za logovanje i registraciju korisnika sistema
@@ -420,10 +420,115 @@
 
 	}
 
-	var sednicaCtrl = function($scope, $resource, $http, $location,
-			$stateParams, $state) {
+	var sednicaCtrl = function($rootScope, $scope, $resource, $http, $location,
+			$stateParams, $state, propisService) 
+	{
+		
+		$scope.izborAkata = function()
+		{
+			$state.go('sednicaIzborAkata');
+		}
+		
+		//ovo je lista koja sluzi da cuva podatke o tome koji akti su izabrani za sednicu
+		$scope.listaIzabranihAkataPoImenu = [];
+		
+		
+		$scope.toggleSelection = function toggleSelection(propisId) 
+		{
+			var idx = $scope.listaIzabranihAkataPoImenu.indexOf(propisId);
+
+			// is currently selected
+			if (idx > -1) {
+				$scope.listaIzabranihAkataPoImenu.splice(idx, 1);
+			}
+			    // is newly selected
+			else {
+				$scope.listaIzabranihAkataPoImenu.push(propisId);
+			}
+		};
+		
+		//saljemo preko servica podatke o tome koji su izabrani propisi
+		propisService.setProperty($scope.listaIzabranihAkataPoImenu);
+		
+		$scope.zapocniSednicu = function()
+		{
+			$state.go('procesSednice');
+		}
 
 	}
+	
+	
+	
+	var procesSedniceCtrl = function($scope, $http, $state, propisService)
+	{
+		$scope.izabraniAkti = [];
+		
+		var lista = propisService.getProperty();
+		
+		for(var i=0; i<lista.length; i++)
+		{
+			$http.get(serverUrl +'/clan/naziv/' + lista[i])
+			.success(function(data, header, status)
+			{
+				$scope.izabraniAkti.push(data);
+				
+			})
+			.error(function(data, header, status)
+			{
+				console.log(data);
+				console.log(header);
+				console.log(status);
+			});
+		}
+		
+		$scope.pregledAkta = function(propisId)
+		{
+			$state.go('pregledAktaZaNacelo', {id: propisId});
+		}
+	}
+	
+	
+	
+	
+	var izabranPropisNaceloCtrl = function($scope, $http, $state, $stateParams)
+	{
+		if(!angular.equals({}, $stateParams))
+		{
+			var propisId = $stateParams.id;
+		}
+		$http.get(serverUrl+'/clan/' + propisId)
+		.success(function(data, header, status)
+		{
+			$scope.htmlXsl = data;
+			
+		})
+		.error(function(data, header, status)
+		{
+			console.log(data);
+			console.log(header);
+			console.log(status);
+		});
+		
+		$scope.odbijenPropis = function()
+		{
+			if(!angular.equals({}, $stateParams))
+			{
+				var propisId = $stateParams.id;
+			}
+			$http.get(serverUrl+'/clan/odbijen/' + propisId)
+			.success(function(data, header, status)
+			{
+				$state.go('procesSednice');
+			})
+			.error(function(data, header, status)
+			{
+				console.log(data);
+				console.log(header);
+				console.log(status);
+			});
+		}
+	}
+	
 
 	/**
 	 * Angular kontroler zadužen za pronalaženje akata po različitim kriterijuma i sadržajima.
@@ -463,6 +568,8 @@
 	app.controller('addPropisCtrl', addPropisCtrl);
 	app.controller('pregledPropisaCtrl', pregledPropisaCtrl);
 	app.controller('sednicaCtrl', sednicaCtrl);
+	app.controller('procesSedniceCtrl', procesSedniceCtrl);
+	app.controller('izabranPropisNaceloCtrl', izabranPropisNaceloCtrl);
 
 	app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -492,6 +599,18 @@
 			url : '/sednica',
 			templateUrl : 'sednica-izbor.html',
 			controller : 'sednicaCtrl'
+		}).state('sednicaIzborAkata', {
+			url : '/sednica/izborAkata',
+			templateUrl : 'sednica-izbor-akata.html',
+			controller : 'sednicaCtrl'
+		}).state('procesSednice', {
+			url : '/sednica/procesSednice',
+			templateUrl : 'proces-sednice-nacelo.html',
+			controller : 'procesSedniceCtrl'
+		}).state('pregledAktaZaNacelo', {
+			url : '/sednica/procesSednice/akt/:id',
+			templateUrl : 'pregled-akta-za-nacelo.html',
+			controller : 'izabranPropisNaceloCtrl'
 		}).state('izabranPropis', {
 			url : '/propisi/propis/:id',
 			templateUrl : 'pregled-akta.html',
@@ -553,10 +672,21 @@
 					$http.defaults.headers.common.Authorization = '';
 					localStorage.clear();
 					$state.go('login');
-			}
-			
-			
+			},	
 		};
+	});
+	app.service('propisService', function()
+	{
+		var list = [];
+
+        return {
+            getProperty: function () {
+                return list;
+            },
+            setProperty: function(value) {
+                list = value;
+            }
+        };
 	});
 
 }(angular));

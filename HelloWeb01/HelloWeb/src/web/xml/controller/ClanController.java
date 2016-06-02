@@ -108,6 +108,50 @@ public class ClanController {
 		return new ResponseEntity<String>(resultHtml, HttpStatus.OK);
 
 	}
+	
+	@RequestMapping(value = "/naziv/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<Propis> getPropisNaziv(@PathVariable(value = "id") String id)
+			throws IOException, JAXBException, TransformerConfigurationException, ParserConfigurationException,
+			SAXException, TransformerFactoryConfigurationError, TransformerException {
+
+		// ovim kreiramo taj propis.xml
+		BigInteger idPropis = BigInteger.valueOf(Long.parseLong(id));
+		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
+		Document dokument = null;
+
+		for (Propis p : propisi.getPropisi()) {
+			if (p.getID().equals(idPropis)) {
+				return new ResponseEntity<Propis>(p, HttpStatus.OK);
+			}
+		}
+
+		return new ResponseEntity<Propis>(HttpStatus.NOT_FOUND);
+
+	}
+	
+	@RequestMapping(value = "/odbijen/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<Propis> odbijenPropis(@PathVariable(value = "id") String id)
+			throws IOException, JAXBException, TransformerConfigurationException, ParserConfigurationException,
+			SAXException, TransformerFactoryConfigurationError, TransformerException {
+
+		// ovim kreiramo taj propis.xml
+		BigInteger idPropis = BigInteger.valueOf(Long.parseLong(id));
+		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
+		Document dokument = null;
+
+		for (Propis p : propisi.getPropisi()) {
+			if (p.getID().equals(idPropis)) {
+				propisi.getPropisi().remove(p);
+				propisSer.removePropis(p.getNaziv());
+				propisSer.marshall(propisi, new File("./data/xml/propisi.xml"));
+				return new ResponseEntity<Propis>(HttpStatus.OK);
+			}
+		}
+		
+
+		return new ResponseEntity<Propis>(HttpStatus.NOT_FOUND);
+
+	}
 
 	/**
 	 * Pregled svih dostupnih propisa

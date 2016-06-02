@@ -55,4 +55,26 @@
         <username>o3@o3</username>
         <vrsta>odbornik</vrsta>
     </korisnik>
+    <korisnik>
+        <alias>aa</alias>
+        <ID>45786</ID>
+        <ime>&lt;body onload=alert('test1')&gt;</ime>
+        <jksPutanja>aa</jksPutanja>
+        <password>r66PcIPN6eemxGtcVouWmGortM0=</password>
+        <prezime>&lt;IMG SRC=j&amp;#X41vascript:alert('test2')&gt;</prezime>
+        <salt>YMoP0DNayys=</salt>
+        <username>aa@aa</username>
+        <vrsta>odbornik</vrsta>
+    </korisnik>
+    <korisnik>
+        <alias>ww</alias>
+        <ID>17806</ID>
+        <ime></ime>
+        <jksPutanja>ww</jksPutanja>
+        <password>rZSwQ9xHyquMGrFp4Ts+LWLS03E=</password>
+        <prezime>qwdwq</prezime>
+        <salt>RlIBb/gOPgo=</salt>
+        <username>ww@ww</username>
+        <vrsta>odbornik</vrsta>
+    </korisnik>
 </korisnici>

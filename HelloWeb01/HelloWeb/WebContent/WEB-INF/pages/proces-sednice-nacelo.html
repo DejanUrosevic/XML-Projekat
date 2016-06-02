@@ -14,14 +14,14 @@
 			<div id="tableContainer-2">
 			<br/>
 				<h2 style="text-align: center; color: #0033cc;">
-					<u>Svi postojeci akti </u> 
+					<u>Svi izabarni akti za usvajanje u nacelu </u> 
 				</h2>
 				<br />
 				<hr />
 				<br />
 				<table id="myTable" style="border: 1px solid black;">
-					<tr ng-repeat="propis in propisi">
-						<td class="sredina"> Pregled propisa <img src="css/images/right.jpg" height="25" /></td>
+					<tr ng-repeat="propis in izabraniAkti">
+						<td class="sredina"> Pregled akta za usvajanje u nacelu <img src="css/images/right.jpg" height="25" /></td>
 						<td class="sredina"> <u><b> <a ng-click="pregledAkta(propis.id)"> {{propis.naziv}} </a> </b> </u> </td>
 					</tr>
 				</table>

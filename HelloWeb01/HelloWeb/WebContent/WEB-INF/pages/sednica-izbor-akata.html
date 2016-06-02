@@ -1,0 +1,49 @@
+<div id="header" ng-controller="logInCtrl">
+	<h1>IssgNS</h1>
+	<ul>
+		<li><a ui-sref="main">Nazad</a></li>
+		<li><a href="#">Products</a></li>
+		<li><a href="#">Services</a></li>
+		<li><a href="#">About</a></li>
+		<li><a ng-click="logout()">Odjavi se </a></li>
+	</ul>
+</div>
+<div id="main">
+	<div class="main_body">
+		<div id="tableContainer-1">
+			<div id="tableContainer-2">
+				<br />
+				<h2 style="text-align: center; color: #0033cc;">
+					<u>Izaberite akte koji ce se razmatrati na sednici</u>
+				</h2>
+				<br />
+				<hr />
+				<br />
+				<div ng-controller="sviAktiCtrl">
+					<table id="myTable" style="border: 1px solid black;">
+						<tr ng-repeat="propis in propisi">
+							<td class="sredina">Pregled akta <img
+								src="css/images/right.jpg" height="25" /></td>
+							<td class="sredina"><u><b> <a
+										ng-click="pregledAkta(propis.id)"> {{propis.naziv}} </a>
+								</b> </u></td>
+							<td class="sredina"><input type="checkbox" value="{{propis.id}}"
+								ng-checked="listaIzabranihAkataPoImenu.indexOf(propis.id) > -1"
+								ng-click="toggleSelection(propis.id)"></td>
+						</tr>
+					</table>
+				</div>
+				<br />
+				<hr />
+				<div class="wrapper">
+					<p style="text-align: center;">Zapocni sednicu</p>
+					<button class="buttonSredina" type="button"
+						style="background-color: transparent; border-color: transparent;"
+						ng-click="zapocniSednicu()">
+						<img src="css/images/start.png" height="50" />
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

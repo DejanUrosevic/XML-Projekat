@@ -160,7 +160,9 @@ public class UserController {
 	@RequestMapping(value = "/registration", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody User registerUser(@RequestBody String postPayload)
 			throws IOException, JAXBException, NoSuchAlgorithmException, InvalidKeySpecException, JSONException {
-		userSer.preSave(postPayload, new File("./data/xml/probaListaKorisnika.xml"));
+		//zastita od xss napada
+		String cleanPostPayload = Jsoup.clean(postPayload, Whitelist.basic());
+		userSer.preSave(cleanPostPayload, new File("./data/xml/probaListaKorisnika.xml"));
 
 		userSer.save(new File("./data/xml/probaListaKorisnika.xml"));
 

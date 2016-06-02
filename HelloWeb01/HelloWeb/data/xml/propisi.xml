@@ -1,53 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <propisi xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/propis">
-    <propis ID="664696">
-        <ns3:Naziv>aaaaaaaa</ns3:Naziv>
-        <ns3:Deo ID="73172">
-            <ns3:Naziv>ssss</ns3:Naziv>
-            <ns3:Glava ID="334747">
-                <ns3:Naziv>ddddddddddddd</ns3:Naziv>
-                <ns2:Clan ID="153694">
-                    <ns2:Opis>gggggggggg</ns2:Opis>
-                    <ns2:Naziv>fffffffffffff</ns2:Naziv>
-                    <ns2:Sadrzaj>
-                        <ns2:Tekst>hhhhhhhhhh</ns2:Tekst>
-                    </ns2:Sadrzaj>
-                </ns2:Clan>
-            </ns3:Glava>
-        </ns3:Deo>
-    </propis>
-    <propis ID="181583">
-        <ns3:Naziv>qqqqqq</ns3:Naziv>
-        <ns3:Deo ID="254981">
-            <ns3:Naziv>wwwwwww</ns3:Naziv>
-            <ns3:Glava ID="280757">
-                <ns3:Naziv>eeeeeeeeeee</ns3:Naziv>
-                <ns2:Clan ID="786627">
-                    <ns2:Opis>ttttttttt</ns2:Opis>
-                    <ns2:Naziv>rrrrrrrrr</ns2:Naziv>
-                    <ns2:Sadrzaj>
-                        <ns2:Tekst>yyyyyyyyy</ns2:Tekst>
-                    </ns2:Sadrzaj>
-                </ns2:Clan>
-            </ns3:Glava>
-        </ns3:Deo>
-    </propis>
-    <propis ID="694887">
-        <ns3:Naziv>zzzzzzzzzz</ns3:Naziv>
-        <ns3:Deo ID="427585">
-            <ns3:Naziv>xxxxxxxxxxxxx</ns3:Naziv>
-            <ns3:Glava ID="987191">
-                <ns3:Naziv>cccccccc</ns3:Naziv>
-                <ns2:Clan ID="533810">
-                    <ns2:Opis>bbbbbb</ns2:Opis>
-                    <ns2:Naziv>vvvvvvvvv</ns2:Naziv>
-                    <ns2:Sadrzaj>
-                        <ns2:Tekst>nnnnnnnnnnnn</ns2:Tekst>
-                    </ns2:Sadrzaj>
-                </ns2:Clan>
-            </ns3:Glava>
-        </ns3:Deo>
-    </propis>
     <propis ID="712816">
         <ns3:Naziv>Zakon o Heinzembergu</ns3:Naziv>
         <ns3:Deo ID="458702">
@@ -97,17 +49,36 @@ Saule ... , ostendit quod hoc quidem ... hoc quod dixit, ... potuit adiutorium m
             </ns3:Glava>
         </ns3:Deo>
     </propis>
-    <propis ID="239425">
-        <ns3:Naziv>qf453543</ns3:Naziv>
-        <ns3:Deo ID="850059">
-            <ns3:Naziv>fwefe</ns3:Naziv>
-            <ns2:Clan ID="510004">
-                <ns2:Opis>fwewfe</ns2:Opis>
-                <ns2:Naziv>ewfefwfe</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>wefwfefwefwfw</ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
+    <propis ID="745815">
+        <ns3:Naziv>ffff3f3ff3f32f</ns3:Naziv>
+        <ns3:Deo ID="222650">
+            <ns3:Naziv>3f3f32f3f32f2ff</ns3:Naziv>
+            <ns3:Glava ID="874178">
+                <ns3:Naziv>f332f32f32f</ns3:Naziv>
+                <ns2:Clan ID="486454">
+                    <ns2:Opis>f32f23f3f32f32f3f3f f32 fwefwehf kjwe fewewjghwejk fwejh wek jfwefjkwehg wjhkfjweh kweh wjekhfwe;uh fweuk; hfwekh fweukh fwkeu hfuwke;h fweuh fwekgfkwuehfku weh wuekhfweukh fweugfwuekgfweukgfwe ugweuig weiu gweg weiy gweiugwfei gweyi gweui gwe iweug weui gweuiwhfweigfweyfge wegfwgey fweiu weyhfgweiugf w gfewugfweiu weughweuifgweui ewj we</ns2:Opis>
+                    <ns2:Naziv>3f32f3f32f3</ns2:Naziv>
+                    <ns2:Sadrzaj>
+                        <ns2:Tekst>fy qweg fyqgfeqwy gfewqy wey gw fwegwe w  wegfweifgwugfweuigfweuigfweuip gweu gwe g we gweuifguiwegufwguegfweuifgweiuwguiwwiue gwuigweuifweu gweugfweui weuhwebcew fwef we fe weff</ns2:Tekst>
+                    </ns2:Sadrzaj>
+                </ns2:Clan>
+            </ns3:Glava>
+        </ns3:Deo>
+        <ns3:Deo ID="165077">
+            <ns3:Naziv>FWFEFE ewf</ns3:Naziv>
+            <ns3:Glava ID="511966">
+                <ns3:Naziv>wefwe fwe</ns3:Naziv>
+                <ns2:Clan ID="651633">
+                    <ns2:Opis>wefwefwe fwefwe wj wie iewhilwewehfuwe hufwehyfewgfweyihgcfwye bfwe bfwugwy gwe gfyjwef we gwerg er ggte g</ns2:Opis>
+                    <ns2:Naziv>fwefwewfe</ns2:Naziv>
+                    <ns2:Sadrzaj>
+                        <ns2:Stav>
+                            <ns2:Redni_broj>22</ns2:Redni_broj>
+                            <ns2:Tekst>wefwefhewu fei krue bgu uweguywgfywejgfywfweyjh wfey fygfuiwe gfyuweyfiweh gukwrehg iwer hgueirghkfquhdweiufrjklghuriogj itelguys8rfigrepog uebg ergheru gyiuog hiueryg ejigei nerui  hileghiu gio jerilug nreiougjerio gjeropig neripogjuerio jopj geriofjkl hgerjk gerjkg rejghrejkghreiu ghreuhweri hgjk gh gherkljghi ehrlkerj ger</ns2:Tekst>
+                        </ns2:Stav>
+                    </ns2:Sadrzaj>
+                </ns2:Clan>
+            </ns3:Glava>
         </ns3:Deo>
     </propis>
 </propisi>

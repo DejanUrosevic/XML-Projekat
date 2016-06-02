@@ -229,4 +229,10 @@ public interface PropisService extends CrudService<Propisi> {
 	 * @return obican, citljiv .xml dokument
 	 */
 	public Document decryptXml(Document doc, PrivateKey privateKey);
+	
+	/**
+	 * Brisanje iz baze propisa koji je odbijen prilikom sednice
+	 * @param docId naziv propisa koji se brise
+	 */
+	public void removePropis(String docId);
 }
