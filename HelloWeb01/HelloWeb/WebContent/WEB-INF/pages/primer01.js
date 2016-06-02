@@ -2,7 +2,7 @@
 	/**
 	 * Url web server na kome se nalazi aplikacija
 	 */
-	var serverUrl = "https://localhost:8443/HelloWeb/";
+	var serverUrl = "//localhost:8443/HelloWeb/";
 
 	/**
 	 * Ovo je kontroler za logovanje i registraciju korisnika sistema
@@ -231,7 +231,7 @@
 		$http.defaults.headers.common.Authorization = 'Bearer '
 			+ localStorage.getItem('key');
 		//posto imamo token, proveravamo koja je rola, ako je obican gradjanin, onda dovidjenja!
-		$http.get('http://localhost:8080/HelloWeb/api/role')
+		$http.get(serverUrl+'/api/role')
 		.success(function(data)
 		{
 			if(data.role === 'gradjanin')

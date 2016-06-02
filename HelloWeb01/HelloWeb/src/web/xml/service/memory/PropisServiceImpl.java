@@ -156,7 +156,7 @@ public class PropisServiceImpl implements PropisService {
 		queryDefinition.setCriteria(criteria);
 		
 		// Postavljanje kolekcije u kojoj se pretražuje
-		String collId = "/skupstina/safePropisi";
+		String collId = "/skupstina/notSafePropisi";
 		queryDefinition.setCollections(collId);
 		
 		// Izvršavanje pretrage

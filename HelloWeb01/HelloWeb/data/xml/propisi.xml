@@ -91,4 +91,15 @@ Saule ... , ostendit quod hoc quidem ... hoc quod dixit, ... potuit adiutorium m
             </ns3:Glava>
         </ns3:Deo>
     </propis>
+    <propis ID="920321">
+        <ns3:Naziv>dasfdadafdasfdafdsadsa</ns3:Naziv>
+        <ns3:Deo ID="612330">
+            <ns3:Naziv>ase</ns3:Naziv>
+            <ns2:Clan ID="372147">
+                <ns2:Opis>dadadcyd dsafa a fd afa dsaf a  af sa dafdad da adf aas f af afa</ns2:Opis>
+                <ns2:Naziv>fdasfdas</ns2:Naziv>
+                <ns2:Sadrzaj/>
+            </ns2:Clan>
+        </ns3:Deo>
+    </propis>
 </propisi>
