@@ -1,6 +1,7 @@
 package web.xml.service;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.PrivateKey;
 import java.security.cert.Certificate;
@@ -235,4 +236,13 @@ public interface PropisService extends CrudService<Propisi> {
 	 * @param docId naziv propisa koji se brise
 	 */
 	public void removePropis(String docId);
+	
+	
+	/**
+	 * Pamtimo pure xml, bez enkripcije i potpisa, radi pretrage sadrzaja i metapodataka
+	 * @param f xml fajl koji se pamti
+	 * @throws JAXBException 
+	 * @throws FileNotFoundException 
+	 */
+	public void saveWithoutEncrypt(File f) throws JAXBException, FileNotFoundException;
 }

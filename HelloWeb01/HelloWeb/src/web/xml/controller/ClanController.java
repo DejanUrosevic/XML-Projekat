@@ -350,10 +350,13 @@ public class ClanController {
 		
 		
 		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
+		
 		// jos uvek ne potpisan propis
-
 		propisSer.marshallPropis(propisi.getPropisi().get(propisi.getPropisi().size() - 1),
 				new File("data\\xml\\potpisPropis.xml"));
+		
+		//radi pretrage po sadrzaju i metapodacima, pamtimo neenkrpitovan i nepotpisan propis
+		propisSer.saveWithoutEncrypt(new File("data\\xml\\potpisPropis.xml"));
 		
 		propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
 				"", korisnik.getAlias());

@@ -1071,4 +1071,26 @@ public class PropisServiceImpl implements PropisService {
 		
 	}
 
+	@Override
+	public void saveWithoutEncrypt(File f) throws JAXBException, FileNotFoundException {
+		DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37", "tim37", "tim37",
+				Authentication.valueOf("DIGEST"));
+		XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+
+		Propisi propisi = unmarshall(new File("./data/xml/propisi.xml"));
+		// svaki novi propis ce imati svoje ime kao naziv xml fajla
+		String docId = propisi.getPropisi().get(propisi.getPropisi().size() - 1).getNaziv().replaceAll("\\s", "")
+				+ "notSafe.xml";
+		String collId = "/skupstina/notSafePropisi";
+
+		InputStreamHandle handle = new InputStreamHandle(new FileInputStream(f.getAbsolutePath()));
+		DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+		metadata.getCollections().add(collId);
+
+		xmlManager.write(docId, metadata, handle);
+
+		client.release();
+		
+	}
+
 }
