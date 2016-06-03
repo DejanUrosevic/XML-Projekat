@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
     targetNamespace="http://www.parlament.gov.rs/propis"
-    xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:pro="http://www.parlament.gov.rs/propis">
+    xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:pro="http://www.parlament.gov.rs/propis"
+    xmlns:aman="http://www.parlament.gov.rs/amandman">
 
     <xs:import namespace="http://www.parlament.gov.rs/clan" schemaLocation="clan.xsd"/>
+    <xs:import namespace="http://www.parlament.gov.rs/amandman" schemaLocation="amandman.xsd"/>
     <xs:element name="Propis">
         <xs:complexType>
             <xs:sequence>
@@ -27,8 +29,10 @@
                         <xs:attribute name="ID" type="xs:positiveInteger" use="required"/>
                     </xs:complexType>
                 </xs:element>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="aman:Amandman"/>
             </xs:sequence>
             <xs:attribute name="ID" type="xs:positiveInteger"/>
+            <xs:attribute name="Datum" type="xs:date"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

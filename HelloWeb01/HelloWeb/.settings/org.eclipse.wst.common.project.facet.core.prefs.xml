@@ -1,7 +1,7 @@
 <root>
   <facet id="jpt.jaxb">
     <node name="classgen">
-      <attribute name="package" value="web.xml.crl"/>
+      <attribute name="package" value="jaxb.from.xsd"/>
     </node>
   </facet>
 </root>

@@ -32,6 +32,7 @@
                 <xs:element maxOccurs="unbounded" minOccurs="0" ref="aman:Amandman"/>
             </xs:sequence>
             <xs:attribute name="ID" type="xs:positiveInteger"/>
+            <xs:attribute name="Datum" type="xs:date"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>
