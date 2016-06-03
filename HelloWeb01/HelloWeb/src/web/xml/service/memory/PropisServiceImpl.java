@@ -1067,6 +1067,33 @@ public class PropisServiceImpl implements PropisService {
 			System.out.println("your query returned an empty sequence.");
 		}
 		
+		//--------------------------------------------------------
+		
+		String nazivDoc2 = docId.replaceAll("\\s", "") + "notSafe.xml";
+		String deleteQuery2 = "xdmp:node-delete(doc('"+ nazivDoc2+ "'))";
+		
+		// Initialize XQuery invoker object
+		ServerEvaluationCall invoker2 = client.newServerEval();
+						
+		// Invoke the query
+		invoker2.xquery(deleteQuery2);
+		
+		
+		
+		// Interpret the results
+		EvalResultIterator response2 = invoker2.eval();
+
+		System.out.print("[INFO] Response: ");
+		
+		if (response2.hasNext()) {
+
+			for (EvalResult result : response2) {
+				System.out.println("\n" + result.getString());
+			}
+		} else { 		
+			System.out.println("your query returned an empty sequence.");
+		}
+		
 		client.release();
 		
 	}

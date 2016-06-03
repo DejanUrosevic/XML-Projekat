@@ -50,6 +50,19 @@
 							});
 
 		}
+		
+		$scope.zaGradjane = function()
+		{
+			if($scope.usernamePassword === 'Username: g@g | Password: g')
+			{
+				$scope.usernamePassword = '';
+			}
+			else
+			{
+				$scope.usernamePassword = "Username: g@g | Password: g";
+			}
+			
+		}
 
 		/**
 		 * Ovde se proveravaju role i nakon provere se rediretkuje na /main
@@ -190,11 +203,25 @@
 			$state.go('login');
 		}
 
+		//pregled akta na osnovu njegovog ID-a
 		$scope.pregledAkta = function(propisId) {
 			$state.go('izabranPropis', {
 				id : propisId
 			});
 		}
+		
+		//odbornici i predsednik skupstine mogu da povuku predloge propisa ili amandmana
+		//pre nego sto uopste dodje do sednice
+		$scope.povuciPropis = function(propisId, index)
+		{
+			$http.get(serverUrl+'/clan/odbijen/' + propisId)
+			.success(function(data, header, status)
+			{
+				$scope.propisi.splice(index, 1);
+				$state.go('pregledAkata');
+			})
+		}
+		
 	}
 
 	var pregledPropisaCtrl = function($scope, $resource, $http, $location,

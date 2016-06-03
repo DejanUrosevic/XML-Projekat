@@ -12,17 +12,27 @@
 	<div class="main_body">
 		<div id="tableContainer-1">
 			<div id="tableContainer-2">
-			<br/>
+				<br />
 				<h2 style="text-align: center; color: #0033cc;">
-					<u>Svi postojeci akti </u> 
+					<u>Svi postojeci akti </u>
 				</h2>
 				<br />
 				<hr />
 				<br />
 				<table id="myTable" style="border: 1px solid black;">
 					<tr ng-repeat="propis in propisi">
-						<td class="sredina"> Pregled propisa <img src="css/images/right.jpg" height="25" /></td>
-						<td class="sredina"> <u><b> <a ng-click="pregledAkta(propis.id)"> {{propis.naziv}} </a> </b> </u> </td>
+						<td class="sredina">Pregled propisa <img
+							src="css/images/right.jpg" height="25" /></td>
+						<td class="sredina"><u><b> <a
+									ng-click="pregledAkta(propis.id)"> {{propis.naziv}} </a>
+							</b> </u></td>
+						<td ng-controller="mainPageCtrl" class="sredina"><button
+								ng-if="rolaUser.vrsta === 'odbornik' || rolaUser.vrsta === 'predsednik skupstine'"
+								class="buttonSredina" type="button"
+								style="background-color: transparent; border-color: transparent;"
+								ng-click="povuciPropis(propis.id, $index)">
+								<img src="css/images/reject.ico" height="28" />
+							</button></td>
 					</tr>
 				</table>
 			</div>
