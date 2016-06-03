@@ -286,8 +286,16 @@
 		}
 		
 		$scope.zavrsiAmandman = function() {
-
-			$scope.clan = JSON.parse($scope.selektovaniClan);
+			$http.post(serverUrl + 'amandman/novi', {
+				propisId : $scope.propisProba.id,
+				clanId : $scope.clan.id,
+				clanTekst : $scope.clan.sadrzaj.tekst[0],
+				amandmanObrazlozenje : $scope.amandman.obrazlozenje
+			});
+			
+			
+			
+			
 			
 		}
 		

@@ -62,7 +62,7 @@ public class Amandman {
     protected String resenje;
     @XmlElement(name = "Obrazlozenje", namespace = "http://www.parlament.gov.rs/amandman", required = true)
     protected String obrazlozenje;
-    @XmlElement(name = "Clan", namespace = "http://www.parlament.gov.rs/clan", required = true)
+    @XmlElement(name = "Clan", namespace = "http://www.parlament.gov.rs/clan")
     protected Clan clan;
     @XmlAttribute(name = "Datum")
     @XmlSchemaType(name = "date")

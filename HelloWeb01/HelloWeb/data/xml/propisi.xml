@@ -31,6 +31,14 @@
                 </ns2:Clan>
             </ns4:Glava>
         </ns4:Deo>
+        <ns3:Amandman Datum="2016-06-03+02:00" Mesto="Novi Sad" ID="658167" Podnosilac="dw dw">
+            <ns3:Resenje>aaaaaaaaaaaaaaaaaaaaaa</ns3:Resenje>
+            <ns3:Obrazlozenje>eeeeeeeeeeeeeeeeeee</ns3:Obrazlozenje>
+        </ns3:Amandman>
+        <ns3:Amandman Datum="2016-06-03+02:00" Mesto="Novi Sad" ID="766289" Podnosilac="dw dw">
+            <ns3:Resenje>ejejejejeje</ns3:Resenje>
+            <ns3:Obrazlozenje>jejejejejejeje</ns3:Obrazlozenje>
+        </ns3:Amandman>
     </propis>
     <propis ID="851046">
         <ns4:Naziv>fq</ns4:Naziv>
