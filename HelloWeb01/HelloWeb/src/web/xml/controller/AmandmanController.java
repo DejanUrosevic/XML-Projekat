@@ -54,7 +54,10 @@ public class AmandmanController {
 		
 		
 		amandmanSer.dodajAmandman(postPayload, korisnik);
-		
+		propisSer.signPropis(new File("data\\xml\\amandman.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
+				"", korisnik.getAlias());
+
+		amandmanSer.encryptXml(new File("data\\xml\\amandman.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
 //		Propis noviPropis = propisSer.dodajPropis(postPayload);
 //
 //		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));

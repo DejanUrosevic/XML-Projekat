@@ -1,5 +1,51 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns3:Amandman xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" Datum="2016-06-03+02:00" Mesto="Novi Sad" ID="766289" Podnosilac="dw dw">
-    <ns3:Resenje>ejejejejeje</ns3:Resenje>
-    <ns3:Obrazlozenje>jejejejejejeje</ns3:Obrazlozenje>
-</ns3:Amandman>
+<?xml version="1.0" encoding="UTF-8"?><ns3:Amandman xmlns:ns3="http://www.parlament.gov.rs/amandman" xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" Datum="2016-06-03+02:00" ID="178512" Mesto="Novi Sad" Podnosilac="dw dw"><xenc:EncryptedData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" Type="http://www.w3.org/2001/04/xmlenc#Content"><xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"/><ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:KeyName>Kriptovani tajni kljuc</ds:KeyName>
+<xenc:EncryptedKey xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"><xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-1_5" xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"/><xenc:CipherData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"><xenc:CipherValue xmlns:xenc="http://www.w3.org/2001/04/xmlenc#">DdzvGYLCtvtdbL5R2x2EaXgY1W55e68GDux53NMnCsm8VJOCQZzwDgzHcrjo+aR2LaJ9NT37YAbc
+hNb1lyFztLXlGDlLp80rXAVvQZ2ZSt7+BEwXbdacuRrd334yUfky7nbqAR+PF71Cr7iX5JP573XA
+NQJmNNbaQECJk6miWww=</xenc:CipherValue></xenc:CipherData></xenc:EncryptedKey></ds:KeyInfo><xenc:CipherData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"><xenc:CipherValue xmlns:xenc="http://www.w3.org/2001/04/xmlenc#">+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
+u30=</xenc:CipherValue></xenc:CipherData></xenc:EncryptedData></ns3:Amandman>
