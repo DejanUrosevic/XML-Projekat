@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<propisi xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/propis">
+<propisi xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" xmlns:ns4="http://www.parlament.gov.rs/propis">
     <propis ID="511524">
-        <ns3:Naziv>Zakon o Zakonu</ns3:Naziv>
-        <ns3:Deo ID="242150">
-            <ns3:Naziv>Deo prvi</ns3:Naziv>
-            <ns3:Glava ID="42132">
-                <ns3:Naziv>Glava 1</ns3:Naziv>
+        <ns4:Naziv>Zakon o Zakonu</ns4:Naziv>
+        <ns4:Deo ID="242150">
+            <ns4:Naziv>Deo prvi</ns4:Naziv>
+            <ns4:Glava ID="42132">
+                <ns4:Naziv>Glava 1</ns4:Naziv>
                 <ns2:Clan ID="88194">
                     <ns2:Opis>Nunc diam elit, varius tempus auctor at, maximus eu ante. Cras quis tellus nisl. Proin at semper tellus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis cursus egestas leo, quis pulvinar odio mollis et. Nam posuere maximus maximus. Curabitur malesuada tellus eleifend, iaculis leo quis, vestibulum orci. Duis pretium a urna ac vestibulum.</ns2:Opis>
                     <ns2:Naziv>Clan 1</ns2:Naziv>
@@ -13,12 +13,12 @@
                         <ns2:Tekst>Ut vel velit sed felis sollicitudin imperdiet at a felis. Suspendisse libero felis, iaculis sit amet elementum id, tincidunt eu augue. Nunc a nulla dapibus, tempor dui pellentesque, vestibulum lorem. Nunc in aliquet eros, quis tincidunt tortor. Integer eget magna ut purus condimentum sollicitudin et dapibus massa. Duis lacinia vulputate elementum. Donec ac diam lacinia nisi accumsan suscipit. Nunc ac diam ut arcu ultrices fermentum sit amet in odio. Pellentesque ut tortor vitae lectus pretium commodo nec ac lacus. Quisque nulla leo, laoreet id commodo vitae, pellentesque sit amet ipsum. Pellentesque a quam in turpis lacinia interdum eget ut dui. Mauris vel erat leo. Duis volutpat lacus sed enim vestibulum aliquam. Fusce ultrices, ligula eu egestas vehicula, urna urna imperdiet turpis, id porta lacus tortor nec ligula. Vestibulum euismod lacus enim, ut efficitur ante vestibulum et. Phasellus nec dictum justo.</ns2:Tekst>
                     </ns2:Sadrzaj>
                 </ns2:Clan>
-            </ns3:Glava>
-        </ns3:Deo>
-        <ns3:Deo ID="123527">
-            <ns3:Naziv>Deo drugi</ns3:Naziv>
-            <ns3:Glava ID="159870">
-                <ns3:Naziv>Glava 2</ns3:Naziv>
+            </ns4:Glava>
+        </ns4:Deo>
+        <ns4:Deo ID="123527">
+            <ns4:Naziv>Deo drugi</ns4:Naziv>
+            <ns4:Glava ID="159870">
+                <ns4:Naziv>Glava 2</ns4:Naziv>
                 <ns2:Clan ID="719902">
                     <ns2:Opis>Sed ut pharetra enim. Pellentesque varius enim quam, nec luctus nisl lobortis ac. Ut vitae mi vitae elit interdum hendrerit id quis urna. In luctus sapien eu mauris porttitor, eu rhoncus velit fringilla. Fusce ut sollicitudin augue. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In eleifend ligula vel orci fringilla tristique. Pellentesque a consectetur orci, sed elementum magna.</ns2:Opis>
                     <ns2:Naziv>Clan 2</ns2:Naziv>
@@ -29,13 +29,13 @@
                         </ns2:Stav>
                     </ns2:Sadrzaj>
                 </ns2:Clan>
-            </ns3:Glava>
-        </ns3:Deo>
+            </ns4:Glava>
+        </ns4:Deo>
     </propis>
     <propis ID="851046">
-        <ns3:Naziv>fq</ns3:Naziv>
-        <ns3:Deo ID="59219">
-            <ns3:Naziv>fqwfw</ns3:Naziv>
+        <ns4:Naziv>fq</ns4:Naziv>
+        <ns4:Deo ID="59219">
+            <ns4:Naziv>fqwfw</ns4:Naziv>
             <ns2:Clan ID="666757">
                 <ns2:Opis>fwqf</ns2:Opis>
                 <ns2:Naziv>wqffwqfwq</ns2:Naziv>
@@ -43,12 +43,12 @@
                     <ns2:Tekst>wqfqwfwfw</ns2:Tekst>
                 </ns2:Sadrzaj>
             </ns2:Clan>
-        </ns3:Deo>
+        </ns4:Deo>
     </propis>
     <propis ID="303881">
-        <ns3:Naziv>ergerge</ns3:Naziv>
-        <ns3:Deo ID="865565">
-            <ns3:Naziv>egrg</ns3:Naziv>
+        <ns4:Naziv>ergerge</ns4:Naziv>
+        <ns4:Deo ID="865565">
+            <ns4:Naziv>egrg</ns4:Naziv>
             <ns2:Clan ID="630999">
                 <ns2:Opis>gergegergeger</ns2:Opis>
                 <ns2:Naziv>ergerggre</ns2:Naziv>
@@ -56,14 +56,14 @@
                     <ns2:Tekst>rgerggergregerge</ns2:Tekst>
                 </ns2:Sadrzaj>
             </ns2:Clan>
-        </ns3:Deo>
+        </ns4:Deo>
     </propis>
     <propis ID="978750">
-        <ns3:Naziv>xxxxxx</ns3:Naziv>
-        <ns3:Deo ID="920090">
-            <ns3:Naziv>egregergr</ns3:Naziv>
-            <ns3:Glava ID="139231">
-                <ns3:Naziv>gergeer</ns3:Naziv>
+        <ns4:Naziv>xxxxxx</ns4:Naziv>
+        <ns4:Deo ID="920090">
+            <ns4:Naziv>egregergr</ns4:Naziv>
+            <ns4:Glava ID="139231">
+                <ns4:Naziv>gergeer</ns4:Naziv>
                 <ns2:Clan ID="812053">
                     <ns2:Opis>regegergerfwefwefe</ns2:Opis>
                     <ns2:Naziv>gg</ns2:Naziv>
@@ -71,7 +71,20 @@
                         <ns2:Tekst>g rgre gr gergergergre e</ns2:Tekst>
                     </ns2:Sadrzaj>
                 </ns2:Clan>
-            </ns3:Glava>
-        </ns3:Deo>
+            </ns4:Glava>
+        </ns4:Deo>
+    </propis>
+    <propis ID="239465">
+        <ns4:Naziv>Propis</ns4:Naziv>
+        <ns4:Deo ID="789096">
+            <ns4:Naziv>Deo</ns4:Naziv>
+            <ns2:Clan ID="697837">
+                <ns2:Opis>opis</ns2:Opis>
+                <ns2:Naziv>Clan</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>Bice tekst</ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </ns4:Deo>
     </propis>
 </propisi>

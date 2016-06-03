@@ -15,8 +15,8 @@
                 <xs:element ref="clan:Clan"/>
             </xs:sequence>
             <xs:attribute name="Datum" type="xs:date"/>
+            <xs:attribute name="RedniBroj" type="xs:string"/>
             <xs:attribute name="Mesto" type="xs:string"/>
-            <xs:attribute name="Redni_broj" type="xs:int"/>
             <xs:attribute name="ID" type="xs:positiveInteger"/>
             <xs:attribute name="Podnosilac" type="xs:string"/>
         </xs:complexType>

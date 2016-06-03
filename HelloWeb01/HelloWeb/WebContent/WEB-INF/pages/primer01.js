@@ -177,6 +177,9 @@
 		$scope.addAkt = function() {
 			$state.go('dodPropis');
 		};
+		$scope.addAmandman = function() {
+			$state.go('dodAmandman');
+		};
 
 		$scope.sednica = function() {
 			$state.go('sednica');
@@ -184,8 +187,7 @@
 
 	}
 
-	var sviAktiCtrl = function($scope, $resource, $http, $location,
-			$stateParams, $state) {
+	var sviAktiCtrl = function($scope, $resource, $http, $location, $stateParams, $state) {
 		// JAKO JAKO BITNO DA SE svaki put prilikom slanja request-a posalje i
 		// token
 		// mora opet da se postavlja Authorization header!!!
@@ -223,6 +225,73 @@
 				$state.go('pregledAkata');
 			})
 		}
+		
+	}
+	
+	var addAmandmanCtrl = function($scope, $resource, $http, $location, $stateParams, $state) {
+		// JAKO JAKO BITNO DA SE svaki put prilikom slanja request-a posalje i
+		// token
+		// mora opet da se postavlja Authorization header!!!
+		$http.defaults.headers.common.Authorization = 'Bearer '
+				+ localStorage.getItem('key');
+
+		/*
+		 * proverimo da li se u localStorage nalazi token, ako se ne nalazi onda
+		 * treba prebaciti odmah na login posto nema token kod sebe
+		 */
+		if (localStorage.getItem('key') !== null) {
+			$http.get(serverUrl+'/clan/all').then(
+					function(response) {
+						$scope.propisi = response.data.propisi;
+					});
+		} else {
+			$state.go('login');
+		}
+		
+
+		$scope.pronadji = function(selektovaniPropis) {
+			if (localStorage.getItem('key') === null) {
+				mainService.logOut();
+			}
+			
+			console.log(selektovaniPropis);
+			$scope.propisProba = JSON.parse(selektovaniPropis);
+			
+			$scope.listaClanova = [];
+			
+			for (var i = 0; i < $scope.propisProba.deo.length; i++) {
+				var deo =  $scope.propisProba.deo[i];
+				if(deo.glava !== null && deo.glava !== undefined && deo.glava.length != 0){
+					var glave = deo.glava;
+					for (var j = 0; j < glave.length; j++) {
+						for (var k = 0; k < glave[j].clan.length; k++) {
+						$scope.listaClanova.push(glave[j].clan[k]);
+						}
+					}
+				}
+				else{
+					
+					for (var j = 0; j < deo.clan.length; j++) {
+						$scope.listaClanova.push(deo.clan[j]);
+					}
+				}
+			}
+
+		}
+
+		$scope.pronadjiClan = function(selektovaniClan) {
+
+			$scope.clan = JSON.parse($scope.selektovaniClan);
+			
+		}
+		
+		$scope.zavrsiAmandman = function() {
+
+			$scope.clan = JSON.parse($scope.selektovaniClan);
+			
+		}
+		
+		
 		
 	}
 
@@ -595,6 +664,7 @@
 	app.controller('sviAktiCtrl', sviAktiCtrl);
 	app.controller('pretragaAkataCtrl', pretragaAkataCtrl);
 	app.controller('addPropisCtrl', addPropisCtrl);
+	app.controller('addAmandmanCtrl', addAmandmanCtrl);
 	app.controller('pregledPropisaCtrl', pregledPropisaCtrl);
 	app.controller('sednicaCtrl', sednicaCtrl);
 	app.controller('procesSedniceCtrl', procesSedniceCtrl);
@@ -648,6 +718,10 @@
 			url : '/noviPropis',
 			templateUrl : 'dodaj-propis.html',
 			controller : 'addPropisCtrl'
+		}).state('dodAmandman', {
+			url : '/noviAmandman',
+			templateUrl : 'dodaj-amandman.html',
+			controller : 'addAmandmanCtrl'
 		}).state('opcije', {
 			url : '/opcije',
 			templateUrl : 'opcije.html',

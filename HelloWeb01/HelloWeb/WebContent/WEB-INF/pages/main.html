@@ -42,11 +42,15 @@
 								style="background-color: transparent; border-color: transparent;">
 								<img src="css/images/addAkt.png" height="50" />
 							</button></td>
-						<td class="sredina" ng-if="rolaUser.vrsta === 'odbornik' || rolaUser.vrsta === 'predsednik skupstine'"><button
+							
+							
+						<td class="sredina" ng-if="rolaUser.vrsta === 'odbornik' || rolaUser.vrsta === 'predsednik skupstine'" ng-click="addAmandman()"><button
 								type="button"
 								style="background-color: transparent; border-color: transparent;">
 								<img src="css/images/amandman.png" height="50" />
 							</button></td>
+							
+							
 						<td class="sredina" ng-if="rolaUser.vrsta === 'predsednik skupstine'"><button
 								type="button"
 								style="background-color: transparent; border-color: transparent;" ng-click="sednica()">

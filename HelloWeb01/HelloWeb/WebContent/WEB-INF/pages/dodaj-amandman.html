@@ -1,0 +1,98 @@
+<div id="header" ng-controller="logInCtrl">
+	<h1>IssgNS</h1>
+	<ul>
+		<li><a ui-sref="main">Nazad</a></li>
+		<li><a href="#">Products</a></li>
+		<li><a href="#">Services</a></li>
+		<li><a href="#">About</a></li>
+		<li><a ng-click="logout()">Odjavi se </a></li>
+	</ul>
+
+</div>
+<div id="main">
+	<div class="main_body">
+		<div id="tableContainer-1">
+			<div id="tableContainer-2">
+				<br />
+				<h2 style="text-align: center; color: #0033cc;">
+					<u> Dodavanje novog amandmana </u>
+				</h2>
+				<br />
+				<hr />
+				<br />
+				<form name="myForm" method="POST">
+					<table id="myTable">
+						<tr>
+							<th class="sredina">Izaberite propis na koji želite da priložite amandman</th>					
+						</tr>
+						<tr>
+							<td class="sredina">
+								<select ng-model="amandman.propis" ng-change="pronadji(amandman.propis)">
+									<option ng-repeat="propis in propisi" value="{{propis}}">
+										{{propis.naziv}}
+									</option>
+									<option value="">- Izaberite propis -</option>
+								</select>
+							</td>
+						</tr>
+							
+						<tr>
+							<th class="sredina">Izaberite clan na koji želite da priložite amandman</th>					
+						</tr>
+						
+<!-- 						<tr ng-show="amandman.propis.deo.glava != null"> -->
+<!-- 							<td class="sredina"> -->
+<!-- 								<select ng-model="amandman.clan"> -->
+<!-- 									<option ng-repeat="clan in amandman.propis.deo.glava.clan" value="{{clan.id}}"> -->
+<!-- 										{{clan.naziv}} -->
+<!-- 									</option> -->
+<!-- 									<option value="">- Izaberite clan -</option> -->
+<!-- 								</select> -->
+<!-- 							</td> -->
+<!-- 						</tr> -->
+						
+<!-- 						<tr ng-show="amandman.propis.deo.glava == null"> -->
+							<tr>
+							<td class="sredina">
+								<select ng-model="selektovaniClan" ng-change="pronadjiClan(selektovaniClan)">
+									<option ng-repeat="clan in listaClanova" value="{{clan}}" >
+										{{clan.naziv}}
+									</option>
+									<option value="">- Izaberite clan -</option>
+								</select>
+							</td>
+						</tr>
+					{{clan.opis}}
+					
+						<tr>
+							<th class="sredina">Unesite kako bi trebalo da izgleda dati član</th>					
+						</tr>
+						<tr>
+							<td class="sredina"><textarea type="text" size="30"
+								ng-model="clan.sadrzaj.tekst[0]" required></textarea>
+							</td>
+						</tr>
+						<tr>
+							<th class="sredina">Unesite obrazloženje</th>					
+						</tr>
+						<tr>
+							<td class="sredina"><textarea type="text" size="30"
+								ng-model="amandman.obrazlozenje" required></textarea>
+							</td>
+						</tr>
+						
+						<tr>
+							<td style="text-align: center;">
+								<button type="submit"
+									style="background-color: transparent; border-color: transparent;"
+									ng-click="zavrsiAmandman()">
+									<img src="css/images/Next-icon.png" height="35" />
+								</button>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
