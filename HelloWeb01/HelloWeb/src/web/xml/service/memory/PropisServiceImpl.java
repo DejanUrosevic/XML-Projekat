@@ -106,32 +106,30 @@ public class PropisServiceImpl implements PropisService {
 
 	@Override
 	public Propisi findAll() throws JAXBException {
-		/*
-		 * DatabaseClient client =
-		 * DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37"
-		 * ,"tim37", "tim37", Authentication.valueOf("DIGEST"));
-		 * 
-		 * XMLDocumentManager xmlManager = client.newXMLDocumentManager();
-		 * 
-		 * // A handle to receive the document's content. DOMHandle content =
-		 * new DOMHandle();
-		 * 
-		 * DocumentMetadataHandle metadata = new DocumentMetadataHandle();
-		 * 
-		 * // A document URI identifier. String docId = "/propisi.xml";
-		 * 
-		 * xmlManager.read(docId, metadata, content);
-		 * 
-		 * // Retrieving a document node form DOM handle. Document doc =
-		 * content.get();
-		 */
-		JAXBContext context = JAXBContext.newInstance(Propisi.class);
+		
+		  DatabaseClient client =
+		  DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37"
+		  ,"tim37", "tim37", Authentication.valueOf("DIGEST"));
+		  
+		  XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+		  
+		  DOMHandle content = new DOMHandle();
+		  
+		  DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+		  
+		  String docId = "/propisi.xml";
+		  
+		  xmlManager.read(docId, metadata, content);
+		  
+		  Document doc = content.get();
+		 
+		 JAXBContext context = JAXBContext.newInstance(Propisi.class);
 
 		// Unmarshaller je objekat zadu�en za konverziju iz XML-a u objektni
 		// model
-		Unmarshaller unmarshaller = context.createUnmarshaller();
+		 Unmarshaller unmarshaller = context.createUnmarshaller();
 
-		return (Propisi) unmarshall(new File("./data/xml/propisi.xml"));
+		 return (Propisi) unmarshaller.unmarshal(doc);
 
 	}
 	
@@ -232,6 +230,23 @@ public class PropisServiceImpl implements PropisService {
 		metadata.getCollections().add(collId);
 
 		xmlManager.write(docId, metadata, handle);
+		
+		
+		
+		
+		//-------- ovo je save za /propisi.xml
+		
+		XMLDocumentManager xmlManager2 = client.newXMLDocumentManager();
+
+		// svaki novi propis ce imati svoje ime kao naziv xml fajla
+		String docId2 = "/propisi.xml";
+		String collId2 = "/skupstina/propisi";
+
+		InputStreamHandle handle2 = new InputStreamHandle(new FileInputStream(new File("./data/xml/propisi.xml").getAbsolutePath()));
+		DocumentMetadataHandle metadata2 = new DocumentMetadataHandle();
+		metadata2.getCollections().add(collId2); 
+
+		xmlManager.write(docId2, metadata2, handle2);
 
 		client.release();
 	}

@@ -45,4 +45,33 @@
             </ns2:Clan>
         </ns3:Deo>
     </propis>
+    <propis ID="303881">
+        <ns3:Naziv>ergerge</ns3:Naziv>
+        <ns3:Deo ID="865565">
+            <ns3:Naziv>egrg</ns3:Naziv>
+            <ns2:Clan ID="630999">
+                <ns2:Opis>gergegergeger</ns2:Opis>
+                <ns2:Naziv>ergerggre</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>rgerggergregerge</ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </ns3:Deo>
+    </propis>
+    <propis ID="978750">
+        <ns3:Naziv>xxxxxx</ns3:Naziv>
+        <ns3:Deo ID="920090">
+            <ns3:Naziv>egregergr</ns3:Naziv>
+            <ns3:Glava ID="139231">
+                <ns3:Naziv>gergeer</ns3:Naziv>
+                <ns2:Clan ID="812053">
+                    <ns2:Opis>regegergerfwefwefe</ns2:Opis>
+                    <ns2:Naziv>gg</ns2:Naziv>
+                    <ns2:Sadrzaj>
+                        <ns2:Tekst>g rgre gr gergergergre e</ns2:Tekst>
+                    </ns2:Sadrzaj>
+                </ns2:Clan>
+            </ns3:Glava>
+        </ns3:Deo>
+    </propis>
 </propisi>

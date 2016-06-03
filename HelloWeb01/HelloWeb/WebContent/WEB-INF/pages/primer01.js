@@ -17,7 +17,9 @@
 		$scope.userName = '';
 		$scope.passWord = '';
 		$scope.rolaUser = null;
-
+		
+		
+	
 		// ovde ces nakon sto povuces podatke iz geta login-a dobiti token
 		// medjutim, ako username i pass ne postoje, token se ne stvori i onda
 		// pukne u klasi ApiController
