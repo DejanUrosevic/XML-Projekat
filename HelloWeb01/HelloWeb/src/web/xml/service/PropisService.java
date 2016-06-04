@@ -8,6 +8,7 @@ import java.security.cert.Certificate;
 
 import javax.crypto.SecretKey;
 import javax.xml.bind.JAXBException;
+import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -47,8 +48,9 @@ public interface PropisService extends CrudService<Propisi> {
 	 * @param requestData
 	 *            podaci sa klijenta
 	 * @return
+	 * @throws DatatypeConfigurationException 
 	 */
-	public Propis dodajPropis(String requestData);
+	public Propis dodajPropis(String requestData) throws DatatypeConfigurationException;
 
 	/**
 	 * Dodavanje novog dela na postojeci propi
@@ -245,4 +247,8 @@ public interface PropisService extends CrudService<Propisi> {
 	 * @throws FileNotFoundException 
 	 */
 	public void saveWithoutEncrypt(File f) throws JAXBException, FileNotFoundException;
+	
+	public void savePropisiXML() throws FileNotFoundException;
+	
+	public Propis unmarshallDocumentPropis(Document propis) throws JAXBException;
 }

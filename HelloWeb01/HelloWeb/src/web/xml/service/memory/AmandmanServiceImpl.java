@@ -40,6 +40,9 @@ import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.InputStreamHandle;
 
 import jaxb.from.xsd.Amandman;
+import jaxb.from.xsd.Clan;
+import jaxb.from.xsd.Clan.Sadrzaj;
+import jaxb.from.xsd.Clan.Sadrzaj.Stav;
 import jaxb.from.xsd.Propis;
 import web.xml.model.Propisi;
 import web.xml.model.User;
@@ -117,10 +120,41 @@ public class AmandmanServiceImpl implements AmandmanService{
 
 
 	@Override
-	public void dodajAmandman(String postPayLoad, User korisnik) throws DatatypeConfigurationException, JAXBException {
+	public void dodajAmandman(String postPayLoad, User korisnik) throws DatatypeConfigurationException, JAXBException, IOException {
 		JSONObject json = new JSONObject(postPayLoad);
+		
+		
 		Amandman a = new Amandman();
-		a.setResenje(json.getString("clanTekst"));
+		
+		if(json.getString("clanTekst").equals(""))
+		{
+			Clan clan = new Clan();
+			Sadrzaj sadrzaj = new Sadrzaj();
+			Stav stav = new Stav();
+			stav.setRedniBroj(json.getInt("stavRedniBroj"));
+			stav.setTekst(json.getString("stavTekst"));
+			a.setResenje(json.getString("stavTekst"));
+			
+			sadrzaj.getStav().add(stav);
+			clan.setSadrzaj(sadrzaj);
+			clan.setID(BigInteger.valueOf(json.getInt("clanId")));
+			a.setClan(clan);
+			
+		}
+		else
+		{
+			Clan clan = new Clan();
+			Sadrzaj sadrzaj = new Sadrzaj();
+			a.setResenje(json.getString("clanTekst"));
+			
+			sadrzaj.getTekst().add(a.getResenje());
+			clan.setSadrzaj(sadrzaj);
+			clan.setID(BigInteger.valueOf(json.getInt("clanId")));
+			a.setClan(clan);
+			
+		}
+		
+		
 		a.setObrazlozenje(json.getString("amandmanObrazlozenje"));
 		
 		GregorianCalendar c = new GregorianCalendar(); 
@@ -135,21 +169,20 @@ public class AmandmanServiceImpl implements AmandmanService{
 		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
 		int propisid = json.getInt("propisId");
 		Propis propis = null;
-//		for (Propis p: propisi.getPropisi()) {
-//			if(p.getID().equals(BigInteger.valueOf(propisid))){
-////				a.setPropis(p);
-//				propis = p;
-//				p.getAmandman().add(a);
-//			
-//				break;
-//			}
-//		}
 		for (int i = 0; i < propisi.getPropisi().size(); i++) {
 			if(propisi.getPropisi().get(i).getID().equals(BigInteger.valueOf(propisid))){
-				propisi.getPropisi().get(i).getAmandman().add(a);
+				propis = propisSer.unmarshallDocumentPropis(propisSer.findPropisById(propisi.getPropisi().get(i).getNaziv()));
+				propis.getAmandman().add(a);
+				
+				propisSer.marshallPropis(propis, new File("data\\xml\\potpisPropis.xml"));
+			//	propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
+			//	propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
+			//			"", korisnik.getAlias());
+			//	propisSer.save(new File("data\\xml\\potpisPropis.xml"));
 				break;
 			}
 		}
+		
 		propisSer.marshall(propisi, new File("./data/xml/propisi.xml"));
 		marshall(a, new File("./data/xml/amandman.xml"));
 		

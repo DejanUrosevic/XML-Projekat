@@ -52,29 +52,46 @@
 <!-- 						</tr> -->
 						
 <!-- 						<tr ng-show="amandman.propis.deo.glava == null"> -->
+							
 							<tr>
-							<td class="sredina">
-								<select ng-model="selektovaniClan" ng-change="pronadjiClan(selektovaniClan)">
-									<option ng-repeat="clan in listaClanova" value="{{clan}}" >
-										{{clan.naziv}}
-									</option>
-									<option value="">- Izaberite clan -</option>
-								</select>
-							</td>
-						</tr>
+								<td class="sredina">
+									<select ng-model="selektovaniClan" ng-change="pronadjiClan(selektovaniClan)">
+										<option ng-repeat="clan in listaClanova" value="{{clan}}" >
+											{{clan.naziv}}
+										</option>
+									</select>
+								</td>
+							</tr>
+							<tr ng-if="clan.sadrzaj.stav.length !== 0 && check === true">
+								<th class="sredina">Izaberite stav</th>					
+							</tr>
+							<tr ng-if="clan.sadrzaj.stav.length !== 0 && check === true">
+								<td class="sredina">
+									<select ng-model="selektovaniStav" ng-change="pronadjiStav(selektovaniStav)">
+										<option ng-repeat="stav in clan.sadrzaj.stav" value="{{stav}}" >
+											{{stav.redniBroj}}
+										</option>
+									</select>
+								</td>
+							</tr>
 					
-						<tr>
-							<th class="sredina">Unesite kako bi trebalo da izgleda dati član</th>					
+						<tr ng-if="check === true">
+							<th class="sredina">Unesite promenu</th>					
 						</tr>
-						<tr>
+						<tr ng-if="clan.sadrzaj.tekst.length !== 0 && check === true">
 							<td class="sredina"><textarea type="text" size="30"
-								ng-model="clan.sadrzaj.tekst[0]" required></textarea>
+								ng-model="clan.sadrzaj.tekst[0]"></textarea>
 							</td>
 						</tr>
-						<tr>
+						<tr ng-if="clan.sadrzaj.stav.length !== 0 && check === true">
+							<td class="sredina"><textarea type="text" size="30"
+								ng-model="stav.tekst"></textarea> 
+							</td>
+						</tr>
+						<tr ng-if="check === true">
 							<th class="sredina">Unesite obrazloženje</th>					
 						</tr>
-						<tr>
+						<tr ng-if="check === true">
 							<td class="sredina"><textarea type="text" size="30"
 								ng-model="amandman.obrazlozenje" required></textarea>
 							</td>

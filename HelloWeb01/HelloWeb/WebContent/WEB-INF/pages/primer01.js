@@ -254,7 +254,7 @@
 				mainService.logOut();
 			}
 			
-			console.log(selektovaniPropis);
+			
 			$scope.propisProba = JSON.parse(selektovaniPropis);
 			
 			$scope.listaClanova = [];
@@ -282,16 +282,49 @@
 		$scope.pronadjiClan = function(selektovaniClan) {
 
 			$scope.clan = JSON.parse($scope.selektovaniClan);
+			$scope.check = true;
+		}
+		
+		$scope.pronadjiStav = function(selektovaniStav) {
+
+			$scope.stav = JSON.parse(selektovaniStav);
 			
 		}
 		
+		
+		
 		$scope.zavrsiAmandman = function() {
-			$http.post(serverUrl + 'amandman/novi', {
-				propisId : $scope.propisProba.id,
-				clanId : $scope.clan.id,
-				clanTekst : $scope.clan.sadrzaj.tekst[0],
-				amandmanObrazlozenje : $scope.amandman.obrazlozenje
-			});
+			if($scope.clan.sadrzaj.tekst.length === 0)
+			{
+				$scope.clan.sadrzaj.tekst[0] = '';
+				$http.post(serverUrl + 'amandman/novi', {
+					propisId : $scope.propisProba.id,
+					clanId : $scope.clan.id,
+					clanTekst : $scope.clan.sadrzaj.tekst[0],
+					stavTekst: $scope.stav.tekst,
+					stavRedniBroj: $scope.stav.redniBroj,
+					amandmanObrazlozenje : $scope.amandman.obrazlozenje
+				})
+				.success(function(data, status, header)
+				{
+					$state.go('main');
+				});
+			}
+			if($scope.stav === undefined)
+			{
+				$http.post(serverUrl + 'amandman/novi', {
+					propisId : $scope.propisProba.id,
+					clanId : $scope.clan.id,
+					clanTekst : $scope.clan.sadrzaj.tekst[0],
+					amandmanObrazlozenje : $scope.amandman.obrazlozenje
+				})
+				.success(function(data, status, header)
+				{
+					$state.go('main');
+				});
+			}
+			
+			
 			
 			
 			

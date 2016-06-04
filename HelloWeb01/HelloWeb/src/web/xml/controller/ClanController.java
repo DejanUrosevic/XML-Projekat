@@ -32,6 +32,7 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -144,6 +145,7 @@ public class ClanController {
 				propisi.getPropisi().remove(p);
 				propisSer.removePropis(p.getNaziv());
 				propisSer.marshall(propisi, new File("./data/xml/propisi.xml"));
+				propisSer.savePropisiXML();
 				return new ResponseEntity<Propis>(HttpStatus.OK);
 			}
 		}
@@ -186,10 +188,11 @@ public class ClanController {
 	 * @throws IOException
 	 * @throws JAXBException
 	 * @throws ServletException 
+	 * @throws DatatypeConfigurationException 
 	 */
 	@RequestMapping(value = "/noviPropis", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> noviPropis(@RequestBody String postPayload, final HttpServletRequest req)
-			throws IOException, JAXBException, ServletException {
+			throws IOException, JAXBException, ServletException, DatatypeConfigurationException {
 		
 		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
 		//ako ne postoji korisnik tj. JWT bacice exception
@@ -358,11 +361,13 @@ public class ClanController {
 		//radi pretrage po sadrzaju i metapodacima, pamtimo neenkrpitovan i nepotpisan propis
 		propisSer.saveWithoutEncrypt(new File("data\\xml\\potpisPropis.xml"));
 		
+		
+		propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
 		propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
 				"", korisnik.getAlias());
 
 		//svaki put se kriptuje javnim kljucem istorijskog arhiva, posto se tamo salju propisi
-		propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
+		
 
 		propisSer.save(new File("data\\xml\\potpisPropis.xml"));
 

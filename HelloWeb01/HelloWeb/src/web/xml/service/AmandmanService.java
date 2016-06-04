@@ -1,6 +1,7 @@
 package web.xml.service;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.cert.Certificate;
 
@@ -15,7 +16,7 @@ import web.xml.model.User;
 
 public interface AmandmanService extends CrudService<Amandman>{
 	
-	public void dodajAmandman(String postPayLoad, User korisnik) throws DatatypeConfigurationException, JAXBException;
+	public void dodajAmandman(String postPayLoad, User korisnik) throws DatatypeConfigurationException, JAXBException, FileNotFoundException, IOException;
 	public Document encrypt(Document doc, SecretKey key, Certificate certificate);
 	public void encryptXml(File xmlDocument, File jks, String nazivCert) throws IOException;
 }

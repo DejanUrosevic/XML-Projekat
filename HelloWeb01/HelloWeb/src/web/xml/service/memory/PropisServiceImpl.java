@@ -24,6 +24,9 @@ import java.security.UnrecoverableKeyException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
 
@@ -33,6 +36,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.FactoryConfigurationError;
@@ -246,7 +252,7 @@ public class PropisServiceImpl implements PropisService {
 		DocumentMetadataHandle metadata2 = new DocumentMetadataHandle();
 		metadata2.getCollections().add(collId2); 
 
-		xmlManager.write(docId2, metadata2, handle2);
+		xmlManager2.write(docId2, metadata2, handle2);
 
 		client.release();
 	}
@@ -258,7 +264,7 @@ public class PropisServiceImpl implements PropisService {
 	}
 
 	@Override
-	public Propis dodajPropis(String requestData) {
+	public Propis dodajPropis(String requestData) throws DatatypeConfigurationException {
 		// TODO Auto-generated method stub
 
 		JSONObject json = new JSONObject(requestData);
@@ -328,6 +334,14 @@ public class PropisServiceImpl implements PropisService {
 		propis.setID(BigInteger.valueOf(getID()));
 		propis.setNaziv(propisNaziv);
 		propis.getDeo().add(deo);
+		
+		GregorianCalendar c = new GregorianCalendar();
+		
+		c.setTime(new Date()); 
+		XMLGregorianCalendar date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+		Calendar calendar = date2.toGregorianCalendar();
+		
+		propis.setDatum(date2);
 
 		return propis;
 	}
@@ -947,9 +961,11 @@ public class PropisServiceImpl implements PropisService {
 			encryptedData.setKeyInfo(keyInfo);
 
 			// trazi se element ciji sadrzaj se kriptuje
-			NodeList odseci = doc.getElementsByTagName("Deo");
-			Element odsek = (Element) odseci.item(0);
-
+		//	NodeList odseci = doc.getElementsByTagName("Deo");
+		//	Element odsek = (Element) odseci.item(0);
+			NodeList odeseci = doc.getDocumentElement().getChildNodes();
+			Element odsek = (Element) doc.getDocumentElement();
+			
 			xmlCipher.doFinal(doc, odsek, true); // kriptuje sa sadrzaj
 
 			return doc;
@@ -1133,6 +1149,41 @@ public class PropisServiceImpl implements PropisService {
 
 		client.release();
 		
+	}
+
+	@Override
+	public void savePropisiXML() throws FileNotFoundException {
+		DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37", "tim37", "tim37",
+				Authentication.valueOf("DIGEST"));
+		
+		XMLDocumentManager xmlManager2 = client.newXMLDocumentManager();
+
+		// svaki novi propis ce imati svoje ime kao naziv xml fajla
+		String docId2 = "/propisi.xml";
+		String collId2 = "/skupstina/propisi";
+
+		InputStreamHandle handle2 = new InputStreamHandle(new FileInputStream(new File("./data/xml/propisi.xml").getAbsolutePath()));
+		DocumentMetadataHandle metadata2 = new DocumentMetadataHandle();
+		metadata2.getCollections().add(collId2); 
+
+		xmlManager2.write(docId2, metadata2, handle2);
+
+		client.release();
+	
+		
+	}
+
+	@Override
+	public Propis unmarshallDocumentPropis(Document propis) throws JAXBException {
+		// TODO Auto-generated method stub
+		
+		JAXBContext context = JAXBContext.newInstance(Propis.class);
+
+		// Unmarshaller je objekat zadu�en za konverziju iz XML-a u objektni
+		// model
+		 Unmarshaller unmarshaller = context.createUnmarshaller();
+		
+		return (Propis) unmarshaller.unmarshal(propis);
 	}
 
 }
