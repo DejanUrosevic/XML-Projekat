@@ -19,4 +19,12 @@ public interface AmandmanService extends CrudService<Amandman>{
 	public void dodajAmandman(String postPayLoad, User korisnik) throws DatatypeConfigurationException, JAXBException, FileNotFoundException, IOException;
 	public Document encrypt(Document doc, SecretKey key, Certificate certificate);
 	public void encryptXml(File xmlDocument, File jks, String nazivCert) throws IOException;
+	
+	public void saveAmandman(File f, long amandmanId) throws FileNotFoundException;
+	
+	public Document findAmandmanById(String docId);
+	
+	public void primeniAmandman(String data) throws JAXBException;
+	
+	public Amandman unmarshallDocument(Document document) throws JAXBException;
 }

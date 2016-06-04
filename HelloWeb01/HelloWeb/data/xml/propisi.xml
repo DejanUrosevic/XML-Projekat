@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <propisi xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" xmlns:ns4="http://www.parlament.gov.rs/propis">
-    <propis ID="712313" Datum="2016-06-04+02:00" Status="PREDLOZEN">
-        <ns4:Naziv>fdasfda</ns4:Naziv>
-        <ns4:Deo ID="322987">
-            <ns4:Naziv>dafdadfa dsa</ns4:Naziv>
-            <ns2:Clan ID="695220">
-                <ns2:Opis>dsadasdca dfas df</ns2:Opis>
-                <ns2:Naziv>adafdada</ns2:Naziv>
+    <propis ID="224526" Datum="2016-06-04+02:00" Status="PREDLOZEN">
+        <ns4:Naziv>greg</ns4:Naziv>
+        <ns4:Deo ID="731850">
+            <ns4:Naziv>regreg</ns4:Naziv>
+            <ns2:Clan ID="530551">
+                <ns2:Opis>g erger gerg r</ns2:Opis>
+                <ns2:Naziv>grg er</ns2:Naziv>
                 <ns2:Sadrzaj>
-                    <ns2:Tekst>dsafafdas dsafa</ns2:Tekst>
+                    <ns2:Tekst>gerg erg r</ns2:Tekst>
                 </ns2:Sadrzaj>
             </ns2:Clan>
         </ns4:Deo>

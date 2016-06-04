@@ -748,7 +748,7 @@
 			};
 			
 			//saljemo preko servica podatke o tome koji su izabrani propisi
-			amandmanService.setProperty($scope.listaIzabranihAmandamna);
+			amandmanService.setProperty($scope.listaIzabranihAmandmana);
 			
 			$scope.nastaviSaAmandmanima = function()
 			{
@@ -757,9 +757,46 @@
 		}
 	};
 	
-	var pregledAmandmanaZaPrihvatanjeCtrl = function($scope, amandmanService) {
+	var pregledAmandmanaZaPrihvatanjeCtrl = function($scope, $http, amandmanService, $stateParams, $state) {
+		
+		if(!angular.equals({}, $stateParams))
+		{
+			var propisId = $stateParams.id;
+		}
+		
+		
 		$scope.amandmani = amandmanService.getProperty();
+		
+		$scope.pregledAmandmana = function(amandmanId)
+		{
+			$state.go('razmatranjeAmandmana', {id: propisId, id2: amandmanId});
+		}
 	};
+	
+	var razmatranjeAmandmanaCtrl = function($scope, $http, $stateParams, $state)
+	{
+		if(!angular.equals({}, $stateParams))
+		{
+			var propisId = $stateParams.id;
+			var amandmanId = $stateParams.id2;
+		}
+		
+		$http.get(serverUrl + 'amandman/' + amandmanId)
+		.success(function(data, header, status)
+		{
+			$scope.htmlXsl = data;
+		});
+		
+		$scope.potvrdaAmandmana = function()
+		{
+			$http.post(serverUrl + 'amandman/potvrda', {propisId: propisId, amandmanId: amandmanId})
+			.success(function(data, header, status)
+			{
+				alert('Promenjeno, pogledaj na bazi.');
+			})
+			
+		}
+	}
 
 	var app = angular
 			.module('app', [ 'ui.router', 'ngResource', 'ngSanitize' ]);
@@ -775,6 +812,7 @@
 	app.controller('izabranPropisNaceloCtrl', izabranPropisNaceloCtrl);
 	app.controller('prihvatanjeAmandmanaCtrl', prihvatanjeAmandmanaCtrl);
 	app.controller('pregledAmandmanaZaPrihvatanjeCtrl', pregledAmandmanaZaPrihvatanjeCtrl);
+	app.controller('razmatranjeAmandmanaCtrl', razmatranjeAmandmanaCtrl);
 
 	app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -859,6 +897,10 @@
 			url: '/sednica/procesSednice/akt/:id/amandmaniPrikaz',
 			templateUrl : 'pregledAmandmanaZaPrihvatanje.html',
 			controller: 'pregledAmandmanaZaPrihvatanjeCtrl'
+		}).state('razmatranjeAmandmana', {
+			url: '/sednica/procesSednice/akt/:id/amandman/:id2',
+			templateUrl : 'amandman-razmatranje.html',
+			controller: 'razmatranjeAmandmanaCtrl'
 		});
 
 	});

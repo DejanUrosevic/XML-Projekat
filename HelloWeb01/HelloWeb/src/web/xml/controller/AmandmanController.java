@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -60,26 +61,49 @@ public class AmandmanController {
 		
 		
 		amandmanSer.dodajAmandman(postPayload, korisnik);
-//		propisSer.signPropis(new File("data\\xml\\amandman.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
-//				"", korisnik.getAlias());
-
-//		amandmanSer.encryptXml(new File("data\\xml\\amandman.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
-
-
+		
 		return new ResponseEntity<String>(HttpStatus.OK);
 
 	}
 	
 	
-	@RequestMapping(value = "/proba", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-	public @ResponseBody ResponseEntity<String> getAmandman()
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+	public @ResponseBody ResponseEntity<String> getAmandman(@PathVariable(value="id") String id)
 			throws IOException, JAXBException, ServletException, DatatypeConfigurationException, TransformerConfigurationException, ParserConfigurationException, SAXException, TransformerFactoryConfigurationError, TransformerException {
 		
 		
-		Document dokument = propisSer.loadDocument("data\\xml\\amandman.xml");
+		
+		Document dokument = amandmanSer.findAmandmanById(id);
 
 		String resultHtml = propisSer.generateHtmlFromXsl(dokument, new File("data/xml/amandman.xsl"));
 		return new ResponseEntity<String>(resultHtml, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(value = "/potvrda", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<String> amandmanPotvrda(@RequestBody String postPayload, final HttpServletRequest req)
+			throws IOException, JAXBException, ServletException, DatatypeConfigurationException, TransformerConfigurationException, ParserConfigurationException, SAXException, TransformerFactoryConfigurationError, TransformerException {
+		
+		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
+		//ako ne postoji korisnik tj. JWT bacice exception
+		User korisnik = userSer.getUserFromJWT(req);
+		
+		//ova metoda ne sme da bude koriscena od strane gradjanina
+		//provera da li taj korisnika ima validan sertifikat iz CRL liste.
+		if(korisnik.getVrsta().equals("gradjanin") || userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
+			return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
+		}
+		
+		amandmanSer.primeniAmandman(postPayload);
+		
+		propisSer.saveWithoutEncrypt(new File("data\\xml\\potpisPropis.xml"));
+		propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
+		propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
+				"", korisnik.getAlias());
+		propisSer.save(new File("data\\xml\\potpisPropis.xml"));
+		
+		
+		return new ResponseEntity<String>(HttpStatus.OK);
 
 	}
 
