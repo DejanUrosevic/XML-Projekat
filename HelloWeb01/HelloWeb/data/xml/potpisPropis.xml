@@ -1,55 +1,78 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><?xml-stylesheet type='text/xsl' href='propis.xsl' ?>
-<Propis xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" ID="427747" Datum="2016-06-04+02:00">
-    <Naziv>Zakon o zakonu</Naziv>
-    <Deo ID="946246">
-        <Naziv>Deo prvi</Naziv>
-        <ns2:Clan ID="525351">
-            <ns2:Opis>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu tellus justo. In metus magna, sollicitudin et sodales sed, cursus a nisi. Mauris porta metus quam, eu venenatis tortor vulputate a. Sed</ns2:Opis>
-            <ns2:Naziv>Clan 1</ns2:Naziv>
-            <ns2:Sadrzaj>
-                <ns2:Tekst>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu tellus justo. In metus magna, sollicitudin et sodales sed, cursus a nisi. Mauris porta metus quam, eu venenatis tortor vulputate a. Sed non scelerisque felis. Etiam id est risus. Suspendisse potenti. Proin erat magna, tristique sit amet orci ut, ultricies tristique felis. Suspendisse sagittis euismod luctus. Vivamus convallis nisl sed odio bibendum lacinia. Quisque lobortis maximus nunc, cursus pretium risus malesuada quis. Maecenas arcu quam, posuere vitae magna ac, tincidunt convallis mi.</ns2:Tekst>
-            </ns2:Sadrzaj>
-        </ns2:Clan>
-    </Deo>
-    <Deo ID="407026">
-        <Naziv>Deo drugi</Naziv>
-        <Glava ID="7784">
-            <Naziv>Glava 1</Naziv>
-            <ns2:Clan ID="246642">
-                <ns2:Opis>Aenean porta magna metus, id commodo lorem ultrices vitae. Nam sollicitudin magna non sollicitudin dignissim. Phasellus consequat velit sit amet varius vulputate.</ns2:Opis>
-                <ns2:Naziv>Clan 2.1</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Stav>
-                        <ns2:Redni_broj>1</ns2:Redni_broj>
-                        <ns2:Tekst>Nunc suscipit ligula id augue malesuada, quis finibus quam condimentum. Sed suscipit pellentesque tortor, nec fringilla sapien. Proin ut diam dolor. Cras lacinia justo in posuere ultricies. Maecenas sit amet pellentesque ex. Phasellus non nunc diam. Sed at dolor consectetur, tincidunt purus eleifend, efficitur sapien. Fusce ut ex tincidunt, tempor augue nec, dignissim magna. Cras a nulla elementum, egestas libero sollicitudin, vulputate ligula. Etiam eget ornare nisl, eget aliquam mi. Fusce vulputate condimentum nunc. Integer ac mauris eget eros placerat viverra. Aenean fermentum dui non libero venenatis, nec congue ante sagittis. Quisque ultrices vitae ex sed viverra.
-
-Vivamus laoreet turpis id lacus suscipit, at dignissim lorem rhoncus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc eleifend erat vel cursus rutrum. Ut sit amet ex sem. Integer dapibus lacus sit amet lectus commodo fringilla. Fusce interdum justo arcu, nec viverra orci interdum quis. Nulla euismod posuere nulla semper molestie.</ns2:Tekst>
-                    </ns2:Stav>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </Glava>
-    </Deo>
-    <ns3:Amandman Datum="2016-06-04+02:00" Mesto="Novi Sad" ID="271069" Podnosilac="dw dw">
-        <ns3:Resenje>Promena 1</ns3:Resenje>
-        <ns3:Obrazlozenje>qwfwq fqwf wq fq w</ns3:Obrazlozenje>
-        <ns2:Clan ID="525351">
-            <ns2:Naziv>Clan 1</ns2:Naziv>
-            <ns2:Sadrzaj>
-                <ns2:Tekst>Promena 1</ns2:Tekst>
-            </ns2:Sadrzaj>
-        </ns2:Clan>
-    </ns3:Amandman>
-    <ns3:Amandman Datum="2016-06-04+02:00" Mesto="Novi Sad" ID="326123" Podnosilac="dw dw">
-        <ns3:Resenje>Vivamus laoreet turpis</ns3:Resenje>
-        <ns3:Obrazlozenje>f34rre</ns3:Obrazlozenje>
-        <ns2:Clan ID="246642">
-            <ns2:Naziv>Clan 2.1</ns2:Naziv>
-            <ns2:Sadrzaj>
-                <ns2:Stav>
-                    <ns2:Redni_broj>1</ns2:Redni_broj>
-                    <ns2:Tekst>Vivamus laoreet turpis</ns2:Tekst>
-                </ns2:Stav>
-            </ns2:Sadrzaj>
-        </ns2:Clan>
-    </ns3:Amandman>
-</Propis>
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='propis.xsl' ?><Propis xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" Datum="2016-06-04+02:00" ID="712313" Status="U_NACELU"><xenc:EncryptedData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" Type="http://www.w3.org/2001/04/xmlenc#Content"><xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"/><ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:KeyName>Kriptovani tajni kljuc</ds:KeyName>
+<xenc:EncryptedKey xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"><xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-1_5" xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"/><xenc:CipherData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"><xenc:CipherValue xmlns:xenc="http://www.w3.org/2001/04/xmlenc#">Z047YN2scDjwXQmis5u/5G+wO05rLOBZv33JjVZdZaAsbJMsCjilWJ+5RMJrb4hOz86o1n8j0d+x
+054kl3/7GLHppQT0ROEV0Q3cc8+HoTWHf/D+CjhIVRoJw0xtubM4nKIMSS+IeXRp51qn9mEczBf3
+nykU4I3ylTh94CjabIE=</xenc:CipherValue></xenc:CipherData></xenc:EncryptedKey></ds:KeyInfo><xenc:CipherData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"><xenc:CipherValue xmlns:xenc="http://www.w3.org/2001/04/xmlenc#">tJHh09foOHRcMgnhI4ObCVfFnKA0hS+lFyAaN+0+LtxLYQkthAd1sNIOkl8QdmBOp/aI7eb2kEp6
+AE7+nY9bt7TO2EK3tF/vhVsM/X6wH9bKrK1EjXr5fgHM415TSoy3+jt0k2P+dae+E7+LrZN5iX5L
+4UcmNcYukIMIm372ExI8mjrlX29o4o3yTBfpHcMMPmzS54bIychP1ij6OQQ3wAhzClGb1yAVUaza
+Gp1LE3ocqu++Qe7y/M3JM5zSL0nhqTkAubrjjScYA8ElDDzyUJzlkyu5IzJ8me4fxivmnHiKF6li
+p7ADqYJVUqZ9HBzWDwq6vhydexlePkthVL6D00DNPWZ3nECznWozplQRzBLs0Cu6Lf8IRYisH+9j
+HNAqKL/YrlM39uxjOcMX+FzJdeCyWLktFK1DVdOPG9o6z3G4D6ZtSZEbI46w6MGpJ0vmmCC78QlP
+Z20A8CFYlss1RTrbK47KYvZYKfXzT07Bs/aI7Rm9x3CxR3UocfAr7xQeRWykN0Keqpe8l45tPM0/
+6S16hybvUWtnlwm6bUEUZri5Gqm3yjzTM+xD3mjfZ64Wcuhq2jU/IoEnBOtVAFSVi61vhy3/X0Mk
+uwfIo7IIEVCAX/xdsObTd0981caya42xt6bL4Zc9Zk/q99Gj1XeWTJbtXtvxhO3Kjl+YkjnY9tms
+121bL/AaJ6egJoR55culJgGorFNpYATIogGbxOYVtRgzUZHyvXq2nZj03SXCzyp9ZPOFKtGIKTpU
+Si7opvZf7RMDRnuarIRDQ04kDR+D1nFeww5jerr6mx/n3MgGgYSgYUPg6vUD2W4kfvCIy7kaOkit
+ze+xXj3YIooTatjxGSHvuo8vRy3cL2fPAm/JRX8SePBq0Q8PfNwnYtH3lUvImFnPFHGWUkt+98CH
+jHId8MH0Noe7q2PeAo2gaPsDaoUMMPp9YigWd51KpoN7AvclhFjC+wFmzrYakYN0QltxcMv5+n70
+EAJd9Iz3W6GfEexmYorSCtn+oiwKWqCcEEVfSk6FgtNsNZrEUIt5VhBg+OrThUyPS24r7oyKQr27
+pWM7adbOC5bTio6srLS7fvDbj0+7rEs24JF8BNfukOVKDOIjvuCCTNz/9GOrSgHmL/CtLIpZ0nlV
+bK3MLxKblY/4JyF6vVrquTUsp3Jh7jEbIqwF7GnJOEM6zSQPNtNqxoBPe5d6WiDL9J9tTITs/QtS
+yvF3yWtUGKTmbVzy8i5ONGqMMILOVRYmooJ+lcY7EjewsYxaX8dir42ouogZQID2vQ+Ds93F1oWq
+TqH/8ZJDyvqpQTSWzbGu/qBokP2D4LAApXYlOJE2hekrS+0FCAGYu5K+a0EUFDZ98pfjDSBWUe+I
+u/hHLWGiAqrWKGsDJANowtYeDypezZXouuloUg1PclDXqZN5A6DVOG80vQ+cgYKUBGzkQAMgRvS7
+dGzEZlofSSt2NxAIb9tVwqXu1OkSOZRFxNsHbV1YLuO67nR6wZyhaY+53cWAFG0lm8HT94WV6Go9
+WTrQ9A1Nfo3snYfz64XMzudDlFA23sjephTE7lrIIKtDyGgRYyHKdIZwozTZ+hz0/NWp8NrzS5gS
+lDaqDh80bhFfi03JTcWXyWNEAu0nsLoboKZUO8tKqZqgbvhvw8SAOyKWnyhQXyAEAd1K6htTJq9T
+66jaJZhdX90+WTNI1YrgjbJP9XXwh8JnMTrtq/Gy4CWWNXPi0Og7QEC3DPHH50wFDqvhLIRz+LaS
+lxbn2Cs67nN5wLMLj3uBGkjnAjhVyB6bRb1GU/+kaPAEFgOFlDvtTGvgN4YbrEYcVFpTNy13bLbk
+yy2jgDquFR8Tix1bn9ypeeRMFnNDm77Lw8GLu5bsQKWet8JrxEyGgHIMBCFaggOegIEWcpLaZ2VD
+WZsY51ktOT36UcrwjAYb</xenc:CipherValue></xenc:CipherData></xenc:EncryptedData><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+<ds:Transform Algorithm="http://www.w3.org/2006/12/xml-c14n11#WithComments"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>KLSWkJNt4f5Xf7nyGwV8BgxyHOw=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+AjsyWL0CySF/q/63WL+QR6qL94V/t48HHFztccjyGfrwegBg3/+4MRQFNCv5qj1VINZd7Idpbu7k
+SKqYel/UmfekNjvNmIMtl380wU/eQz57wIsufqKJjcfPRrt0U6tV3gOTzexzIa5g0e869FzJ6hEF
+v3UBnD6U0c6R6C5V4Iw=
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+nsIhXzPmrtl6gDlwCuJpCrOcRk7MtK0uMv1sjVvZdC5M943g5qAMLVaFeDz2hXrf3UMNS35kAzPl
+1/+7vsN8O1f5wxEVrHFwOZnvOOKe2tRUtFOBdVdOoDBv4e7f73sr96VeNrm89khhujbbqS/Mx00C
+NoJZfieVMucV52T0Q0E=
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIDATCCAmqgAwIBAgIDfKevMA0GCSqGSIb3DQEBBQUAMIG6MRAwDgYDVQQDDAdzdWJzZ25zMRAw
+DgYDVQQEDAdzdWJzZ25zMRAwDgYDVQQqDAdzdWJzZ25zMRAwDgYDVQQKDAdzdWJzZ25zMRAwDgYD
+VQQLDAdzdWJzZ25zMRAwDgYDVQQGEwdzdWJzZ25zMRYwFAYJKoZIhvcNAQkBFgdzdWJzZ25zMTQw
+MgYKCZImiZPyLGQBAQwkNjk0YTBmZDctZDI5NC00MDA0LWJjMDMtOGNiYjA1YTQ5NzI1MB4XDTE2
+MDUzMTE0NDUzM1oXDTE3MDUzMTE0NDUzM1owgc8xEzARBgNVBAMMCnByZWRzZWRuaWsxEzARBgNV
+BAQMCnByZWRzZWRuaWsxEzARBgNVBCoMCnByZWRzZWRuaWsxEzARBgNVBAoMCnByZWRzZWRuaWsx
+EzARBgNVBAsMCnByZWRzZWRuaWsxEzARBgNVBAYTCnByZWRzZWRuaWsxGTAXBgkqhkiG9w0BCQEW
+CnByZWRzZWRuaWsxNDAyBgoJkiaJk/IsZAEBDCQ3ZWJiNzY3YS0xMDMyLTQxMzUtYjg2MC00ODU3
+OTUxMzQyMGEwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAJ7CIV8z5q7ZeoA5cAriaQqznEZO
+zLStLjL9bI1b2XQuTPeN4OagDC1WhXg89oV6391DDUt+ZAMz5df/u77DfDtX+cMRFaxxcDmZ7zji
+ntrUVLRTgXVXTqAwb+Hu3+97K/elXja5vPZIYbo226kvzMdNAjaCWX4nlTLnFedk9ENBAgMBAAEw
+DQYJKoZIhvcNAQEFBQADgYEAnCdziuP5ztQT2xo4+o6nuV8Z9bx9+IBv3E7je8aYuCLp8GzO5u2x
+2SpwRMKVZoz0N4L8OPukbZIiFKLNqP+r+iWY15N/YJKjPhIVsSrOouJLqEg7b8Iyw1JF1LjeJMHQ
+dpWmxm0C67UkExv5+BHUXhc+8Vv1jnwuHtgi6g9umRw=
+</ds:X509Certificate>
+</ds:X509Data>
+</ds:KeyInfo>
+</ds:Signature></Propis>

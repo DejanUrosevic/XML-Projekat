@@ -633,6 +633,12 @@
 	
 	var izabranPropisNaceloCtrl = function($scope, $http, $state, $stateParams)
 	{
+		// JAKO JAKO BITNO DA SE svaki put prilikom slanja request-a posalje i
+		// token
+		// mora opet da se postavlja Authorization header!!!
+		$http.defaults.headers.common.Authorization = 'Bearer '
+				+ localStorage.getItem('key');
+		
 		if(!angular.equals({}, $stateParams))
 		{
 			var propisId = $stateParams.id;
@@ -668,6 +674,17 @@
 				console.log(status);
 			});
 		}
+		
+		$scope.potvrdaUNacelu = function() {
+			if(!angular.equals({}, $stateParams))
+			{
+				var propisId = $stateParams.id;
+			}
+			$http.post(serverUrl+'/clan/prihvacenUNacelu/'+propisId)
+			.success(function(data, header, status) {
+				$state.go('prihvatanjeAmandmana', {id:propisId});
+			});
+		};
 	}
 	
 
@@ -699,6 +716,50 @@
 			});
 		};
 	};
+	
+	var prihvatanjeAmandmanaCtrl = function($scope, $state, $resource, $http, $stateParams, amandmanService) {
+		if(!angular.equals({}, $stateParams))
+		{
+			var propisId = $stateParams.id;
+			
+			$http.get(serverUrl+'clan/id/'+propisId)
+			.success(function(data, header, status) {
+				$scope.propis = data;
+			});
+			
+			
+			//////
+			//ovo je lista koja sluzi da cuva podatke o tome koji amandmani su izabrani za sednicu
+			$scope.listaIzabranihAmandmana = [];
+			
+			
+			$scope.toggleSelection = function toggleSelection(amandmanId) 
+			{
+				var idx = $scope.listaIzabranihAmandmana.indexOf(amandmanId);
+
+				// is currently selected
+				if (idx > -1) {
+					$scope.listaIzabranihAmandmana.splice(idx, 1);
+				}
+				    // is newly selected
+				else {
+					$scope.listaIzabranihAmandmana.push(amandmanId);
+				}
+			};
+			
+			//saljemo preko servica podatke o tome koji su izabrani propisi
+			amandmanService.setProperty($scope.listaIzabranihAmandamna);
+			
+			$scope.nastaviSaAmandmanima = function()
+			{
+				$state.go('pregledAmandmanaZaPrihvatanje', {id: propisId});
+			}
+		}
+	};
+	
+	var pregledAmandmanaZaPrihvatanjeCtrl = function($scope, amandmanService) {
+		$scope.amandmani = amandmanService.getProperty();
+	};
 
 	var app = angular
 			.module('app', [ 'ui.router', 'ngResource', 'ngSanitize' ]);
@@ -712,6 +773,8 @@
 	app.controller('sednicaCtrl', sednicaCtrl);
 	app.controller('procesSedniceCtrl', procesSedniceCtrl);
 	app.controller('izabranPropisNaceloCtrl', izabranPropisNaceloCtrl);
+	app.controller('prihvatanjeAmandmanaCtrl', prihvatanjeAmandmanaCtrl);
+	app.controller('pregledAmandmanaZaPrihvatanjeCtrl', pregledAmandmanaZaPrihvatanjeCtrl);
 
 	app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -788,6 +851,14 @@
 		}).state('greska', {
 			url : '/greska',
 			templateUrl : 'greska.html'
+		}).state('prihvatanjeAmandmana', {
+			url: '/sednica/procesSednice/akt/:id/amandmani',
+			templateUrl : 'proces-sednice-amandmani.html',
+			controller: 'prihvatanjeAmandmanaCtrl'
+		}).state('pregledAmandmanaZaPrihvatanje', {
+			url: '/sednica/procesSednice/akt/:id/amandmaniPrikaz',
+			templateUrl : 'pregledAmandmanaZaPrihvatanje.html',
+			controller: 'pregledAmandmanaZaPrihvatanjeCtrl'
 		});
 
 	});
@@ -823,6 +894,18 @@
 	});
 	app.service('propisService', function()
 	{
+		var list = [];
+
+        return {
+            getProperty: function () {
+                return list;
+            },
+            setProperty: function(value) {
+                list = value;
+            }
+        };
+	});
+	app.service('amandmanService', function() {
 		var list = [];
 
         return {

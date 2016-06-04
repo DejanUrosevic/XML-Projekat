@@ -13,6 +13,8 @@
                 <xs:element name="Resenje" type="xs:string"/>
                 <xs:element name="Obrazlozenje" type="xs:string"/>
                 <xs:element ref="clan:Clan"/>
+                <xs:element name="NazivPropisa" type="xs:string"/>
+                <xs:element name="IDpropisa" type="xs:positiveInteger"/>
             </xs:sequence>
             <xs:attribute name="Datum" type="xs:date"/>
             <xs:attribute name="RedniBroj" type="xs:string"/>

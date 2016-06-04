@@ -334,6 +334,7 @@ public class PropisServiceImpl implements PropisService {
 		propis.setID(BigInteger.valueOf(getID()));
 		propis.setNaziv(propisNaziv);
 		propis.getDeo().add(deo);
+		propis.setStatus("PREDLOZEN");
 		
 		GregorianCalendar c = new GregorianCalendar();
 		

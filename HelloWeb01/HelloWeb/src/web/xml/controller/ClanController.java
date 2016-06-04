@@ -130,6 +130,28 @@ public class ClanController {
 
 	}
 	
+	@RequestMapping(value = "/id/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<Propis> getPropisById(@PathVariable(value = "id") String id)
+			throws IOException, JAXBException, TransformerConfigurationException, ParserConfigurationException,
+			SAXException, TransformerFactoryConfigurationError, TransformerException {
+
+		// ovim kreiramo taj propis.xml
+		BigInteger idPropis = BigInteger.valueOf(Long.parseLong(id));
+		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
+		Document dokument = null;
+
+		for (Propis p : propisi.getPropisi()) {
+			if (p.getID().equals(idPropis)) {
+				dokument = propisSer.findPropisById(p.getNaziv());
+				break;
+			}
+		}
+	
+
+		return new ResponseEntity<Propis>(propisSer.unmarshallDocumentPropis(dokument), HttpStatus.OK);
+
+	}
+	
 	@RequestMapping(value = "/odbijen/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<Propis> odbijenPropis(@PathVariable(value = "id") String id)
 			throws IOException, JAXBException, TransformerConfigurationException, ParserConfigurationException,
@@ -153,6 +175,46 @@ public class ClanController {
 
 		return new ResponseEntity<Propis>(HttpStatus.NOT_FOUND);
 
+	}
+	
+	@RequestMapping(value = "/prihvacenUNacelu/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<Propis> prihvacenUNacelu(@PathVariable(value = "id") String id, HttpServletRequest req) throws JAXBException, IOException, ServletException {
+		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
+		//ako ne postoji korisnik tj. JWT bacice exception
+		User korisnik = userSer.getUserFromJWT(req);
+		
+		//ova metoda ne sme da bude koriscena od strane gradjanina
+		//provera da li taj korisnika ima validan sertifikat iz CRL liste.
+		if(korisnik.getVrsta().equals("gradjanin") || korisnik.getVrsta().equals("odbornik") || userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
+			return new ResponseEntity<Propis>(HttpStatus.NOT_ACCEPTABLE);
+		}		
+		
+		BigInteger idPropis = BigInteger.valueOf(Long.parseLong(id));
+		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
+		Document dokument = null;
+
+		for (Propis p : propisi.getPropisi()) {
+			if (p.getID().equals(idPropis)) {
+				Propis propis = propisSer.unmarshallDocumentPropis(propisSer.findPropisById(p.getNaziv()));
+				propis.setStatus("U_NACELU");
+				
+				propisSer.marshallPropis(propis, new File("./data/xml/potpisPropis.xml"));
+				
+				//radi pretrage po sadrzaju i metapodacima, pamtimo neenkrpitovan i nepotpisan propis
+				propisSer.saveWithoutEncrypt(new File("data\\xml\\potpisPropis.xml"));
+				
+				
+				propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
+				propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
+						"", korisnik.getAlias());
+
+				propisSer.save(new File("./data/xml/potpisPropis.xml"));
+				
+				return new ResponseEntity<Propis>(HttpStatus.OK);
+			}
+		}
+		
+		return new ResponseEntity<Propis>(HttpStatus.NOT_FOUND);
 	}
 
 	/**
