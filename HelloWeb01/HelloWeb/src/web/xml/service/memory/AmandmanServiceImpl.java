@@ -106,6 +106,7 @@ public class AmandmanServiceImpl implements AmandmanService{
 
 		// Pode�avanje marshaller-a
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+		marshaller.setProperty("com.sun.xml.bind.xmlHeaders", "<?xml-stylesheet type='text/xsl' href='amandman.xsl' ?>");
 
 		// Umesto System.out-a, mo�e se koristiti FileOutputStream
 		marshaller.marshal(t, f);
@@ -138,6 +139,7 @@ public class AmandmanServiceImpl implements AmandmanService{
 			sadrzaj.getStav().add(stav);
 			clan.setSadrzaj(sadrzaj);
 			clan.setID(BigInteger.valueOf(json.getInt("clanId")));
+			clan.setNaziv(json.getString("clanNaziv"));
 			a.setClan(clan);
 			
 		}
@@ -150,6 +152,7 @@ public class AmandmanServiceImpl implements AmandmanService{
 			sadrzaj.getTekst().add(a.getResenje());
 			clan.setSadrzaj(sadrzaj);
 			clan.setID(BigInteger.valueOf(json.getInt("clanId")));
+			clan.setNaziv(json.getString("clanNaziv"));
 			a.setClan(clan);
 			
 		}
@@ -175,14 +178,14 @@ public class AmandmanServiceImpl implements AmandmanService{
 				propis.getAmandman().add(a);
 				
 				propisSer.marshallPropis(propis, new File("data\\xml\\potpisPropis.xml"));
-			//	propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
-			//	propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
-			//			"", korisnik.getAlias());
-			//	propisSer.save(new File("data\\xml\\potpisPropis.xml"));
+				propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
+				propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
+						"", korisnik.getAlias());
+				propisSer.save(new File("data\\xml\\potpisPropis.xml"));
 				break;
 			}
 		}
-		
+
 		propisSer.marshall(propisi, new File("./data/xml/propisi.xml"));
 		marshall(a, new File("./data/xml/amandman.xml"));
 		

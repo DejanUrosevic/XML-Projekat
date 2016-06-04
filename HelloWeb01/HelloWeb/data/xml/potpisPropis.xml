@@ -1,67 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?><?xml-stylesheet type='text/xsl' href='propis.xsl' ?>
-<Propis xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" ID="511524">
-    <Naziv>Zakon o Zakonu</Naziv>
-    <Deo ID="242150">
+<Propis xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" ID="427747" Datum="2016-06-04+02:00">
+    <Naziv>Zakon o zakonu</Naziv>
+    <Deo ID="946246">
         <Naziv>Deo prvi</Naziv>
-        <Glava ID="42132">
-            <Naziv>Glava 1</Naziv>
-            <ns2:Clan ID="88194">
-                <ns2:Opis>Nunc diam elit, varius tempus auctor at, maximus eu ante. Cras quis tellus nisl. Proin at semper tellus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis cursus egestas leo, quis pulvinar odio mollis et. Nam posuere maximus maximus. Curabitur malesuada tellus eleifend, iaculis leo quis, vestibulum orci. Duis pretium a urna ac vestibulum.</ns2:Opis>
-                <ns2:Naziv>Clan 1</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>Ut vel velit sed felis sollicitudin imperdiet at a felis. Suspendisse libero felis, iaculis sit amet elementum id, tincidunt eu augue. Nunc a nulla dapibus, tempor dui pellentesque, vestibulum lorem. Nunc in aliquet eros, quis tincidunt tortor. Integer eget magna ut purus condimentum sollicitudin et dapibus massa. Duis lacinia vulputate elementum. Donec ac diam lacinia nisi accumsan suscipit. Nunc ac diam ut arcu ultrices fermentum sit amet in odio. Pellentesque ut tortor vitae lectus pretium commodo nec ac lacus. Quisque nulla leo, laoreet id commodo vitae, pellentesque sit amet ipsum. Pellentesque a quam in turpis lacinia interdum eget ut dui. Mauris vel erat leo. Duis volutpat lacus sed enim vestibulum aliquam. Fusce ultrices, ligula eu egestas vehicula, urna urna imperdiet turpis, id porta lacus tortor nec ligula. Vestibulum euismod lacus enim, ut efficitur ante vestibulum et. Phasellus nec dictum justo.</ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </Glava>
+        <ns2:Clan ID="525351">
+            <ns2:Opis>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu tellus justo. In metus magna, sollicitudin et sodales sed, cursus a nisi. Mauris porta metus quam, eu venenatis tortor vulputate a. Sed</ns2:Opis>
+            <ns2:Naziv>Clan 1</ns2:Naziv>
+            <ns2:Sadrzaj>
+                <ns2:Tekst>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu tellus justo. In metus magna, sollicitudin et sodales sed, cursus a nisi. Mauris porta metus quam, eu venenatis tortor vulputate a. Sed non scelerisque felis. Etiam id est risus. Suspendisse potenti. Proin erat magna, tristique sit amet orci ut, ultricies tristique felis. Suspendisse sagittis euismod luctus. Vivamus convallis nisl sed odio bibendum lacinia. Quisque lobortis maximus nunc, cursus pretium risus malesuada quis. Maecenas arcu quam, posuere vitae magna ac, tincidunt convallis mi.</ns2:Tekst>
+            </ns2:Sadrzaj>
+        </ns2:Clan>
     </Deo>
-    <Deo ID="123527">
+    <Deo ID="407026">
         <Naziv>Deo drugi</Naziv>
-        <Glava ID="159870">
-            <Naziv>Glava 2</Naziv>
-            <ns2:Clan ID="719902">
-                <ns2:Opis>Sed ut pharetra enim. Pellentesque varius enim quam, nec luctus nisl lobortis ac. Ut vitae mi vitae elit interdum hendrerit id quis urna. In luctus sapien eu mauris porttitor, eu rhoncus velit fringilla. Fusce ut sollicitudin augue. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In eleifend ligula vel orci fringilla tristique. Pellentesque a consectetur orci, sed elementum magna.</ns2:Opis>
-                <ns2:Naziv>Clan 2</ns2:Naziv>
+        <Glava ID="7784">
+            <Naziv>Glava 1</Naziv>
+            <ns2:Clan ID="246642">
+                <ns2:Opis>Aenean porta magna metus, id commodo lorem ultrices vitae. Nam sollicitudin magna non sollicitudin dignissim. Phasellus consequat velit sit amet varius vulputate.</ns2:Opis>
+                <ns2:Naziv>Clan 2.1</ns2:Naziv>
                 <ns2:Sadrzaj>
                     <ns2:Stav>
-                        <ns2:Redni_broj>2</ns2:Redni_broj>
-                        <ns2:Tekst>Aenean lorem libero, sodales et tincidunt eu, vestibulum eget mauris. Pellentesque eget faucibus elit. Phasellus aliquam ligula sit amet dui placerat, a vulputate nunc condimentum. Fusce vestibulum placerat lectus et dignissim. Vestibulum sit amet turpis tortor. Praesent eros mauris, luctus non magna ac, egestas tempus tellus. Vivamus vitae porta libero. Sed diam ipsum, venenatis vel urna ut, posuere varius elit. Sed ut pharetra enim. Pellentesque varius enim quam, nec luctus nisl lobortis ac. Ut vitae mi vitae elit interdum hendrerit id quis urna. In</ns2:Tekst>
+                        <ns2:Redni_broj>1</ns2:Redni_broj>
+                        <ns2:Tekst>Nunc suscipit ligula id augue malesuada, quis finibus quam condimentum. Sed suscipit pellentesque tortor, nec fringilla sapien. Proin ut diam dolor. Cras lacinia justo in posuere ultricies. Maecenas sit amet pellentesque ex. Phasellus non nunc diam. Sed at dolor consectetur, tincidunt purus eleifend, efficitur sapien. Fusce ut ex tincidunt, tempor augue nec, dignissim magna. Cras a nulla elementum, egestas libero sollicitudin, vulputate ligula. Etiam eget ornare nisl, eget aliquam mi. Fusce vulputate condimentum nunc. Integer ac mauris eget eros placerat viverra. Aenean fermentum dui non libero venenatis, nec congue ante sagittis. Quisque ultrices vitae ex sed viverra.
+
+Vivamus laoreet turpis id lacus suscipit, at dignissim lorem rhoncus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc eleifend erat vel cursus rutrum. Ut sit amet ex sem. Integer dapibus lacus sit amet lectus commodo fringilla. Fusce interdum justo arcu, nec viverra orci interdum quis. Nulla euismod posuere nulla semper molestie.</ns2:Tekst>
                     </ns2:Stav>
                 </ns2:Sadrzaj>
             </ns2:Clan>
         </Glava>
     </Deo>
-    <ns3:Amandman Datum="2016-06-04+02:00" Mesto="Novi Sad" ID="218627" Podnosilac="dw dw">
-        <ns3:Resenje>Ut cus tortor nec ligula. Vestibulum euismod lacus enim, ut efficitur ante vestibulum et. Phasellus nec dictum justo.</ns3:Resenje>
-        <ns3:Obrazlozenje>wq dwqqw fqwfwq fwqfqw</ns3:Obrazlozenje>
+    <ns3:Amandman Datum="2016-06-04+02:00" Mesto="Novi Sad" ID="271069" Podnosilac="dw dw">
+        <ns3:Resenje>Promena 1</ns3:Resenje>
+        <ns3:Obrazlozenje>qwfwq fqwf wq fq w</ns3:Obrazlozenje>
+        <ns2:Clan ID="525351">
+            <ns2:Naziv>Clan 1</ns2:Naziv>
+            <ns2:Sadrzaj>
+                <ns2:Tekst>Promena 1</ns2:Tekst>
+            </ns2:Sadrzaj>
+        </ns2:Clan>
     </ns3:Amandman>
-    <ns3:Amandman Datum="2016-06-04+02:00" Mesto="Novi Sad" ID="128802" Podnosilac="dw dw">
-        <ns3:Resenje>Ut vel velit sed felis sollicitudin imperdiet at a felis. Suspendisse libero felis, iaculis sit amet elementum id, tincidunt eu augue. Nunc a nulla dapibus, tempor dui pellentesque, vestibulum lorem. Nunc</ns3:Resenje>
-        <ns3:Obrazlozenje>dwqq wd wq ddwq dqwdqw</ns3:Obrazlozenje>
-    </ns3:Amandman>
-    <ns3:Amandman Datum="2016-06-04+02:00" Mesto="Novi Sad" ID="811511" Podnosilac="dw dw">
-        <ns3:Resenje>nia nisi accumsan suscipit. Nunc ac diam ut arcu ultrices fermentum sit amet in odio. Pellentesque ut tortor vitae lectus pretium commodo nec ac lacus. Quisque nulla leo, laoreet id commodo vitae, pellentesque sit amet ipsum. Pellentesque a quam in turpis lacinia interdum eget ut dui. Mauris vel erat leo. Duis volutpat lacus sed enim vestibulum aliquam. Fusce ultrices, ligula eu egestas vehicula, urna urna imperdiet turpis, id porta lacus tortor nec ligula. Vestibulum euismod lacus enim, ut efficitur ante vestibulum et. Phasellus nec dictum justo.</ns3:Resenje>
-        <ns3:Obrazlozenje>qwdwq ddqwdwqd</ns3:Obrazlozenje>
-    </ns3:Amandman>
-    <ns3:Amandman Datum="2016-06-04+02:00" Mesto="Novi Sad" ID="35376" Podnosilac="dw dw">
-        <ns3:Resenje></ns3:Resenje>
-        <ns3:Obrazlozenje>vcwefew ffwfwe qwfq fqf fqwf qw</ns3:Obrazlozenje>
-    </ns3:Amandman>
-    <ns3:Amandman Datum="2016-06-04+02:00" Mesto="Novi Sad" ID="52931" Podnosilac="dw dw">
-        <ns3:Resenje></ns3:Resenje>
-        <ns3:Obrazlozenje>f wefwefwe gegw</ns3:Obrazlozenje>
-    </ns3:Amandman>
-    <ns3:Amandman Datum="2016-06-04+02:00" Mesto="Novi Sad" ID="23733" Podnosilac="dw dw">
-        <ns3:Resenje></ns3:Resenje>
-        <ns3:Obrazlozenje>fqw fdqw ffwqf fqw wwqfwq</ns3:Obrazlozenje>
-    </ns3:Amandman>
-    <ns3:Amandman Datum="2016-06-04+02:00" Mesto="Novi Sad" ID="576712" Podnosilac="dw dw">
-        <ns3:Resenje>Aenean lorem libero.</ns3:Resenje>
-        <ns3:Obrazlozenje>wfge wgeg wgwgwe gwe gwe gwe wggw</ns3:Obrazlozenje>
-        <ns2:Clan ID="719902">
+    <ns3:Amandman Datum="2016-06-04+02:00" Mesto="Novi Sad" ID="326123" Podnosilac="dw dw">
+        <ns3:Resenje>Vivamus laoreet turpis</ns3:Resenje>
+        <ns3:Obrazlozenje>f34rre</ns3:Obrazlozenje>
+        <ns2:Clan ID="246642">
+            <ns2:Naziv>Clan 2.1</ns2:Naziv>
             <ns2:Sadrzaj>
                 <ns2:Stav>
-                    <ns2:Redni_broj>2</ns2:Redni_broj>
-                    <ns2:Tekst>Aenean lorem libero.</ns2:Tekst>
+                    <ns2:Redni_broj>1</ns2:Redni_broj>
+                    <ns2:Tekst>Vivamus laoreet turpis</ns2:Tekst>
                 </ns2:Stav>
             </ns2:Sadrzaj>
         </ns2:Clan>

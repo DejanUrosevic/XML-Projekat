@@ -1,12 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns3:Amandman xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" Datum="2016-06-04+02:00" Mesto="Novi Sad" ID="576712" Podnosilac="dw dw">
-    <ns3:Resenje>Aenean lorem libero.</ns3:Resenje>
-    <ns3:Obrazlozenje>wfge wgeg wgwgwe gwe gwe gwe wggw</ns3:Obrazlozenje>
-    <ns2:Clan ID="719902">
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><?xml-stylesheet type='text/xsl' href='amandman.xsl' ?>
+<ns3:Amandman xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" Datum="2016-06-04+02:00" Mesto="Novi Sad" ID="326123" Podnosilac="dw dw">
+    <ns3:Resenje>Vivamus laoreet turpis</ns3:Resenje>
+    <ns3:Obrazlozenje>f34rre</ns3:Obrazlozenje>
+    <ns2:Clan ID="246642">
+        <ns2:Naziv>Clan 2.1</ns2:Naziv>
         <ns2:Sadrzaj>
             <ns2:Stav>
-                <ns2:Redni_broj>2</ns2:Redni_broj>
-                <ns2:Tekst>Aenean lorem libero.</ns2:Tekst>
+                <ns2:Redni_broj>1</ns2:Redni_broj>
+                <ns2:Tekst>Vivamus laoreet turpis</ns2:Tekst>
             </ns2:Stav>
         </ns2:Sadrzaj>
     </ns2:Clan>

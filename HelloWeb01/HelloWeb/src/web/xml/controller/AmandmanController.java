@@ -7,6 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 import jaxb.from.xsd.Propis;
 import web.xml.model.Propisi;
@@ -61,6 +67,19 @@ public class AmandmanController {
 
 
 		return new ResponseEntity<String>(HttpStatus.OK);
+
+	}
+	
+	
+	@RequestMapping(value = "/proba", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+	public @ResponseBody ResponseEntity<String> getAmandman()
+			throws IOException, JAXBException, ServletException, DatatypeConfigurationException, TransformerConfigurationException, ParserConfigurationException, SAXException, TransformerFactoryConfigurationError, TransformerException {
+		
+		
+		Document dokument = propisSer.loadDocument("data\\xml\\amandman.xml");
+
+		String resultHtml = propisSer.generateHtmlFromXsl(dokument, new File("data/xml/amandman.xsl"));
+		return new ResponseEntity<String>(resultHtml, HttpStatus.OK);
 
 	}
 

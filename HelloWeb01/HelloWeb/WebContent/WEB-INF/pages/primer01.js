@@ -300,6 +300,7 @@
 				$http.post(serverUrl + 'amandman/novi', {
 					propisId : $scope.propisProba.id,
 					clanId : $scope.clan.id,
+					clanNaziv: $scope.clan.naziv,
 					clanTekst : $scope.clan.sadrzaj.tekst[0],
 					stavTekst: $scope.stav.tekst,
 					stavRedniBroj: $scope.stav.redniBroj,
@@ -315,6 +316,7 @@
 				$http.post(serverUrl + 'amandman/novi', {
 					propisId : $scope.propisProba.id,
 					clanId : $scope.clan.id,
+					clanNaziv: $scope.clan.naziv,
 					clanTekst : $scope.clan.sadrzaj.tekst[0],
 					amandmanObrazlozenje : $scope.amandman.obrazlozenje
 				})
