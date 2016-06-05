@@ -631,7 +631,7 @@
 	
 	
 	
-	var izabranPropisNaceloCtrl = function($scope, $http, $state, $stateParams)
+	var izabranPropisNaceloCtrl = function($scope, $http, $state, $stateParams, propisService)
 	{
 		// JAKO JAKO BITNO DA SE svaki put prilikom slanja request-a posalje i
 		// token
@@ -658,17 +658,34 @@
 		
 		$scope.odbijenPropis = function()
 		{
+			
+			var propisServiceLista = propisService.getProperty();
+			for (var i=0; i<propisServiceLista.length; i++) {
+				if (propisServiceLista[i] == $stateParams.id) {
+					// delete propisServiceLista[i];
+					propisServiceLista.splice(i,1);
+					
+					break;
+				}
+			}
+			propisService.setProperty(propisServiceLista);
+			
 			if(!angular.equals({}, $stateParams))
 			{
 				var propisId = $stateParams.id;
 			}
-			$http.get(serverUrl+'/clan/odbijen/' + propisId)
+			$http.get(serverUrl+'clan/odbijen/' + $stateParams.id)
 			.success(function(data, header, status)
 			{
-				$state.go('procesSednice');
+				if (propisService.getProperty().length == 0) {
+					$state.go('sednicaIzborAkata');
+				} else {
+					$state.go('procesSednice');
+				}
 			})
 			.error(function(data, header, status)
 			{
+				console.log ('ejjjj');
 				console.log(data);
 				console.log(header);
 				console.log(status);
