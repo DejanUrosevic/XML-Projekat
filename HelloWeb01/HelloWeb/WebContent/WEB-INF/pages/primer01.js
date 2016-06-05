@@ -773,7 +773,7 @@
 		}
 	};
 	
-	var razmatranjeAmandmanaCtrl = function($scope, $http, $stateParams, $state)
+	var razmatranjeAmandmanaCtrl = function($scope, $http, $stateParams, $state, amandmanService)
 	{
 		if(!angular.equals({}, $stateParams))
 		{
@@ -792,11 +792,75 @@
 			$http.post(serverUrl + 'amandman/potvrda', {propisId: propisId, amandmanId: amandmanId})
 			.success(function(data, header, status)
 			{
-				alert('Promenjeno, pogledaj na bazi.');
+				// alert('Promenjeno, pogledaj na bazi.');
+				amandmanService.getProperty().shift();
+				if (amandmanService.getProperty().length != 0) {
+					$state.go('pregledAmandmanaZaPrihvatanje', {id:propisId});
+				} else {					
+					// $state.go('sednicaIzborAkata');
+					$state.go('potvrdaPropisaUCelosti', {id: propisId});
+				}
+				
 			})
 			
 		}
 	}
+	
+	var potvrdaPropisaUCelostiCtrl = function($scope, $state, $http, $stateParams) {
+		// JAKO JAKO BITNO DA SE svaki put prilikom slanja request-a posalje i
+		// token
+		// mora opet da se postavlja Authorization header!!!
+		$http.defaults.headers.common.Authorization = 'Bearer '
+				+ localStorage.getItem('key');
+		
+		if(!angular.equals({}, $stateParams))
+		{
+			var propisId = $stateParams.id;
+		}
+		$http.get(serverUrl+'/clan/' + propisId)
+		.success(function(data, header, status)
+		{
+			$scope.htmlXsl = data;
+			
+		})
+		.error(function(data, header, status)
+		{
+			console.log(data);
+			console.log(header);
+			console.log(status);
+		});
+		
+		$scope.odbijenPropis = function()
+		{
+			if(!angular.equals({}, $stateParams))
+			{
+				var propisId = $stateParams.id;
+			}
+			$http.get(serverUrl+'/clan/odbijen/' + propisId)
+			.success(function(data, header, status)
+			{
+				$state.go('procesSednice');
+			})
+			.error(function(data, header, status)
+			{
+				console.log(data);
+				console.log(header);
+				console.log(status);
+			});
+		}
+		
+		$scope.potvrdaUCelini = function() {
+			if(!angular.equals({}, $stateParams))
+			{
+				var propisId = $stateParams.id;
+			}
+			
+			$http.post(serverUrl+'/clan/prihvacenUCelini/'+propisId)
+			.success(function(data, header, status) {
+				$state.go('sednicaIzborAkata');
+			});
+		};
+	};
 
 	var app = angular
 			.module('app', [ 'ui.router', 'ngResource', 'ngSanitize' ]);
@@ -813,6 +877,7 @@
 	app.controller('prihvatanjeAmandmanaCtrl', prihvatanjeAmandmanaCtrl);
 	app.controller('pregledAmandmanaZaPrihvatanjeCtrl', pregledAmandmanaZaPrihvatanjeCtrl);
 	app.controller('razmatranjeAmandmanaCtrl', razmatranjeAmandmanaCtrl);
+	app.controller('potvrdaPropisaUCelostiCtrl', potvrdaPropisaUCelostiCtrl);
 
 	app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -901,6 +966,10 @@
 			url: '/sednica/procesSednice/akt/:id/amandman/:id2',
 			templateUrl : 'amandman-razmatranje.html',
 			controller: 'razmatranjeAmandmanaCtrl'
+		}).state('potvrdaPropisaUCelosti', {
+			url : '/sednica/procesSednice/akt/:id/ucelini',
+			templateUrl : 'proces-sednica-ucelini.html',
+			controller : 'potvrdaPropisaUCelostiCtrl'
 		});
 
 	});

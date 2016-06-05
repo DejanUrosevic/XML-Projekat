@@ -189,6 +189,8 @@ public class ClanController {
 			return new ResponseEntity<Propis>(HttpStatus.NOT_ACCEPTABLE);
 		}		
 		
+		
+		
 		BigInteger idPropis = BigInteger.valueOf(Long.parseLong(id));
 		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
 		Document dokument = null;
@@ -197,6 +199,56 @@ public class ClanController {
 			if (p.getID().equals(idPropis)) {
 				Propis propis = propisSer.unmarshallDocumentPropis(propisSer.findPropisById(p.getNaziv()));
 				propis.setStatus("U_NACELU");
+				
+				/*
+				if (propis.getAmandman().size() == 0) {
+					propis.setStatus("U_CELINI");
+				}
+				*/
+				
+				propisSer.marshallPropis(propis, new File("./data/xml/potpisPropis.xml"));
+				
+				//radi pretrage po sadrzaju i metapodacima, pamtimo neenkrpitovan i nepotpisan propis
+				propisSer.saveWithoutEncrypt(new File("data\\xml\\potpisPropis.xml"));
+				
+				
+				propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
+				propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
+						"", korisnik.getAlias());
+
+				propisSer.save(new File("./data/xml/potpisPropis.xml"));
+				
+				return new ResponseEntity<Propis>(HttpStatus.OK);
+			}
+		}
+		
+		return new ResponseEntity<Propis>(HttpStatus.NOT_FOUND);
+	}
+	
+	@RequestMapping(value = "/prihvacenUCelini/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<Propis> prihvacenUCelini(@PathVariable(value = "id") String id, HttpServletRequest req) throws  JAXBException, ServletException, IOException {
+		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
+		//ako ne postoji korisnik tj. JWT bacice exception
+		User korisnik = userSer.getUserFromJWT(req);
+				
+		//ova metoda ne sme da bude koriscena od strane gradjanina
+		//provera da li taj korisnika ima validan sertifikat iz CRL liste.
+		if(korisnik.getVrsta().equals("gradjanin") || korisnik.getVrsta().equals("odbornik") || userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
+			return new ResponseEntity<Propis>(HttpStatus.NOT_ACCEPTABLE);
+		}
+		
+		
+		
+		BigInteger idPropis = BigInteger.valueOf(Long.parseLong(id));
+		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
+		Document dokument = null;
+		
+		for (Propis p : propisi.getPropisi()) {
+			if (p.getID().equals(idPropis)) {
+				Propis propis = propisSer.unmarshallDocumentPropis(propisSer.findPropisById(p.getNaziv()));
+				propis.setStatus("U_CELINI");
+				
+				////////////////////////////
 				
 				propisSer.marshallPropis(propis, new File("./data/xml/potpisPropis.xml"));
 				
