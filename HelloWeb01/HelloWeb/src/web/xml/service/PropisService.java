@@ -251,4 +251,8 @@ public interface PropisService extends CrudService<Propisi> {
 	public void savePropisiXML() throws FileNotFoundException;
 	
 	public Propis unmarshallDocumentPropis(Document propis) throws JAXBException;
+	
+	public void marshallPureXml(String textXml) throws JAXBException;
+	
+	public void savePureXml(File f) throws JAXBException, FileNotFoundException;
 }

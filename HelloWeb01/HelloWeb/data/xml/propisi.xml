@@ -1,2 +1,137 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<propisi xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" xmlns:ns4="http://www.parlament.gov.rs/propis"/>
+<propisi xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" xmlns:ns4="http://www.parlament.gov.rs/propis">
+    <propis ID="83222" Datum="2016-06-06+02:00" Status="PREDLOZEN">
+        <ns4:Naziv>Ne razumem</ns4:Naziv>
+        <ns4:Deo ID="51113">
+            <ns4:Naziv>qwdqwqdw</ns4:Naziv>
+            <ns2:Clan ID="731474">
+                <ns2:Opis>wqqw</ns2:Opis>
+                <ns2:Naziv>qwdqwwd</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>
+                        <ns2:text>dqwdwqdwqdwqwdqd</ns2:text>
+                    </ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+            <ns2:Clan ID="945122">
+                <ns2:Opis>wqfwf</ns2:Opis>
+                <ns2:Naziv>fqwfwqwqf</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst/>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </ns4:Deo>
+    </propis>
+    <propis ID="781583" Datum="2016-06-06+02:00" Status="PREDLOZEN">
+        <ns4:Naziv>Propis1</ns4:Naziv>
+        <ns4:Deo ID="725527">
+            <ns4:Naziv>wqdqwdqwdqw</ns4:Naziv>
+            <ns2:Clan ID="27557">
+                <ns2:Opis>dwqdwqdwqdqw wqdwq qwdqwdwq</ns2:Opis>
+                <ns2:Naziv>wqdqwdqdwqdqd</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>
+                        <ns2:text></ns2:text>
+                        <ns2:text>na</ns2:text>
+                        <ns2:text>osnovu</ns2:text>
+                        <ns2:text>propisa</ns2:text>
+                        <ns2:text>Nerazumem</ns2:text>
+                        <ns2:text></ns2:text>
+                        <ns2:text></ns2:text>
+                        <ns2:text>clana</ns2:text>
+                        <ns2:text>qwdqwwd</ns2:text>
+                        <ns2:IDPropisa>83222</ns2:IDPropisa>
+                        <ns2:NazivPropisa>Nerazumem</ns2:NazivPropisa>
+                        <ns2:IDClana>731474</ns2:IDClana>
+                        <ns2:NazivClana>qwdqwwd</ns2:NazivClana>
+                    </ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </ns4:Deo>
+    </propis>
+    <propis ID="230316" Datum="2016-06-06+02:00" Status="PREDLOZEN">
+        <ns4:Naziv>DWWWDWDW</ns4:Naziv>
+        <ns4:Deo ID="145451">
+            <ns4:Naziv>wqddwq</ns4:Naziv>
+            <ns2:Clan ID="909363">
+                <ns2:Opis>wqwqqwdwqdqdw qdw qwdqw dwq dwqdwq dqqw dwq dwqdqw</ns2:Opis>
+                <ns2:Naziv>wqdwqdwqwq</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>
+                        <ns2:text>Na</ns2:text>
+                        <ns2:text>osnovu</ns2:text>
+                        <ns2:text>propisa</ns2:text>
+                        <ns2:text>Propis1</ns2:text>
+                        <ns2:text>clana</ns2:text>
+                        <ns2:text>wqdqwdqdwqdqd</ns2:text>
+                        <ns2:IDPropisa>781583</ns2:IDPropisa>
+                        <ns2:NazivPropisa>Propis1</ns2:NazivPropisa>
+                        <ns2:IDClana>27557</ns2:IDClana>
+                        <ns2:NazivClana>wqdqwdqdwqdqd</ns2:NazivClana>
+                    </ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+            <ns2:Clan ID="891088">
+                <ns2:Opis>qwdqwdqdqwdwq</ns2:Opis>
+                <ns2:Naziv>dwqdqwdwq qwd wq w dqwd d</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst/>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </ns4:Deo>
+    </propis>
+    <propis ID="448352" Datum="2016-06-06+02:00" Status="PREDLOZEN">
+        <ns4:Naziv>qqqqqq</ns4:Naziv>
+        <ns4:Deo ID="93484">
+            <ns4:Naziv>qwrqwrqwr</ns4:Naziv>
+            <ns4:Glava ID="52047">
+                <ns4:Naziv>fqwfwqfwqfwq</ns4:Naziv>
+                <ns2:Clan ID="593276">
+                    <ns2:Opis>wqfwqfqwfwqwq</ns2:Opis>
+                    <ns2:Naziv>fwqfwqfwqfwqfwqf</ns2:Naziv>
+                    <ns2:Sadrzaj>
+                        <ns2:Tekst>
+                            <ns2:text>Na</ns2:text>
+                            <ns2:text>osnovu</ns2:text>
+                            <ns2:text>propisa</ns2:text>
+                            <ns2:text>Nerazumem</ns2:text>
+                            <ns2:text>clana</ns2:text>
+                            <ns2:text>qwdqwwd</ns2:text>
+                            <ns2:text>fw</ns2:text>
+                            <ns2:text>qfwqfwqfwq</ns2:text>
+                            <ns2:text>fwwqfwqfwqfwqfqfqw</ns2:text>
+                            <ns2:IDPropisa>83222</ns2:IDPropisa>
+                            <ns2:NazivPropisa>Nerazumem</ns2:NazivPropisa>
+                            <ns2:IDClana>731474</ns2:IDClana>
+                            <ns2:NazivClana>qwdqwwd</ns2:NazivClana>
+                        </ns2:Tekst>
+                    </ns2:Sadrzaj>
+                </ns2:Clan>
+            </ns4:Glava>
+        </ns4:Deo>
+    </propis>
+    <propis ID="577349" Datum="2016-06-06+02:00" Status="PREDLOZEN">
+        <ns4:Naziv>wqdqwdw</ns4:Naziv>
+        <ns4:Deo ID="474653">
+            <ns4:Naziv>qwd</ns4:Naziv>
+            <ns2:Clan ID="845327">
+                <ns2:Opis>qwdwdwq</ns2:Opis>
+                <ns2:Naziv>wqdwqdwq</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>
+                        <ns2:text>Na</ns2:text>
+                        <ns2:text>osnovu</ns2:text>
+                        <ns2:text>propisa</ns2:text>
+                        <ns2:text>DWWWDWDW</ns2:text>
+                        <ns2:text>clana</ns2:text>
+                        <ns2:text>dwqdqwdwqqwdwqwdqwdd</ns2:text>
+                        <ns2:IDPropisa>230316</ns2:IDPropisa>
+                        <ns2:NazivPropisa>DWWWDWDW</ns2:NazivPropisa>
+                        <ns2:IDClana>891088</ns2:IDClana>
+                        <ns2:NazivClana>dwqdqwdwqqwdwqwdqwdd</ns2:NazivClana>
+                    </ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </ns4:Deo>
+    </propis>
+</propisi>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><?xml-stylesheet type='text/xsl' href='propis.xsl' ?>
+<Propis xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" ID="619579" Datum="2016-06-05+02:00" Status="U_CELINI">
+    <Naziv>LepoTiJeIme</Naziv>
+    <Deo ID="899560">
+        <Naziv>egreg</Naziv>
+        <ns2:Clan ID="204029">
+            <ns2:Opis>regergre</ns2:Opis>
+            <ns2:Naziv>ergregr</ns2:Naziv>
+            <ns2:Sadrzaj>
+                <ns2:Tekst>Samo mala promena, ako nije frka, da stignemo u trka.</ns2:Tekst>
+            </ns2:Sadrzaj>
+        </ns2:Clan>
+    </Deo>
+</Propis>

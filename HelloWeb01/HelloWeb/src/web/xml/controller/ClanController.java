@@ -62,6 +62,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 import com.sun.org.apache.xml.internal.security.exceptions.XMLSecurityException;
@@ -107,6 +108,58 @@ public class ClanController {
 		String resultHtml = propisSer.generateHtmlFromXsl(dokument, new File("data/xml/propis.xsl"));
 
 		return new ResponseEntity<String>(resultHtml, HttpStatus.OK);
+
+	}
+	
+	
+	@RequestMapping(value = "/propis/{nazivPropisa}/clan/{clanID}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+	public @ResponseBody ResponseEntity<String> getClan(@PathVariable(value = "nazivPropisa") String nazivPropisa, @PathVariable(value = "clanID") String clanID)
+			throws IOException, JAXBException, TransformerConfigurationException, ParserConfigurationException,
+			SAXException, TransformerFactoryConfigurationError, TransformerException {
+
+		JAXBContext context = JAXBContext.newInstance(Clan.class);
+
+		Marshaller marshaller = context.createMarshaller();
+
+		// Pode�avanje marshaller-a
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+		marshaller.setProperty("com.sun.xml.bind.xmlHeaders", "<?xml-stylesheet type='text/xsl' href='clan.xsl' ?>");
+
+		
+		
+		BigInteger idClana = BigInteger.valueOf(Long.parseLong(clanID));
+		Document propis = propisSer.findPropisById(nazivPropisa);
+		
+		Propis propis2 = propisSer.unmarshallDocumentPropis(propis);
+		
+		for(int i=0; i<propis2.getDeo().size(); i++)
+		{
+			for(int j=0; j<propis2.getDeo().get(i).getClan().size(); j++)
+			{
+				if(propis2.getDeo().get(i).getClan().get(j).getID().equals(idClana))
+				{
+					marshaller.marshal(propis2.getDeo().get(i).getClan().get(j), new File("data\\xml\\clan.xml"));
+					String resultHtml = propisSer.generateHtmlFromXsl(propisSer.loadDocument("data\\xml\\clan.xml"), new File("data/xml/clan.xsl"));
+					return new ResponseEntity<String>(resultHtml, HttpStatus.OK);
+				}
+				
+			}
+			for(int a=0; a<propis2.getDeo().get(i).getGlava().size(); a++)
+			{
+				for(int b=0; b<propis2.getDeo().get(i).getGlava().get(a).getClan().size(); b++)
+				{
+					if(propis2.getDeo().get(i).getGlava().get(a).getClan().get(b).getID().equals(idClana))
+					{
+						marshaller.marshal(propis2.getDeo().get(i).getGlava().get(a).getClan().get(b), new File("data\\xml\\clan.xml"));
+						String resultHtml = propisSer.generateHtmlFromXsl(propisSer.loadDocument("data\\xml\\clan.xml"), new File("data/xml/clan.xsl"));
+						return new ResponseEntity<String>(resultHtml, HttpStatus.OK);
+					}
+				}
+			}
+		}
+		
+
+		return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
 
 	}
 	
@@ -328,6 +381,28 @@ public class ClanController {
 		return new ResponseEntity<String>(HttpStatus.OK);
 
 	}
+	
+	@RequestMapping(value = "/propisXml", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<String> noviPropisXml(@RequestBody String postPayload, final HttpServletRequest req)
+			throws IOException, JAXBException, ServletException, DatatypeConfigurationException {
+		
+		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
+		//ako ne postoji korisnik tj. JWT bacice exception
+		User korisnik = userSer.getUserFromJWT(req);
+		
+		//ova metoda ne sme da bude koriscena od strane gradjanina
+		//provera da li taj korisnika ima validan sertifikat iz CRL liste.
+		if(korisnik.getVrsta().equals("gradjanin") || userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
+			return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
+		}
+		
+		
+		propisSer.marshallPureXml(postPayload);
+		propisSer.savePureXml(new File("data\\xml\\propisXml.xml"));
+
+		return new ResponseEntity<String>(HttpStatus.OK);
+
+	}
 
 	/**
 	 * Dodavanje novog dela u okviru trenutnog propisa
@@ -476,7 +551,7 @@ public class ClanController {
 		propisSer.saveWithoutEncrypt(new File("data\\xml\\potpisPropis.xml"));
 		
 		
-		propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
+	//	propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
 		propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
 				"", korisnik.getAlias());
 

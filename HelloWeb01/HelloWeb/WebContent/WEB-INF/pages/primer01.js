@@ -17,9 +17,7 @@
 		$scope.userName = '';
 		$scope.passWord = '';
 		$scope.rolaUser = null;
-		
-		
-	
+
 		// ovde ces nakon sto povuces podatke iz geta login-a dobiti token
 		// medjutim, ako username i pass ne postoje, token se ne stvori i onda
 		// pukne u klasi ApiController
@@ -52,18 +50,14 @@
 							});
 
 		}
-		
-		$scope.zaGradjane = function()
-		{
-			if($scope.usernamePassword === 'Username: g@g | Password: g')
-			{
+
+		$scope.zaGradjane = function() {
+			if ($scope.usernamePassword === 'Username: g@g | Password: g') {
 				$scope.usernamePassword = '';
-			}
-			else
-			{
+			} else {
 				$scope.usernamePassword = "Username: g@g | Password: g";
 			}
-			
+
 		}
 
 		/**
@@ -72,7 +66,7 @@
 		 */
 		$scope.checkRoles = function() {
 			$http
-					.get(serverUrl+'/api/role')
+					.get(serverUrl + '/api/role')
 					.then(
 							function(response) {
 
@@ -121,7 +115,7 @@
 		 * Metoda za registraciju korisnika na sistem
 		 */
 		$scope.register = function() {
-			$http.post(serverUrl+'/Index/registration', {
+			$http.post(serverUrl + '/Index/registration', {
 				ime : $scope.loginKor.ime,
 				prezime : $scope.loginKor.prezime,
 				username : $scope.loginKor.username,
@@ -152,10 +146,10 @@
 		 * treba prebaciti odmah na login posto nema token kod sebe
 		 */
 		if (localStorage.getItem('key') !== null) {
-			$http.get(serverUrl+'/api/role').then(
+			$http.get(serverUrl + '/api/role').then(
 					function(response) {
 						$http.get(
-								serverUrl+'/Index/user/'
+								serverUrl + '/Index/user/'
 										+ response.data.username).then(
 								function(response2) {
 									$scope.rolaUser = response2.data;
@@ -187,7 +181,8 @@
 
 	}
 
-	var sviAktiCtrl = function($scope, $resource, $http, $location, $stateParams, $state) {
+	var sviAktiCtrl = function($scope, $resource, $http, $location,
+			$stateParams, $state) {
 		// JAKO JAKO BITNO DA SE svaki put prilikom slanja request-a posalje i
 		// token
 		// mora opet da se postavlja Authorization header!!!
@@ -199,36 +194,35 @@
 		 * treba prebaciti odmah na login posto nema token kod sebe
 		 */
 		if (localStorage.getItem('key') !== null) {
-			$http.get(serverUrl+'/clan/all').then(
-					function(response) {
-						$scope.propisi = response.data.propisi;
-					});
+			$http.get(serverUrl + '/clan/all').then(function(response) {
+				$scope.propisi = response.data.propisi;
+			});
 		} else {
 			$state.go('login');
 		}
 
-		//pregled akta na osnovu njegovog ID-a
+		// pregled akta na osnovu njegovog ID-a
 		$scope.pregledAkta = function(propisId) {
 			$state.go('izabranPropis', {
 				id : propisId
 			});
 		}
-		
-		//odbornici i predsednik skupstine mogu da povuku predloge propisa ili amandmana
-		//pre nego sto uopste dodje do sednice
-		$scope.povuciPropis = function(propisId, index)
-		{
-			$http.get(serverUrl+'/clan/odbijen/' + propisId)
-			.success(function(data, header, status)
-			{
-				$scope.propisi.splice(index, 1);
-				$state.go('pregledAkata');
-			})
+
+		// odbornici i predsednik skupstine mogu da povuku predloge propisa ili
+		// amandmana
+		// pre nego sto uopste dodje do sednice
+		$scope.povuciPropis = function(propisId, index) {
+			$http.get(serverUrl + '/clan/odbijen/' + propisId).success(
+					function(data, header, status) {
+						$scope.propisi.splice(index, 1);
+						$state.go('pregledAkata');
+					})
 		}
-		
+
 	}
-	
-	var addAmandmanCtrl = function($scope, $resource, $http, $location, $stateParams, $state) {
+
+	var addAmandmanCtrl = function($scope, $resource, $http, $location,
+			$stateParams, $state) {
 		// JAKO JAKO BITNO DA SE svaki put prilikom slanja request-a posalje i
 		// token
 		// mora opet da se postavlja Authorization header!!!
@@ -240,37 +234,34 @@
 		 * treba prebaciti odmah na login posto nema token kod sebe
 		 */
 		if (localStorage.getItem('key') !== null) {
-			$http.get(serverUrl+'/clan/all').then(
-					function(response) {
-						$scope.propisi = response.data.propisi;
-					});
+			$http.get(serverUrl + '/clan/all').then(function(response) {
+				$scope.propisi = response.data.propisi;
+			});
 		} else {
 			$state.go('login');
 		}
-		
 
 		$scope.pronadji = function(selektovaniPropis) {
 			if (localStorage.getItem('key') === null) {
 				mainService.logOut();
 			}
-			
-			
+
 			$scope.propisProba = JSON.parse(selektovaniPropis);
-			
+
 			$scope.listaClanova = [];
-			
+
 			for (var i = 0; i < $scope.propisProba.deo.length; i++) {
-				var deo =  $scope.propisProba.deo[i];
-				if(deo.glava !== null && deo.glava !== undefined && deo.glava.length != 0){
+				var deo = $scope.propisProba.deo[i];
+				if (deo.glava !== null && deo.glava !== undefined
+						&& deo.glava.length != 0) {
 					var glave = deo.glava;
 					for (var j = 0; j < glave.length; j++) {
 						for (var k = 0; k < glave[j].clan.length; k++) {
-						$scope.listaClanova.push(glave[j].clan[k]);
+							$scope.listaClanova.push(glave[j].clan[k]);
 						}
 					}
-				}
-				else{
-					
+				} else {
+
 					for (var j = 0; j < deo.clan.length; j++) {
 						$scope.listaClanova.push(deo.clan[j]);
 					}
@@ -284,58 +275,42 @@
 			$scope.clan = JSON.parse($scope.selektovaniClan);
 			$scope.check = true;
 		}
-		
+
 		$scope.pronadjiStav = function(selektovaniStav) {
 
 			$scope.stav = JSON.parse(selektovaniStav);
-			
+
 		}
-		
-		
-		
+
 		$scope.zavrsiAmandman = function() {
-			if($scope.clan.sadrzaj.tekst.length === 0)
-			{
+			if ($scope.clan.sadrzaj.tekst.length === 0) {
 				$scope.clan.sadrzaj.tekst[0] = '';
 				$http.post(serverUrl + 'amandman/novi', {
 					propisId : $scope.propisProba.id,
 					clanId : $scope.clan.id,
-					clanNaziv: $scope.clan.naziv,
+					clanNaziv : $scope.clan.naziv,
 					clanTekst : $scope.clan.sadrzaj.tekst[0],
-					stavTekst: $scope.stav.tekst,
-					stavRedniBroj: $scope.stav.redniBroj,
+					stavTekst : $scope.stav.tekst,
+					stavRedniBroj : $scope.stav.redniBroj,
 					amandmanObrazlozenje : $scope.amandman.obrazlozenje
-				})
-				.success(function(data, status, header)
-				{
+				}).success(function(data, status, header) {
 					$state.go('main');
 				});
 			}
-			if($scope.stav === undefined)
-			{
+			if ($scope.stav === undefined) {
 				$http.post(serverUrl + 'amandman/novi', {
 					propisId : $scope.propisProba.id,
 					clanId : $scope.clan.id,
-					clanNaziv: $scope.clan.naziv,
+					clanNaziv : $scope.clan.naziv,
 					clanTekst : $scope.clan.sadrzaj.tekst[0],
 					amandmanObrazlozenje : $scope.amandman.obrazlozenje
-				})
-				.success(function(data, status, header)
-				{
+				}).success(function(data, status, header) {
 					$state.go('main');
 				});
 			}
-			
-			
-			
-			
-			
-			
-			
+
 		}
-		
-		
-		
+
 	}
 
 	var pregledPropisaCtrl = function($scope, $resource, $http, $location,
@@ -353,51 +328,104 @@
 				var propisId = $stateParams.id;
 			}
 
-			$http.get(serverUrl+'/clan/' + propisId).then(
-					function(response) {
-						$scope.htmlXsl = response.data;
-					});
+			$http.get(serverUrl + '/clan/' + propisId).then(function(response) {
+				$scope.htmlXsl = response.data;
+			});
 		} else {
 			$state.go('login');
 		}
 	}
 
-	var addPropisCtrl = function($scope, mainService, $resource, $http, $location,
-			$stateParams, $state) {
-		//provera da li ima token u localStorage-u
+	var addPropisCtrl = function($scope, mainService, $resource, $http,
+			$location, $stateParams, $state) {
+		// provera da li ima token u localStorage-u
 		if (localStorage.getItem('key') === null) {
 			$state.go('login');
 		}
-		//ako ima, zalepi ga na http
+		// ako ima, zalepi ga na http
 		$http.defaults.headers.common.Authorization = 'Bearer '
-			+ localStorage.getItem('key');
-		//posto imamo token, proveravamo koja je rola, ako je obican gradjanin, onda dovidjenja!
-		$http.get(serverUrl+'/api/role')
-		.success(function(data)
-		{
-			if(data.role === 'gradjanin')
-			{
+				+ localStorage.getItem('key');
+		// posto imamo token, proveravamo koja je rola, ako je obican gradjanin,
+		// onda dovidjenja!
+		$http.get(serverUrl + '/api/role').success(function(data) {
+			if (data.role === 'gradjanin') {
 				$state.go('main');
 			}
 		})
-		
-		
+
 		// predefinsane vrednosti, jer pravi problem na backend-u.
 		$scope.stavBroj = '';
 		$scope.stavTekst = '';
 		$scope.clanTekst = '';
 		$scope.glavaNaziv = '';
+		$scope.clanNaziv = '';
+		$scope.clanoviListaPost = '';
+		$scope.propisNazivPost = '';
 
-		/**
-		 * Ovde bi faktikci trebalo da se posalje na bazu gotov propis, ali u
-		 * trenutku pisanja ovog koda, mi nemamo ni | slova B ob Baze. Stoga
-		 * samo kreira novi xml na hard disku.
-		 */
+		$scope.zavrsiPropisXml = function() {
+
+			$http.post(serverUrl + 'clan/propisXml', {
+				propisXml : $scope.propisXml
+			}).success(function(data) {
+				alert("Radi");
+			});
+
+		}
+
+		$http.get(serverUrl + '/clan/all').then(function(response) {
+			$scope.propisi = response.data.propisi;
+		});
+
+		$scope.pronadji = function(selektovaniPropis) {
+			$scope.propisProba = JSON.parse(selektovaniPropis);
+			$scope.propisNazivPost = $scope.propisProba.naziv;
+			
+			$scope.clanTekst = 'Na osnovu propisa ' + $scope.propisProba.naziv.replace(/\s+/g, '') + ' ';
+
+			$scope.listaClanova = [];
+
+			for (var i = 0; i < $scope.propisProba.deo.length; i++) {
+				var deo = $scope.propisProba.deo[i];
+				if (deo.glava !== null && deo.glava !== undefined
+						&& deo.glava.length != 0) {
+					var glave = deo.glava;
+					for (var j = 0; j < glave.length; j++) {
+						for (var k = 0; k < glave[j].clan.length; k++) {
+							$scope.listaClanova.push(glave[j].clan[k]);
+						}
+					}
+				} else {
+
+					for (var j = 0; j < deo.clan.length; j++) {
+						$scope.listaClanova.push(deo.clan[j]);
+					}
+				}
+			}
+		}
+		
+		$scope.ubaciClan = function(selektovanClan)
+		{
+			$scope.clanParse = JSON.parse(selektovanClan);
+			
+			$scope.clanNaziv = $scope.clanParse.naziv; 
+			
+			var temp = $scope.clanTekst.split('clana');
+			
+			$scope.clanTekst = temp[0] + 'clana ' + $scope.clanParse.naziv.replace(/\s+/g, '');
+			
+			
+			$scope.clanoviListaPost = $scope.clanParse.id;
+			
+		}
+
+
 		$scope.zavrsiPropis = function() {
 			if (localStorage.getItem('key') === null) {
 				mainService.logOut();
 			}
-			$http.post(serverUrl+'/clan/noviPropis', {
+			$scope.splitovanTekst = $scope.clanTekst.split(' ');
+			
+			$http.post(serverUrl + 'clan/noviPropis', {
 				nazivPropisa : $scope.propis.naziv,
 				nazivDeo : $scope.deo.naziv,
 				nazivGlave : $scope.glavaNaziv,
@@ -405,19 +433,21 @@
 				opisClana : $scope.clan.opis,
 				redniBrojStava : $scope.stavBroj,
 				stavTekst : $scope.stavTekst,
-				tekstClana : $scope.clanTekst
+				tekstClana : $scope.clanTekst,
+				referenciraniClanovi: $scope.clanoviListaPost,
+				refernciranPropis: $scope.propisNazivPost,
+				nazivClanaRef: $scope.clanNaziv,
+				splitovanTekstClan: $scope.splitovanTekst,
+				propisId: $scope.propisProba.id
 			}).success(function(data, header, status) {
 				$state.go('opcije');
 			}).error(function(data, header, status) {
-				if(header === 406)
-				{
+				if (header === 406) {
 					alert("Your certificate is invalid.");
-				}
-				else
-				{
+				} else {
 					alert("Something went wrong, log in again, please.");
 				}
-				
+
 				$state.go('main');
 			});
 
@@ -430,7 +460,7 @@
 			if (localStorage.getItem('key') === null) {
 				mainService.logOut();
 			}
-			$http.post(serverUrl+'/clan/noviDeo', {
+			$http.post(serverUrl + '/clan/noviDeo', {
 				nazivDeo : $scope.deo.naziv,
 				nazivGlave : $scope.glavaNaziv,
 				nazivClana : $scope.clan.naziv,
@@ -441,15 +471,12 @@
 			}).success(function(data, header, status) {
 				$state.go('opcije');
 			}).error(function(data, header, status) {
-				if(header === 406)
-				{
+				if (header === 406) {
 					alert("Your certificate is invalid.");
-				}
-				else
-				{
+				} else {
 					alert("Something went wrong, log in again, please.");
 				}
-				
+
 				$state.go('main');
 			});
 
@@ -462,7 +489,7 @@
 			if (localStorage.getItem('key') === null) {
 				mainService.logOut();
 			}
-			$http.post(serverUrl+'/clan/novaGlava', {
+			$http.post(serverUrl + '/clan/novaGlava', {
 				nazivGlave : $scope.glavaNaziv,
 				nazivClana : $scope.clan.naziv,
 				opisClana : $scope.clan.opis,
@@ -472,15 +499,12 @@
 			}).success(function(data, header, status) {
 				$state.go('opcije');
 			}).error(function(data, header, status) {
-				if(header === 406)
-				{
+				if (header === 406) {
 					alert("Your certificate is invalid.");
-				}
-				else
-				{
+				} else {
 					alert("Something went wrong, log in again, please.");
 				}
-				
+
 				$state.go('main');
 			});
 		}
@@ -489,7 +513,7 @@
 			if (localStorage.getItem('key') === null) {
 				mainService.logOut();
 			}
-			$http.post(serverUrl+'/clan/noviClan', {
+			$http.post(serverUrl + '/clan/noviClan', {
 				nazivClana : $scope.clan.naziv,
 				opisClana : $scope.clan.opis,
 				redniBrojStava : $scope.stavBroj,
@@ -498,15 +522,12 @@
 			}).success(function(data, header, status) {
 				$state.go('opcije');
 			}).error(function(data, header, status) {
-				if(header === 406)
-				{
+				if (header === 406) {
 					alert("Your certificate is invalid.");
-				}
-				else
-				{
+				} else {
 					alert("Something went wrong, log in again, please.");
 				}
-				
+
 				$state.go('main');
 			});
 		}
@@ -515,43 +536,36 @@
 			if (localStorage.getItem('key') === null) {
 				mainService.logOut();
 			}
-			$http.post(serverUrl+'/clan/noviStav', {
+			$http.post(serverUrl + '/clan/noviStav', {
 				redniBrojStava : $scope.stavBroj,
 				stavTekst : $scope.stavTekst
 			}).success(function(data, header, status) {
 				$state.go('opcije');
 			}).error(function(data, header, status) {
-				if(header === 406)
-				{
+				if (header === 406) {
 					alert("Your certificate is invalid.");
-				}
-				else
-				{
+				} else {
 					alert("Something went wrong, log in again, please.");
 				}
-				
+
 				$state.go('main');
 			});
 		}
 
 		$scope.saveToDatabase = function() {
-			$http.get(serverUrl+'/clan/save').then(
-					function(response) {
-						$state.go('main');
-					});
+			$http.get(serverUrl + '/clan/save').then(function(response) {
+				$state.go('main');
+			});
 			if (localStorage.getItem('key') === null) {
 				mainService.logOut();
 			}
-			$http.get(serverUrl+'/clan/save')
-			.success(function(data, header, status) {
-				$state.go('main');
-			}).error(function(data, header, status) {
-				if(header === 406)
-				{
+			$http.get(serverUrl + '/clan/save').success(
+					function(data, header, status) {
+						$state.go('main');
+					}).error(function(data, header, status) {
+				if (header === 406) {
 					alert("Your certificate is invalid.");
-				}
-				else
-				{
+				} else {
 					alert("Something went wrong, log in again, please.");
 				}
 				$state.go('main');
@@ -562,322 +576,310 @@
 	}
 
 	var sednicaCtrl = function($rootScope, $scope, $resource, $http, $location,
-			$stateParams, $state, propisService) 
-	{
-		
-		$scope.izborAkata = function()
-		{
+			$stateParams, $state, propisService) {
+
+		$scope.izborAkata = function() {
 			$state.go('sednicaIzborAkata');
 		}
-		
-		//ovo je lista koja sluzi da cuva podatke o tome koji akti su izabrani za sednicu
+
+		// ovo je lista koja sluzi da cuva podatke o tome koji akti su izabrani
+		// za sednicu
 		$scope.listaIzabranihAkataPoImenu = [];
-		
-		
-		$scope.toggleSelection = function toggleSelection(propisId) 
-		{
+
+		$scope.toggleSelection = function toggleSelection(propisId) {
 			var idx = $scope.listaIzabranihAkataPoImenu.indexOf(propisId);
 
 			// is currently selected
 			if (idx > -1) {
 				$scope.listaIzabranihAkataPoImenu.splice(idx, 1);
 			}
-			    // is newly selected
+			// is newly selected
 			else {
 				$scope.listaIzabranihAkataPoImenu.push(propisId);
 			}
 		};
-		
-		//saljemo preko servica podatke o tome koji su izabrani propisi
+
+		// saljemo preko servica podatke o tome koji su izabrani propisi
 		propisService.setProperty($scope.listaIzabranihAkataPoImenu);
-		
-		$scope.zapocniSednicu = function()
-		{
+
+		$scope.zapocniSednicu = function() {
 			$state.go('procesSednice');
 		}
 
 	}
-	
-	
-	
-	var procesSedniceCtrl = function($scope, $http, $state, propisService)
-	{
+
+	var procesSedniceCtrl = function($scope, $http, $state, propisService) {
 		$scope.izabraniAkti = [];
-		
+
 		var lista = propisService.getProperty();
-		
-		for(var i=0; i<lista.length; i++)
-		{
-			$http.get(serverUrl +'/clan/naziv/' + lista[i])
-			.success(function(data, header, status)
-			{
-				$scope.izabraniAkti.push(data);
-				
-			})
-			.error(function(data, header, status)
-			{
+
+		for (var i = 0; i < lista.length; i++) {
+			$http.get(serverUrl + '/clan/naziv/' + lista[i]).success(
+					function(data, header, status) {
+						$scope.izabraniAkti.push(data);
+
+					}).error(function(data, header, status) {
 				console.log(data);
 				console.log(header);
 				console.log(status);
 			});
 		}
-		
-		$scope.pregledAkta = function(propisId)
-		{
-			$state.go('pregledAktaZaNacelo', {id: propisId});
+
+		$scope.pregledAkta = function(propisId) {
+			$state.go('pregledAktaZaNacelo', {
+				id : propisId
+			});
 		}
 	}
-	
-	
-	
-	
-	var izabranPropisNaceloCtrl = function($scope, $http, $state, $stateParams, propisService)
-	{
+
+	var izabranPropisNaceloCtrl = function($scope, $http, $state, $stateParams,
+			propisService) {
 		// JAKO JAKO BITNO DA SE svaki put prilikom slanja request-a posalje i
 		// token
 		// mora opet da se postavlja Authorization header!!!
 		$http.defaults.headers.common.Authorization = 'Bearer '
 				+ localStorage.getItem('key');
-		
-		if(!angular.equals({}, $stateParams))
-		{
+
+		if (!angular.equals({}, $stateParams)) {
 			var propisId = $stateParams.id;
 		}
-		$http.get(serverUrl+'/clan/' + propisId)
-		.success(function(data, header, status)
-		{
-			$scope.htmlXsl = data;
-			
-		})
-		.error(function(data, header, status)
-		{
+		$http.get(serverUrl + '/clan/' + propisId).success(
+				function(data, header, status) {
+					$scope.htmlXsl = data;
+
+				}).error(function(data, header, status) {
 			console.log(data);
 			console.log(header);
 			console.log(status);
 		});
-		
-		$scope.odbijenPropis = function()
-		{
-			
+
+		$scope.odbijenPropis = function() {
+
 			var propisServiceLista = propisService.getProperty();
-			for (var i=0; i<propisServiceLista.length; i++) {
+			for (var i = 0; i < propisServiceLista.length; i++) {
 				if (propisServiceLista[i] == $stateParams.id) {
 					// delete propisServiceLista[i];
-					propisServiceLista.splice(i,1);
-					
+					propisServiceLista.splice(i, 1);
+
 					break;
 				}
 			}
 			propisService.setProperty(propisServiceLista);
-			
-			if(!angular.equals({}, $stateParams))
-			{
+
+			if (!angular.equals({}, $stateParams)) {
 				var propisId = $stateParams.id;
 			}
-			$http.get(serverUrl+'clan/odbijen/' + $stateParams.id)
-			.success(function(data, header, status)
-			{
-				if (propisService.getProperty().length == 0) {
-					$state.go('sednicaIzborAkata');
-				} else {
-					$state.go('procesSednice');
-				}
-			})
-			.error(function(data, header, status)
-			{
-				console.log ('ejjjj');
+			$http.get(serverUrl + 'clan/odbijen/' + $stateParams.id).success(
+					function(data, header, status) {
+						if (propisService.getProperty().length == 0) {
+							$state.go('sednicaIzborAkata');
+						} else {
+							$state.go('procesSednice');
+						}
+					}).error(function(data, header, status) {
+				console.log('ejjjj');
 				console.log(data);
 				console.log(header);
 				console.log(status);
 			});
 		}
-		
+
 		$scope.potvrdaUNacelu = function() {
-			if(!angular.equals({}, $stateParams))
-			{
+			if (!angular.equals({}, $stateParams)) {
 				var propisId = $stateParams.id;
 			}
-			$http.post(serverUrl+'/clan/prihvacenUNacelu/'+propisId)
-			.success(function(data, header, status) {
-				$state.go('prihvatanjeAmandmana', {id:propisId});
-			});
+			$http.post(serverUrl + '/clan/prihvacenUNacelu/' + propisId)
+					.success(function(data, header, status) {
+						$state.go('prihvatanjeAmandmana', {
+							id : propisId
+						});
+					});
 		};
 	}
-	
 
 	/**
-	 * Angular kontroler zadužen za pronalaženje akata po različitim kriterijuma i sadržajima.
-	 * Za sada je implementirana mogućnost pretreaživanja po sadržaju.
+	 * Angular kontroler zadužen za pronalaženje akata po različitim kriterijuma
+	 * i sadržajima. Za sada je implementirana mogućnost pretreaživanja po
+	 * sadržaju.
 	 */
 	var pretragaAkataCtrl = function($scope, $state, $resource, $http) {
-		var PretragaAkataResurs = $resource(serverUrl+'/clan/pretragaPropisa',
-									  null,{
-										pretrazi:{method:'POST'}
-									  });
-				
+		var PretragaAkataResurs = $resource(
+				serverUrl + '/clan/pretragaPropisa', null, {
+					pretrazi : {
+						method : 'POST'
+					}
+				});
+
 		$scope.pretraga = {};
 		$scope.pretraga.upit = "";
 		$scope.pretraga.rezultat = [];
 
 		$scope.pretraga.pretrazi = function() {
 			PretragaAkataResurs.pretrazi({
-				upit: $scope.pretraga.upit
-			},function(data) {
+				upit : $scope.pretraga.upit
+			}, function(data) {
 				$scope.pretraga.rezultat = data.propisi;
 			});
 		};
-				
+
 		$scope.pretraga.pregledAkta = function(propisId) {
 			$state.go('izabranPropis', {
 				id : propisId
 			});
 		};
 	};
-	
-	var prihvatanjeAmandmanaCtrl = function($scope, $state, $resource, $http, $stateParams, amandmanService) {
-		if(!angular.equals({}, $stateParams))
-		{
+
+	var prihvatanjeAmandmanaCtrl = function($scope, $state, $resource, $http,
+			$stateParams, amandmanService) {
+		if (!angular.equals({}, $stateParams)) {
 			var propisId = $stateParams.id;
-			
-			$http.get(serverUrl+'clan/id/'+propisId)
-			.success(function(data, header, status) {
-				$scope.propis = data;
-			});
-			
-			
-			//////
-			//ovo je lista koja sluzi da cuva podatke o tome koji amandmani su izabrani za sednicu
+
+			$http.get(serverUrl + 'clan/id/' + propisId).success(
+					function(data, header, status) {
+						$scope.propis = data;
+					});
+
+			// ////
+			// ovo je lista koja sluzi da cuva podatke o tome koji amandmani su
+			// izabrani za sednicu
 			$scope.listaIzabranihAmandmana = [];
-			
-			
-			$scope.toggleSelection = function toggleSelection(amandmanId) 
-			{
+
+			$scope.toggleSelection = function toggleSelection(amandmanId) {
 				var idx = $scope.listaIzabranihAmandmana.indexOf(amandmanId);
 
 				// is currently selected
 				if (idx > -1) {
 					$scope.listaIzabranihAmandmana.splice(idx, 1);
 				}
-				    // is newly selected
+				// is newly selected
 				else {
 					$scope.listaIzabranihAmandmana.push(amandmanId);
 				}
 			};
-			
-			//saljemo preko servica podatke o tome koji su izabrani propisi
+
+			// saljemo preko servica podatke o tome koji su izabrani propisi
 			amandmanService.setProperty($scope.listaIzabranihAmandmana);
-			
-			$scope.nastaviSaAmandmanima = function()
-			{
-				$state.go('pregledAmandmanaZaPrihvatanje', {id: propisId});
+
+			$scope.nastaviSaAmandmanima = function() {
+				$state.go('pregledAmandmanaZaPrihvatanje', {
+					id : propisId
+				});
 			}
 		}
 	};
-	
-	var pregledAmandmanaZaPrihvatanjeCtrl = function($scope, $http, amandmanService, $stateParams, $state) {
-		
-		if(!angular.equals({}, $stateParams))
-		{
+
+	var pregledAmandmanaZaPrihvatanjeCtrl = function($scope, $http,
+			amandmanService, $stateParams, $state) {
+
+		if (!angular.equals({}, $stateParams)) {
 			var propisId = $stateParams.id;
 		}
-		
-		
+
 		$scope.amandmani = amandmanService.getProperty();
-		
-		$scope.pregledAmandmana = function(amandmanId)
-		{
-			$state.go('razmatranjeAmandmana', {id: propisId, id2: amandmanId});
+
+		$scope.pregledAmandmana = function(amandmanId) {
+			$state.go('razmatranjeAmandmana', {
+				id : propisId,
+				id2 : amandmanId
+			});
 		}
 	};
-	
-	var razmatranjeAmandmanaCtrl = function($scope, $http, $stateParams, $state, amandmanService)
-	{
-		if(!angular.equals({}, $stateParams))
-		{
+
+	var razmatranjeAmandmanaCtrl = function($scope, $http, $stateParams,
+			$state, amandmanService) {
+		if (!angular.equals({}, $stateParams)) {
 			var propisId = $stateParams.id;
 			var amandmanId = $stateParams.id2;
 		}
-		
-		$http.get(serverUrl + 'amandman/' + amandmanId)
-		.success(function(data, header, status)
-		{
-			$scope.htmlXsl = data;
-		});
-		
-		$scope.potvrdaAmandmana = function()
-		{
-			$http.post(serverUrl + 'amandman/potvrda', {propisId: propisId, amandmanId: amandmanId})
-			.success(function(data, header, status)
-			{
+
+		$http.get(serverUrl + 'amandman/' + amandmanId).success(
+				function(data, header, status) {
+					$scope.htmlXsl = data;
+				});
+
+		$scope.potvrdaAmandmana = function() {
+			$http.post(serverUrl + 'amandman/potvrda', {
+				propisId : propisId,
+				amandmanId : amandmanId
+			}).success(function(data, header, status) {
 				// alert('Promenjeno, pogledaj na bazi.');
 				amandmanService.getProperty().shift();
 				if (amandmanService.getProperty().length != 0) {
-					$state.go('pregledAmandmanaZaPrihvatanje', {id:propisId});
-				} else {					
+					$state.go('pregledAmandmanaZaPrihvatanje', {
+						id : propisId
+					});
+				} else {
 					// $state.go('sednicaIzborAkata');
-					$state.go('potvrdaPropisaUCelosti', {id: propisId});
+					$state.go('potvrdaPropisaUCelosti', {
+						id : propisId
+					});
 				}
-				
+
 			})
-			
+
 		}
 	}
-	
-	var potvrdaPropisaUCelostiCtrl = function($scope, $state, $http, $stateParams) {
+
+	var potvrdaPropisaUCelostiCtrl = function($scope, $state, $http,
+			$stateParams) {
 		// JAKO JAKO BITNO DA SE svaki put prilikom slanja request-a posalje i
 		// token
 		// mora opet da se postavlja Authorization header!!!
 		$http.defaults.headers.common.Authorization = 'Bearer '
 				+ localStorage.getItem('key');
-		
-		if(!angular.equals({}, $stateParams))
-		{
+
+		if (!angular.equals({}, $stateParams)) {
 			var propisId = $stateParams.id;
 		}
-		$http.get(serverUrl+'/clan/' + propisId)
-		.success(function(data, header, status)
-		{
-			$scope.htmlXsl = data;
-			
-		})
-		.error(function(data, header, status)
-		{
+		$http.get(serverUrl + '/clan/' + propisId).success(
+				function(data, header, status) {
+					$scope.htmlXsl = data;
+
+				}).error(function(data, header, status) {
 			console.log(data);
 			console.log(header);
 			console.log(status);
 		});
-		
-		$scope.odbijenPropis = function()
-		{
-			if(!angular.equals({}, $stateParams))
-			{
+
+		$scope.odbijenPropis = function() {
+			if (!angular.equals({}, $stateParams)) {
 				var propisId = $stateParams.id;
 			}
-			$http.get(serverUrl+'/clan/odbijen/' + propisId)
-			.success(function(data, header, status)
-			{
-				$state.go('procesSednice');
-			})
-			.error(function(data, header, status)
-			{
+			$http.get(serverUrl + '/clan/odbijen/' + propisId).success(
+					function(data, header, status) {
+						$state.go('procesSednice');
+					}).error(function(data, header, status) {
 				console.log(data);
 				console.log(header);
 				console.log(status);
 			});
 		}
-		
+
 		$scope.potvrdaUCelini = function() {
-			if(!angular.equals({}, $stateParams))
-			{
+			if (!angular.equals({}, $stateParams)) {
 				var propisId = $stateParams.id;
 			}
-			
-			$http.post(serverUrl+'/clan/prihvacenUCelini/'+propisId)
-			.success(function(data, header, status) {
-				$state.go('sednicaIzborAkata');
-			});
+
+			$http.post(serverUrl + '/clan/prihvacenUCelini/' + propisId)
+					.success(function(data, header, status) {
+						$state.go('sednicaIzborAkata');
+					});
 		};
 	};
+	
+	var prikazClanaCtrl = function($scope, $state, $http, $stateParams)
+	{
+		if (!angular.equals({}, $stateParams)) {
+			var clanId = $stateParams.idClana;
+			var nazivPropisa = $stateParams.nazivPropisa;
+		}
+		
+		$http.get(serverUrl+'clan/propis/' + nazivPropisa + '/clan/' + clanId)
+		.success(function(data)
+		{
+			$scope.xmlToXsl = data;
+		});
+	}
 
 	var app = angular
 			.module('app', [ 'ui.router', 'ngResource', 'ngSanitize' ]);
@@ -892,9 +894,11 @@
 	app.controller('procesSedniceCtrl', procesSedniceCtrl);
 	app.controller('izabranPropisNaceloCtrl', izabranPropisNaceloCtrl);
 	app.controller('prihvatanjeAmandmanaCtrl', prihvatanjeAmandmanaCtrl);
-	app.controller('pregledAmandmanaZaPrihvatanjeCtrl', pregledAmandmanaZaPrihvatanjeCtrl);
+	app.controller('pregledAmandmanaZaPrihvatanjeCtrl',
+			pregledAmandmanaZaPrihvatanjeCtrl);
 	app.controller('razmatranjeAmandmanaCtrl', razmatranjeAmandmanaCtrl);
 	app.controller('potvrdaPropisaUCelostiCtrl', potvrdaPropisaUCelostiCtrl);
+	app.controller('prikazClanaCtrl', prikazClanaCtrl);
 
 	app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -972,21 +976,25 @@
 			url : '/greska',
 			templateUrl : 'greska.html'
 		}).state('prihvatanjeAmandmana', {
-			url: '/sednica/procesSednice/akt/:id/amandmani',
+			url : '/sednica/procesSednice/akt/:id/amandmani',
 			templateUrl : 'proces-sednice-amandmani.html',
-			controller: 'prihvatanjeAmandmanaCtrl'
+			controller : 'prihvatanjeAmandmanaCtrl'
 		}).state('pregledAmandmanaZaPrihvatanje', {
-			url: '/sednica/procesSednice/akt/:id/amandmaniPrikaz',
+			url : '/sednica/procesSednice/akt/:id/amandmaniPrikaz',
 			templateUrl : 'pregledAmandmanaZaPrihvatanje.html',
-			controller: 'pregledAmandmanaZaPrihvatanjeCtrl'
+			controller : 'pregledAmandmanaZaPrihvatanjeCtrl'
 		}).state('razmatranjeAmandmana', {
-			url: '/sednica/procesSednice/akt/:id/amandman/:id2',
+			url : '/sednica/procesSednice/akt/:id/amandman/:id2',
 			templateUrl : 'amandman-razmatranje.html',
-			controller: 'razmatranjeAmandmanaCtrl'
+			controller : 'razmatranjeAmandmanaCtrl'
 		}).state('potvrdaPropisaUCelosti', {
 			url : '/sednica/procesSednice/akt/:id/ucelini',
 			templateUrl : 'proces-sednica-ucelini.html',
 			controller : 'potvrdaPropisaUCelostiCtrl'
+		}).state('prikazClana', {
+			url : '/propis/:nazivPropisa/clan/:idClana',
+			templateUrl : 'prikaz-clan.html',
+			controller : 'prikazClanaCtrl'
 		});
 
 	});
@@ -994,11 +1002,10 @@
 	app.service('mainService', function($http, $state) {
 		return {
 			login : function(email, lozinka) {
-				return $http.post(
-						serverUrl+'/Index/checkUser', {
-							username : email,
-							password : lozinka
-						}).then(function(response) {
+				return $http.post(serverUrl + '/Index/checkUser', {
+					username : email,
+					password : lozinka
+				}).then(function(response) {
 
 					return response.data.token;
 
@@ -1006,44 +1013,42 @@
 			},
 
 			hasRole : function() {
-				return $http.get(serverUrl+'/api/role')
-						.then(function(response) {
+				return $http.get(serverUrl + '/api/role').then(
+						function(response) {
 							console.log(response);
 							return response.data;
 						});
 			},
-			logOut: function()
-			{
-					$http.defaults.headers.common.Authorization = '';
-					localStorage.clear();
-					$state.go('login');
-			},	
+			logOut : function() {
+				$http.defaults.headers.common.Authorization = '';
+				localStorage.clear();
+				$state.go('login');
+			},
 		};
 	});
-	app.service('propisService', function()
-	{
+	app.service('propisService', function() {
 		var list = [];
 
-        return {
-            getProperty: function () {
-                return list;
-            },
-            setProperty: function(value) {
-                list = value;
-            }
-        };
+		return {
+			getProperty : function() {
+				return list;
+			},
+			setProperty : function(value) {
+				list = value;
+			}
+		};
 	});
 	app.service('amandmanService', function() {
 		var list = [];
 
-        return {
-            getProperty: function () {
-                return list;
-            },
-            setProperty: function(value) {
-                list = value;
-            }
-        };
+		return {
+			getProperty : function() {
+				return list;
+			},
+			setProperty : function(value) {
+				list = value;
+			}
+		};
 	});
 
 }(angular));

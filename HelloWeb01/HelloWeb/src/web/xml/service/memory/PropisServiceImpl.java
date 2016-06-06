@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.math.BigInteger;
 import java.net.MalformedURLException;
@@ -24,6 +25,7 @@ import java.security.UnrecoverableKeyException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -53,6 +55,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import jaxb.from.xsd.Clan;
+import jaxb.from.xsd.Clan.Sadrzaj.Tekst;
 import jaxb.from.xsd.Propis;
 import jaxb.from.xsd.Clan.Sadrzaj;
 import jaxb.from.xsd.Clan.Sadrzaj.Stav;
@@ -66,6 +69,7 @@ import org.apache.xml.security.encryption.XMLEncryptionException;
 import org.apache.xml.security.keys.KeyInfo;
 import org.apache.xml.utils.Constants;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
@@ -273,6 +277,7 @@ public class PropisServiceImpl implements PropisService {
 		String redniBroj = "";
 		String tekstStava = "";
 		String nazivGlave = "";
+		String refPropisNaziv = "";
 
 		String propisNaziv = json.getString("nazivPropisa");
 		String nazivDela = json.getString("nazivDeo");
@@ -303,14 +308,39 @@ public class PropisServiceImpl implements PropisService {
 		Clan clan = new Clan();
 		Sadrzaj sadrzaj = new Sadrzaj();
 		Stav stav = new Stav();
-
+		Tekst tekst = new Tekst();
+		
+		
+		refPropisNaziv = json.getString("refernciranPropis");
+		//ako je true, znaci da refernciramo
+		if(!refPropisNaziv.equals(""))
+		{
+			JSONArray jsonArray2 = json.getJSONArray("splitovanTekstClan");
+			List<String> list2 = new ArrayList<String>();
+			for (int i=0; i<jsonArray2.length(); i++) {
+				tekst.getText().add( jsonArray2.getString(i) );
+			}
+	
+			tekst.setNazivPropisa(refPropisNaziv.replaceAll("\\s", "")); 
+			tekst.setNazivClana(json.getString("nazivClanaRef").replaceAll("\\s", ""));
+			tekst.setIDClana(BigInteger.valueOf(json.getLong("referenciraniClanovi")));
+			tekst.setIDPropisa(BigInteger.valueOf(json.getLong("propisId")));
+			
+		}
+		else
+		{
+			tekst.getText().add(tekstClana);
+		}
+		
+		
+	
 		if (!redniBroj.equals("")) {
 			stav.setRedniBroj(Long.parseLong(redniBroj));
 			stav.setTekst(tekstStava);
 			sadrzaj.getStav().add(stav);
 		}
 		if (!tekstClana.equals("")) {
-			sadrzaj.getTekst().add(tekstClana);
+			sadrzaj.getTekst().add(tekst);
 		}
 		if (!nazivGlave.equals("")) {
 			glava.getClan().add(clan);
@@ -392,7 +422,7 @@ public class PropisServiceImpl implements PropisService {
 			sadrzaj.getStav().add(stav);
 		}
 		if (!tekstClana.equals("")) {
-			sadrzaj.getTekst().add(tekstClana);
+			sadrzaj.getTekst().add(new Tekst());
 		}
 		if (!nazivGlave.equals("")) {
 			glava.getClan().add(clan);
@@ -466,7 +496,7 @@ public class PropisServiceImpl implements PropisService {
 		}
 
 		if (!tekstClana.equals("")) {
-			sadrzaj.getTekst().add(tekstClana);
+			sadrzaj.getTekst().add(new Tekst());
 		}
 
 		if (!nazivGlave.equals("")) {
@@ -527,7 +557,7 @@ public class PropisServiceImpl implements PropisService {
 			sadrzaj.getStav().add(stav);
 		}
 		if (!tekstClana.equals("")) {
-			sadrzaj.getTekst().add(tekstClana);
+			sadrzaj.getTekst().add(new Tekst());
 		}
 
 		int brDelova = propisi.getPropisi().get(propisi.getPropisi().size() - 1).getDeo().size();
@@ -708,8 +738,8 @@ public class PropisServiceImpl implements PropisService {
 		Security.addProvider(new BouncyCastleProvider());
 		org.apache.xml.security.Init.init();
 
-		PrivateKey pk = readPrivateKey("data\\sertifikati\\iasgns.jks", "iasgns", "iasgns");
-		doc = decryptXml(doc, pk);
+	//	PrivateKey pk = readPrivateKey("data\\sertifikati\\iasgns.jks", "iasgns", "iasgns");
+	//	doc = decryptXml(doc, pk);
 
 		return doc;
 	}
@@ -1185,6 +1215,54 @@ public class PropisServiceImpl implements PropisService {
 		 Unmarshaller unmarshaller = context.createUnmarshaller();
 		
 		return (Propis) unmarshaller.unmarshal(propis);
+	}
+
+	@Override
+	public void marshallPureXml(String textXml) throws JAXBException 
+	{
+		
+		JSONObject json = new JSONObject(textXml);
+		
+		JAXBContext jaxbContext = JAXBContext.newInstance(Propis.class);
+		Marshaller marshaller = jaxbContext.createMarshaller();
+		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+		
+		StringReader reader = new StringReader(json.getString("propisXml"));
+		Propis propis = (Propis) unmarshaller.unmarshal(reader);
+		
+		marshallPropis(propis, new File("data\\xml\\propisXml.xml"));
+		
+	}
+
+	@Override
+	public void savePureXml(File f) throws JAXBException, FileNotFoundException 
+	{
+		DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37", "tim37", "tim37",
+				Authentication.valueOf("DIGEST"));
+		XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+
+		Propis propis = unmarshallPropis(new File("./data/xml/propisXml.xml"));
+		// svaki novi propis ce imati svoje ime kao naziv xml fajla
+		String docId = propis.getNaziv().replaceAll("\\s", "")
+				+ ".xml";
+		String collId = "/skupstina/safePropisi";
+
+		InputStreamHandle handle = new InputStreamHandle(new FileInputStream(f.getAbsolutePath()));
+		DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+		metadata.getCollections().add(collId);
+
+		xmlManager.write(docId, metadata, handle);
+		
+		//dodavanje u propisi.xml, radi lakseg listanja
+		
+		Propisi propisi = unmarshall(new File("./data/xml/propisi.xml"));
+		
+		propisi.getPropisi().add(propis);
+		
+		marshall(propisi, new File("./data/xml/propisi.xml"));
+		
+		savePropisiXML();
+		
 	}
 
 }

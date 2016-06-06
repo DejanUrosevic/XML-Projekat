@@ -152,7 +152,7 @@ public class AmandmanServiceImpl implements AmandmanService{
 			Sadrzaj sadrzaj = new Sadrzaj();
 			a.setResenje(json.getString("clanTekst"));
 			
-			sadrzaj.getTekst().add(a.getResenje());
+		//	sadrzaj.getTekst().add(a.getResenje());
 			clan.setSadrzaj(sadrzaj);
 			clan.setID(BigInteger.valueOf(json.getInt("clanId")));
 			clan.setNaziv(json.getString("clanNaziv"));
