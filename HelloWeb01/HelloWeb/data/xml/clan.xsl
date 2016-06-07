@@ -53,7 +53,35 @@
 									</xsl:for-each>
 									</p>
 									<xsl:for-each select="ns2:Sadrzaj/ns2:Stav">
-										<p class="tekst_sredina">(<xsl:value-of select="ns2:Redni_broj"/>) &#160; <xsl:value-of select="ns2:Tekst"/></p>
+										<p class="tekst_sredina">(<xsl:value-of select="ns2:Redni_broj"/>) &#160; 
+										<xsl:for-each select="ns2:Tekst">
+											<xsl:variable name="clanID" select="../ns2:IDClana"/>
+											<xsl:variable name="clanNaziv" select="../ns2:NazivClana"/>
+											<xsl:variable name="propisNaziv" select="../ns2:NazivPropisa"/>	
+											<xsl:variable name="propisID" select="../ns2:IDPropisa"/>	
+											<xsl:variable name="url" select="concat('https://localhost:8443/HelloWeb/pages/index.html#/propis/', $propisNaziv,'/clan/',$clanID)"/>	
+											<xsl:variable name="urlPropis" select="concat('https://localhost:8443/HelloWeb/pages/index.html#/propisi/propis/', $propisID)"/>
+													
+											<xsl:choose>
+													 <xsl:when test="current() = $clanNaziv">
+													 	<a>
+													 		<xsl:attribute name="href"><xsl:value-of select="$url"/></xsl:attribute>
+													 		<xsl:value-of select="$clanNaziv"/>
+													    </a>
+													 </xsl:when>
+													 <xsl:when test="current() = $propisNaziv">
+													 	<a>
+													 		<xsl:attribute name="href"><xsl:value-of select="$urlPropis"/></xsl:attribute>
+													 		<xsl:value-of select="$propisNaziv"/>
+													    </a>
+													 </xsl:when>
+													 <xsl:otherwise>
+													 	&#160; <xsl:value-of select="current()"/> &#160;
+													 </xsl:otherwise>
+											</xsl:choose>
+										
+										</xsl:for-each>	
+										</p>
 									</xsl:for-each>
 								</div>
 					  </xsl:for-each> 

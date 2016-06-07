@@ -400,6 +400,7 @@ public class PropisServiceImpl implements PropisService {
 		String redniBroj = "";
 		String tekstStava = "";
 		String nazivGlave = "";
+		String refPropisNaziv = "";
 
 		String nazivDela = json.getString("nazivDeo");
 
@@ -422,20 +423,56 @@ public class PropisServiceImpl implements PropisService {
 		} catch (org.json.JSONException e) {
 
 		}
+		
+		
 
 		Deo deo = new Deo();
 		Glava glava = new Glava();
 		Clan clan = new Clan();
 		Sadrzaj sadrzaj = new Sadrzaj();
 		Stav stav = new Stav();
+		Tekst tekst = new Tekst();
+		
+		try {
+			refPropisNaziv = json.getString("refernciranPropis");
+		} catch (JSONException e) {
+			//e.printStackTrace();
+		}
+		//ako je true, znaci da refernciramo
+		if(!refPropisNaziv.equals(""))
+		{
+			JSONArray jsonArray2 = json.getJSONArray("splitovanTekstClan");
+			List<String> list2 = new ArrayList<String>();
+			for (int i=0; i<jsonArray2.length(); i++) {
+				tekst.getText().add( jsonArray2.getString(i) );
+			}
+	
+			tekst.setNazivPropisa(refPropisNaziv.replaceAll("\\s", "")); 
+			tekst.setNazivClana(json.getString("nazivClanaRef").replaceAll("\\s", ""));
+			tekst.setIDClana(BigInteger.valueOf(json.getLong("referenciraniClanovi")));
+			tekst.setIDPropisa(BigInteger.valueOf(json.getLong("propisId")));
+			
+		}
+		else
+		{
+			tekst.getText().add(tekstClana);
+		}
 
 		if (!redniBroj.equals("")) {
 			stav.setRedniBroj(Long.parseLong(redniBroj));
-			stav.getTekst().add(tekstStava);
-			sadrzaj.getStav().add(stav);
+			if(!refPropisNaziv.equals("")){
+				stav.setTekst(tekst.getText());
+				stav.setNazivPropisa(refPropisNaziv.replaceAll("\\s", "")); 
+				stav.setNazivClana(json.getString("nazivClanaRef").replaceAll("\\s", ""));
+				stav.setIDClana(BigInteger.valueOf(json.getLong("referenciraniClanovi")));
+				stav.setIDPropisa(BigInteger.valueOf(json.getLong("propisId")));
+			}else{
+				stav.getTekst().add(tekstStava);
+			}
+			sadrzaj.getStav().add(stav);	
 		}
 		if (!tekstClana.equals("")) {
-			sadrzaj.getTekst().add(new Tekst());
+			sadrzaj.getTekst().add(tekst);
 		}
 		if (!nazivGlave.equals("")) {
 			glava.getClan().add(clan);
@@ -476,6 +513,7 @@ public class PropisServiceImpl implements PropisService {
 		String redniBroj = "";
 		String tekstStava = "";
 		String nazivGlave = "";
+		String refPropisNaziv = "";
 
 		String nazivClana = json.getString("nazivClana");
 		String opisClana = json.getString("opisClana");
@@ -501,15 +539,49 @@ public class PropisServiceImpl implements PropisService {
 		Clan clan = new Clan();
 		Sadrzaj sadrzaj = new Sadrzaj();
 		Stav stav = new Stav();
+		Tekst tekst = new Tekst();
+		
+		try {
+			refPropisNaziv = json.getString("refernciranPropis");
+		} catch (JSONException e) {
+			//e.printStackTrace();
+		}
+		//ako je true, znaci da refernciramo
+		if(!refPropisNaziv.equals(""))
+		{
+			JSONArray jsonArray2 = json.getJSONArray("splitovanTekstClan");
+			List<String> list2 = new ArrayList<String>();
+			for (int i=0; i<jsonArray2.length(); i++) {
+				tekst.getText().add( jsonArray2.getString(i) );
+			}
+	
+			tekst.setNazivPropisa(refPropisNaziv.replaceAll("\\s", "")); 
+			tekst.setNazivClana(json.getString("nazivClanaRef").replaceAll("\\s", ""));
+			tekst.setIDClana(BigInteger.valueOf(json.getLong("referenciraniClanovi")));
+			tekst.setIDPropisa(BigInteger.valueOf(json.getLong("propisId")));
+			
+		}
+		else
+		{
+			tekst.getText().add(tekstClana);
+		}
 
 		if (!redniBroj.equals("")) {
 			stav.setRedniBroj(Long.parseLong(redniBroj));
-			stav.getTekst().add(tekstStava);
-			sadrzaj.getStav().add(stav);
+			if(!refPropisNaziv.equals("")){
+				stav.setTekst(tekst.getText());
+				stav.setNazivPropisa(refPropisNaziv.replaceAll("\\s", "")); 
+				stav.setNazivClana(json.getString("nazivClanaRef").replaceAll("\\s", ""));
+				stav.setIDClana(BigInteger.valueOf(json.getLong("referenciraniClanovi")));
+				stav.setIDPropisa(BigInteger.valueOf(json.getLong("propisId")));
+			}else{
+				stav.getTekst().add(tekstStava);
+			}
+			sadrzaj.getStav().add(stav);	
 		}
 
 		if (!tekstClana.equals("")) {
-			sadrzaj.getTekst().add(new Tekst());
+			sadrzaj.getTekst().add(tekst);
 		}
 
 		if (!nazivGlave.equals("")) {
@@ -539,6 +611,7 @@ public class PropisServiceImpl implements PropisService {
 		String tekstClana = "";
 		String redniBroj = "";
 		String tekstStava = "";
+		String refPropisNaziv = "";
 
 		String nazivClana = json.getString("nazivClana");
 		String opisClana = json.getString("opisClana");
@@ -563,14 +636,48 @@ public class PropisServiceImpl implements PropisService {
 		Clan clan = new Clan();
 		Sadrzaj sadrzaj = new Sadrzaj();
 		Stav stav = new Stav();
+		Tekst tekst = new Tekst();
+		
+		try {
+			refPropisNaziv = json.getString("refernciranPropis");
+		} catch (JSONException e) {
+			//e.printStackTrace();
+		}
+		//ako je true, znaci da refernciramo
+		if(!refPropisNaziv.equals(""))
+		{
+			JSONArray jsonArray2 = json.getJSONArray("splitovanTekstClan");
+			List<String> list2 = new ArrayList<String>();
+			for (int i=0; i<jsonArray2.length(); i++) {
+				tekst.getText().add( jsonArray2.getString(i) );
+			}
+	
+			tekst.setNazivPropisa(refPropisNaziv.replaceAll("\\s", "")); 
+			tekst.setNazivClana(json.getString("nazivClanaRef").replaceAll("\\s", ""));
+			tekst.setIDClana(BigInteger.valueOf(json.getLong("referenciraniClanovi")));
+			tekst.setIDPropisa(BigInteger.valueOf(json.getLong("propisId")));
+			
+		}
+		else
+		{
+			tekst.getText().add(tekstClana);
+		}
 
 		if (!redniBroj.equals("")) {
 			stav.setRedniBroj(Long.parseLong(redniBroj));
-			stav.getTekst().add(tekstStava);
-			sadrzaj.getStav().add(stav);
+			if(!refPropisNaziv.equals("")){
+				stav.setTekst(tekst.getText());
+				stav.setNazivPropisa(refPropisNaziv.replaceAll("\\s", "")); 
+				stav.setNazivClana(json.getString("nazivClanaRef").replaceAll("\\s", ""));
+				stav.setIDClana(BigInteger.valueOf(json.getLong("referenciraniClanovi")));
+				stav.setIDPropisa(BigInteger.valueOf(json.getLong("propisId")));
+			}else{
+				stav.getTekst().add(tekstStava);
+			}
+			sadrzaj.getStav().add(stav);	
 		}
 		if (!tekstClana.equals("")) {
-			sadrzaj.getTekst().add(new Tekst());
+			sadrzaj.getTekst().add(tekst);
 		}
 
 		int brDelova = propisi.getPropisi().get(propisi.getPropisi().size() - 1).getDeo().size();
@@ -606,6 +713,7 @@ public class PropisServiceImpl implements PropisService {
 
 		String redniBroj = "";
 		String tekstStava = "";
+		String refPropisNaziv = "";
 
 		try {
 
@@ -617,11 +725,47 @@ public class PropisServiceImpl implements PropisService {
 		}
 
 		Stav stav = new Stav();
+		Tekst tekst = new Tekst();
+		
+		try {
+			refPropisNaziv = json.getString("refernciranPropis");
+		} catch (JSONException e) {
+			//e.printStackTrace();
+		}
+		//ako je true, znaci da refernciramo
+		if(!refPropisNaziv.equals(""))
+		{
+			JSONArray jsonArray2 = json.getJSONArray("splitovanTekstClan");
+			List<String> list2 = new ArrayList<String>();
+			for (int i=0; i<jsonArray2.length(); i++) {
+				tekst.getText().add( jsonArray2.getString(i) );
+			}
+	
+			tekst.setNazivPropisa(refPropisNaziv.replaceAll("\\s", "")); 
+			tekst.setNazivClana(json.getString("nazivClanaRef").replaceAll("\\s", ""));
+			tekst.setIDClana(BigInteger.valueOf(json.getLong("referenciraniClanovi")));
+			tekst.setIDPropisa(BigInteger.valueOf(json.getLong("propisId")));
+			
+		}
+		
 		try {
 			Long rbrStava = Long.parseLong(redniBroj);
 			if (!redniBroj.equals("")) {
+				
+				//**********************************
+				if(!refPropisNaziv.equals("")){
+					stav.setTekst(tekst.getText());
+					stav.setNazivPropisa(refPropisNaziv.replaceAll("\\s", "")); 
+					stav.setNazivClana(json.getString("nazivClanaRef").replaceAll("\\s", ""));
+					stav.setIDClana(BigInteger.valueOf(json.getLong("referenciraniClanovi")));
+					stav.setIDPropisa(BigInteger.valueOf(json.getLong("propisId")));
+				}else{
+					stav.getTekst().add(tekstStava);
+				}	
+				
+				//*********************************
+
 				stav.setRedniBroj(rbrStava);
-				stav.getTekst().add(tekstStava);
 				int brGlava = 0;
 				int brClan = 0;
 				int brStav = 0;

@@ -379,8 +379,10 @@
 		$scope.pronadji = function(selektovaniPropis) {
 			$scope.propisProba = JSON.parse(selektovaniPropis);
 			$scope.propisNazivPost = $scope.propisProba.naziv;
-
-			if ($scope.clan.izbor === 'Stav') {
+			if($scope.clan === undefined){
+				$scope.stavTekst = 'Na osnovu propisa '
+					+ $scope.propisProba.naziv.replace(/\s+/g, '') + ' ';
+			}else if ($scope.clan.izbor === 'Stav') {
 				$scope.stavTekst = 'Na osnovu propisa '
 						+ $scope.propisProba.naziv.replace(/\s+/g, '') + ' ';
 			} else {
@@ -415,7 +417,10 @@
 
 			var temp = $scope.clanTekst.split('clana');
 			var temp1 = $scope.stavTekst.split('clana');
-			if ($scope.clan.izbor === 'Stav') {
+			if($scope.clan === undefined){
+				$scope.stavTekst = temp1[0] + 'clana '
+				+ $scope.clanParse.naziv.replace(/\s+/g, '');
+			}else if ($scope.clan.izbor === 'Stav') {
 				$scope.stavTekst = temp1[0] + 'clana '
 						+ $scope.clanParse.naziv.replace(/\s+/g, '');
 			} else {
@@ -493,25 +498,59 @@
 			if (localStorage.getItem('key') === null) {
 				mainService.logOut();
 			}
-			$http.post(serverUrl + '/clan/noviDeo', {
-				nazivDeo : $scope.deo.naziv,
-				nazivGlave : $scope.glavaNaziv,
-				nazivClana : $scope.clan.naziv,
-				opisClana : $scope.clan.opis,
-				redniBrojStava : $scope.stavBroj,
-				stavTekst : $scope.stavTekst,
-				tekstClana : $scope.clanTekst
-			}).success(function(data, header, status) {
-				$state.go('opcije');
-			}).error(function(data, header, status) {
-				if (header === 406) {
-					alert("Your certificate is invalid.");
-				} else {
-					alert("Something went wrong, log in again, please.");
-				}
+			
+			if ($scope.clan.izbor === 'Stav') {
+				$scope.splitovanTekst = $scope.stavTekst.split(' ');
+			} else {
+				$scope.splitovanTekst = $scope.clanTekst.split(' ');
+			}
+			
+			if ($scope.referenca === 'da') {
+				$http.post(serverUrl + 'clan/noviDeo', {
+					nazivDeo : $scope.deo.naziv,
+					nazivGlave : $scope.glavaNaziv,
+					nazivClana : $scope.clan.naziv,
+					opisClana : $scope.clan.opis,
+					redniBrojStava : $scope.stavBroj,
+					stavTekst : $scope.stavTekst,
+					tekstClana : $scope.clanTekst,
+					referenciraniClanovi : $scope.clanoviListaPost,
+					refernciranPropis : $scope.propisNazivPost,
+					nazivClanaRef : $scope.clanNaziv,
+					splitovanTekstClan : $scope.splitovanTekst,
+					propisId : $scope.propisProba.id
+				}).success(function(data, header, status) {
+					$state.go('opcije');
+				}).error(function(data, header, status) {
+					if (header === 406) {
+						alert("Your certificate is invalid.");
+					} else {
+						alert("Something went wrong, log in again, please.");
+					}
 
-				$state.go('main');
-			});
+					$state.go('main');
+				});
+			} else {
+				$http.post(serverUrl + '/clan/noviDeo', {
+					nazivDeo : $scope.deo.naziv,
+					nazivGlave : $scope.glavaNaziv,
+					nazivClana : $scope.clan.naziv,
+					opisClana : $scope.clan.opis,
+					redniBrojStava : $scope.stavBroj,
+					stavTekst : $scope.stavTekst,
+					tekstClana : $scope.clanTekst
+				}).success(function(data, header, status) {
+					$state.go('opcije');
+				}).error(function(data, header, status) {
+					if (header === 406) {
+						alert("Your certificate is invalid.");
+					} else {
+						alert("Something went wrong, log in again, please.");
+					}
+	
+					$state.go('main');
+				});
+			}
 
 		}
 
@@ -522,67 +561,157 @@
 			if (localStorage.getItem('key') === null) {
 				mainService.logOut();
 			}
-			$http.post(serverUrl + '/clan/novaGlava', {
-				nazivGlave : $scope.glavaNaziv,
-				nazivClana : $scope.clan.naziv,
-				opisClana : $scope.clan.opis,
-				redniBrojStava : $scope.stavBroj,
-				stavTekst : $scope.stavTekst,
-				tekstClana : $scope.clanTekst
-			}).success(function(data, header, status) {
-				$state.go('opcije');
-			}).error(function(data, header, status) {
-				if (header === 406) {
-					alert("Your certificate is invalid.");
-				} else {
-					alert("Something went wrong, log in again, please.");
-				}
+			
+			if ($scope.clan.izbor === 'Stav') {
+				$scope.splitovanTekst = $scope.stavTekst.split(' ');
+			} else {
+				$scope.splitovanTekst = $scope.clanTekst.split(' ');
+			}
+			
+			if ($scope.referenca === 'da') {
+				$http.post(serverUrl + 'clan/novaGlava', {
+					nazivGlave : $scope.glavaNaziv,
+					nazivClana : $scope.clan.naziv,
+					opisClana : $scope.clan.opis,
+					redniBrojStava : $scope.stavBroj,
+					stavTekst : $scope.stavTekst,
+					tekstClana : $scope.clanTekst,
+					referenciraniClanovi : $scope.clanoviListaPost,
+					refernciranPropis : $scope.propisNazivPost,
+					nazivClanaRef : $scope.clanNaziv,
+					splitovanTekstClan : $scope.splitovanTekst,
+					propisId : $scope.propisProba.id
+				}).success(function(data, header, status) {
+					$state.go('opcije');
+				}).error(function(data, header, status) {
+					if (header === 406) {
+						alert("Your certificate is invalid.");
+					} else {
+						alert("Something went wrong, log in again, please.");
+					}
 
-				$state.go('main');
-			});
+					$state.go('main');
+				});
+			} else {
+				$http.post(serverUrl + '/clan/novaGlava', {
+					nazivGlave : $scope.glavaNaziv,
+					nazivClana : $scope.clan.naziv,
+					opisClana : $scope.clan.opis,
+					redniBrojStava : $scope.stavBroj,
+					stavTekst : $scope.stavTekst,
+					tekstClana : $scope.clanTekst
+				}).success(function(data, header, status) {
+					$state.go('opcije');
+				}).error(function(data, header, status) {
+					if (header === 406) {
+						alert("Your certificate is invalid.");
+					} else {
+						alert("Something went wrong, log in again, please.");
+					}
+	
+					$state.go('main');
+				});
+			}
 		}
 
 		$scope.noviClan = function() {
 			if (localStorage.getItem('key') === null) {
 				mainService.logOut();
 			}
-			$http.post(serverUrl + '/clan/noviClan', {
-				nazivClana : $scope.clan.naziv,
-				opisClana : $scope.clan.opis,
-				redniBrojStava : $scope.stavBroj,
-				stavTekst : $scope.stavTekst,
-				tekstClana : $scope.clanTekst
-			}).success(function(data, header, status) {
-				$state.go('opcije');
-			}).error(function(data, header, status) {
-				if (header === 406) {
-					alert("Your certificate is invalid.");
-				} else {
-					alert("Something went wrong, log in again, please.");
-				}
+			
+			if ($scope.clan.izbor === 'Stav') {
+				$scope.splitovanTekst = $scope.stavTekst.split(' ');
+			} else {
+				$scope.splitovanTekst = $scope.clanTekst.split(' ');
+			}
+			
+			if ($scope.referenca === 'da') {
+				$http.post(serverUrl + 'clan/noviClan', {
+					nazivClana : $scope.clan.naziv,
+					opisClana : $scope.clan.opis,
+					redniBrojStava : $scope.stavBroj,
+					stavTekst : $scope.stavTekst,
+					tekstClana : $scope.clanTekst,
+					referenciraniClanovi : $scope.clanoviListaPost,
+					refernciranPropis : $scope.propisNazivPost,
+					nazivClanaRef : $scope.clanNaziv,
+					splitovanTekstClan : $scope.splitovanTekst,
+					propisId : $scope.propisProba.id
+				}).success(function(data, header, status) {
+					$state.go('opcije');
+				}).error(function(data, header, status) {
+					if (header === 406) {
+						alert("Your certificate is invalid.");
+					} else {
+						alert("Something went wrong, log in again, please.");
+					}
 
-				$state.go('main');
-			});
+					$state.go('main');
+				});
+			} else {
+				$http.post(serverUrl + '/clan/noviClan', {
+					nazivClana : $scope.clan.naziv,
+					opisClana : $scope.clan.opis,
+					redniBrojStava : $scope.stavBroj,
+					stavTekst : $scope.stavTekst,
+					tekstClana : $scope.clanTekst
+				}).success(function(data, header, status) {
+					$state.go('opcije');
+				}).error(function(data, header, status) {
+					if (header === 406) {
+						alert("Your certificate is invalid.");
+					} else {
+						alert("Something went wrong, log in again, please.");
+					}
+	
+					$state.go('main');
+				});
+			}
 		}
 
 		$scope.noviStav = function() {
 			if (localStorage.getItem('key') === null) {
 				mainService.logOut();
 			}
-			$http.post(serverUrl + '/clan/noviStav', {
-				redniBrojStava : $scope.stavBroj,
-				stavTekst : $scope.stavTekst
-			}).success(function(data, header, status) {
-				$state.go('opcije');
-			}).error(function(data, header, status) {
-				if (header === 406) {
-					alert("Your certificate is invalid.");
-				} else {
-					alert("Something went wrong, log in again, please.");
-				}
+		
+			$scope.splitovanTekst = $scope.stavTekst.split(' ');
+			
+			if ($scope.referenca === 'da') {
+				$http.post(serverUrl + 'clan/noviStav', {
+					redniBrojStava : $scope.stavBroj,
+					stavTekst : $scope.stavTekst,
+					referenciraniClanovi : $scope.clanoviListaPost,
+					refernciranPropis : $scope.propisNazivPost,
+					nazivClanaRef : $scope.clanNaziv,
+					splitovanTekstClan : $scope.splitovanTekst,
+					propisId : $scope.propisProba.id
+				}).success(function(data, header, status) {
+					$state.go('opcije');
+				}).error(function(data, header, status) {
+					if (header === 406) {
+						alert("Your certificate is invalid.");
+					} else {
+						alert("Something went wrong, log in again, please.");
+					}
 
-				$state.go('main');
-			});
+					$state.go('main');
+				});
+			} else {
+				$http.post(serverUrl + '/clan/noviStav', {
+					redniBrojStava : $scope.stavBroj,
+					stavTekst : $scope.stavTekst
+				}).success(function(data, header, status) {
+					$state.go('opcije');
+				}).error(function(data, header, status) {
+					if (header === 406) {
+						alert("Your certificate is invalid.");
+					} else {
+						alert("Something went wrong, log in again, please.");
+					}
+	
+					$state.go('main');
+				});
+			}
 		}
 
 		$scope.saveToDatabase = function() {

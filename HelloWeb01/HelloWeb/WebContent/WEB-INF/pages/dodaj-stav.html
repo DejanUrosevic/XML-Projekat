@@ -37,6 +37,39 @@
 								ng-model="stavTekst" required> </textarea></td>
 						</tr>
 						<tr>
+							<td class="sredina"><select ng-model="referenca">
+									<option value="">--Da li zelite da referncirate</option>
+									<option value="da">Da</option>
+									<option value="ne">Ne</option>
+							</select></td>
+						</tr>
+						
+						<tr ng-show="referenca === 'da'">
+							<th class="sredina">Izaberite propis za refernciranje</th>					
+						</tr>
+						<tr ng-show="referenca === 'da'">
+							<td class="sredina">
+								<select ng-model="amandman.propis" ng-change="pronadji(amandman.propis)">
+									<option ng-repeat="propis in propisi" value="{{propis}}">
+										{{propis.naziv}}
+									</option>
+								</select>
+							</td>
+						</tr>
+						
+						<tr ng-show="referenca === 'da'">
+							<th> Izaberite clan </th>
+						</tr>
+						<tr ng-show="referenca === 'da'">
+								<td class="sredina">
+									<select ng-model="selektovaniClan" ng-change="ubaciClan(selektovaniClan)">
+										<option ng-repeat="clan in listaClanova" value="{{clan}}" >
+											{{clan.naziv}}
+										</option>
+									</select>
+								</td>
+						</tr>
+						<tr>
 							<td style="text-align: center;">
 								<button type="submit"
 									style="background-color: transparent; border-color: transparent;"
