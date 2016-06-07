@@ -70,6 +70,7 @@ import org.apache.xml.security.keys.KeyInfo;
 import org.apache.xml.utils.Constants;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
@@ -311,7 +312,11 @@ public class PropisServiceImpl implements PropisService {
 		Tekst tekst = new Tekst();
 		
 		
-		refPropisNaziv = json.getString("refernciranPropis");
+		try {
+			refPropisNaziv = json.getString("refernciranPropis");
+		} catch (JSONException e) {
+			//e.printStackTrace();
+		}
 		//ako je true, znaci da refernciramo
 		if(!refPropisNaziv.equals(""))
 		{
@@ -336,10 +341,18 @@ public class PropisServiceImpl implements PropisService {
 	
 		if (!redniBroj.equals("")) {
 			stav.setRedniBroj(Long.parseLong(redniBroj));
-			stav.setTekst(tekstStava);
-			sadrzaj.getStav().add(stav);
+			if(!refPropisNaziv.equals("")){
+				stav.setTekst(tekst.getText());
+				stav.setNazivPropisa(refPropisNaziv.replaceAll("\\s", "")); 
+				stav.setNazivClana(json.getString("nazivClanaRef").replaceAll("\\s", ""));
+				stav.setIDClana(BigInteger.valueOf(json.getLong("referenciraniClanovi")));
+				stav.setIDPropisa(BigInteger.valueOf(json.getLong("propisId")));
+			}else{
+				stav.getTekst().add(tekstStava);
+			}
+			sadrzaj.getStav().add(stav);			
 		}
-		if (!tekstClana.equals("")) {
+		if (!tekstClana.equals("") && redniBroj.equals("")) {
 			sadrzaj.getTekst().add(tekst);
 		}
 		if (!nazivGlave.equals("")) {
@@ -418,7 +431,7 @@ public class PropisServiceImpl implements PropisService {
 
 		if (!redniBroj.equals("")) {
 			stav.setRedniBroj(Long.parseLong(redniBroj));
-			stav.setTekst(tekstStava);
+			stav.getTekst().add(tekstStava);
 			sadrzaj.getStav().add(stav);
 		}
 		if (!tekstClana.equals("")) {
@@ -491,7 +504,7 @@ public class PropisServiceImpl implements PropisService {
 
 		if (!redniBroj.equals("")) {
 			stav.setRedniBroj(Long.parseLong(redniBroj));
-			stav.setTekst(tekstStava);
+			stav.getTekst().add(tekstStava);
 			sadrzaj.getStav().add(stav);
 		}
 
@@ -553,7 +566,7 @@ public class PropisServiceImpl implements PropisService {
 
 		if (!redniBroj.equals("")) {
 			stav.setRedniBroj(Long.parseLong(redniBroj));
-			stav.setTekst(tekstStava);
+			stav.getTekst().add(tekstStava);
 			sadrzaj.getStav().add(stav);
 		}
 		if (!tekstClana.equals("")) {
@@ -608,7 +621,7 @@ public class PropisServiceImpl implements PropisService {
 			Long rbrStava = Long.parseLong(redniBroj);
 			if (!redniBroj.equals("")) {
 				stav.setRedniBroj(rbrStava);
-				stav.setTekst(tekstStava);
+				stav.getTekst().add(tekstStava);
 				int brGlava = 0;
 				int brClan = 0;
 				int brStav = 0;

@@ -14,7 +14,12 @@
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="Redni_broj" type="xs:long"/>
-                                        <xs:element name="Tekst" type="xs:string"/>
+                                        <xs:element name="IDPropisa" type="xs:positiveInteger"/>
+                                        <xs:element name="NazivPropisa" type="xs:string"/>
+                                        <xs:element name="IDClana" type="xs:positiveInteger"/>
+                                        <xs:element name="NazivClana" type="xs:string"/>
+                                        <xs:element name="Tekst" type="xs:string"
+                                            maxOccurs="unbounded"/>
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>

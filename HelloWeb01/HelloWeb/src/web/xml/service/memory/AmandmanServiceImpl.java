@@ -136,7 +136,7 @@ public class AmandmanServiceImpl implements AmandmanService{
 			Sadrzaj sadrzaj = new Sadrzaj();
 			Stav stav = new Stav();
 			stav.setRedniBroj(json.getInt("stavRedniBroj"));
-			stav.setTekst(json.getString("stavTekst"));
+			stav.getTekst().add(json.getString("stavTekst"));
 			a.setResenje(json.getString("stavTekst"));
 			
 			sadrzaj.getStav().add(stav);

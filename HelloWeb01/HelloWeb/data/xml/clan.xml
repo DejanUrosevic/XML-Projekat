@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?><?xml-stylesheet type='text/xsl' href='clan.xsl' ?>
-<Clan xmlns="http://www.parlament.gov.rs/clan" ID="891088">
-    <Opis>qwdqwdqdqwdwq</Opis>
-    <Naziv>dwqdqwdwq qwd wq w dqwd d</Naziv>
+<Clan xmlns="http://www.parlament.gov.rs/clan" ID="27557">
+    <Opis>dwqdwqdwqdqw wqdwq qwdqwdwq</Opis>
+    <Naziv>wqdqwdqdwqdqd</Naziv>
     <Sadrzaj>
-        <Tekst/>
+        <Tekst>
+            <text></text>
+            <text>na</text>
+            <text>osnovu</text>
+            <text>propisa</text>
+            <text>Nerazumem</text>
+            <text></text>
+            <text></text>
+            <text>clana</text>
+            <text>qwdqwwd</text>
+            <IDPropisa>83222</IDPropisa>
+            <NazivPropisa>Nerazumem</NazivPropisa>
+            <IDClana>731474</IDClana>
+            <NazivClana>qwdqwwd</NazivClana>
+        </Tekst>
     </Sadrzaj>
 </Clan>

@@ -21,35 +21,6 @@
 				<hr />
 				<br />
 				<div>
-					<table>
-						<tr>
-							<td><select ng-model="vrstaPropisa">
-									<option value="">Izaberite nacin unosenja propisa</option>
-									<option value="xml">Cist XML</option>
-									<option value="forma">Forma</option>
-							</select></td>
-						</tr>
-					</table>
-				</div>
-				<div ng-show="vrstaPropisa === 'xml'">
-					<table>
-						<tr>
-							<td><textarea style="margin: 5px; height: 333px; width: 788px;" type="text" size="30" ng-model="propisXml"
-									required> </textarea></td>
-						</tr>
-						<tr>
-							<td style="text-align: center;">
-								<button type="submit"
-									style="background-color: transparent; border-color: transparent;"
-									ng-click="zavrsiPropisXml()">
-									<img src="css/images/Next-icon.png" height="35" />
-								</button>
-							</td>
-						</tr>
-					</table>
-
-				</div>
-				<div ng-show="vrstaPropisa === 'forma'">
 					<table id="myTable">
 						<tr>
 							<th class="sredina">Unesite naziv propisa</th>
