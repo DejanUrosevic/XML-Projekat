@@ -24,7 +24,8 @@ public interface AmandmanService extends CrudService<Amandman>{
 	
 	public Document findAmandmanById(String docId);
 	
-	public void primeniAmandman(String data) throws JAXBException;
+	public void primeniAmandman(String data) throws JAXBException, FileNotFoundException;
 	
 	public Amandman unmarshallDocument(Document document) throws JAXBException;
+	
 }

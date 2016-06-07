@@ -38,6 +38,9 @@ import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.DatabaseClientFactory.Authentication;
 import com.marklogic.client.document.XMLDocumentManager;
+import com.marklogic.client.eval.EvalResult;
+import com.marklogic.client.eval.EvalResultIterator;
+import com.marklogic.client.eval.ServerEvaluationCall;
 import com.marklogic.client.io.DOMHandle;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.InputStreamHandle;
@@ -46,6 +49,7 @@ import jaxb.from.xsd.Amandman;
 import jaxb.from.xsd.Clan;
 import jaxb.from.xsd.Clan.Sadrzaj;
 import jaxb.from.xsd.Clan.Sadrzaj.Stav;
+import jaxb.from.xsd.Clan.Sadrzaj.Tekst;
 import jaxb.from.xsd.Propis;
 import web.xml.model.Propisi;
 import web.xml.model.User;
@@ -96,8 +100,38 @@ public class AmandmanServiceImpl implements AmandmanService{
 	}
 
 	@Override
-	public void remove(Long id) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
+	public void remove(Long id) throws IllegalArgumentException
+	{
+		DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37", "tim37", "tim37",
+				Authentication.valueOf("DIGEST"));
+
+		XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+
+		// A handle to receive the document's content.
+		DOMHandle content = new DOMHandle();
+		String nazivDoc = id + "Amandman.xml";
+		String deleteQuery = "xdmp:node-delete(doc('"+ nazivDoc+ "'))";
+		
+		// Initialize XQuery invoker object
+		ServerEvaluationCall invoker = client.newServerEval();
+						
+		// Invoke the query
+		invoker.xquery(deleteQuery);
+		
+		// Interpret the results
+		EvalResultIterator response = invoker.eval();
+
+		System.out.print("[INFO] Response: ");
+				
+		if (response.hasNext()) {
+
+			for (EvalResult result : response) {
+				System.out.println("\n" + result.getString());
+			}
+		} else 
+		{ 		
+			System.out.println("your query returned an empty sequence.");
+			}
 		
 	}
 
@@ -128,9 +162,19 @@ public class AmandmanServiceImpl implements AmandmanService{
 		JSONObject json = new JSONObject(postPayLoad);
 		
 		
-		Amandman a = new Amandman();
 		
-		if(json.getString("clanTekst").equals(""))
+		Amandman a = new Amandman();
+		String clanTekst = "";
+		try
+		{
+			clanTekst = json.getString("clanTekst");
+		}
+		catch(Exception e)
+		{
+			
+		}
+		
+		if(clanTekst.equals(""))
 		{
 			Clan clan = new Clan();
 			Sadrzaj sadrzaj = new Sadrzaj();
@@ -150,9 +194,12 @@ public class AmandmanServiceImpl implements AmandmanService{
 		{
 			Clan clan = new Clan();
 			Sadrzaj sadrzaj = new Sadrzaj();
-			a.setResenje(json.getString("clanTekst"));
+			Tekst tekst = new Tekst();
 			
-		//	sadrzaj.getTekst().add(a.getResenje());
+			
+			a.setResenje(json.getString("clanTekst"));
+			tekst.getText().add(a.getResenje());
+			sadrzaj.getTekst().add(tekst);
 			clan.setSadrzaj(sadrzaj);
 			clan.setID(BigInteger.valueOf(json.getInt("clanId")));
 			clan.setNaziv(json.getString("clanNaziv"));
@@ -181,7 +228,7 @@ public class AmandmanServiceImpl implements AmandmanService{
 				propis.getAmandman().add(a);
 				
 				propisSer.marshallPropis(propis, new File("data\\xml\\potpisPropis.xml"));
-				propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
+			//	propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
 				propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
 						"", korisnik.getAlias());
 				propisSer.save(new File("data\\xml\\potpisPropis.xml"));
@@ -197,7 +244,7 @@ public class AmandmanServiceImpl implements AmandmanService{
 		saveAmandman(new File("data\\xml\\amandman.xml"), Long.parseLong(a.getID().toString()));
 		
 	}
-	
+	 
 	@Override
 	public Document encrypt(Document doc, SecretKey key, Certificate certificate) {
 		// TODO Auto-generated method stub
@@ -310,7 +357,7 @@ public class AmandmanServiceImpl implements AmandmanService{
 	}
 
 	@Override
-	public void primeniAmandman(String data) throws JAXBException 
+	public void primeniAmandman(String data) throws JAXBException, FileNotFoundException 
 	{
 		JSONObject json = new JSONObject(data);
 		
@@ -354,7 +401,30 @@ public class AmandmanServiceImpl implements AmandmanService{
 			}
 		}
 		
+		//brisanje amandmana nakon prihvatanja
+		for(Amandman a : propis.getAmandman())
+		{
+			if(a.getID().equals(amandman.getID()))
+			{
+				propis.getAmandman().remove(a);
+				remove(Long.parseLong(a.getID().toString()));
+				break;
+			}
+		}
+		
+		//ovo mora da se odradi, jer ce dva puta dodati propis u propisi.xml, novu verziju i staru.
 		propisSer.marshallPropis(propis, new File("data\\xml\\potpisPropis.xml"));
+		for(Propis p : propisi.getPropisi())
+		{
+			if(p.getID().equals(propis.getID()))
+			{
+				propisi.getPropisi().remove(p);
+				break;
+			}
+		}
+		propisi.getPropisi().add(propis);
+		propisSer.marshall(propisi, new File("data\\xml\\propisi.xml"));
+		propisSer.savePropisiXML();
 	}
 
 	@Override

@@ -1,32 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <propisi xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" xmlns:ns4="http://www.parlament.gov.rs/propis">
-    <propis ID="781583" Datum="2016-06-06+02:00" Status="PREDLOZEN">
-        <ns4:Naziv>Propis1</ns4:Naziv>
-        <ns4:Deo ID="725527">
-            <ns4:Naziv>wqdqwdqwdqw</ns4:Naziv>
-            <ns2:Clan ID="27557">
-                <ns2:Opis>dwqdwqdwqdqw wqdwq qwdqwdwq</ns2:Opis>
-                <ns2:Naziv>wqdqwdqdwqdqd</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>
-                        <ns2:text></ns2:text>
-                        <ns2:text>na</ns2:text>
-                        <ns2:text>osnovu</ns2:text>
-                        <ns2:text>propisa</ns2:text>
-                        <ns2:text>Nerazumem</ns2:text>
-                        <ns2:text></ns2:text>
-                        <ns2:text></ns2:text>
-                        <ns2:text>clana</ns2:text>
-                        <ns2:text>qwdqwwd</ns2:text>
-                        <ns2:IDPropisa>83222</ns2:IDPropisa>
-                        <ns2:NazivPropisa>Nerazumem</ns2:NazivPropisa>
-                        <ns2:IDClana>731474</ns2:IDClana>
-                        <ns2:NazivClana>qwdqwwd</ns2:NazivClana>
-                    </ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns4:Deo>
-    </propis>
     <propis ID="886125" Datum="2016-06-07+02:00" Status="PREDLOZEN">
         <ns4:Naziv>Propao</ns4:Naziv>
         <ns4:Deo ID="727355">
@@ -47,256 +20,85 @@
             </ns2:Clan>
         </ns4:Deo>
     </propis>
-    <propis ID="895502" Datum="2016-06-07+02:00" Status="PREDLOZEN">
-        <ns4:Naziv>Propis A</ns4:Naziv>
-        <ns4:Deo ID="407227">
-            <ns4:Naziv>Deo</ns4:Naziv>
-            <ns4:Glava ID="477101">
-                <ns4:Naziv>Glava 1</ns4:Naziv>
-                <ns2:Clan ID="398043">
-                    <ns2:Opis>asdfasdfa</ns2:Opis>
-                    <ns2:Naziv>Clan</ns2:Naziv>
+    <propis ID="82778" Datum="2016-06-07+02:00" Status="U_NACELU">
+        <ns4:Naziv>Lagala je grade</ns4:Naziv>
+        <ns4:Deo ID="348385">
+            <ns4:Naziv>Da voli balade</ns4:Naziv>
+            <ns2:Clan ID="846289">
+                <ns2:Opis>Zgadila mi ljubav, zivot sve.</ns2:Opis>
+                <ns2:Naziv>Grade moooj</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>
+                        <ns2:text>Nisam jaaaaa....</ns2:text>
+                    </ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </ns4:Deo>
+        <ns3:Amandman Datum="2016-06-07+02:00" Mesto="Novi Sad" ID="545289" Podnosilac="dw dw">
+            <ns3:Resenje>Nisam jaaaaa....</ns3:Resenje>
+            <ns3:Obrazlozenje>MMMMM</ns3:Obrazlozenje>
+            <ns2:Clan ID="846289">
+                <ns2:Naziv>Grade moooj</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>
+                        <ns2:text>Nisam jaaaaa....</ns2:text>
+                    </ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </ns3:Amandman>
+    </propis>
+    <propis ID="687510" Datum="2016-06-07+02:00" Status="U_NACELU">
+        <ns4:Naziv>wegfgewg</ns4:Naziv>
+        <ns4:Deo ID="663693">
+            <ns4:Naziv>ewgewgewwe</ns4:Naziv>
+            <ns4:Glava ID="516190">
+                <ns4:Naziv>wegwegwegweg</ns4:Naziv>
+                <ns2:Clan ID="181850">
+                    <ns2:Opis>wewegweg</ns2:Opis>
+                    <ns2:Naziv>weggwegweg</ns2:Naziv>
                     <ns2:Sadrzaj>
                         <ns2:Stav>
                             <ns2:Redni_broj>1</ns2:Redni_broj>
-                            <ns2:IDPropisa>781583</ns2:IDPropisa>
-                            <ns2:NazivPropisa>Propis1</ns2:NazivPropisa>
-                            <ns2:IDClana>27557</ns2:IDClana>
-                            <ns2:NazivClana>wqdqwdqdwqdqd</ns2:NazivClana>
-                            <ns2:Tekst>Na</ns2:Tekst>
-                            <ns2:Tekst>osnovu</ns2:Tekst>
-                            <ns2:Tekst>propisa</ns2:Tekst>
-                            <ns2:Tekst>Propis1</ns2:Tekst>
-                            <ns2:Tekst>clana</ns2:Tekst>
-                            <ns2:Tekst>wqdqwdqdwqdqd</ns2:Tekst>
+                            <ns2:Tekst>Ajmo</ns2:Tekst>
                         </ns2:Stav>
-                        <ns2:Stav>
-                            <ns2:Redni_broj>2</ns2:Redni_broj>
-                            <ns2:Tekst>Stav 2 opis</ns2:Tekst>
-                        </ns2:Stav>
+                    </ns2:Sadrzaj>
+                </ns2:Clan>
+                <ns2:Clan ID="516463">
+                    <ns2:Opis>eweg</ns2:Opis>
+                    <ns2:Naziv>ewgwegwwe</ns2:Naziv>
+                    <ns2:Sadrzaj>
+                        <ns2:Tekst>
+                            <ns2:text>Na SVE ILI NISTA ZAIGRAJ... BIO LUD SAD ILI NE!</ns2:text>
+                        </ns2:Tekst>
                     </ns2:Sadrzaj>
                 </ns2:Clan>
             </ns4:Glava>
         </ns4:Deo>
-    </propis>
-    <propis ID="731912" Datum="2016-06-07+02:00" Status="PREDLOZEN">
-        <ns4:Naziv>a</ns4:Naziv>
-        <ns4:Deo ID="168007">
-            <ns4:Naziv>a</ns4:Naziv>
-            <ns4:Glava ID="887881">
-                <ns4:Naziv>glava</ns4:Naziv>
-                <ns2:Clan ID="151502">
-                    <ns2:Opis>dasdas</ns2:Opis>
-                    <ns2:Naziv>clan</ns2:Naziv>
-                    <ns2:Sadrzaj>
-                        <ns2:Stav>
-                            <ns2:Redni_broj>1</ns2:Redni_broj>
-                            <ns2:IDPropisa>781583</ns2:IDPropisa>
-                            <ns2:NazivPropisa>Propis1</ns2:NazivPropisa>
-                            <ns2:IDClana>27557</ns2:IDClana>
-                            <ns2:NazivClana>wqdqwdqdwqdqd</ns2:NazivClana>
-                            <ns2:Tekst>Na</ns2:Tekst>
-                            <ns2:Tekst>osnovu</ns2:Tekst>
-                            <ns2:Tekst>propisa</ns2:Tekst>
-                            <ns2:Tekst>Propis1</ns2:Tekst>
-                            <ns2:Tekst>clana</ns2:Tekst>
-                            <ns2:Tekst>wqdqwdqdwqdqd</ns2:Tekst>
-                        </ns2:Stav>
-                        <ns2:Stav>
-                            <ns2:Redni_broj>2</ns2:Redni_broj>
-                            <ns2:Tekst>ksdaokdoadksoad</ns2:Tekst>
-                        </ns2:Stav>
-                    </ns2:Sadrzaj>
-                </ns2:Clan>
-            </ns4:Glava>
-        </ns4:Deo>
-    </propis>
-    <propis ID="917605" Datum="2016-06-07+02:00" Status="PREDLOZEN">
-        <ns4:Naziv>PIZZA</ns4:Naziv>
-        <ns4:Deo ID="63178">
-            <ns4:Naziv>DEOOO</ns4:Naziv>
-            <ns2:Clan ID="553661">
-                <ns2:Opis>OOPISSSS</ns2:Opis>
-                <ns2:Naziv>CLANNN</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>
-                        <ns2:text>Na</ns2:text>
-                        <ns2:text>osnovu</ns2:text>
-                        <ns2:text>propisa</ns2:text>
-                        <ns2:text>Propis1</ns2:text>
-                        <ns2:text>clana</ns2:text>
-                        <ns2:text>wqdqwdqdwqdqd</ns2:text>
-                        <ns2:IDPropisa>781583</ns2:IDPropisa>
-                        <ns2:NazivPropisa>Propis1</ns2:NazivPropisa>
-                        <ns2:IDClana>27557</ns2:IDClana>
-                        <ns2:NazivClana>wqdqwdqdwqdqd</ns2:NazivClana>
-                    </ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns4:Deo>
-        <ns4:Deo ID="891010">
-            <ns4:Naziv>DEOOO222</ns4:Naziv>
-            <ns2:Clan ID="316219">
-                <ns2:Opis>OPISSDSFSFDS</ns2:Opis>
-                <ns2:Naziv>CLANNN222</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>
-                        <ns2:text>Na</ns2:text>
-                        <ns2:text>osnovu</ns2:text>
-                        <ns2:text>propisa</ns2:text>
-                        <ns2:text>Propao</ns2:text>
-                        <ns2:text>clana</ns2:text>
-                        <ns2:text>clan</ns2:text>
-                        <ns2:IDPropisa>886125</ns2:IDPropisa>
-                        <ns2:NazivPropisa>Propao</ns2:NazivPropisa>
-                        <ns2:IDClana>886054</ns2:IDClana>
-                        <ns2:NazivClana>clan</ns2:NazivClana>
-                    </ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns4:Deo>
-    </propis>
-    <propis ID="255911" Datum="2016-06-07+02:00" Status="PREDLOZEN">
-        <ns4:Naziv>rregerg</ns4:Naziv>
-        <ns4:Deo ID="458">
-            <ns4:Naziv>fseregre</ns4:Naziv>
-            <ns2:Clan ID="496287">
-                <ns2:Opis>sergsq</ns2:Opis>
-                <ns2:Naziv>sgsdfg</ns2:Naziv>
+        <ns3:Amandman Datum="2016-06-07+02:00" Mesto="Novi Sad" ID="673194" Podnosilac="dw dw">
+            <ns3:Resenje>fwqfqwqfwqf</ns3:Resenje>
+            <ns3:Obrazlozenje>wqffwqfwqfwqfwqf</ns3:Obrazlozenje>
+            <ns2:Clan ID="181850">
+                <ns2:Naziv>weggwegweg</ns2:Naziv>
                 <ns2:Sadrzaj>
                     <ns2:Stav>
                         <ns2:Redni_broj>1</ns2:Redni_broj>
-                        <ns2:Tekst>fsdfgsdfg</ns2:Tekst>
-                    </ns2:Stav>
-                    <ns2:Stav>
-                        <ns2:Redni_broj>2</ns2:Redni_broj>
-                        <ns2:IDPropisa>966088</ns2:IDPropisa>
-                        <ns2:NazivPropisa>PROPISSSSS</ns2:NazivPropisa>
-                        <ns2:IDClana>311453</ns2:IDClana>
-                        <ns2:NazivClana>NFKASNDFKNS</ns2:NazivClana>
-                        <ns2:Tekst></ns2:Tekst>
+                        <ns2:Tekst>fwqfqwqfwqf</ns2:Tekst>
                     </ns2:Stav>
                 </ns2:Sadrzaj>
             </ns2:Clan>
-        </ns4:Deo>
+        </ns3:Amandman>
     </propis>
-    <propis ID="836137" Datum="2016-06-07+02:00" Status="PREDLOZEN">
-        <ns4:Naziv>PROPISSS</ns4:Naziv>
-        <ns4:Deo ID="415424">
-            <ns4:Naziv>FKASPOFKA</ns4:Naziv>
-            <ns2:Clan ID="574039">
-                <ns2:Opis>LFKAMSLDFAS</ns2:Opis>
-                <ns2:Naziv>KGSDFGML</ns2:Naziv>
+    <propis ID="691372" Datum="2016-06-07+02:00" Status="U_NACELU">
+        <ns4:Naziv>oooooooooooooooooooooo</ns4:Naziv>
+        <ns4:Deo ID="458093">
+            <ns4:Naziv>qwddwqd</ns4:Naziv>
+            <ns2:Clan ID="799866">
+                <ns2:Opis>dwqwqqwdwqqdw</ns2:Opis>
+                <ns2:Naziv>wqd</ns2:Naziv>
                 <ns2:Sadrzaj>
                     <ns2:Stav>
                         <ns2:Redni_broj>1</ns2:Redni_broj>
-                        <ns2:Tekst>LASKMDFLASM</ns2:Tekst>
-                    </ns2:Stav>
-                    <ns2:Stav>
-                        <ns2:Redni_broj>2</ns2:Redni_broj>
-                        <ns2:IDPropisa>781583</ns2:IDPropisa>
-                        <ns2:NazivPropisa>Propis1</ns2:NazivPropisa>
-                        <ns2:IDClana>27557</ns2:IDClana>
-                        <ns2:NazivClana>wqdqwdqdwqdqd</ns2:NazivClana>
-                        <ns2:Tekst></ns2:Tekst>
-                    </ns2:Stav>
-                    <ns2:Stav>
-                        <ns2:Redni_broj>2</ns2:Redni_broj>
-                        <ns2:IDPropisa>781583</ns2:IDPropisa>
-                        <ns2:NazivPropisa>Propis1</ns2:NazivPropisa>
-                        <ns2:IDClana>27557</ns2:IDClana>
-                        <ns2:NazivClana>wqdqwdqdwqdqd</ns2:NazivClana>
-                        <ns2:Tekst>Na</ns2:Tekst>
-                        <ns2:Tekst>osnovu</ns2:Tekst>
-                        <ns2:Tekst>propisa</ns2:Tekst>
-                        <ns2:Tekst>Propis1</ns2:Tekst>
-                        <ns2:Tekst>clana</ns2:Tekst>
-                        <ns2:Tekst>wqdqwdqdwqdqd</ns2:Tekst>
-                    </ns2:Stav>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns4:Deo>
-    </propis>
-    <propis ID="293560" Datum="2016-06-07+02:00" Status="PREDLOZEN">
-        <ns4:Naziv>hhhhhhh</ns4:Naziv>
-        <ns4:Deo ID="388175">
-            <ns4:Naziv>hhhhhhh</ns4:Naziv>
-            <ns2:Clan ID="331238">
-                <ns2:Opis>hhhhhhh</ns2:Opis>
-                <ns2:Naziv>hhhhh</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Stav>
-                        <ns2:Redni_broj>1</ns2:Redni_broj>
-                        <ns2:Tekst>hhhhhh</ns2:Tekst>
-                    </ns2:Stav>
-                    <ns2:Stav>
-                        <ns2:Redni_broj>2</ns2:Redni_broj>
-                        <ns2:IDPropisa>781583</ns2:IDPropisa>
-                        <ns2:NazivPropisa>Propis1</ns2:NazivPropisa>
-                        <ns2:IDClana>27557</ns2:IDClana>
-                        <ns2:NazivClana>wqdqwdqdwqdqd</ns2:NazivClana>
-                        <ns2:Tekst>Na</ns2:Tekst>
-                        <ns2:Tekst>osnovu</ns2:Tekst>
-                        <ns2:Tekst>propisa</ns2:Tekst>
-                        <ns2:Tekst>Propis1</ns2:Tekst>
-                        <ns2:Tekst>clana</ns2:Tekst>
-                        <ns2:Tekst>wqdqwdqdwqdqd</ns2:Tekst>
-                    </ns2:Stav>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns4:Deo>
-    </propis>
-    <propis ID="884147" Datum="2016-06-07+02:00" Status="PREDLOZEN">
-        <ns4:Naziv>eeeee</ns4:Naziv>
-        <ns4:Deo ID="477265">
-            <ns4:Naziv>eeee</ns4:Naziv>
-            <ns2:Clan ID="432857">
-                <ns2:Opis>eeeee</ns2:Opis>
-                <ns2:Naziv>eeee</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>
-                        <ns2:text>Na</ns2:text>
-                        <ns2:text>osnovu</ns2:text>
-                        <ns2:text>propisa</ns2:text>
-                        <ns2:text>a</ns2:text>
-                        <ns2:text>clana</ns2:text>
-                        <ns2:text>clan</ns2:text>
-                        <ns2:IDPropisa>731912</ns2:IDPropisa>
-                        <ns2:NazivPropisa>a</ns2:NazivPropisa>
-                        <ns2:IDClana>151502</ns2:IDClana>
-                        <ns2:NazivClana>clan</ns2:NazivClana>
-                    </ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-            <ns2:Clan ID="478682">
-                <ns2:Opis>fffff</ns2:Opis>
-                <ns2:Naziv>ffff</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Stav>
-                        <ns2:Redni_broj>1</ns2:Redni_broj>
-                        <ns2:IDPropisa>781583</ns2:IDPropisa>
-                        <ns2:NazivPropisa>Propis1</ns2:NazivPropisa>
-                        <ns2:IDClana>27557</ns2:IDClana>
-                        <ns2:NazivClana>wqdqwdqdwqdqd</ns2:NazivClana>
-                        <ns2:Tekst>Na</ns2:Tekst>
-                        <ns2:Tekst>osnovu</ns2:Tekst>
-                        <ns2:Tekst>propisa</ns2:Tekst>
-                        <ns2:Tekst>Propis1</ns2:Tekst>
-                        <ns2:Tekst>clana</ns2:Tekst>
-                        <ns2:Tekst>wqdqwdqdwqdqd</ns2:Tekst>
-                    </ns2:Stav>
-                    <ns2:Stav>
-                        <ns2:Redni_broj>2</ns2:Redni_broj>
-                        <ns2:IDPropisa>895502</ns2:IDPropisa>
-                        <ns2:NazivPropisa>PropisA</ns2:NazivPropisa>
-                        <ns2:IDClana>398043</ns2:IDClana>
-                        <ns2:NazivClana>Clan</ns2:NazivClana>
-                        <ns2:Tekst>Na</ns2:Tekst>
-                        <ns2:Tekst>osnovu</ns2:Tekst>
-                        <ns2:Tekst>propisa</ns2:Tekst>
-                        <ns2:Tekst>PropisA</ns2:Tekst>
-                        <ns2:Tekst>clana</ns2:Tekst>
-                        <ns2:Tekst>Clan</ns2:Tekst>
+                        <ns2:Tekst>KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKkk</ns2:Tekst>
                     </ns2:Stav>
                 </ns2:Sadrzaj>
             </ns2:Clan>

@@ -211,13 +211,15 @@
 		// odbornici i predsednik skupstine mogu da povuku predloge propisa ili
 		// amandmana
 		// pre nego sto uopste dodje do sednice
-		$scope.povuciPropis = function(propisId, index) {
-			$http.get(serverUrl + '/clan/odbijen/' + propisId).success(
+		$scope.povuciPropis = function(propisId, index) 
+		{
+			$http.get(serverUrl + '/clan/odbijen/' + propisId)
+			.success( 
 					function(data, header, status) {
 						$scope.propisi.splice(index, 1);
 						$state.go('pregledAkata');
 					})
-		}
+		} 
 
 	}
 
@@ -284,12 +286,10 @@
 
 		$scope.zavrsiAmandman = function() {
 			if ($scope.clan.sadrzaj.tekst.length === 0) {
-				$scope.clan.sadrzaj.tekst[0] = '';
 				$http.post(serverUrl + 'amandman/novi', {
 					propisId : $scope.propisProba.id,
 					clanId : $scope.clan.id,
 					clanNaziv : $scope.clan.naziv,
-					clanTekst : $scope.clan.sadrzaj.tekst[0],
 					stavTekst : $scope.stav.tekst,
 					stavRedniBroj : $scope.stav.redniBroj,
 					amandmanObrazlozenje : $scope.amandman.obrazlozenje
@@ -302,7 +302,7 @@
 					propisId : $scope.propisProba.id,
 					clanId : $scope.clan.id,
 					clanNaziv : $scope.clan.naziv,
-					clanTekst : $scope.clan.sadrzaj.tekst[0],
+					clanTekst : $scope.clan.sadrzaj.tekst[0].text,
 					amandmanObrazlozenje : $scope.amandman.obrazlozenje
 				}).success(function(data, status, header) {
 					$state.go('main');
@@ -328,9 +328,24 @@
 				var propisId = $stateParams.id;
 			}
 
-			$http.get(serverUrl + '/clan/' + propisId).then(function(response) {
-				$scope.htmlXsl = response.data;
-			});
+			$http.get(serverUrl + 'clan/' + propisId)
+			.success(function(data, status, header)
+			{
+				$scope.htmlXsl = data;
+			})
+			.error(function(data, status, header)
+			{
+				if(status === 406)
+				{
+					alert('Your document does not have a valid signature.');
+					$state.go('main');
+				}
+				else
+				{
+					alert('Your document is not signed.');
+					$state.go('main');
+				}
+			})	
 		} else {
 			$state.go('login');
 		}

@@ -67,6 +67,9 @@ import org.apache.xml.security.encryption.EncryptedKey;
 import org.apache.xml.security.encryption.XMLCipher;
 import org.apache.xml.security.encryption.XMLEncryptionException;
 import org.apache.xml.security.keys.KeyInfo;
+import org.apache.xml.security.keys.keyresolver.implementations.RSAKeyValueResolver;
+import org.apache.xml.security.keys.keyresolver.implementations.X509CertificateResolver;
+import org.apache.xml.security.signature.XMLSignatureException;
 import org.apache.xml.utils.Constants;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.json.JSONArray;
@@ -874,7 +877,7 @@ public class PropisServiceImpl implements PropisService {
 	}
 
 	@Override
-	public Document findPropisById(String docId) throws JAXBException {
+	public Document findPropisById(String docId) throws JAXBException, FileNotFoundException {
 		// ideja ovde je da kada pronadjemo trazeni propis sa baze,
 		// on se preuzme kao dokument, pa se posle prosledi u metodu za
 		// generisanje xsl-a, da bi posle mogli prikazati njegove podatke
@@ -897,6 +900,7 @@ public class PropisServiceImpl implements PropisService {
 
 	//	PrivateKey pk = readPrivateKey("data\\sertifikati\\iasgns.jks", "iasgns", "iasgns");
 	//	doc = decryptXml(doc, pk);
+		
 
 		return doc;
 	}
@@ -1419,6 +1423,45 @@ public class PropisServiceImpl implements PropisService {
 		marshall(propisi, new File("./data/xml/propisi.xml"));
 		
 		savePropisiXML();
+		
+	}
+
+	@Override
+	public boolean verifySignature(Document doc) throws org.apache.xml.security.exceptions.XMLSecurityException 
+	{
+		try
+		{
+			NodeList signatures = doc.getElementsByTagNameNS("http://www.w3.org/2000/09/xmldsig#", "Signature");
+			Element signatureEl = (Element) signatures.item(0);
+			
+			org.apache.xml.security.signature.XMLSignature signature = new org.apache.xml.security.signature.XMLSignature(signatureEl, null);
+			
+			KeyInfo keyInfo = signature.getKeyInfo();
+			//ako postoji
+			if(keyInfo != null) {
+				//registruju se resolver-i za javni kljuc i sertifikat
+				keyInfo.registerInternalKeyResolver(new RSAKeyValueResolver());
+			    keyInfo.registerInternalKeyResolver(new X509CertificateResolver());
+			    
+			    //ako sadrzi sertifikat
+			    if(keyInfo.containsX509Data() && keyInfo.itemX509Data(0).containsCertificate()) { 
+			        Certificate cert = keyInfo.itemX509Data(0).itemCertificate(0).getX509Certificate();
+			        //ako postoji sertifikat, provera potpisa
+			        if(cert != null) 
+			        	return true;
+			        else
+			        	return false;
+			    }
+			    else
+			    	return false;
+			}
+			else
+				return false;
+		}	
+	 catch (XMLSignatureException e) {
+		e.printStackTrace();
+		return false;
+	}
 		
 	}
 

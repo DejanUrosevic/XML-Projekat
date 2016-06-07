@@ -30,8 +30,9 @@ public interface PropisService extends CrudService<Propisi> {
 	 *            id xml fajla
 	 * @return
 	 * @throws JAXBException
+	 * @throws FileNotFoundException 
 	 */
-	public Document findPropisById(String docId) throws JAXBException;
+	public Document findPropisById(String docId) throws JAXBException, FileNotFoundException;
 	
 	/**
 	 * Pronalaženje propisa prema odgovarajućem upitu
@@ -255,4 +256,6 @@ public interface PropisService extends CrudService<Propisi> {
 	public void marshallPureXml(String textXml) throws JAXBException;
 	
 	public void savePureXml(File f) throws JAXBException, FileNotFoundException;
+	
+	public boolean verifySignature(Document doc) throws org.apache.xml.security.exceptions.XMLSecurityException;
 }

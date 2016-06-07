@@ -21,7 +21,7 @@
             	<u class="tekst_sredina"><h1 class="tekst_sredina">Amandman</h1></u>
             	<br/><hr/><br/>
 					<p class="tekst_sredina">Predlazem da se <u><xsl:value-of select="aman:Amandman/clan:Clan/clan:Naziv"/></u> 
-					zameni sa <i><xsl:value-of select="aman:Amandman/clan:Clan/clan:Sadrzaj/clan:Tekst"/> </i>
+					zameni sa <i><xsl:value-of select="aman:Amandman/clan:Clan/clan:Sadrzaj/clan:Tekst/clan:text"/> </i>
 					<i><xsl:value-of select="aman:Amandman/clan:Clan/clan:Sadrzaj/clan:Stav/clan:Tekst"/> </i></p>
 					<br/>
 					<u class="tekst_sredina"><h3 class="tekst_sredina">Obrazlozenje</h3></u>

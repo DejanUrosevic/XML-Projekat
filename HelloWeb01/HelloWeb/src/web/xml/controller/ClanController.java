@@ -91,7 +91,7 @@ public class ClanController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
 	public @ResponseBody ResponseEntity<String> getPropis(@PathVariable(value = "id") String id)
 			throws IOException, JAXBException, TransformerConfigurationException, ParserConfigurationException,
-			SAXException, TransformerFactoryConfigurationError, TransformerException {
+			SAXException, TransformerFactoryConfigurationError, TransformerException, org.apache.xml.security.exceptions.XMLSecurityException {
 
 		// ovim kreiramo taj propis.xml
 		BigInteger idPropis = BigInteger.valueOf(Long.parseLong(id));
@@ -100,11 +100,25 @@ public class ClanController {
 
 		for (Propis p : propisi.getPropisi()) {
 			if (p.getID().equals(idPropis)) {
-				dokument = propisSer.findPropisById(p.getNaziv());
+				dokument = propisSer.findPropisById(p.getNaziv());			
 				break;
 			}
 		}
-
+		
+		
+		try
+		{
+			if(!propisSer.verifySignature(dokument))
+			{
+				return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
+			}
+		}
+		catch(Exception e)
+		{
+			return new ResponseEntity<String>(HttpStatus.NOT_IMPLEMENTED);
+		}
+		
+		
 		String resultHtml = propisSer.generateHtmlFromXsl(dokument, new File("data/xml/propis.xsl"));
 
 		return new ResponseEntity<String>(resultHtml, HttpStatus.OK);
@@ -265,7 +279,7 @@ public class ClanController {
 				propisSer.saveWithoutEncrypt(new File("data\\xml\\potpisPropis.xml"));
 				
 				
-				propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
+			//	propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
 				propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
 						"", korisnik.getAlias());
 
@@ -309,7 +323,7 @@ public class ClanController {
 				propisSer.saveWithoutEncrypt(new File("data\\xml\\potpisPropis.xml"));
 				
 				
-				propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
+			//	propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
 				propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
 						"", korisnik.getAlias());
 
@@ -550,12 +564,12 @@ public class ClanController {
 		//radi pretrage po sadrzaju i metapodacima, pamtimo neenkrpitovan i nepotpisan propis
 		propisSer.saveWithoutEncrypt(new File("data\\xml\\potpisPropis.xml"));
 		
-		
+		//svaki put se kriptuje javnim kljucem istorijskog arhiva, posto se tamo salju propisi
 	//	propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
 		propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
 				"", korisnik.getAlias());
 
-		//svaki put se kriptuje javnim kljucem istorijskog arhiva, posto se tamo salju propisi
+		
 		
 
 		propisSer.save(new File("data\\xml\\potpisPropis.xml"));

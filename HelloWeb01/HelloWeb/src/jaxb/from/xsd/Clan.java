@@ -596,8 +596,16 @@ public class Clan {
                 }
                 return this.text;
             }
+            
+            
 
-            /**
+            public void setText(List<String> text) {
+				this.text = text;
+			}
+
+
+
+			/**
              * Gets the value of the idPropisa property.
              * 
              * @return
