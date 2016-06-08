@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='propis.xsl' ?><Propis xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" Datum="2016-06-07+02:00" ID="691372" Status="U_CELINI">
-    <Naziv>oooooooooooooooooooooo</Naziv>
-    <Deo ID="458093">
-        <Naziv>qwddwqd</Naziv>
-        <ns2:Clan ID="799866">
-            <ns2:Opis>dwqwqqwdwqqdw</ns2:Opis>
-            <ns2:Naziv>wqd</ns2:Naziv>
-            <ns2:Sadrzaj>
-                <ns2:Stav>
-                    <ns2:Redni_broj>1</ns2:Redni_broj>
-                    <ns2:Tekst>KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKkk</ns2:Tekst>
-                </ns2:Stav>
-            </ns2:Sadrzaj>
-        </ns2:Clan>
-    </Deo>
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='propis.xsl' ?><Propis xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" Datum="2016-06-08+02:00" ID="798730" Status="PREDLOZEN">
+    <Naziv>Propis ENKRIPT</Naziv>
+    <Deo ID="250336"><xenc:EncryptedData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" Type="http://www.w3.org/2001/04/xmlenc#Content"><xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"/><ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:KeyName>Kriptovani tajni kljuc</ds:KeyName>
+<xenc:EncryptedKey xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"><xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-1_5" xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"/><xenc:CipherData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"><xenc:CipherValue xmlns:xenc="http://www.w3.org/2001/04/xmlenc#">NcVv7VMTIaDcJSzs4cQazirDgZCU0+AEYFXUdQQM59hycfpnafkxMyb0jqCgQl4BBTuFvjSroPyC
+KZ73IgpK/ztC71gmmyA6xgW+F5fVXCRXtlLlA18FoX1ib1gq2SYeXfZv9DNlyUSbprC3K/3LcmoY
+n0O39AvNlup4KCIMo/Q=</xenc:CipherValue></xenc:CipherData></xenc:EncryptedKey></ds:KeyInfo><xenc:CipherData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"><xenc:CipherValue xmlns:xenc="http://www.w3.org/2001/04/xmlenc#">/VHt6firoV9DfU9AP6/Hak57mS0MotMSMJowZpyU0qEqVSgaTv5IhA3nwR5n5/Za8dPl8Xhcolkt
+WYfIb/+0Werf6I4AGetHeIvq2FB/RDyyxQMc1yW1xWQo8XxvzRRUCwoq1cdTktLnKUiGsPn2Dsbg
+t8jMMjjZKImsQNfZ75tP6V/9PuW9Pc27J+UBbjcetOYsVCwidyTjqMIlNb1ncCXqqaalOXM1zgm+
+ARYbAmhujYQiMAW5m47qLJKQ/M8WEDuHx2sKOAiYfa91+B2Uz7514wFpfvLoZKhsVxF7a+He07uM
+PtkAErYizSoyd0ds+pDOn7NG/eex1dcOHnBpDcinYebYGJQB4+zM2gklXiz4uN4jWcYnDlWjWyDd
+hlhtnwdV4mxEPOpwCXVj1pSJplcm+I96h1Ur6oHmEYYykLZnikRc7hx22g6P3Ho+R1ox8gTVqYs/
+nbrcvNgvIGfScwB1ch4E2iUttHpXiSm0SDbrN7VLHQh/Pn0hU1ZnVER/nPi6Ev7vga628pRbF2VN
+/9n+ssb6ru4sopvfYdPgDDlnyAiJYjXGV6UudoOlGkPotZwp9r6tLD6ITAe2Q8/zxnl391aoWure
+VXOFGpF7UOLMhyn19q0yamYFSKEsDPkI6VMu/h/lz37ZQdx3SM0w3OUKZktxBJ35jdfFeh+75Aw=</xenc:CipherValue></xenc:CipherData></xenc:EncryptedData></Deo>
 <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
 <ds:SignedInfo>
 <ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
@@ -23,13 +23,13 @@
 <ds:Transform Algorithm="http://www.w3.org/2006/12/xml-c14n11#WithComments"/>
 </ds:Transforms>
 <ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
-<ds:DigestValue>y78Rso2me1aiKX46ZXP5dRhVhho=</ds:DigestValue>
+<ds:DigestValue>EknIlevVlSn4YiEGEI5kuO6+lBA=</ds:DigestValue>
 </ds:Reference>
 </ds:SignedInfo>
 <ds:SignatureValue>
-d9BxU11xyN6S8muHbyWt5sBM/Tq6Omxq3q3ZxVuzrPeoDQO75MatYB+sxNb7AkvZDNjm5gtXry9a
-5IbhzcUqCYtiFQC78AR91c+i8PjKK0O1my18TELQdDYsKO+TiIKX8/rf2fhDe8iHXI1jS+gKrHh8
-yA3coXSjc23S+LsdVp4=
+iQ5EGwHW2kLrQ0hbmlYR5owSV4Nd22KpfbUmPKzy1d2BAUfnY96XzYzF1j8jyksOZaVpIBYBXZbg
+ERkYQrMH2dewm7AquaIZSCPWWUdBeUTSl/dIeRrCRiL+4h55ApXV/tiqkJZn0qrxPTBhfx+Pg635
+aS8uuMcP5Ss0w9dWJEQ=
 </ds:SignatureValue>
 <ds:KeyInfo>
 <ds:KeyValue>

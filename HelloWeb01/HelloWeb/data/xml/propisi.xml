@@ -104,4 +104,19 @@
             </ns2:Clan>
         </ns4:Deo>
     </propis>
+    <propis ID="798730" Datum="2016-06-08+02:00" Status="PREDLOZEN">
+        <ns4:Naziv>Propis ENKRIPT</ns4:Naziv>
+        <ns4:Deo ID="250336">
+            <ns4:Naziv>DEO 111</ns4:Naziv>
+            <ns2:Clan ID="957397">
+                <ns2:Opis>asjdfanopsjdfn asjdfnaps ndf</ns2:Opis>
+                <ns2:Naziv>ClAN111</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>
+                        <ns2:text>asdfa sdfaspdnf afasdf</ns2:text>
+                    </ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </ns4:Deo>
+    </propis>
 </propisi>

@@ -1153,10 +1153,10 @@ public class PropisServiceImpl implements PropisService {
 			encryptedData.setKeyInfo(keyInfo);
 
 			// trazi se element ciji sadrzaj se kriptuje
-		//	NodeList odseci = doc.getElementsByTagName("Deo");
-		//	Element odsek = (Element) odseci.item(0);
-			NodeList odeseci = doc.getDocumentElement().getChildNodes();
-			Element odsek = (Element) doc.getDocumentElement();
+			NodeList odseci = doc.getElementsByTagName("Deo");
+			Element odsek = (Element) odseci.item(0);
+			//NodeList odeseci = doc.getDocumentElement().getChildNodes();
+			//Element odsek = (Element) doc.getDocumentElement();
 			
 			xmlCipher.doFinal(doc, odsek, true); // kriptuje sa sadrzaj
 

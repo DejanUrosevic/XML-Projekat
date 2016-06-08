@@ -565,7 +565,7 @@ public class ClanController {
 		propisSer.saveWithoutEncrypt(new File("data\\xml\\potpisPropis.xml"));
 		
 		//svaki put se kriptuje javnim kljucem istorijskog arhiva, posto se tamo salju propisi
-	//	propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
+		//propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
 		propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
 				"", korisnik.getAlias());
 
