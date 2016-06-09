@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
+import jaxb.from.xsd.Amandman;
 import jaxb.from.xsd.Propis;
 import web.xml.model.Propisi;
 import web.xml.model.User;
@@ -105,6 +106,24 @@ public class AmandmanController {
 		
 		return new ResponseEntity<String>(HttpStatus.OK);
 
+	}
+	
+	@RequestMapping(value = "/toPdf/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<Amandman> toPdf(@PathVariable(value = "id") String id, final HttpServletRequest req)
+			throws IOException, JAXBException, ServletException, TransformerConfigurationException, SAXException, TransformerException {
+		
+			try {
+				amandmanSer.marshallAmandman(amandmanSer.unmarshallDocument(amandmanSer.findAmandmanById(id)), new File("data\\xml\\AmandmanForPdf.xml"));
+				amandmanSer.toPdf(new File("data\\xml\\AmandmanForPdf.xml"), new File("data\\xml\\amandman_fo.xsl"));
+				return new ResponseEntity<Amandman>(HttpStatus.OK);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return new ResponseEntity<Amandman>(HttpStatus.NO_CONTENT);
+			}
+		
+		
+		
 	}
 
 }

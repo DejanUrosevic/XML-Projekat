@@ -258,4 +258,6 @@ public interface PropisService extends CrudService<Propisi> {
 	public void savePureXml(File f) throws JAXBException, FileNotFoundException;
 	
 	public boolean verifySignature(Document doc) throws org.apache.xml.security.exceptions.XMLSecurityException;
+	
+	public void toPdf(File propisXml, File propisXsl) throws SAXException, IOException, TransformerConfigurationException, TransformerException;
 }

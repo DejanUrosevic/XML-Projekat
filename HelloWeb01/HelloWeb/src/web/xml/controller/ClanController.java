@@ -448,6 +448,25 @@ public class ClanController {
 		return new ResponseEntity<String>(HttpStatus.OK);
 
 	}
+	
+	@RequestMapping(value = "/toPdf/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<Propis> toPdf(@PathVariable(value = "id") String id, final HttpServletRequest req)
+			throws IOException, JAXBException, ServletException, TransformerConfigurationException, SAXException, TransformerException {
+		
+		Propisi propisi = propisSer.findAll();
+		for(Propis p : propisi.getPropisi())
+		{
+			if(p.getID().equals(BigInteger.valueOf(Long.parseLong(id))))
+			{
+				propisSer.marshallPropis(propisSer.unmarshallDocumentPropis(propisSer.findPropisById(p.getNaziv())), new File("data\\xml\\propisForPdf.xml"));
+				propisSer.toPdf(new File("data\\xml\\propisForPdf.xml"), new File("data\\xml\\propis_fo.xsl"));
+				return new ResponseEntity<Propis>(p, HttpStatus.OK);
+			}
+		}
+		
+		return new ResponseEntity<Propis>(HttpStatus.NO_CONTENT);
+		
+	}
 
 	/**
 	 * Dodavanje glave za izabrani deo. Ovo za izabrani deo jos nije odradjeno

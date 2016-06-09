@@ -1,122 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <propisi xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" xmlns:ns4="http://www.parlament.gov.rs/propis">
-    <propis ID="886125" Datum="2016-06-07+02:00" Status="PREDLOZEN">
-        <ns4:Naziv>Propao</ns4:Naziv>
-        <ns4:Deo ID="727355">
-            <ns4:Naziv>deo</ns4:Naziv>
-            <ns2:Clan ID="886054">
-                <ns2:Opis>dasdadfasf</ns2:Opis>
-                <ns2:Naziv>clan</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Stav>
-                        <ns2:Redni_broj>1</ns2:Redni_broj>
-                        <ns2:Tekst>dasdasdasda</ns2:Tekst>
-                    </ns2:Stav>
-                    <ns2:Stav>
-                        <ns2:Redni_broj>2</ns2:Redni_broj>
-                        <ns2:Tekst>aaaaa</ns2:Tekst>
-                    </ns2:Stav>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns4:Deo>
-    </propis>
-    <propis ID="82778" Datum="2016-06-07+02:00" Status="U_NACELU">
-        <ns4:Naziv>Lagala je grade</ns4:Naziv>
-        <ns4:Deo ID="348385">
-            <ns4:Naziv>Da voli balade</ns4:Naziv>
-            <ns2:Clan ID="846289">
-                <ns2:Opis>Zgadila mi ljubav, zivot sve.</ns2:Opis>
-                <ns2:Naziv>Grade moooj</ns2:Naziv>
+    <propis ID="741722" Datum="2016-06-09+02:00" Status="U_NACELU">
+        <ns4:Naziv>wqfwqff</ns4:Naziv>
+        <ns4:Deo ID="63078">
+            <ns4:Naziv>wqwqfwqfwqfwqfwqf</ns4:Naziv>
+            <ns2:Clan ID="222225">
+                <ns2:Opis>fwqfwqfwqf 124 412421</ns2:Opis>
+                <ns2:Naziv>wqfwqfw</ns2:Naziv>
                 <ns2:Sadrzaj>
                     <ns2:Tekst>
-                        <ns2:text>Nisam jaaaaa....</ns2:text>
+                        <ns2:text>FS saf as s f as fsa</ns2:text>
                     </ns2:Tekst>
                 </ns2:Sadrzaj>
             </ns2:Clan>
         </ns4:Deo>
-        <ns3:Amandman Datum="2016-06-07+02:00" Mesto="Novi Sad" ID="545289" Podnosilac="dw dw">
-            <ns3:Resenje>Nisam jaaaaa....</ns3:Resenje>
-            <ns3:Obrazlozenje>MMMMM</ns3:Obrazlozenje>
-            <ns2:Clan ID="846289">
-                <ns2:Naziv>Grade moooj</ns2:Naziv>
+        <ns3:Amandman Datum="2016-06-09+02:00" Mesto="Novi Sad" ID="733296" Podnosilac="dw dw">
+            <ns3:Resenje>23213</ns3:Resenje>
+            <ns3:Obrazlozenje>Dsad ass asasasdas</ns3:Obrazlozenje>
+            <ns2:Clan ID="222225">
+                <ns2:Naziv>wqfwqfw</ns2:Naziv>
                 <ns2:Sadrzaj>
                     <ns2:Tekst>
-                        <ns2:text>Nisam jaaaaa....</ns2:text>
+                        <ns2:text>23213</ns2:text>
                     </ns2:Tekst>
                 </ns2:Sadrzaj>
             </ns2:Clan>
         </ns3:Amandman>
-    </propis>
-    <propis ID="687510" Datum="2016-06-07+02:00" Status="U_NACELU">
-        <ns4:Naziv>wegfgewg</ns4:Naziv>
-        <ns4:Deo ID="663693">
-            <ns4:Naziv>ewgewgewwe</ns4:Naziv>
-            <ns4:Glava ID="516190">
-                <ns4:Naziv>wegwegwegweg</ns4:Naziv>
-                <ns2:Clan ID="181850">
-                    <ns2:Opis>wewegweg</ns2:Opis>
-                    <ns2:Naziv>weggwegweg</ns2:Naziv>
-                    <ns2:Sadrzaj>
-                        <ns2:Stav>
-                            <ns2:Redni_broj>1</ns2:Redni_broj>
-                            <ns2:Tekst>Ajmo</ns2:Tekst>
-                        </ns2:Stav>
-                    </ns2:Sadrzaj>
-                </ns2:Clan>
-                <ns2:Clan ID="516463">
-                    <ns2:Opis>eweg</ns2:Opis>
-                    <ns2:Naziv>ewgwegwwe</ns2:Naziv>
-                    <ns2:Sadrzaj>
-                        <ns2:Tekst>
-                            <ns2:text>Na SVE ILI NISTA ZAIGRAJ... BIO LUD SAD ILI NE!</ns2:text>
-                        </ns2:Tekst>
-                    </ns2:Sadrzaj>
-                </ns2:Clan>
-            </ns4:Glava>
-        </ns4:Deo>
-        <ns3:Amandman Datum="2016-06-07+02:00" Mesto="Novi Sad" ID="673194" Podnosilac="dw dw">
-            <ns3:Resenje>fwqfqwqfwqf</ns3:Resenje>
-            <ns3:Obrazlozenje>wqffwqfwqfwqfwqf</ns3:Obrazlozenje>
-            <ns2:Clan ID="181850">
-                <ns2:Naziv>weggwegweg</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Stav>
-                        <ns2:Redni_broj>1</ns2:Redni_broj>
-                        <ns2:Tekst>fwqfqwqfwqf</ns2:Tekst>
-                    </ns2:Stav>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns3:Amandman>
-    </propis>
-    <propis ID="691372" Datum="2016-06-07+02:00" Status="U_NACELU">
-        <ns4:Naziv>oooooooooooooooooooooo</ns4:Naziv>
-        <ns4:Deo ID="458093">
-            <ns4:Naziv>qwddwqd</ns4:Naziv>
-            <ns2:Clan ID="799866">
-                <ns2:Opis>dwqwqqwdwqqdw</ns2:Opis>
-                <ns2:Naziv>wqd</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Stav>
-                        <ns2:Redni_broj>1</ns2:Redni_broj>
-                        <ns2:Tekst>KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKkk</ns2:Tekst>
-                    </ns2:Stav>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns4:Deo>
-    </propis>
-    <propis ID="798730" Datum="2016-06-08+02:00" Status="PREDLOZEN">
-        <ns4:Naziv>Propis ENKRIPT</ns4:Naziv>
-        <ns4:Deo ID="250336">
-            <ns4:Naziv>DEO 111</ns4:Naziv>
-            <ns2:Clan ID="957397">
-                <ns2:Opis>asjdfanopsjdfn asjdfnaps ndf</ns2:Opis>
-                <ns2:Naziv>ClAN111</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>
-                        <ns2:text>asdfa sdfaspdnf afasdf</ns2:text>
-                    </ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns4:Deo>
     </propis>
 </propisi>

@@ -33,6 +33,12 @@
 								ng-click="povuciPropis(propis.id, $index)">
 								<img src="css/images/reject.ico" height="28" />
 							</button></td>
+						<td ng-controller="mainPageCtrl" class="sredina"><button
+								class="buttonSredina" type="button"
+								style="background-color: transparent; border-color: transparent;"
+								ng-click="toPdf(propis.id)">
+								<img src="css/images/pdf.png" height="28" />
+							</button></td>
 					</tr>
 				</table>
 			</div>

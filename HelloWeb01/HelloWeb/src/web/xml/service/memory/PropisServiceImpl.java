@@ -4,11 +4,14 @@ import static org.apache.xerces.jaxp.JAXPConstants.JAXP_SCHEMA_LANGUAGE;
 import static org.apache.xerces.jaxp.JAXPConstants.W3C_XML_SCHEMA;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.math.BigInteger;
@@ -31,6 +34,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -45,12 +49,14 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.FactoryConfigurationError;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Result;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.sax.SAXResult;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
@@ -61,7 +67,12 @@ import jaxb.from.xsd.Clan.Sadrzaj;
 import jaxb.from.xsd.Clan.Sadrzaj.Stav;
 import jaxb.from.xsd.Propis.Deo;
 import jaxb.from.xsd.Propis.Deo.Glava;
+import net.sf.saxon.TransformerFactoryImpl;
 
+import org.apache.fop.apps.FOUserAgent;
+import org.apache.fop.apps.Fop;
+import org.apache.fop.apps.FopFactory;
+import org.apache.fop.apps.MimeConstants;
 import org.apache.xml.security.encryption.EncryptedData;
 import org.apache.xml.security.encryption.EncryptedKey;
 import org.apache.xml.security.encryption.XMLCipher;
@@ -1462,6 +1473,61 @@ public class PropisServiceImpl implements PropisService {
 		e.printStackTrace();
 		return false;
 	}
+		
+	}
+
+	@Override
+	public void toPdf(File propisXml, File propisXsl) throws SAXException,
+			IOException, TransformerConfigurationException,
+			TransformerException {
+
+		// Initialize FOP factory object 
+		FopFactory fopFactory = FopFactory.newInstance(new File("data\\xml\\fop.xconf"));
+		
+		// Setup the XSLT transformer factory
+		TransformerFactory transformerFactory = new TransformerFactoryImpl();
+		
+		// Point to the XSL-FO file
+		File xsltFile = propisXsl;
+
+		// Create transformation source
+		StreamSource transformSource = new StreamSource(xsltFile);
+		
+		StreamSource source = new StreamSource(propisXml);
+		
+		//proba--------------------------
+		Scanner scanner = new Scanner(propisXsl);
+		String text = scanner.useDelimiter("\\A").next();
+		scanner.close(); // Put this call in a finally block
+		System.out.println(text);
+
+		// Initialize user agent needed for the transformation
+		FOUserAgent userAgent = fopFactory.newFOUserAgent();
+		
+		// Create the output stream to store the results
+		ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+
+		// Initialize the XSL-FO transformer object
+		Transformer xslFoTransformer = transformerFactory.newTransformer(transformSource);
+		
+		// Construct FOP instance with desired output format
+		Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, userAgent, outStream);
+
+		// Resulting SAX events 
+		Result res = new SAXResult(fop.getDefaultHandler());
+
+		// Start XSLT transformation and FOP processing
+		xslFoTransformer.transform(source, res);
+
+		// Generate PDF file
+		File pdfFile = new File("data/pdf/propisPDF.pdf");
+		OutputStream out = new BufferedOutputStream(new FileOutputStream(pdfFile));
+		out.write(outStream.toByteArray());
+
+		System.out.println("[INFO] File \"" + pdfFile.getCanonicalPath() + "\" generated successfully.");
+		out.close();
+		
+		System.out.println("[INFO] End.");
 		
 	}
 

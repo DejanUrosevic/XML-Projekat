@@ -218,6 +218,20 @@
 						$state.go('pregledAkata');
 					})
 		}
+		
+		$scope.toPdf = function(propisId)
+		{
+			$http.get(serverUrl + "clan/toPdf/" + propisId)
+			.success(function(data, header, status)
+			{
+				var text = "Your " + data.naziv + "pdf is succesfully created."
+				alert(text);
+			})
+			.error(function(data, header, status)
+			{
+				alert("Something went wrong. Please try again.")
+			})
+		}
 
 	}
 
@@ -998,6 +1012,19 @@
 
 			})
 
+		}
+		
+		$scope.toPdf = function()
+		{
+			$http.get(serverUrl + 'amandman/toPdf/' + amandmanId)
+			.success(function(data, status, header)
+			{
+				alert('Your amandman pdf is created');
+			})
+			.error(function(data, status, header)
+			{
+				alert('Something went wrong, please try again.');
+			})
 		}
 	}
 

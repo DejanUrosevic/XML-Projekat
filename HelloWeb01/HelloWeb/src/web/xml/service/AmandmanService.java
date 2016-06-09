@@ -8,8 +8,11 @@ import java.security.cert.Certificate;
 import javax.crypto.SecretKey;
 import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 
 import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 import jaxb.from.xsd.Amandman;
 import web.xml.model.User;
@@ -27,5 +30,9 @@ public interface AmandmanService extends CrudService<Amandman>{
 	public void primeniAmandman(String data) throws JAXBException, FileNotFoundException;
 	
 	public Amandman unmarshallDocument(Document document) throws JAXBException;
+	
+	public void toPdf(File amandman, File amandmanXsl) throws FileNotFoundException, SAXException, IOException, TransformerConfigurationException, TransformerException;
+	
+	public void marshallAmandman(Amandman amandman, File f) throws JAXBException;
 	
 }
