@@ -116,8 +116,14 @@ public class UserController {
 			return new ResponseEntity<UserController.LoginResponse>(HttpStatus.NOT_ACCEPTABLE);
 		}
 
-		String username = json.getString("username");
-		String password = json.getString("password");
+		String username = "";
+		String password = "";
+		try {
+			username = json.getString("username");
+			password = json.getString("password");
+		} catch (JSONException e) {
+			//e.printStackTrace();
+		}
 
 		JAXBContext context = JAXBContext.newInstance(Users.class);
 
