@@ -174,8 +174,9 @@ public class PropisServiceImpl implements PropisService {
 		// Formiranje definicije upita
 		StringQueryDefinition queryDefinition = queryManager.newStringDefinition();
 		
-		// Postavljane kriterijuma pretragae
-		String criteria = "\""+upit+"\"";
+		// Postavljane kriterijuma pretragae (veoma slično kao i kod google upita)
+		// String criteria = "\""+upit+"\"";
+		String criteria = upit;
 		queryDefinition.setCriteria(criteria);
 		
 		// Postavljanje kolekcije u kojoj se pretražuje
