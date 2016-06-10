@@ -20,19 +20,24 @@
 				<br />
 				<hr />
 				<br />
-				<form name="myForm" method="POST">
+				<form name="DodajDeoPropisuForm" method="POST" ng-submit="noviDeo(DodajDeoPropisuForm.$valid)" novalidate>
 					<table id="myTable">
 						<tr>
 							<th class="sredina">Unesite naziv dela</th>					
 						</tr>
 						<tr>
-							<td class="sredina"><input type="text" size="30"
+							<td class="sredina"><input type="text" size="30" name="nazivDeo"
 								ng-model="deo.naziv" required /></td>
+						</tr>
+						<tr>
+							<td ng-show="DodajDeoPropisuForm.nazivDeo.$invalid && !DodajDeoPropisuForm.nazivDeo.$pristine" style="color: red">
+								Morate uneti naziv dela!
+							</td>
 						</tr>
 						<tr>
 							<td class="sredina"><select ng-model="deo.izbor">
 									<option value=""></option>
-									<option value="Clan">Clan</option>
+									<option value="Clan">Član</option>
 									<option value="Glava">Glava</option>
 							</select></td>
 						</tr>
@@ -41,25 +46,35 @@
 						</tr>
 						<tr  ng-show="deo.izbor === 'Glava'">
 							<td class="sredina"><input type="text" size="30"
-								ng-model="glavaNaziv" required /></td>
+								ng-model="glavaNaziv"  /></td>
 						</tr>
 						<tr>
-							<th class="sredina">Unesite naziv clana</th>					
+							<th class="sredina">Unesite naziv člana</th>					
 						</tr>
 						<tr>
-							<td class="sredina"><input type="text" size="30"
+							<td class="sredina"><input type="text" size="30" name="nazivClan"
 								ng-model="clan.naziv" required /></td>
+						</tr>
+						<tr> 
+							<td ng-show="DodajDeoPropisuForm.nazivClan.$invalid && !DodajDeoPropisuForm.nazivClan.$pristine" style="color: red">
+								Morate uneti naziv člana!
+							</td>
 						</tr>
 						<tr>
 							<th class="sredina">Unesite opis clana</th>					
 						</tr>
 						<tr>
-							<td class="sredina"><textarea type="text" size="30"
+							<td class="sredina"><textarea type="text" size="30" name="opisClan"
 								ng-model="clan.opis" required> </textarea></td>
 						</tr>
 						<tr>
+							<td ng-show="DodajDeoPropisuForm.opisClan.$invalid && !DodajDeoPropisuForm.opisClan.$pristine" style="color: red">
+								Morate uneti opis člana!
+							</td>
+						</tr>
+						<tr>
 							<td class="sredina"><select ng-model="clan.izbor">
-									<option value="">--Izaberite da li ce clan biti stav ili tekst</option>
+									<option value="">--Izaberite da li ce član biti stav ili tekst</option>
 									<option value="Stav">Stav</option>
 									<option value="Tekst">Tekst</option>
 							</select></td>
@@ -69,21 +84,25 @@
 						</tr>
 						<tr ng-show="clan.izbor === 'Stav'">
 							<td class="sredina"><input type="text" size="30"
-								ng-model="stavBroj" required /></td>
+								ng-model="stavBroj"  /></td>
 						</tr>
 						<tr ng-show="clan.izbor === 'Stav'">
 							<th class="sredina">Unesite tekst stava</th>					
 						</tr>
 						<tr ng-show="clan.izbor === 'Stav'">
-							<td class="sredina"><textarea type="text" size="30"
-								ng-model="stavTekst" required> </textarea></td>
+							<td class="sredina">
+								<textarea type="text" size="30" ng-model="stavTekst" > 
+								</textarea>
+							</td>
 						</tr>
 						<tr ng-show="clan.izbor === 'Tekst'">
-							<th class="sredina">Unesite tekst clana</th>					
+							<th class="sredina">Unesite tekst člana</th>					
 						</tr>
 						<tr ng-show="clan.izbor === 'Tekst'">
-							<td class="sredina"><textarea type="text" size="30"
-								ng-model="clanTekst" required> </textarea></td>
+							<td class="sredina">
+								<textarea type="text" size="30" ng-model="clanTekst" > 
+								</textarea>
+							</td>
 						</tr>
 						<tr>
 							<td class="sredina"><select ng-model="referenca">
@@ -107,7 +126,7 @@
 						</tr>
 						
 						<tr ng-show="referenca === 'da'">
-							<th> Izaberite clan </th>
+							<th> Izaberite član </th>
 						</tr>
 						<tr ng-show="referenca === 'da'">
 								<td class="sredina">
@@ -120,11 +139,14 @@
 							</tr>
 						<tr>
 							<td style="text-align: center;">
-								<button type="submit"
-									style="background-color: transparent; border-color: transparent;"
-									ng-click="noviDeo()">
-									<img src="css/images/Next-icon.png" height="35" />
-								</button>
+<!-- 								<button type="submit" -->
+<!-- 									style="background-color: transparent; border-color: transparent;" -->
+<!-- 									ng-click="noviDeo()"> -->
+<!-- 									<img src="css/images/Next-icon.png" height="35" /> -->
+<!-- 								</button> -->
+								
+								<input type="image" value="submit" 
+								src="css/images/Next-icon.png" height="35" alt="submit Button" />
 							</td>
 						</tr>
 					</table>
