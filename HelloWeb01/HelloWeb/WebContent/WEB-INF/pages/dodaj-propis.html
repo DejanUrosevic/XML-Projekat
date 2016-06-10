@@ -63,14 +63,14 @@
 							<tr ng-show="deo.izbor === 'Glava'">
 								<td class="sredina">
 									<input type="text" size="30" name="nazivGlava"
-										ng-model="glavaNaziv" required />
+										ng-model="glavaNaziv"  />
 								</td>
 							</tr>
-							<tr> 
-								<td ng-show="DodajPropisForm.nazivGlava.$invalid && !DodajPropisForm.nazivGlava.$pristine && deo.izbor === 'Glava'" style="color: red">
-									Morate uneti naziv glave!		
-								</td>
-							</tr>
+<!-- 							<tr>  -->
+<!-- 								<td ng-show="DodajPropisForm.nazivGlava.$invalid && !DodajPropisForm.nazivGlava.$pristine && deo.izbor === 'Glava'" style="color: red"> -->
+<!-- 									Morate uneti naziv glave!		 -->
+<!-- 								</td> -->
+<!-- 							</tr> -->
 							<tr>
 								<th class="sredina">Unesite naziv člana</th>
 							</tr>
@@ -117,29 +117,29 @@
 							<tr ng-show="clan.izbor === 'Stav'">
 								<td class="sredina">
 									<input type="text" size="30" name="brojStav"
-										ng-model="stavBroj" required />
+										ng-model="stavBroj"  />
 								</td>
 							</tr>
-							<tr>
-								<td ng-show="DodajPropisForm.brojStav.$invalid && !DodajPropisForm.brojStav.$pristine && clan.izbor === 'Stav'" style="color: red">
-									Morate uneti redni broj stava!
-								</td>
-							</tr>
+<!-- 							<tr> -->
+<!-- 								<td ng-show="DodajPropisForm.brojStav.$invalid && !DodajPropisForm.brojStav.$pristine && clan.izbor === 'Stav'" style="color: red"> -->
+<!-- 									Morate uneti redni broj stava! -->
+<!-- 								</td> -->
+<!-- 							</tr> -->
 							<tr ng-show="clan.izbor === 'Stav'">
 								<th class="sredina">Unesite tekst stava</th>
 							</tr>
 							<tr ng-show="clan.izbor === 'Stav'">
 								<td class="sredina">
 									<textarea type="text" size="30" name="tekstStav"
-										ng-model="stavTekst" required> 
+										ng-model="stavTekst" > 
 									</textarea>
 								</td>
 							</tr>
-							<tr>
-								<td ng-show="DodajPropisForm.tekstStav.$invalid && !DodajPropisForm.tekstStav.$pristine && clan.izbor === 'Stav'" style="color: red">
-									Morate uneti tekst stava!
-								</td>
-							</tr>
+<!-- 							<tr> -->
+<!-- 								<td ng-show="DodajPropisForm.tekstStav.$invalid && !DodajPropisForm.tekstStav.$pristine && clan.izbor === 'Stav'" style="color: red"> -->
+<!-- 									Morate uneti tekst stava! -->
+<!-- 								</td> -->
+<!-- 							</tr> -->
 							
 							
 							<tr ng-show="clan.izbor === 'Tekst'">
@@ -148,14 +148,14 @@
 							<tr ng-show="clan.izbor === 'Tekst'">
 								<td class="sredina">
 									<textarea type="text" size="30" name="tekstClan"
-										ng-model="clanTekst" required>
+										ng-model="clanTekst" >
 									</textarea>
 								</td>
 							</tr>
 							<tr>
-								<td ng-show="DodajPropisForm.tekstClan.$invalid && !DodajPropisForm.tekstClan.$pristine && clan.izbor === 'Tekst'" style="color: red">
-									Morate uneti tekst člana!	
-								</td>
+<!-- 								<td ng-show="DodajPropisForm.tekstClan.$invalid && !DodajPropisForm.tekstClan.$pristine && clan.izbor === 'Tekst'" style="color: red"> -->
+<!-- 									Morate uneti tekst člana!	 -->
+<!-- 								</td> -->
 							</tr>
 							
 							<tr>
