@@ -20,32 +20,45 @@
 				<br />
 				<hr />
 				<br />
-				<form name="myForm" method="POST">
+				<form name="DodajStavPropisuForm" method="POST" ng-submit="noviStav(DodajStavPropisuForm.$valid)" novalidate>
 					<table id="myTable">
 						<tr>
 							<th class="sredina">Unesite redni broj stava</th>					
 						</tr>
 						<tr>
-							<td class="sredina"><input type="text" size="30"
+							<td class="sredina"><input type="text" size="30" name="brojStav"
 								ng-model="stavBroj" required /></td>
+						</tr>
+						<tr>
+							<td ng-show="DodajStavPropisuForm.brojStav.$invalid && !DodajStavPropisuForm.brojStav.$pristine" style="color: red">
+								Morate uneti redni broj stava!
+							</td>
 						</tr>
 						<tr>
 							<th class="sredina">Unesite tekst stava</th>					
 						</tr>
 						<tr>
-							<td class="sredina"><textarea type="text" size="30"
-								ng-model="stavTekst" required> </textarea></td>
+							<td class="sredina">
+								<textarea type="text" size="30" name="tekstStav"
+								ng-model="stavTekst" required> 
+								</textarea>
+							</td>
+						</tr>
+						<tr> 
+							<td ng-show="DodajStavPropisuForm.tekstStav.$invalid && !DodajStavPropisuForm.tekstStav.$pristine" style="color: red">
+								Morate uneti tekst stava!
+							</td>
 						</tr>
 						<tr>
 							<td class="sredina"><select ng-model="referenca">
-									<option value="">--Da li zelite da referncirate</option>
+									<option value="">--Da li želite da referncirate?</option>
 									<option value="da">Da</option>
 									<option value="ne">Ne</option>
 							</select></td>
 						</tr>
 						
 						<tr ng-show="referenca === 'da'">
-							<th class="sredina">Izaberite propis za refernciranje</th>					
+							<th class="sredina">Izaberite propis za refernciranje!</th>					
 						</tr>
 						<tr ng-show="referenca === 'da'">
 							<td class="sredina">
@@ -58,7 +71,7 @@
 						</tr>
 						
 						<tr ng-show="referenca === 'da'">
-							<th> Izaberite clan </th>
+							<th> Izaberite član </th>
 						</tr>
 						<tr ng-show="referenca === 'da'">
 								<td class="sredina">
@@ -71,11 +84,13 @@
 						</tr>
 						<tr>
 							<td style="text-align: center;">
-								<button type="submit"
-									style="background-color: transparent; border-color: transparent;"
-									ng-click="noviStav()">
-									<img src="css/images/Next-icon.png" height="35" />
-								</button>
+<!-- 								<button type="submit" -->
+<!-- 									style="background-color: transparent; border-color: transparent;" -->
+<!-- 									ng-click="noviStav()"> -->
+<!-- 									<img src="css/images/Next-icon.png" height="35" /> -->
+<!-- 								</button> -->
+								<input type="image" value="submit" 
+									src="css/images/Next-icon.png" height="35" alt="submit Button" />
 							</td>
 						</tr>
 					</table>
