@@ -218,17 +218,14 @@
 						$state.go('pregledAkata');
 					})
 		}
-		
-		$scope.toPdf = function(propisId)
-		{
-			$http.get(serverUrl + "clan/toPdf/" + propisId)
-			.success(function(data, header, status)
-			{
-				var text = "Your " + data.naziv + "pdf is succesfully created."
-				alert(text);
-			})
-			.error(function(data, header, status)
-			{
+
+		$scope.toPdf = function(propisId) {
+			$http.get(serverUrl + "clan/toPdf/" + propisId).success(
+					function(data, header, status) {
+						var text = "Your " + data.naziv
+								+ "pdf is succesfully created."
+						alert(text);
+					}).error(function(data, header, status) {
 				alert("Something went wrong. Please try again.")
 			})
 		}
@@ -488,7 +485,7 @@
 										if (header === 406) {
 											alert("Your certificate is invalid.");
 										} else {
-											alert("Something went wrong, log in again, please.");
+											alert("Something went wrong, please log in again.");
 										}
 
 										$state.go('main');
@@ -513,14 +510,14 @@
 										if (header === 406) {
 											alert("Your certificate is invalid.");
 										} else {
-											alert("Something went wrong, log in again, please.");
+											alert("Something went wrong, please log in again.");
 										}
 
 										$state.go('main');
 									});
 				}
-			}else{
-				alert('Your data inputs are not inserted properly!'); 
+			} else {
+				alert('Your data inputs are not inserted properly!');
 			}
 		}
 
@@ -562,7 +559,7 @@
 										if (header === 406) {
 											alert("Your certificate is invalid.");
 										} else {
-											alert("Something went wrong, log in again, please.");
+											alert("Something went wrong, please log in again.");
 										}
 
 										$state.go('main');
@@ -586,7 +583,7 @@
 										if (header === 406) {
 											alert("Your certificate is invalid.");
 										} else {
-											alert("Something went wrong, log in again, please.");
+											alert("Something went wrong, please log in again.");
 										}
 
 										$state.go('main');
@@ -634,7 +631,7 @@
 										if (header === 406) {
 											alert("Your certificate is invalid.");
 										} else {
-											alert("Something went wrong, log in again, please.");
+											alert("Something went wrong, please log in again.");
 										}
 
 										$state.go('main');
@@ -668,58 +665,69 @@
 			}
 		}
 
-		$scope.noviClan = function() {
+		$scope.noviClan = function(isValid) {
 			if (localStorage.getItem('key') === null) {
 				mainService.logOut();
 			}
+			if (isValid) {
+				if ($scope.clan.izbor === 'Stav') {
+					$scope.splitovanTekst = $scope.stavTekst.split(' ');
+				} else {
+					$scope.splitovanTekst = $scope.clanTekst.split(' ');
+				}
 
-			if ($scope.clan.izbor === 'Stav') {
-				$scope.splitovanTekst = $scope.stavTekst.split(' ');
+				if ($scope.referenca === 'da') {
+					$http
+							.post(serverUrl + 'clan/noviClan', {
+								nazivClana : $scope.clan.naziv,
+								opisClana : $scope.clan.opis,
+								redniBrojStava : $scope.stavBroj,
+								stavTekst : $scope.stavTekst,
+								tekstClana : $scope.clanTekst,
+								referenciraniClanovi : $scope.clanoviListaPost,
+								refernciranPropis : $scope.propisNazivPost,
+								nazivClanaRef : $scope.clanNaziv,
+								splitovanTekstClan : $scope.splitovanTekst,
+								propisId : $scope.propisProba.id
+							})
+							.success(function(data, header, status) {
+								$state.go('opcije');
+							})
+							.error(
+									function(data, header, status) {
+										if (header === 406) {
+											alert("Your certificate is invalid.");
+										} else {
+											alert("Something went wrong, please log in again.");
+										}
+
+										$state.go('main');
+									});
+				} else {
+					$http
+							.post(serverUrl + '/clan/noviClan', {
+								nazivClana : $scope.clan.naziv,
+								opisClana : $scope.clan.opis,
+								redniBrojStava : $scope.stavBroj,
+								stavTekst : $scope.stavTekst,
+								tekstClana : $scope.clanTekst
+							})
+							.success(function(data, header, status) {
+								$state.go('opcije');
+							})
+							.error(
+									function(data, header, status) {
+										if (header === 406) {
+											alert("Your certificate is invalid.");
+										} else {
+											alert("Something went wrong, please log in again.");
+										}
+
+										$state.go('main');
+									});
+				}
 			} else {
-				$scope.splitovanTekst = $scope.clanTekst.split(' ');
-			}
-
-			if ($scope.referenca === 'da') {
-				$http.post(serverUrl + 'clan/noviClan', {
-					nazivClana : $scope.clan.naziv,
-					opisClana : $scope.clan.opis,
-					redniBrojStava : $scope.stavBroj,
-					stavTekst : $scope.stavTekst,
-					tekstClana : $scope.clanTekst,
-					referenciraniClanovi : $scope.clanoviListaPost,
-					refernciranPropis : $scope.propisNazivPost,
-					nazivClanaRef : $scope.clanNaziv,
-					splitovanTekstClan : $scope.splitovanTekst,
-					propisId : $scope.propisProba.id
-				}).success(function(data, header, status) {
-					$state.go('opcije');
-				}).error(function(data, header, status) {
-					if (header === 406) {
-						alert("Your certificate is invalid.");
-					} else {
-						alert("Something went wrong, log in again, please.");
-					}
-
-					$state.go('main');
-				});
-			} else {
-				$http.post(serverUrl + '/clan/noviClan', {
-					nazivClana : $scope.clan.naziv,
-					opisClana : $scope.clan.opis,
-					redniBrojStava : $scope.stavBroj,
-					stavTekst : $scope.stavTekst,
-					tekstClana : $scope.clanTekst
-				}).success(function(data, header, status) {
-					$state.go('opcije');
-				}).error(function(data, header, status) {
-					if (header === 406) {
-						alert("Your certificate is invalid.");
-					} else {
-						alert("Something went wrong, log in again, please.");
-					}
-
-					$state.go('main');
-				});
+				alert('Your data inputs are not inserted properly!');
 			}
 		}
 
@@ -745,7 +753,7 @@
 					if (header === 406) {
 						alert("Your certificate is invalid.");
 					} else {
-						alert("Something went wrong, log in again, please.");
+						alert("Something went wrong, please log in again.");
 					}
 
 					$state.go('main');
@@ -760,7 +768,7 @@
 					if (header === 406) {
 						alert("Your certificate is invalid.");
 					} else {
-						alert("Something went wrong, log in again, please.");
+						alert("Something went wrong, please log in again.");
 					}
 
 					$state.go('main');
@@ -782,7 +790,7 @@
 				if (header === 406) {
 					alert("Your certificate is invalid.");
 				} else {
-					alert("Something went wrong, log in again, please.");
+					alert("Something went wrong, please log in again.");
 				}
 				$state.go('main');
 			});
@@ -1034,16 +1042,12 @@
 			})
 
 		}
-		
-		$scope.toPdf = function()
-		{
-			$http.get(serverUrl + 'amandman/toPdf/' + amandmanId)
-			.success(function(data, status, header)
-			{
-				alert('Your amandman pdf is created');
-			})
-			.error(function(data, status, header)
-			{
+
+		$scope.toPdf = function() {
+			$http.get(serverUrl + 'amandman/toPdf/' + amandmanId).success(
+					function(data, status, header) {
+						alert('Your amandman pdf is created');
+					}).error(function(data, status, header) {
 				alert('Something went wrong, please try again.');
 			})
 		}

@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/pages/dodaj-amandman.html=UTF-8
+encoding//WebContent/WEB-INF/pages/dodaj-clan.html=UTF-8
 encoding//WebContent/WEB-INF/pages/dodaj-propis.html=UTF-8
 encoding//src/web/xml/service/memory/AmandmanServiceImpl.java=UTF-8
