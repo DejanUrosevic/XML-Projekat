@@ -15,4 +15,34 @@
             </ns2:Clan>
         </ns4:Deo>
     </propis>
+    <propis ID="198620" Datum="2016-06-10+02:00" Status="U_CELINI">
+        <ns4:Naziv>Propis</ns4:Naziv>
+        <ns4:Deo ID="76492">
+            <ns4:Naziv>Deo</ns4:Naziv>
+            <ns2:Clan ID="533221">
+                <ns2:Opis>aiusd fhadfap sdf asdfas dnfksd nf</ns2:Opis>
+                <ns2:Naziv>Clan</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>
+                        <ns2:text>jksd fnkasdhfasdnf asnd fasd fahf</ns2:text>
+                    </ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </ns4:Deo>
+    </propis>
+    <propis ID="936610" Datum="2016-06-10+02:00" Status="U_NACELU">
+        <ns4:Naziv>Propis 2</ns4:Naziv>
+        <ns4:Deo ID="506061">
+            <ns4:Naziv>Deo</ns4:Naziv>
+            <ns2:Clan ID="289951">
+                <ns2:Opis>askdfh asdfh asjdfhk asdf</ns2:Opis>
+                <ns2:Naziv>Clan</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>
+                        <ns2:text>aaaaaaaaaaaaaaaaaaaaaaa</ns2:text>
+                    </ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </ns4:Deo>
+    </propis>
 </propisi>

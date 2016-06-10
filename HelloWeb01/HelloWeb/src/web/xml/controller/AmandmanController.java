@@ -2,6 +2,7 @@ package web.xml.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -120,8 +121,53 @@ public class AmandmanController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return new ResponseEntity<Amandman>(HttpStatus.NO_CONTENT);
-			}
+			}	
+	}
+	
+	@RequestMapping(value = "/propis/{id2}/delete/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<String> delete(@PathVariable(value = "id") String id, @PathVariable(value = "id2") String id2, final HttpServletRequest req) throws ServletException, JAXBException{
 		
+		User korisnik = userSer.getUserFromJWT(req);
+		
+		if(korisnik.getVrsta().equals("gradjanin") || userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
+			return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
+		}
+		
+		try {
+			amandmanSer.removeAmandman(id);
+			Propisi propisi = propisSer.unmarshall(new File("data\\xml\\propisi.xml"));
+			Propis propis = null;
+			
+			for(Propis p : propisi.getPropisi()){
+				if(p.getID().equals(BigInteger.valueOf(Long.parseLong(id2)))){
+					propis = p;
+					propisi.getPropisi().remove(p);
+					for(int i = 0; i < p.getAmandman().size(); i++){
+						if(propis.getAmandman().get(i).getID().equals(BigInteger.valueOf(Long.parseLong(id)))){
+							propis.getAmandman().remove(i);
+							break;
+						}
+					}
+					break;
+				}
+			}
+			
+			propisi.getPropisi().add(propis);
+			propisSer.marshall(propisi, new File("data\\xml\\propisi.xml"));
+			propisSer.savePropisiXML();
+			
+			propisSer.marshallPropis(propis, new File("data\\xml\\potpisPropis.xml"));
+			propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
+					"", korisnik.getAlias());
+			propisSer.save(new File("data\\xml\\potpisPropis.xml"));
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
+		}
+		
+		return new ResponseEntity<String>(HttpStatus.OK);
 		
 		
 	}

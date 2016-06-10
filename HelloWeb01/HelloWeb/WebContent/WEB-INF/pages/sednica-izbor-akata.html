@@ -22,12 +22,12 @@
 				<div ng-controller="sviAktiCtrl">
 					<table id="myTable" style="border: 1px solid black;">
 						<tr ng-repeat="propis in propisi">
-							<td class="sredina">Pregled akta <img
+							<td class="sredina" ng-show="propis.status === 'U_NACELU' || propis.status ==='PREDLOZEN'">Pregled akta <img
 								src="css/images/right.jpg" height="25" /></td>
-							<td class="sredina"><u><b> <a
+							<td class="sredina" ng-show="propis.status === 'U_NACELU' || propis.status ==='PREDLOZEN'"><u><b> <a
 										ng-click="pregledAkta(propis.id)"> {{propis.naziv}} </a>
 								</b> </u></td>
-							<td class="sredina"><input type="checkbox" value="{{propis.id}}"
+							<td class="sredina" ng-show="propis.status === 'U_NACELU' || propis.status ==='PREDLOZEN'"><input type="checkbox" value="{{propis.id}}"
 								ng-checked="listaIzabranihAkataPoImenu.indexOf(propis.id) > -1"
 								ng-click="toggleSelection(propis.id)"></td>
 						</tr>

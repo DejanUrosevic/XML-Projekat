@@ -35,4 +35,6 @@ public interface AmandmanService extends CrudService<Amandman>{
 	
 	public void marshallAmandman(Amandman amandman, File f) throws JAXBException;
 	
+	public void removeAmandman(String docId);
+	
 }

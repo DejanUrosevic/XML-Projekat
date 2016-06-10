@@ -525,6 +525,45 @@ public class AmandmanServiceImpl implements AmandmanService{
 		marshaller.marshal(amandman, f);
 		
 	}
+
+	@Override
+	public void removeAmandman(String docId) {
+		// TODO Auto-generated method stub
+		DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37", "tim37", "tim37",
+				Authentication.valueOf("DIGEST"));
+
+		XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+
+		// A handle to receive the document's content.
+		DOMHandle content = new DOMHandle();
+		String nazivDoc = docId + "Amandman.xml";
+		String deleteQuery = "xdmp:node-delete(doc('"+ nazivDoc+ "'))";
+		
+		// Initialize XQuery invoker object
+		ServerEvaluationCall invoker = client.newServerEval();
+						
+		// Invoke the query
+		invoker.xquery(deleteQuery);
+		
+		
+		
+		// Interpret the results
+		EvalResultIterator response = invoker.eval();
+
+		System.out.print("[INFO] Response: ");
+		
+		if (response.hasNext()) {
+
+			for (EvalResult result : response) {
+				System.out.println("\n" + result.getString());
+			}
+		} else { 		
+			System.out.println("your query returned an empty sequence.");
+		}
+		
+		client.release();
+		
+	}
 	
 
 }

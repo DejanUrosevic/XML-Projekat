@@ -861,8 +861,17 @@
 		}
 
 		$scope.pregledAkta = function(propisId) {
-			$state.go('pregledAktaZaNacelo', {
-				id : propisId
+			$http.get(serverUrl + 'clan/id/' + propisId)
+			.success(function(data, header, status){
+				if(data.status === 'U_NACELU'){
+					$state.go('prihvatanjeAmandmana',{
+						id : propisId
+					});
+				}else{
+					$state.go('pregledAktaZaNacelo', {
+						id : propisId
+					});
+				}
 			});
 		}
 	}
@@ -1027,6 +1036,9 @@
 			var amandmanId = $stateParams.id2;
 		}
 
+		$http.defaults.headers.common.Authorization = 'Bearer '
+			+ localStorage.getItem('key');
+		
 		$http.get(serverUrl + 'amandman/' + amandmanId).success(
 				function(data, header, status) {
 					$scope.htmlXsl = data;
@@ -1052,6 +1064,13 @@
 
 			})
 
+		}
+		
+		$scope.odbijenAmandman = function(){
+			$http.get(serverUrl + 'amandman/propis/'+propisId+'/delete/'+amandmanId)
+			.success(function(data, header, status){
+				$state.go('procesSednice');
+			});
 		}
 
 		$scope.toPdf = function() {
@@ -1086,17 +1105,7 @@
 		});
 
 		$scope.odbijenPropis = function() {
-			if (!angular.equals({}, $stateParams)) {
-				var propisId = $stateParams.id;
-			}
-			$http.get(serverUrl + '/clan/odbijen/' + propisId).success(
-					function(data, header, status) {
-						$state.go('procesSednice');
-					}).error(function(data, header, status) {
-				console.log(data);
-				console.log(header);
-				console.log(status);
-			});
+			$state.go('procesSednice');
 		}
 
 		$scope.potvrdaUCelini = function() {
@@ -1109,7 +1118,7 @@
 						$state.go('sednicaIzborAkata');
 					});
 			
-			$http.get(serverUrl + 'clan/naziv/' + propisId)
+			$http.get(serverUrl + 'clan/id/' + propisId)
 			.success(function(data, header, status)
 			{
 				$http.get('../../IstorijskiArhiv/iasgns/propis/' + data.naziv)

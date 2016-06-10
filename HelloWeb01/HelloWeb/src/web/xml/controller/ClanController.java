@@ -261,35 +261,44 @@ public class ClanController {
 		BigInteger idPropis = BigInteger.valueOf(Long.parseLong(id));
 		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
 		Document dokument = null;
-
+		Propis propis = null;
 		for (Propis p : propisi.getPropisi()) {
 			if (p.getID().equals(idPropis)) {
-				Propis propis = propisSer.unmarshallDocumentPropis(propisSer.findPropisById(p.getNaziv()));
+				propis = propisSer.unmarshallDocumentPropis(propisSer.findPropisById(p.getNaziv()));
 				propis.setStatus("U_NACELU");
-				
-				/*
-				if (propis.getAmandman().size() == 0) {
-					propis.setStatus("U_CELINI");
-				}
-				*/
-				
-				propisSer.marshallPropis(propis, new File("./data/xml/potpisPropis.xml"));
-				
-				//radi pretrage po sadrzaju i metapodacima, pamtimo neenkrpitovan i nepotpisan propis
-				propisSer.saveWithoutEncrypt(new File("data\\xml\\potpisPropis.xml"));
-				
-				
-			//	propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
-				propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
-						"", korisnik.getAlias());
-
-				propisSer.save(new File("./data/xml/potpisPropis.xml"));
-				
-				return new ResponseEntity<Propis>(HttpStatus.OK);
+				break;
 			}
 		}
 		
-		return new ResponseEntity<Propis>(HttpStatus.NOT_FOUND);
+		if(propis == null){
+			return new ResponseEntity<Propis>(HttpStatus.NOT_FOUND);
+		}
+		
+		for(int i = 0; i < propisi.getPropisi().size(); i++){
+			if(propisi.getPropisi().get(i).getID().equals(propis.getID())){
+				propisi.getPropisi().remove(i);
+				break;
+			}
+		}
+		
+		propisi.getPropisi().add(propis);
+		propisSer.marshall(propisi, new File("data\\xml\\propisi.xml"));
+		propisSer.savePropisiXML();
+		
+		propisSer.marshallPropis(propis, new File("./data/xml/potpisPropis.xml"));
+				
+		//radi pretrage po sadrzaju i metapodacima, pamtimo neenkrpitovan i nepotpisan propis
+		propisSer.saveWithoutEncrypt(new File("data\\xml\\potpisPropis.xml"));
+				
+				
+	//	propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
+		propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
+				"", korisnik.getAlias());
+
+		propisSer.save(new File("./data/xml/potpisPropis.xml"));
+				
+		return new ResponseEntity<Propis>(HttpStatus.OK);
+			
 	}
 	
 	@RequestMapping(value = "/prihvacenUCelini/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -309,31 +318,47 @@ public class ClanController {
 		BigInteger idPropis = BigInteger.valueOf(Long.parseLong(id));
 		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
 		Document dokument = null;
+		Propis propis = null;
+		
 		
 		for (Propis p : propisi.getPropisi()) {
 			if (p.getID().equals(idPropis)) {
-				Propis propis = propisSer.unmarshallDocumentPropis(propisSer.findPropisById(p.getNaziv()));
+				propis = propisSer.unmarshallDocumentPropis(propisSer.findPropisById(p.getNaziv()));
 				propis.setStatus("U_CELINI");
+			}
+		}
 				
-				////////////////////////////
-				
-				propisSer.marshallPropis(propis, new File("./data/xml/potpisPropis.xml"));
-				
-				//radi pretrage po sadrzaju i metapodacima, pamtimo neenkrpitovan i nepotpisan propis
-				propisSer.saveWithoutEncrypt(new File("data\\xml\\potpisPropis.xml"));
-				
-				
-			//	propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
-				propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
-						"", korisnik.getAlias());
-
-				propisSer.save(new File("./data/xml/potpisPropis.xml"));
-				
-				return new ResponseEntity<Propis>(HttpStatus.OK);
+		if(propis == null){
+			return new ResponseEntity<Propis>(HttpStatus.NOT_FOUND);
+		}
+		
+		for(int i = 0; i < propisi.getPropisi().size(); i++){
+			if(propisi.getPropisi().get(i).getID().equals(propis.getID())){
+				propisi.getPropisi().remove(i);
+				break;
 			}
 		}
 		
-		return new ResponseEntity<Propis>(HttpStatus.NOT_FOUND);
+		propisi.getPropisi().add(propis);
+		propisSer.marshall(propisi, new File("data\\xml\\propisi.xml"));
+		propisSer.savePropisiXML();
+				
+		propisSer.marshallPropis(propis, new File("./data/xml/potpisPropis.xml"));
+				
+		//radi pretrage po sadrzaju i metapodacima, pamtimo neenkrpitovan i nepotpisan propis
+		propisSer.saveWithoutEncrypt(new File("data\\xml\\potpisPropis.xml"));
+				
+				
+		//propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
+		propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
+				"", korisnik.getAlias());
+
+		propisSer.save(new File("./data/xml/potpisPropis.xml"));
+		
+		return new ResponseEntity<Propis>(HttpStatus.OK);
+		
+		
+		
 	}
 
 	/**
