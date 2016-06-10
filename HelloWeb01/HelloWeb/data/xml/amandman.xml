@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='amandman.xsl' ?><ns3:Amandman xmlns:ns3="http://www.parlament.gov.rs/amandman" xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns="http://www.parlament.gov.rs/propis" Datum="2016-06-09+02:00" ID="224450" Mesto="Novi Sad" Podnosilac="dw dw">
-    <ns3:Resenje>FS saf as s f as fsa</ns3:Resenje>
-    <ns3:Obrazlozenje>wq f3 r 32 r23r23 r23</ns3:Obrazlozenje>
-    <ns2:Clan ID="222225">
-        <ns2:Naziv>wqfwqfw</ns2:Naziv>
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='amandman.xsl' ?><ns3:Amandman xmlns:ns3="http://www.parlament.gov.rs/amandman" xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns="http://www.parlament.gov.rs/propis" Datum="2016-06-10+02:00" ID="544079" Mesto="Novi Sad" Podnosilac="dw dw">
+    <ns3:Resenje>aaaaaaaaaaaaaaaaaaa</ns3:Resenje>
+    <ns3:Obrazlozenje>aaaadsadsasdsds</ns3:Obrazlozenje>
+    <ns2:Clan ID="91637">
+        <ns2:Naziv>wefwefwe</ns2:Naziv>
         <ns2:Sadrzaj>
             <ns2:Tekst>
-                <ns2:text>FS saf as s f as fsa</ns2:text>
+                <ns2:text>aaaaaaaaaaaaaaaaaaa</ns2:text>
             </ns2:Tekst>
         </ns2:Sadrzaj>
     </ns2:Clan>
@@ -19,13 +19,13 @@
 <ds:Transform Algorithm="http://www.w3.org/2006/12/xml-c14n11#WithComments"/>
 </ds:Transforms>
 <ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
-<ds:DigestValue>M3RAigFJJJY1MavDIFcTT8ob6zU=</ds:DigestValue>
+<ds:DigestValue>hDQTuUH85r5QK8staeojJp7beak=</ds:DigestValue>
 </ds:Reference>
 </ds:SignedInfo>
 <ds:SignatureValue>
-EjpGtofLG2k1wtb72xNvsK2YxT01nbGTAe/VytrOHmF5Z0DgAch/udP+mDyzMxO5txGU+x8akzjH
-yIC4QGerAWWucbeYw0ADp3sgoeIYrHuY4NjYOe0NQLj7+66/2f0YytVq6rYb/eq4cNvVU8VFZs4q
-TWlQ41vqFjPbUCE8wR0=
+SyHTdRFPtpztDFZXuH3hYm1xgYOMxcZowAAjMHKseeZO9JYafZk320e1ugYKFEGBf/QGQOXNSlb+
+Y4lfFkabpzUgYZGH1VidgHDFh7uL83NqWYJ2n0FDam6OGqqefKsDS3WCTcQBaGs2f40V6NwMfflH
+AD07Ms+DlAWhMJGUyno=
 </ds:SignatureValue>
 <ds:KeyInfo>
 <ds:KeyValue>

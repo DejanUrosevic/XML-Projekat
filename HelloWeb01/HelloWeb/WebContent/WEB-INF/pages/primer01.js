@@ -1104,10 +1104,24 @@
 				var propisId = $stateParams.id;
 			}
 
-			$http.post(serverUrl + '/clan/prihvacenUCelini/' + propisId)
+			$http.post(serverUrl + 'clan/prihvacenUCelini/' + propisId)
 					.success(function(data, header, status) {
 						$state.go('sednicaIzborAkata');
 					});
+			
+			$http.get(serverUrl + 'clan/naziv/' + propisId)
+			.success(function(data, header, status)
+			{
+				$http.get('../../IstorijskiArhiv/iasgns/propis/' + data.naziv)
+				.success(function(data, status, header)
+				{
+					alert('File is successfully sent to IASGNS.');
+				})
+				.error(function(data, status, header)
+				{
+					alert("Something went wrong.");
+				})
+			})
 		};
 	};
 
