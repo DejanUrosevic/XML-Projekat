@@ -20,63 +20,91 @@
 				<br />
 				<hr />
 				<br />
-				<form name="myForm" method="POST">
+				<form name="DodajGlavuPropisuForm" method="POST" ng-submit="novaGlava(DodajGlavuPropisuForm.$valid)" novalidate>
 					<table id="myTable">
 						<tr>
 							<th class="sredina">Unesite naziv glave</th>					
 						</tr>
 						<tr>
-							<td class="sredina"><input type="text" size="30"
-								ng-model="glavaNaziv" required /></td>
+							<td class="sredina">
+								<input type="text" size="30" name="nazivGlava" ng-model="glavaNaziv" required />
+							</td>
+						</tr>
+						<tr>  
+							<td ng-show="DodajGlavuPropisuForm.nazivGlava.$invalid && !DodajGlavuPropisuForm.nazivGlava.$pristine" style="color: red">
+								Morate uneti naziv glave!		
+							</td>
 						</tr>
 						<tr>
-							<th class="sredina">Unesite naziv clana</th>					
+							<th class="sredina">Unesite naziv člana</th>					
 						</tr>
 						<tr>
-							<td class="sredina"><input type="text" size="30"
-								ng-model="clan.naziv" required /></td>
+							<td class="sredina">
+								<input type="text" size="30" name="nazivClan" ng-model="clan.naziv" required/>
+							</td>
+						</tr>
+						<tr> 
+							<td ng-show="DodajGlavuPropisuForm.nazivClan.$invalid && !DodajGlavuPropisuForm.nazivClan.$pristine" style="color: red">
+								Morate uneti naziv člana!
+							</td>
 						</tr>
 						<tr>
-							<th class="sredina">Unesite opis clana</th>					
+							<th class="sredina">Unesite opis člana</th>					
 						</tr>
 						<tr>
-							<td class="sredina"><textarea type="text" size="30"
-								ng-model="clan.opis" required> </textarea></td>
+							<td class="sredina">
+								<textarea type="text" size="30" name="opisClan" ng-model="clan.opis" required> 
+								</textarea>
+							</td>
 						</tr>
 						<tr>
-							<td class="sredina"><select ng-model="clan.izbor">
-									<option value="">--Izaberite da li ce clan biti stav ili tekst</option>
+							<td ng-show="DodajGlavuPropisuForm.opisClan.$invalid && !DodajGlavuPropisuForm.opisClan.$pristine" style="color: red">
+								Morate uneti opis člana!
+							</td>
+						</tr>
+						<tr>
+							<td class="sredina">
+								<select ng-model="clan.izbor">
+									<option value="">--Izaberite da li će član biti stav ili tekst</option>
 									<option value="Stav">Stav</option>
 									<option value="Tekst">Tekst</option>
-							</select></td>
+								</select>
+							</td>
 						</tr>
 						<tr ng-show="clan.izbor === 'Stav'">
 							<th class="sredina">Unesite redni broj stava</th>					
 						</tr>
 						<tr ng-show="clan.izbor === 'Stav'">
-							<td class="sredina"><input type="text" size="30"
-								ng-model="stavBroj" required /></td>
+							<td class="sredina">
+								<input type="text" size="30" ng-model="stavBroj"/>
+							</td>
 						</tr>
 						<tr ng-show="clan.izbor === 'Stav'">
 							<th class="sredina">Unesite tekst stava</th>					
 						</tr>
 						<tr ng-show="clan.izbor === 'Stav'">
-							<td class="sredina"><textarea type="text" size="30"
-								ng-model="stavTekst" required> </textarea></td>
+							<td class="sredina">
+								<textarea type="text" size="30" ng-model="stavTekst" > 
+								</textarea>
+							</td>
 						</tr>
 						<tr ng-show="clan.izbor === 'Tekst'">
-							<th class="sredina">Unesite tekst clana</th>					
+							<th class="sredina">Unesite tekst člana</th>					
 						</tr>
 						<tr ng-show="clan.izbor === 'Tekst'">
-							<td class="sredina"><textarea type="text" size="30"
-								ng-model="clanTekst" required> </textarea></td>
+							<td class="sredina">
+								<textarea type="text" size="30" ng-model="clanTekst" > 
+								</textarea>
+							</td>
 						</tr>
 						<tr>
-							<td class="sredina"><select ng-model="referenca">
-									<option value="">--Da li zelite da referncirate</option>
+							<td class="sredina">
+								<select ng-model="referenca">
+									<option value="">--Da li želite da referncirate?</option>
 									<option value="da">Da</option>
 									<option value="ne">Ne</option>
-							</select></td>
+								</select>
+							</td>
 						</tr>
 						
 						<tr ng-show="referenca === 'da'">
@@ -93,7 +121,7 @@
 						</tr>
 						
 						<tr ng-show="referenca === 'da'">
-							<th> Izaberite clan </th>
+							<th> Izaberite član </th>
 						</tr>
 						<tr ng-show="referenca === 'da'">
 								<td class="sredina">
@@ -106,11 +134,13 @@
 						</tr>
 						<tr>
 							<td style="text-align: center;">
-								<button type="submit"
-									style="background-color: transparent; border-color: transparent;"
-									ng-click="novaGlava()">
-									<img src="css/images/Next-icon.png" height="35" />
-								</button>
+<!-- 								<button type="submit" -->
+<!-- 									style="background-color: transparent; border-color: transparent;" -->
+<!-- 									ng-click="novaGlava()"> -->
+<!-- 									<img src="css/images/Next-icon.png" height="35" /> -->
+<!-- 								</button> -->
+								<input type="image" value="submit" 
+									src="css/images/Next-icon.png" height="35" alt="submit Button" />
 							</td>
 						</tr>
 					</table>
