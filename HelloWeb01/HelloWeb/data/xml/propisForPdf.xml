@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?><?xml-stylesheet type='text/xsl' href='propis.xsl' ?>
-<Propis xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" ID="198620" Datum="2016-06-10+02:00" Status="U_CELINI">
-    <Naziv>Propis</Naziv>
-    <Deo ID="76492">
-        <Naziv>Deo</Naziv>
-        <ns2:Clan ID="533221">
-            <ns2:Opis>aiusd fhadfap sdf asdfas dnfksd nf</ns2:Opis>
-            <ns2:Naziv>Clan</ns2:Naziv>
-            <ns2:Sadrzaj>
-                <ns2:Tekst>
-                    <ns2:text>jksd fnkasdhfasdnf asnd fasd fahf</ns2:text>
-                </ns2:Tekst>
-            </ns2:Sadrzaj>
-        </ns2:Clan>
+<Propis xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" ID="956691" Datum="2016-06-11+02:00" Status="U_CELINI">
+    <Naziv>AliMePamti</Naziv>
+    <Deo ID="231649">
+        <Naziv>USrcuMePonesi</Naziv>
+        <Glava ID="12322">
+            <Naziv>BicuSaTobom</Naziv>
+            <ns2:Clan ID="894288">
+                <ns2:Opis>S tvojim usnama da nazdravim.</ns2:Opis>
+                <ns2:Naziv>SveDokVina</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>
+                        <ns2:text>Nemam srca da te samu ostavim. Dok na stulo gori cigareta, nemam srca da te samu ostavim. Ojsaaa prske.</ns2:text>
+                    </ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </Glava>
     </Deo>
 </Propis>

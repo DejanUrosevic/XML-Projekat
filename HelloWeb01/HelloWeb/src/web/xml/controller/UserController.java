@@ -122,7 +122,7 @@ public class UserController {
 			username = json.getString("username");
 			password = json.getString("password");
 		} catch (JSONException e) {
-			//e.printStackTrace();
+			return new ResponseEntity<UserController.LoginResponse>(HttpStatus.NOT_ACCEPTABLE);
 		}
 
 		JAXBContext context = JAXBContext.newInstance(Users.class);
@@ -134,9 +134,6 @@ public class UserController {
 		// Unmarshalling generi�e objektni model na osnovu XML fajla
 		Users usersi = (Users) unmarshaller.unmarshal(new File("./data/xml/probaListaKorisnika.xml"));
 
-		// NEMOJTE DA BRISETE OVO, ZEZA ME ADRESA I NECE DA MI UCITA
-		// Users usersi = (Users) unmarshaller.unmarshal(new File("D:/4.
-		// godina/XML/app/HelloWeb01/HelloWeb/data/xml/probaKorisnik.xml"));
 
 		for (User u : usersi.getKorisnik()) {
 			if (u.getUsername().equals(username)) {

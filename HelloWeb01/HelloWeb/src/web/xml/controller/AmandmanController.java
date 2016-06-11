@@ -13,6 +13,8 @@ import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -51,6 +53,7 @@ public class AmandmanController {
 	public @ResponseBody ResponseEntity<String> noviAmandman(@RequestBody String postPayload, final HttpServletRequest req)
 			throws IOException, JAXBException, ServletException, DatatypeConfigurationException {
 		
+		String cleanPostPayload = Jsoup.clean(postPayload, Whitelist.basic());
 		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
 		//ako ne postoji korisnik tj. JWT bacice exception
 		User korisnik = userSer.getUserFromJWT(req);
@@ -62,7 +65,7 @@ public class AmandmanController {
 		}
 		
 		
-		amandmanSer.dodajAmandman(postPayload, korisnik);
+		amandmanSer.dodajAmandman(cleanPostPayload, korisnik);
 		
 		return new ResponseEntity<String>(HttpStatus.OK);
 
@@ -86,6 +89,7 @@ public class AmandmanController {
 	public @ResponseBody ResponseEntity<String> amandmanPotvrda(@RequestBody String postPayload, final HttpServletRequest req)
 			throws IOException, JAXBException, ServletException, DatatypeConfigurationException, TransformerConfigurationException, ParserConfigurationException, SAXException, TransformerFactoryConfigurationError, TransformerException {
 		
+		String cleanPostPayload = Jsoup.clean(postPayload, Whitelist.basic());
 		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
 		//ako ne postoji korisnik tj. JWT bacice exception
 		User korisnik = userSer.getUserFromJWT(req);
@@ -96,7 +100,7 @@ public class AmandmanController {
 			return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
 		}
 		
-		amandmanSer.primeniAmandman(postPayload);
+		amandmanSer.primeniAmandman(cleanPostPayload);
 		
 		propisSer.saveWithoutEncrypt(new File("data\\xml\\potpisPropis.xml"));
 	//	propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");

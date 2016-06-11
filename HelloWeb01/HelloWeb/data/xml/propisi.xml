@@ -1,20 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <propisi xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" xmlns:ns4="http://www.parlament.gov.rs/propis">
-    <propis ID="289650" Datum="2016-06-10+02:00" Status="U_NACELU">
-        <ns4:Naziv>123fwe wefwe fwefwe wef</ns4:Naziv>
-        <ns4:Deo ID="872957">
-            <ns4:Naziv>fewfwe</ns4:Naziv>
-            <ns2:Clan ID="91637">
-                <ns2:Opis>fwefwefwefewfwefwefwe</ns2:Opis>
-                <ns2:Naziv>wefwefwe</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>
-                        <ns2:text>aaaaaaaaaaaaaaaaaaa</ns2:text>
-                    </ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns4:Deo>
-    </propis>
     <propis ID="198620" Datum="2016-06-10+02:00" Status="U_CELINI">
         <ns4:Naziv>Propis</ns4:Naziv>
         <ns4:Deo ID="76492">
@@ -30,19 +15,52 @@
             </ns2:Clan>
         </ns4:Deo>
     </propis>
-    <propis ID="936610" Datum="2016-06-10+02:00" Status="U_NACELU">
-        <ns4:Naziv>Propis 2</ns4:Naziv>
-        <ns4:Deo ID="506061">
-            <ns4:Naziv>Deo</ns4:Naziv>
-            <ns2:Clan ID="289951">
-                <ns2:Opis>askdfh asdfh asjdfhk asdf</ns2:Opis>
-                <ns2:Naziv>Clan</ns2:Naziv>
+    <propis ID="399350" Datum="2016-06-11+02:00" Status="U_CELINI">
+        <ns4:Naziv>ffff</ns4:Naziv>
+        <ns4:Deo ID="631190">
+            <ns4:Naziv>fqwfwq</ns4:Naziv>
+            <ns2:Clan ID="550065">
+                <ns2:Opis>wqfwqwq</ns2:Opis>
+                <ns2:Naziv>fwqfwq</ns2:Naziv>
                 <ns2:Sadrzaj>
                     <ns2:Tekst>
-                        <ns2:text>aaaaaaaaaaaaaaaaaaaaaaa</ns2:text>
+                        <ns2:text>nf sdf</ns2:text>
                     </ns2:Tekst>
                 </ns2:Sadrzaj>
             </ns2:Clan>
+        </ns4:Deo>
+    </propis>
+    <propis ID="289650" Datum="2016-06-10+02:00" Status="U_CELINI">
+        <ns4:Naziv>123fwe wefwe fwefwe wef</ns4:Naziv>
+        <ns4:Deo ID="872957">
+            <ns4:Naziv>fewfwe</ns4:Naziv>
+            <ns2:Clan ID="91637">
+                <ns2:Opis>fwefwefwefewfwefwefwe</ns2:Opis>
+                <ns2:Naziv>wefwefwe</ns2:Naziv>
+                <ns2:Sadrzaj>
+                    <ns2:Tekst>
+                        <ns2:text>trhrt rthtrhtrhr hr hr hrt htrhrt</ns2:text>
+                    </ns2:Tekst>
+                </ns2:Sadrzaj>
+            </ns2:Clan>
+        </ns4:Deo>
+    </propis>
+    <propis ID="956691" Datum="2016-06-11+02:00" Status="U_CELINI">
+        <ns4:Naziv>AliMePamti</ns4:Naziv>
+        <ns4:Deo ID="231649">
+            <ns4:Naziv>USrcuMePonesi</ns4:Naziv>
+            <ns4:Glava ID="12322">
+                <ns4:Naziv>BicuSaTobom</ns4:Naziv>
+                <ns2:Clan ID="894288">
+                    <ns2:Opis>S tvojim usnama da nazdravim.</ns2:Opis>
+                    <ns2:Naziv>SveDokVina</ns2:Naziv>
+                    <ns2:Sadrzaj>
+                        <ns2:Tekst>
+                            <ns2:text>Nemam srca da te samu ostavim. Dok na stulo gori cigareta, nemam srca da te samu ostavim. Ojsaaa prske.</ns2:text>
+                        </ns2:Tekst>
+                    </ns2:Sadrzaj>
+                </ns2:Clan>
+            </ns4:Glava>
         </ns4:Deo>
     </propis>
 </propisi>

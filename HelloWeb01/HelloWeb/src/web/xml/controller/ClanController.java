@@ -51,6 +51,8 @@ import jaxb.from.xsd.Propis.Deo;
 import jaxb.from.xsd.Propis.Deo.Glava;
 
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -383,7 +385,9 @@ public class ClanController {
 	 */
 	@RequestMapping(value = "/pretragaPropisa", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public @ResponseBody ResponseEntity<Propisi> pretragaPropisa(@RequestBody String reqBody) throws JAXBException {
-		return new ResponseEntity<Propisi>(propisSer.pretrazi(reqBody), HttpStatus.OK);
+		
+		String cleanPostPayload = Jsoup.clean(reqBody, Whitelist.basic());
+		return new ResponseEntity<Propisi>(propisSer.pretrazi(cleanPostPayload), HttpStatus.OK);
 	}
 	
 	/**
@@ -400,6 +404,7 @@ public class ClanController {
 	public @ResponseBody ResponseEntity<String> noviPropis(@RequestBody String postPayload, final HttpServletRequest req)
 			throws IOException, JAXBException, ServletException, DatatypeConfigurationException {
 		
+		String cleanPostPayload = Jsoup.clean(postPayload, Whitelist.basic());
 		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
 		//ako ne postoji korisnik tj. JWT bacice exception
 		User korisnik = userSer.getUserFromJWT(req);
@@ -410,7 +415,7 @@ public class ClanController {
 			return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
 		}
 		
-		Propis noviPropis = propisSer.dodajPropis(postPayload);
+		Propis noviPropis = propisSer.dodajPropis(cleanPostPayload);
 
 		Propisi propisi = propisSer.unmarshall(new File("./data/xml/propisi.xml"));
 		propisi.getPropisi().add(noviPropis);
@@ -425,6 +430,7 @@ public class ClanController {
 	public @ResponseBody ResponseEntity<String> noviPropisXml(@RequestBody String postPayload, final HttpServletRequest req)
 			throws IOException, JAXBException, ServletException, DatatypeConfigurationException {
 		
+		String cleanPostPayload = Jsoup.clean(postPayload, Whitelist.basic());
 		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
 		//ako ne postoji korisnik tj. JWT bacice exception
 		User korisnik = userSer.getUserFromJWT(req);
@@ -436,7 +442,7 @@ public class ClanController {
 		}
 		
 		
-		propisSer.marshallPureXml(postPayload);
+		propisSer.marshallPureXml(cleanPostPayload);
 		propisSer.savePureXml(new File("data\\xml\\propisXml.xml"));
 
 		return new ResponseEntity<String>(HttpStatus.OK);
@@ -456,6 +462,7 @@ public class ClanController {
 	public @ResponseBody ResponseEntity<String> noviDeo(@RequestBody String postPayload, final HttpServletRequest req)
 			throws IOException, JAXBException, ServletException {
 
+		String cleanPostPayload = Jsoup.clean(postPayload, Whitelist.basic());
 		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
 		//ako ne postoji korisnik tj. JWT bacice exception
 		User korisnik = userSer.getUserFromJWT(req);
@@ -466,7 +473,7 @@ public class ClanController {
 			return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
 		}
 		
-		Propisi propisi = propisSer.dodajDeo(postPayload);
+		Propisi propisi = propisSer.dodajDeo(cleanPostPayload);
 
 		propisSer.marshall(propisi, new File("data\\xml\\propisi.xml"));
 
@@ -507,6 +514,7 @@ public class ClanController {
 	public @ResponseBody ResponseEntity<String> novaGlava(@RequestBody String postPayload, final HttpServletRequest req)
 			throws IOException, JAXBException, ServletException {
 		
+		String cleanPostPayload = Jsoup.clean(postPayload, Whitelist.basic());
 		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
 		//ako ne postoji korisnik tj. JWT bacice exception
 		User korisnik = userSer.getUserFromJWT(req);
@@ -517,7 +525,7 @@ public class ClanController {
 			return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
 		}
 
-		Propisi propisi = propisSer.dodajGlavu(postPayload);
+		Propisi propisi = propisSer.dodajGlavu(cleanPostPayload);
 
 		propisSer.marshall(propisi, new File("data\\xml\\propisi.xml"));
 
@@ -538,6 +546,7 @@ public class ClanController {
 	public @ResponseBody ResponseEntity<String> noviClan(@RequestBody String postPayload, final HttpServletRequest req)
 			throws IOException, JAXBException, ServletException {
 
+		String cleanPostPayload = Jsoup.clean(postPayload, Whitelist.basic());
 		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
 		//ako ne postoji korisnik tj. JWT bacice exception
 		User korisnik = userSer.getUserFromJWT(req);
@@ -548,7 +557,7 @@ public class ClanController {
 			return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
 		}
 		
-		Propisi propisi = propisSer.dodajClan(postPayload);
+		Propisi propisi = propisSer.dodajClan(cleanPostPayload);
 
 		propisSer.marshall(propisi, new File("data\\xml\\propisi.xml"));
 
@@ -568,6 +577,7 @@ public class ClanController {
 	public @ResponseBody ResponseEntity<String> noviStav(@RequestBody String postPayload, final HttpServletRequest req)
 			throws IOException, JAXBException, ServletException {
 		
+		String cleanPostPayload = Jsoup.clean(postPayload, Whitelist.basic());
 		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
 		//ako ne postoji korisnik tj. JWT bacice exception
 		User korisnik = userSer.getUserFromJWT(req);
@@ -578,7 +588,7 @@ public class ClanController {
 			return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
 		}
 
-		Propisi propisi = propisSer.dodajStav(postPayload);
+		Propisi propisi = propisSer.dodajStav(cleanPostPayload);
 
 		propisSer.marshall(propisi, new File("data\\xml\\propisi.xml"));
 

@@ -77,4 +77,15 @@
         <username>ww@ww</username>
         <vrsta>odbornik</vrsta>
     </korisnik>
+    <korisnik>
+        <alias>asdas</alias>
+        <ID>24272</ID>
+        <ime>Ivan</ime>
+        <jksPutanja>asda</jksPutanja>
+        <password>+HC88n6JQ8uY0fOXGDHx7eE2Bd0=</password>
+        <prezime>Petrovic</prezime>
+        <salt>6GdT7fyvCIA=</salt>
+        <username>ivan@part</username>
+        <vrsta>odbornik</vrsta>
+    </korisnik>
 </korisnici>

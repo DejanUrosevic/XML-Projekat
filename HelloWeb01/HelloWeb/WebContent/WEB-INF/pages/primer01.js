@@ -246,7 +246,16 @@
 		 */
 		if (localStorage.getItem('key') !== null) {
 			$http.get(serverUrl + '/clan/all').then(function(response) {
-				$scope.propisi = response.data.propisi;
+				$scope.propisi = [];
+				var propisiLista = response.data.propisi;
+				for(var i=0; i<propisiLista.length; i++)
+				{
+					if(propisiLista[i].status !== 'U_CELINI')
+					{
+						$scope.propisi.push(propisiLista[i]);
+					}
+					
+				}
 			});
 		} else {
 			$state.go('login');
