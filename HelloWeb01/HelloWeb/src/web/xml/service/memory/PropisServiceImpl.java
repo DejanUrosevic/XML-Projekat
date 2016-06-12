@@ -292,7 +292,7 @@ public class PropisServiceImpl implements PropisService {
 			FileHandle rdfFileHandle = new FileHandle(new File(rdfFilePath)).withMimetype(RDFMimeTypes.RDFXML);
 			
 			// Pisanje rdf u bazu podataka
-			// graphManager.write(rdfId, rdfFileHandle);
+			graphManager.write(rdfId, rdfFileHandle);
 		} catch (TransformerException e) {
 			e.printStackTrace();
 		}
@@ -1309,14 +1309,19 @@ public class PropisServiceImpl implements PropisService {
 	public void removePropis(String docId) 
 	{
 		DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37", "tim37", "tim37",
-				Authentication.valueOf("DIGEST"));
+																Authentication.valueOf("DIGEST"));
 
 		XMLDocumentManager xmlManager = client.newXMLDocumentManager();
 
 		// A handle to receive the document's content.
 		DOMHandle content = new DOMHandle();
-		String nazivDoc = docId.replaceAll("\\s", "") + ".xml";
+		
+		String nazivDocPre = docId.replaceAll("\\s", "");
+		String nazivDoc = nazivDocPre + ".xml";
+		
 		String deleteQuery = "xdmp:node-delete(doc('"+ nazivDoc+ "'))";
+		
+		
 		
 		// Initialize XQuery invoker object
 		ServerEvaluationCall invoker = client.newServerEval();
@@ -1324,6 +1329,19 @@ public class PropisServiceImpl implements PropisService {
 		// Invoke the query
 		invoker.xquery(deleteQuery);
 		
+		// Brisanje metapodataka propisa
+		// Kreiranje graf menadžera za rad sa rdf
+		GraphManager graphManager = client.newGraphManager();
+		
+		// Id fajla sa metapodacima u bazi
+		String rdfId = nazivDocPre + "/metadata";
+		
+		// Brisanje rdf iz baze
+		try {
+			graphManager.delete(rdfId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		
 		// Interpret the results

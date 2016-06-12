@@ -21,7 +21,7 @@ import com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl;
 public class MetadataExtractor {
 
 	private TransformerFactory transformerFactory;
-	private static final String XSLT_FILE = "data/xsl/grddl.xsl";
+	private static final String XSLT_FILE = "data/xslt/grddl.xsl";
 
 	public MetadataExtractor() {
 
