@@ -5,5 +5,13 @@
 // Generated on: 2016.06.07 at 02:55:49 PM CEST 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.parlament.gov.rs/propis", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@javax.xml.bind.annotation.XmlSchema(
+		namespace = "http://www.parlament.gov.rs/propis", 
+		elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED,
+				xmlns = {@javax.xml.bind.annotation.XmlNs(prefix = "akt",  namespaceURI="http://www.parlament.gov.rs/akt"),
+						 @javax.xml.bind.annotation.XmlNs(prefix = "aman", namespaceURI="http://www.parlament.gov.rs/amandman"),
+						 @javax.xml.bind.annotation.XmlNs(prefix = "pro",  namespaceURI="http://www.parlament.gov.rs/popis"),
+						 @javax.xml.bind.annotation.XmlNs(prefix = "clan", namespaceURI="http://www.parlament.gov.rs/clan"),
+	        			 @javax.xml.bind.annotation.XmlNs(prefix = "xs",   namespaceURI="http://www.w3.org/2001/XMLSchema")}
+		)
 package jaxb.from.xsd;

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:fo="http://www.w3.org/1999/XSL/Format" version="2.0"
-	xmlns:pp="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan">
+				xmlns:fo="http://www.w3.org/1999/XSL/Format" version="2.0"
+				xmlns:pro="http://www.parlament.gov.rs/propis" 
+				xmlns:clan="http://www.parlament.gov.rs/clan">
 
 	<xsl:template match="/">
 		
@@ -23,41 +24,41 @@
 					</fo:block>
 					<fo:block padding-left="30px" color="black" font-size="80%">
 						Datum:
-						<xsl:value-of select="pp:Propis/@Datum" />
+						<xsl:value-of select="pro:Propis/@Datum" />
 					</fo:block>
 					<fo:block text-align="center" color="black"
 						padding-bottom="10px" font-size="200%" text-decoration="underline">
 						<fo:inline>
-							<xsl:value-of select="pp:Propis/pp:Naziv" />
+							<xsl:value-of select="pro:Propis/pro:Naziv" />
 						</fo:inline>
 					</fo:block>
-					<xsl:for-each select="pp:Propis/pp:Deo">
+					<xsl:for-each select="pro:Propis/pro:Deo">
 						<fo:block text-align="center" color="black"
 							padding-bottom="10px" font-size="180%">
-							<xsl:value-of select="pp:Naziv" />
+							<xsl:value-of select="pro:Naziv" />
 						</fo:block>
-						<xsl:for-each select="pp:Glava">
+						<xsl:for-each select="pro:Glava">
 							<fo:block text-align="center" color="black"
 								padding-bottom="10px" font-size="150%">
-								<xsl:value-of select="pp:Naziv" />
+								<xsl:value-of select="pro:Naziv" />
 							</fo:block>
-							<xsl:for-each select="ns2:Clan">
+							<xsl:for-each select="clan:Clan">
 								<fo:block text-align="center" color="black"
 									padding-bottom="10px" font-size="110%">
-									<xsl:value-of select="ns2:Naziv" />
+									<xsl:value-of select="clan:Naziv" />
 								</fo:block>
 								<fo:block text-align="center" color="black"
 									padding-bottom="10px" font-size="70%">
-									<xsl:value-of select="ns2:Opis" />
+									<xsl:value-of select="clan:Opis" />
 								</fo:block>
 								<fo:block text-align="center" color="black"
 									padding-bottom="10px" font-size="70%">
-									<xsl:for-each select="ns2:Sadrzaj/ns2:Tekst/ns2:text">
+									<xsl:for-each select="clan:Sadrzaj/clan:Tekst/clan:text">
 
-										<xsl:variable name="clanID" select="../ns2:IDClana" />
-										<xsl:variable name="clanNaziv" select="../ns2:NazivClana" />
-										<xsl:variable name="propisNaziv" select="../ns2:NazivPropisa" />
-										<xsl:variable name="propisID" select="../ns2:IDPropisa" />
+										<xsl:variable name="clanID" select="../clan:IDClana" />
+										<xsl:variable name="clanNaziv" select="../clan:NazivClana" />
+										<xsl:variable name="propisNaziv" select="../clan:NazivPropisa" />
+										<xsl:variable name="propisID" select="../clan:IDPropisa" />
 										<xsl:variable name="url"
 											select="concat('https://localhost:8443/HelloWeb/pages/index.html#/propis/', $propisNaziv,'/clan/',$clanID)" />
 										<xsl:variable name="urlPropis"
@@ -88,18 +89,18 @@
 									</xsl:for-each>
 								</fo:block>
 
-								<xsl:for-each select="ns2:Sadrzaj/ns2:Stav">
+								<xsl:for-each select="clan:Sadrzaj/clan:Stav">
 									<fo:block text-align="center" color="black"
 										padding-bottom="10px" font-size="70%">
 										(
-										<xsl:value-of select="ns2:Redni_broj" />
+										<xsl:value-of select="clan:Redni_broj" />
 										) &#160;
-										<xsl:for-each select="ns2:Tekst">
+										<xsl:for-each select="clan:Tekst">
 											
-												<xsl:variable name="clanID" select="../ns2:IDClana" />
-												<xsl:variable name="clanNaziv" select="../ns2:NazivClana" />
-												<xsl:variable name="propisNaziv" select="../ns2:NazivPropisa" />
-												<xsl:variable name="propisID" select="../ns2:IDPropisa" />
+												<xsl:variable name="clanID" select="../clan:IDClana" />
+												<xsl:variable name="clanNaziv" select="../clan:NazivClana" />
+												<xsl:variable name="propisNaziv" select="../clan:NazivPropisa" />
+												<xsl:variable name="propisID" select="../clan:IDPropisa" />
 												<xsl:variable name="url"
 													select="concat('https://localhost:8443/HelloWeb/pages/index.html#/propis/', $propisNaziv,'/clan/',$clanID)" />
 												<xsl:variable name="urlPropis"
@@ -131,23 +132,23 @@
 								</xsl:for-each>
 							</xsl:for-each>
 						</xsl:for-each>
-						<xsl:for-each select="ns2:Clan">
+						<xsl:for-each select="clan:Clan">
 							<fo:block text-align="center" color="black"
 								padding-bottom="10px" font-size="110%">
-								<xsl:value-of select="ns2:Naziv" />
+								<xsl:value-of select="clan:Naziv" />
 							</fo:block>
 							<fo:block text-align="center" color="black"
 								padding-bottom="10px" font-size="70%">
-								<xsl:value-of select="ns2:Opis" />
+								<xsl:value-of select="clan:Opis" />
 							</fo:block>
 							<fo:block text-align="center" color="black"
 								padding-bottom="10px" font-size="70%">
-								<xsl:for-each select="ns2:Sadrzaj/ns2:Tekst/ns2:text">
+								<xsl:for-each select="clan:Sadrzaj/clan:Tekst/clan:text">
 
-									<xsl:variable name="clanID" select="../ns2:IDClana" />
-									<xsl:variable name="clanNaziv" select="../ns2:NazivClana" />
-									<xsl:variable name="propisNaziv" select="../ns2:NazivPropisa" />
-									<xsl:variable name="propisID" select="../ns2:IDPropisa" />
+									<xsl:variable name="clanID" select="../clan:IDClana" />
+									<xsl:variable name="clanNaziv" select="../clan:NazivClana" />
+									<xsl:variable name="propisNaziv" select="../clan:NazivPropisa" />
+									<xsl:variable name="propisID" select="../clan:IDPropisa" />
 									<xsl:variable name="url"
 										select="concat('https://localhost:8443/HelloWeb/pages/index.html#/propis/', $propisNaziv,'/clan/',$clanID)" />
 									<xsl:variable name="urlPropis"
@@ -178,17 +179,17 @@
 								</xsl:for-each>
 							</fo:block>
 
-							<xsl:for-each select="ns2:Sadrzaj/ns2:Stav">
+							<xsl:for-each select="clan:Sadrzaj/clan:Stav">
 								<fo:block text-align="center" color="black"
 									padding-bottom="10px" font-size="70%">
 									(
-									<xsl:value-of select="ns2:Redni_broj" />
+									<xsl:value-of select="clan:Redni_broj" />
 									) &#160;					
-									<xsl:for-each select="ns2:Tekst">
-										<xsl:variable name="clanID" select="../ns2:IDClana" />
-										<xsl:variable name="clanNaziv" select="../ns2:NazivClana" />
-										<xsl:variable name="propisNaziv" select="../ns2:NazivPropisa" />
-										<xsl:variable name="propisID" select="../ns2:IDPropisa" />
+									<xsl:for-each select="clan:Tekst">
+										<xsl:variable name="clanID" select="../clan:IDClana" />
+										<xsl:variable name="clanNaziv" select="../clan:NazivClana" />
+										<xsl:variable name="propisNaziv" select="../clan:NazivPropisa" />
+										<xsl:variable name="propisID" select="../clan:IDPropisa" />
 										<xsl:variable name="url"
 											select="concat('https://localhost:8443/HelloWeb/pages/index.html#/propis/', $propisNaziv,'/clan/',$clanID)" />
 										<xsl:variable name="urlPropis"
