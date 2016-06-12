@@ -843,7 +843,7 @@
 		// posto imamo token, proveravamo koja je rola, ako je obican gradjanin,
 		// onda dovidjenja!
 		$http.get(serverUrl + '/api/role').success(function(data) {
-			if (data.role === 'gradjanin') {
+			if (data.role === 'gradjanin' || data.role === 'odbornik') {
 				$state.go('main');
 			}
 		})
@@ -889,7 +889,7 @@
 		// posto imamo token, proveravamo koja je rola, ako je obican gradjanin,
 		// onda dovidjenja!
 		$http.get(serverUrl + '/api/role').success(function(data) {
-			if (data.role === 'gradjanin') {
+			if (data.role === 'gradjanin' || data.role === 'odbornik') {
 				$state.go('main');
 			}
 		})
@@ -937,7 +937,7 @@
 		// posto imamo token, proveravamo koja je rola, ako je obican gradjanin,
 		// onda dovidjenja!
 		$http.get(serverUrl + '/api/role').success(function(data) {
-			if (data.role === 'gradjanin') {
+			if (data.role === 'gradjanin' || data.role === 'obornik') {
 				$state.go('main');
 			}
 		})
@@ -1096,7 +1096,7 @@
 		// posto imamo token, proveravamo koja je rola, ako je obican gradjanin,
 		// onda dovidjenja!
 		$http.get(serverUrl + '/api/role').success(function(data) {
-			if (data.role === 'gradjanin') {
+			if (data.role === 'gradjanin' || data.role === 'odbornik') {
 				$state.go('main');
 			}
 		})
@@ -1127,7 +1127,7 @@
 		// posto imamo token, proveravamo koja je rola, ako je obican gradjanin,
 		// onda dovidjenja!
 		$http.get(serverUrl + '/api/role').success(function(data) {
-			if (data.role === 'gradjanin') {
+			if (data.role === 'gradjanin' || data.role === 'odbornik') {
 				$state.go('main');
 			}
 		})
@@ -1195,7 +1195,7 @@
 		// posto imamo token, proveravamo koja je rola, ako je obican gradjanin,
 		// onda dovidjenja!
 		$http.get(serverUrl + '/api/role').success(function(data) {
-			if (data.role === 'gradjanin') {
+			if (data.role === 'gradjanin' || data.role === 'odbornik') {
 				$state.go('main');
 			}
 		})
