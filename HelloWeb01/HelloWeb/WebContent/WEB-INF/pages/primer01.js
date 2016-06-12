@@ -9,6 +9,8 @@
 	 */
 	var logInCtrl = function(mainService, $scope, $resource, $http, $location,
 			$state) {
+		
+		
 		$scope.token = null;
 		$scope.error = null;
 		$scope.gradj = false;
@@ -114,6 +116,7 @@
 		/**
 		 * Metoda za registraciju korisnika na sistem
 		 */
+		
 		$scope.register = function() {
 			$http.post(serverUrl + '/Index/registration', {
 				ime : $scope.loginKor.ime,
@@ -234,11 +237,20 @@
 
 	var addAmandmanCtrl = function($scope, $resource, $http, $location,
 			$stateParams, $state) {
-		// JAKO JAKO BITNO DA SE svaki put prilikom slanja request-a posalje i
-		// token
-		// mora opet da se postavlja Authorization header!!!
+		// provera da li ima token u localStorage-u
+		if (localStorage.getItem('key') === null) {
+			$state.go('login');
+		}
+		// ako ima, zalepi ga na http
 		$http.defaults.headers.common.Authorization = 'Bearer '
 				+ localStorage.getItem('key');
+		// posto imamo token, proveravamo koja je rola, ako je obican gradjanin,
+		// onda dovidjenja!
+		$http.get(serverUrl + '/api/role').success(function(data) {
+			if (data.role === 'gradjanin') {
+				$state.go('main');
+			}
+		})
 
 		/*
 		 * proverimo da li se u localStorage nalazi token, ako se ne nalazi onda
@@ -821,7 +833,21 @@
 
 	var sednicaCtrl = function($rootScope, $scope, $resource, $http, $location,
 			$stateParams, $state, propisService) {
-
+		// provera da li ima token u localStorage-u
+		if (localStorage.getItem('key') === null) {
+			$state.go('login');
+		}
+		// ako ima, zalepi ga na http
+		$http.defaults.headers.common.Authorization = 'Bearer '
+				+ localStorage.getItem('key');
+		// posto imamo token, proveravamo koja je rola, ako je obican gradjanin,
+		// onda dovidjenja!
+		$http.get(serverUrl + '/api/role').success(function(data) {
+			if (data.role === 'gradjanin') {
+				$state.go('main');
+			}
+		})
+		
 		$scope.izborAkata = function() {
 			$state.go('sednicaIzborAkata');
 		}
@@ -853,6 +879,20 @@
 	}
 
 	var procesSedniceCtrl = function($scope, $http, $state, propisService) {
+		// provera da li ima token u localStorage-u
+		if (localStorage.getItem('key') === null) {
+			$state.go('login');
+		}
+		// ako ima, zalepi ga na http
+		$http.defaults.headers.common.Authorization = 'Bearer '
+				+ localStorage.getItem('key');
+		// posto imamo token, proveravamo koja je rola, ako je obican gradjanin,
+		// onda dovidjenja!
+		$http.get(serverUrl + '/api/role').success(function(data) {
+			if (data.role === 'gradjanin') {
+				$state.go('main');
+			}
+		})
 		$scope.izabraniAkti = [];
 
 		var lista = propisService.getProperty();
@@ -887,11 +927,20 @@
 
 	var izabranPropisNaceloCtrl = function($scope, $http, $state, $stateParams,
 			propisService) {
-		// JAKO JAKO BITNO DA SE svaki put prilikom slanja request-a posalje i
-		// token
-		// mora opet da se postavlja Authorization header!!!
+		// provera da li ima token u localStorage-u
+		if (localStorage.getItem('key') === null) {
+			$state.go('login');
+		}
+		// ako ima, zalepi ga na http
 		$http.defaults.headers.common.Authorization = 'Bearer '
 				+ localStorage.getItem('key');
+		// posto imamo token, proveravamo koja je rola, ako je obican gradjanin,
+		// onda dovidjenja!
+		$http.get(serverUrl + '/api/role').success(function(data) {
+			if (data.role === 'gradjanin') {
+				$state.go('main');
+			}
+		})
 
 		if (!angular.equals({}, $stateParams)) {
 			var propisId = $stateParams.id;
@@ -984,6 +1033,20 @@
 
 	var prihvatanjeAmandmanaCtrl = function($scope, $state, $resource, $http,
 			$stateParams, amandmanService) {
+		// provera da li ima token u localStorage-u
+		if (localStorage.getItem('key') === null) {
+			$state.go('login');
+		}
+		// ako ima, zalepi ga na http
+		$http.defaults.headers.common.Authorization = 'Bearer '
+				+ localStorage.getItem('key');
+		// posto imamo token, proveravamo koja je rola, ako je obican gradjanin,
+		// onda dovidjenja!
+		$http.get(serverUrl + '/api/role').success(function(data) {
+			if (data.role === 'gradjanin') {
+				$state.go('main');
+			}
+		})
 		if (!angular.equals({}, $stateParams)) {
 			var propisId = $stateParams.id;
 
@@ -1023,7 +1086,21 @@
 
 	var pregledAmandmanaZaPrihvatanjeCtrl = function($scope, $http,
 			amandmanService, $stateParams, $state) {
-
+		// provera da li ima token u localStorage-u
+		if (localStorage.getItem('key') === null) {
+			$state.go('login');
+		}
+		// ako ima, zalepi ga na http
+		$http.defaults.headers.common.Authorization = 'Bearer '
+				+ localStorage.getItem('key');
+		// posto imamo token, proveravamo koja je rola, ako je obican gradjanin,
+		// onda dovidjenja!
+		$http.get(serverUrl + '/api/role').success(function(data) {
+			if (data.role === 'gradjanin') {
+				$state.go('main');
+			}
+		})
+		
 		if (!angular.equals({}, $stateParams)) {
 			var propisId = $stateParams.id;
 		}
@@ -1040,6 +1117,20 @@
 
 	var razmatranjeAmandmanaCtrl = function($scope, $http, $stateParams,
 			$state, amandmanService) {
+		// provera da li ima token u localStorage-u
+		if (localStorage.getItem('key') === null) {
+			$state.go('login');
+		}
+		// ako ima, zalepi ga na http
+		$http.defaults.headers.common.Authorization = 'Bearer '
+				+ localStorage.getItem('key');
+		// posto imamo token, proveravamo koja je rola, ako je obican gradjanin,
+		// onda dovidjenja!
+		$http.get(serverUrl + '/api/role').success(function(data) {
+			if (data.role === 'gradjanin') {
+				$state.go('main');
+			}
+		})
 		if (!angular.equals({}, $stateParams)) {
 			var propisId = $stateParams.id;
 			var amandmanId = $stateParams.id2;
@@ -1094,12 +1185,21 @@
 
 	var potvrdaPropisaUCelostiCtrl = function($scope, $state, $http,
 			$stateParams) {
-		// JAKO JAKO BITNO DA SE svaki put prilikom slanja request-a posalje i
-		// token
-		// mora opet da se postavlja Authorization header!!!
+		// provera da li ima token u localStorage-u
+		if (localStorage.getItem('key') === null) {
+			$state.go('login');
+		}
+		// ako ima, zalepi ga na http
 		$http.defaults.headers.common.Authorization = 'Bearer '
 				+ localStorage.getItem('key');
-
+		// posto imamo token, proveravamo koja je rola, ako je obican gradjanin,
+		// onda dovidjenja!
+		$http.get(serverUrl + '/api/role').success(function(data) {
+			if (data.role === 'gradjanin') {
+				$state.go('main');
+			}
+		})
+		
 		if (!angular.equals({}, $stateParams)) {
 			var propisId = $stateParams.id;
 		}

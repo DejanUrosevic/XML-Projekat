@@ -101,7 +101,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/saxon-9.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xmlgraphics-commons-2.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/batik-all-1.8.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
