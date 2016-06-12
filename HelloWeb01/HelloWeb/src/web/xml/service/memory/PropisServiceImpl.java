@@ -101,11 +101,14 @@ import com.marklogic.client.eval.EvalResultIterator;
 import com.marklogic.client.eval.ServerEvaluationCall;
 import com.marklogic.client.io.DOMHandle;
 import com.marklogic.client.io.DocumentMetadataHandle;
+import com.marklogic.client.io.FileHandle;
 import com.marklogic.client.io.InputStreamHandle;
 import com.marklogic.client.io.SearchHandle;
 import com.marklogic.client.query.MatchDocumentSummary;
 import com.marklogic.client.query.QueryManager;
 import com.marklogic.client.query.StringQueryDefinition;
+import com.marklogic.client.semantics.GraphManager;
+import com.marklogic.client.semantics.RDFMimeTypes;
 import com.sun.org.apache.xml.internal.security.algorithms.MessageDigestAlgorithm;
 import com.sun.org.apache.xml.internal.security.exceptions.XMLSecurityException;
 import com.sun.org.apache.xml.internal.security.signature.XMLSignature;
@@ -114,6 +117,7 @@ import com.sun.org.apache.xml.internal.security.transforms.Transforms;
 import web.xml.model.Propisi;
 import web.xml.model.Users;
 import web.xml.service.PropisService;
+import web.xml.util.MetadataExtractor;
 
 @Service
 public class PropisServiceImpl implements PropisService {
@@ -180,7 +184,8 @@ public class PropisServiceImpl implements PropisService {
 		queryDefinition.setCriteria(criteria);
 		
 		// Postavljanje kolekcije u kojoj se pretražuje
-		String collId = "/skupstina/notSafePropisi";
+		// String collId = "/skupstina/notSafePropisi";
+		String collId = "/skupstina/safePropisi";
 		queryDefinition.setCollections(collId);
 		
 		// Izvršavanje pretrage
@@ -242,24 +247,57 @@ public class PropisServiceImpl implements PropisService {
 	@Override
 	public void save(File f) throws FileNotFoundException, JAXBException {
 		DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37", "tim37", "tim37",
-				Authentication.valueOf("DIGEST"));
+																Authentication.valueOf("DIGEST"));
+		
+		// Kreiranje menadzera za rad sa xml dokumentima
 		XMLDocumentManager xmlManager = client.newXMLDocumentManager();
 
 		Propisi propisi = unmarshall(new File("./data/xml/propisi.xml"));
+		
 		// svaki novi propis ce imati svoje ime kao naziv xml fajla
-		String docId = propisi.getPropisi().get(propisi.getPropisi().size() - 1).getNaziv().replaceAll("\\s", "")
-				+ ".xml";
+		String docIdPre = propisi.getPropisi().get(propisi.getPropisi().size() - 1).getNaziv().replaceAll("\\s", "");
+		String docId = docIdPre	+ ".xml";
 		String collId = "/skupstina/safePropisi";
 
 		InputStreamHandle handle = new InputStreamHandle(new FileInputStream(f.getAbsolutePath()));
 		DocumentMetadataHandle metadata = new DocumentMetadataHandle();
 		metadata.getCollections().add(collId);
 
+		// Zapisivanje xml dokumenta propisa u bazu 
 		xmlManager.write(docId, metadata, handle);
 		
+		// RDF
+		// Kreiranje graf menadzera za rad sa metapodacima
+		GraphManager graphManager = client.newGraphManager();
 		
+		// Postavljanje defaultnog tipa media (RDF/XML)
+		graphManager.setDefaultMimetype(RDFMimeTypes.RDFXML);
 		
+		//
+		String xmlFilePath = f.getAbsolutePath();
+		String rdfFilePath = "./data/rdf/propisMetadata.rdf";
 		
+		String rdfId = docIdPre + "/metadata";
+		
+		//
+		MetadataExtractor metadataExtractor = new MetadataExtractor();
+		
+		try {
+			// Generisanje rdf-a
+			metadataExtractor.extractMetadata(
+											  new FileInputStream(new File(xmlFilePath)),
+											  new FileOutputStream(new File(rdfFilePath)));
+			
+			// 
+			FileHandle rdfFileHandle = new FileHandle(new File(rdfFilePath)).withMimetype(RDFMimeTypes.RDFXML);
+			
+			// Pisanje rdf u bazu podataka
+			// graphManager.write(rdfId, rdfFileHandle);
+		} catch (TransformerException e) {
+			e.printStackTrace();
+		}
+		
+
 		//-------- ovo je save za /propisi.xml
 		
 		XMLDocumentManager xmlManager2 = client.newXMLDocumentManager();
