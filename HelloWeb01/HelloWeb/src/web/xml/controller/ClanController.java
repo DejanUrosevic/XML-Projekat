@@ -342,6 +342,7 @@ public class ClanController {
 				datumUsvajanjaPropisa.setProperty(datumUsvajanjaPropisa.getProperty());
 				datumUsvajanjaPropisa.setDatatype(datumUsvajanjaPropisa.getDatatype());
 				datumUsvajanjaPropisa.setValue(xmlCalender);
+				propis.setDatumUsvajanja(datumUsvajanjaPropisa);
 			}
 		}
 				
