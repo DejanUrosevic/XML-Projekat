@@ -1,66 +1,114 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<propisi xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" xmlns:ns4="http://www.parlament.gov.rs/propis">
+<propisi xmlns:pro="http://www.parlament.gov.rs/propis" xmlns:pred="http://www.parlament.gov.rs/predicate" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:akt="http://www.parlament.gov.rs/akt" xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:aman="http://www.parlament.gov.rs/amandman" xmlns:ns8="http://www.w3.org/ns/rdfa#">
     <propis ID="198620" Datum="2016-06-10+02:00" Status="U_CELINI">
-        <ns4:Naziv>Propis</ns4:Naziv>
-        <ns4:Deo ID="76492">
-            <ns4:Naziv>Deo</ns4:Naziv>
-            <ns2:Clan ID="533221">
-                <ns2:Opis>aiusd fhadfap sdf asdfas dnfksd nf</ns2:Opis>
-                <ns2:Naziv>Clan</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>
-                        <ns2:text>jksd fnkasdhfasdnf asnd fasd fahf</ns2:text>
-                    </ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns4:Deo>
+        <pro:Naziv>Propis</pro:Naziv>
+        <pro:Deo ID="76492">
+            <pro:Naziv>Deo</pro:Naziv>
+            <clan:Clan ID="533221">
+                <clan:Opis>aiusd fhadfap sdf asdfas dnfksd nf</clan:Opis>
+                <clan:Naziv>Clan</clan:Naziv>
+                <clan:Sadrzaj>
+                    <clan:Tekst>
+                        <clan:text>jksd fnkasdhfasdnf asnd fasd fahf</clan:text>
+                    </clan:Tekst>
+                </clan:Sadrzaj>
+            </clan:Clan>
+        </pro:Deo>
     </propis>
     <propis ID="399350" Datum="2016-06-11+02:00" Status="U_CELINI">
-        <ns4:Naziv>ffff</ns4:Naziv>
-        <ns4:Deo ID="631190">
-            <ns4:Naziv>fqwfwq</ns4:Naziv>
-            <ns2:Clan ID="550065">
-                <ns2:Opis>wqfwqwq</ns2:Opis>
-                <ns2:Naziv>fwqfwq</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>
-                        <ns2:text>nf sdf</ns2:text>
-                    </ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns4:Deo>
+        <pro:Naziv>ffff</pro:Naziv>
+        <pro:Deo ID="631190">
+            <pro:Naziv>fqwfwq</pro:Naziv>
+            <clan:Clan ID="550065">
+                <clan:Opis>wqfwqwq</clan:Opis>
+                <clan:Naziv>fwqfwq</clan:Naziv>
+                <clan:Sadrzaj>
+                    <clan:Tekst>
+                        <clan:text>nf sdf</clan:text>
+                    </clan:Tekst>
+                </clan:Sadrzaj>
+            </clan:Clan>
+        </pro:Deo>
     </propis>
     <propis ID="289650" Datum="2016-06-10+02:00" Status="U_CELINI">
-        <ns4:Naziv>123fwe wefwe fwefwe wef</ns4:Naziv>
-        <ns4:Deo ID="872957">
-            <ns4:Naziv>fewfwe</ns4:Naziv>
-            <ns2:Clan ID="91637">
-                <ns2:Opis>fwefwefwefewfwefwefwe</ns2:Opis>
-                <ns2:Naziv>wefwefwe</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>
-                        <ns2:text>trhrt rthtrhtrhr hr hr hrt htrhrt</ns2:text>
-                    </ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </ns4:Deo>
+        <pro:Naziv>123fwe wefwe fwefwe wef</pro:Naziv>
+        <pro:Deo ID="872957">
+            <pro:Naziv>fewfwe</pro:Naziv>
+            <clan:Clan ID="91637">
+                <clan:Opis>fwefwefwefewfwefwefwe</clan:Opis>
+                <clan:Naziv>wefwefwe</clan:Naziv>
+                <clan:Sadrzaj>
+                    <clan:Tekst>
+                        <clan:text>trhrt rthtrhtrhr hr hr hrt htrhrt</clan:text>
+                    </clan:Tekst>
+                </clan:Sadrzaj>
+            </clan:Clan>
+        </pro:Deo>
     </propis>
     <propis ID="956691" Datum="2016-06-11+02:00" Status="U_CELINI">
-        <ns4:Naziv>AliMePamti</ns4:Naziv>
-        <ns4:Deo ID="231649">
-            <ns4:Naziv>USrcuMePonesi</ns4:Naziv>
-            <ns4:Glava ID="12322">
-                <ns4:Naziv>BicuSaTobom</ns4:Naziv>
-                <ns2:Clan ID="894288">
-                    <ns2:Opis>S tvojim usnama da nazdravim.</ns2:Opis>
-                    <ns2:Naziv>SveDokVina</ns2:Naziv>
-                    <ns2:Sadrzaj>
-                        <ns2:Tekst>
-                            <ns2:text>Nemam srca da te samu ostavim. Dok na stulo gori cigareta, nemam srca da te samu ostavim. Ojsaaa prske.</ns2:text>
-                        </ns2:Tekst>
-                    </ns2:Sadrzaj>
-                </ns2:Clan>
-            </ns4:Glava>
-        </ns4:Deo>
+        <pro:Naziv>AliMePamti</pro:Naziv>
+        <pro:Deo ID="231649">
+            <pro:Naziv>USrcuMePonesi</pro:Naziv>
+            <pro:Glava ID="12322">
+                <pro:Naziv>BicuSaTobom</pro:Naziv>
+                <clan:Clan ID="894288">
+                    <clan:Opis>S tvojim usnama da nazdravim.</clan:Opis>
+                    <clan:Naziv>SveDokVina</clan:Naziv>
+                    <clan:Sadrzaj>
+                        <clan:Tekst>
+                            <clan:text>Nemam srca da te samu ostavim. Dok na stulo gori cigareta, nemam srca da te samu ostavim. Ojsaaa prske.</clan:text>
+                        </clan:Tekst>
+                    </clan:Sadrzaj>
+                </clan:Clan>
+            </pro:Glava>
+        </pro:Deo>
+    </propis>
+    <propis ID="842366" Datum="2016-06-13+02:00" Status="PREDLOZEN" about="http://www.parlament.gov.rs/rdf/resoruce/842366">
+        <pro:Naziv>Propis1</pro:Naziv>
+        <pro:Deo ID="905462">
+            <pro:Naziv>as</pro:Naziv>
+            <clan:Clan ID="267307">
+                <clan:Opis>asdf</clan:Opis>
+                <clan:Naziv>asd</clan:Naziv>
+                <clan:Sadrzaj>
+                    <clan:Tekst>
+                        <clan:text>asdfg</clan:text>
+                    </clan:Tekst>
+                </clan:Sadrzaj>
+            </clan:Clan>
+        </pro:Deo>
+        <pro:DatumKreiranja>2016-06-13+02:00</pro:DatumKreiranja>
+    </propis>
+    <propis ID="874537" Datum="2016-06-13+02:00" Status="PREDLOZEN" about="http://www.parlament.gov.rs/rdf/resoruce/874537">
+        <pro:Naziv>Propis2</pro:Naziv>
+        <pro:Deo ID="356367">
+            <pro:Naziv>pr</pro:Naziv>
+            <clan:Clan ID="310596">
+                <clan:Opis>asdf</clan:Opis>
+                <clan:Naziv>asd</clan:Naziv>
+                <clan:Sadrzaj>
+                    <clan:Tekst>
+                        <clan:text>asdfg</clan:text>
+                    </clan:Tekst>
+                </clan:Sadrzaj>
+            </clan:Clan>
+        </pro:Deo>
+        <pro:DatumKreiranja>2016-06-13+02:00</pro:DatumKreiranja>
+    </propis>
+    <propis ID="250826" Datum="2016-06-13+02:00" Status="PREDLOZEN" about="http://www.parlament.gov.rs/rdf/resoruce/250826">
+        <pro:Naziv>Propis3</pro:Naziv>
+        <pro:Deo ID="119822">
+            <pro:Naziv>pr</pro:Naziv>
+            <clan:Clan ID="800632">
+                <clan:Opis>asdf</clan:Opis>
+                <clan:Naziv>cl</clan:Naziv>
+                <clan:Sadrzaj>
+                    <clan:Tekst>
+                        <clan:text>asdfg</clan:text>
+                    </clan:Tekst>
+                </clan:Sadrzaj>
+            </clan:Clan>
+        </pro:Deo>
+        <pro:DatumKreiranja>2016-06-13+02:00</pro:DatumKreiranja>
     </propis>
 </propisi>

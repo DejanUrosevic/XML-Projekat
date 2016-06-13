@@ -439,7 +439,15 @@ public class PropisServiceImpl implements PropisService {
 		Calendar calendar = date2.toGregorianCalendar();
 		
 		propis.setDatum(date2);
+		
+		// Postavljanje metapodatka koji predstavlja datum kriranja propisa
+		Propis.DatumKreiranja datumKreiranjPropisa = new Propis.DatumKreiranja();
+		datumKreiranjPropisa.setValue(date2);
+		propis.setDatumKreiranja(datumKreiranjPropisa);
 
+		// Postavljanje about atributa/resursa za metapodatke
+		propis.setAbout("http://www.parlament.gov.rs/rdf/resoruce/"+propis.getID());
+		
 		return propis;
 	}
 

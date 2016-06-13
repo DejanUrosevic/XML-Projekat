@@ -2,7 +2,8 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
     targetNamespace="http://www.parlament.gov.rs/propis"
     xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:pro="http://www.parlament.gov.rs/propis"
-    xmlns:aman="http://www.parlament.gov.rs/amandman">
+    xmlns:aman="http://www.parlament.gov.rs/amandman" xmlns="http://www.w3.org/ns/rdfa#"
+    xmlns:pred="http://www.parlament.gov.rs/predicate">
 
     <xs:import namespace="http://www.parlament.gov.rs/clan" schemaLocation="clan.xsd"/>
     <xs:import namespace="http://www.parlament.gov.rs/amandman" schemaLocation="amandman.xsd"/>
@@ -30,10 +31,35 @@
                     </xs:complexType>
                 </xs:element>
                 <xs:element maxOccurs="unbounded" minOccurs="0" ref="aman:Amandman"/>
+                <xs:element name="DatumKreiranja" nillable="false">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:date">
+                                <xs:attribute fixed="pred:datumKriranja" name="property"
+                                    type="xs:string" use="required"/>
+                                <xs:attribute fixed="xs:date" name="datatype" type="xs:string"
+                                    use="required"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element minOccurs="0" name="DatumUsvajanja">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:date">
+                                <xs:attribute fixed="pred:datumUsvajanja" name="property"
+                                    type="xs:string" use="required"/>
+                                <xs:attribute fixed="xs:date" name="datatype" type="xs:string"
+                                    use="required"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
             <xs:attribute name="ID" type="xs:positiveInteger"/>
             <xs:attribute name="Datum" type="xs:date"/>
             <xs:attribute name="Status" type="xs:string"/>
+            <xs:attribute name="about" type="xs:string" use="optional"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>
