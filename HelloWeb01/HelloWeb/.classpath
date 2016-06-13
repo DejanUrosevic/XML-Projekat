@@ -5,7 +5,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json-20140107.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xalan-2.7.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xercesImpl-2.11.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xml-apis-1.4.01.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xml-resolver-1.2.jar"/>
@@ -85,12 +84,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mimepull-1.6.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mimepull-1.9.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.7.4.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient-4.1.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpcore-4.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-apache-client4-1.17.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-client-1.17.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-core-1.17.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-multipart-1.17.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bcprov-jdk16-141.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xmlsec-1.4.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/esapi-2.1.0.jar"/>
@@ -101,6 +94,13 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/saxon-9.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xmlgraphics-commons-2.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/batik-all-1.8.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xalan-2.7.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient-4.5.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpcore-4.4.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-client-1.17.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-core-1.17.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-multipart-1.17.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-apache-client4-1.19.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0"/>
 	<classpathentry kind="output" path="build/classes"/>

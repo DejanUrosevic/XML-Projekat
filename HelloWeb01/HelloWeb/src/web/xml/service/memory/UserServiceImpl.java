@@ -35,6 +35,24 @@ import com.marklogic.client.io.DOMHandle;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.InputStreamHandle;
 
+/*
+import com.marklogic.client.DatabaseClient;
+import com.marklogic.client.DatabaseClientFactory;
+import com.marklogic.client.document.XMLDocumentManager;
+import com.marklogic.client.io.DOMHandle;
+import com.marklogic.client.io.DocumentMetadataHandle;
+import com.marklogic.client.io.InputStreamHandle;
+import com.marklogic.client.DatabaseClientFactory.Authentication;
+
+
+import com.marklogic.client.DatabaseClient;
+import com.marklogic.client.DatabaseClientFactory;
+import com.marklogic.client.DatabaseClientFactory.Authentication;
+import com.marklogic.client.document.XMLDocumentManager;
+import com.marklogic.client.io.DOMHandle;
+import com.marklogic.client.io.DocumentMetadataHandle;
+import com.marklogic.client.io.InputStreamHandle;*/
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import web.xml.crl.Sertifikati;
@@ -53,9 +71,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Users findAll() throws JAXBException {
+		/*DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37", "tim37", "tim37",
+				Authentication.valueOf("DIGEST"));*/
+		
 		DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37", "tim37", "tim37",
 				Authentication.valueOf("DIGEST"));
-
 		XMLDocumentManager xmlManager = client.newXMLDocumentManager();
 
 		// A handle to receive the document's content.

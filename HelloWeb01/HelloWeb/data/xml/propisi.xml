@@ -111,4 +111,20 @@
         </pro:Deo>
         <pro:DatumKreiranja>2016-06-13+02:00</pro:DatumKreiranja>
     </propis>
+    <propis ID="69912" Datum="2016-06-13+02:00" Status="U_CELINI" about="http://www.parlament.gov.rs/rdf/resoruce/69912">
+        <pro:Naziv>Novi propis</pro:Naziv>
+        <pro:Deo ID="882553">
+            <pro:Naziv>deo propis</pro:Naziv>
+            <clan:Clan ID="278120">
+                <clan:Opis>fasjkdfnasdfjn aadf asdf</clan:Opis>
+                <clan:Naziv>clan novi</clan:Naziv>
+                <clan:Sadrzaj>
+                    <clan:Tekst>
+                        <clan:text>dddddd ffffffff</clan:text>
+                    </clan:Tekst>
+                </clan:Sadrzaj>
+            </clan:Clan>
+        </pro:Deo>
+        <pro:DatumKreiranja>2016-06-13+02:00</pro:DatumKreiranja>
+    </propis>
 </propisi>

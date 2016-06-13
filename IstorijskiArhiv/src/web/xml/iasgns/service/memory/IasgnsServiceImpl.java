@@ -103,12 +103,12 @@ public class IasgnsServiceImpl implements IasgnsService{
 	//	Propis p = unmarshallDocumentPropis(propis);
 		
 		//marshallpropis(p, new File("F:\\My Documents\\Faks\\CETVRTA godina\\Internet Softverske Arhitekture\\IstorijskiArhiv\\data\\xml\\propisZaIstorijskiArhiv.xml"));
-		encryptXml(findPropisById(idPropis), new File("F:\\My Documents\\Faks\\CETVRTA godina\\Internet Softverske Arhitekture\\IstorijskiArhiv\\data\\sertifikati\\iasgns.jks"), "iasgns");
+		encryptXml(findPropisById(idPropis), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
 		
 		docId = idPropis.replaceAll("\\s", "") + "IASGNS.xml";
 		String collId = "/istorijskiArhiv/propisi";
 
-		InputStreamHandle handle = new InputStreamHandle(new FileInputStream(new File("F:\\My Documents\\Faks\\CETVRTA godina\\Internet Softverske Arhitekture\\IstorijskiArhiv\\data\\xml\\propisZaIstorijskiArhiv.xml").getAbsolutePath()));
+		InputStreamHandle handle = new InputStreamHandle(new FileInputStream(new File("data\\xml\\propisZaIstorijskiArhiv.xml").getAbsolutePath()));
 		DocumentMetadataHandle metadata = new DocumentMetadataHandle();
 		metadata.getCollections().add(collId);
 		
@@ -318,7 +318,7 @@ public class IasgnsServiceImpl implements IasgnsService{
 		document = encrypt(document, secretKey, cert);
 		// snima se tajni kljuc
 		// snima se dokument
-		saveDocument(document, new File("F:\\My Documents\\Faks\\CETVRTA godina\\Internet Softverske Arhitekture\\IstorijskiArhiv\\data\\xml\\propisZaIstorijskiArhiv.xml").getCanonicalPath());
+		saveDocument(document, new File("data\\xml\\propisZaIstorijskiArhiv.xml").getCanonicalPath());
 		
 	}
 
