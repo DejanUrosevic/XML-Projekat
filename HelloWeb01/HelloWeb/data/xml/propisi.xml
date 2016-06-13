@@ -79,7 +79,7 @@
         </pro:Deo>
         <pro:DatumKreiranja>2016-06-13+02:00</pro:DatumKreiranja>
     </propis>
-    <propis ID="890803" Datum="2016-06-13+02:00" Status="PREDLOZEN" about="http://www.parlament.gov.rs/rdf/resoruce/890803">
+    <propis ID="890803" Datum="2016-06-13+02:00" Status="U_CELINI" about="http://www.parlament.gov.rs/rdf/resoruce/890803">
         <pro:Naziv>propisn</pro:Naziv>
         <pro:Deo ID="888815">
             <pro:Naziv>dw</pro:Naziv>
@@ -88,7 +88,39 @@
                 <clan:Naziv>asdf</clan:Naziv>
                 <clan:Sadrzaj>
                     <clan:Tekst>
-                        <clan:text>dsagfas</clan:text>
+                        <clan:text>dsagfas fdasjkfldas</clan:text>
+                    </clan:Tekst>
+                </clan:Sadrzaj>
+            </clan:Clan>
+        </pro:Deo>
+        <pro:DatumKreiranja property="pred:datumKreiranja" datatype="xs:date">2016-06-13+02:00</pro:DatumKreiranja>
+    </propis>
+    <propis ID="838604" Datum="2016-06-13+02:00" Status="U_CELINI" about="http://www.parlament.gov.rs/rdf/resoruce/838604">
+        <pro:Naziv>pr</pro:Naziv>
+        <pro:Deo ID="593227">
+            <pro:Naziv>ljladflajdf</pro:Naziv>
+            <clan:Clan ID="110731">
+                <clan:Opis>ad dsa fda</clan:Opis>
+                <clan:Naziv>dfa das fd</clan:Naziv>
+                <clan:Sadrzaj>
+                    <clan:Tekst>
+                        <clan:text>das fdsa dsa</clan:text>
+                    </clan:Tekst>
+                </clan:Sadrzaj>
+            </clan:Clan>
+        </pro:Deo>
+        <pro:DatumKreiranja property="pred:datumKreiranja" datatype="xs:date">2016-06-13+02:00</pro:DatumKreiranja>
+    </propis>
+    <propis ID="257195" Datum="2016-06-13+02:00" Status="U_CELINI" about="http://www.parlament.gov.rs/rdf/resoruce/257195">
+        <pro:Naziv>asdfg</pro:Naziv>
+        <pro:Deo ID="518015">
+            <pro:Naziv>asd</pro:Naziv>
+            <clan:Clan ID="170034">
+                <clan:Opis>sdfaf</clan:Opis>
+                <clan:Naziv>asd</clan:Naziv>
+                <clan:Sadrzaj>
+                    <clan:Tekst>
+                        <clan:text>adsfad das fdas</clan:text>
                     </clan:Tekst>
                 </clan:Sadrzaj>
             </clan:Clan>

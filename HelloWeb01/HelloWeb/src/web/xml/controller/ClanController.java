@@ -23,6 +23,8 @@ import java.security.PrivateKey;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 import javax.servlet.ServletException;
@@ -33,6 +35,8 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -304,7 +308,7 @@ public class ClanController {
 	}
 	
 	@RequestMapping(value = "/prihvacenUCelini/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<Propis> prihvacenUCelini(@PathVariable(value = "id") String id, HttpServletRequest req) throws  JAXBException, ServletException, IOException {
+	public @ResponseBody ResponseEntity<Propis> prihvacenUCelini(@PathVariable(value = "id") String id, HttpServletRequest req) throws  JAXBException, ServletException, IOException, DatatypeConfigurationException {
 		//provera da li postoji JWT, ako postoji, vratice tog korisnika,
 		//ako ne postoji korisnik tj. JWT bacice exception
 		User korisnik = userSer.getUserFromJWT(req);
@@ -327,6 +331,17 @@ public class ClanController {
 			if (p.getID().equals(idPropis)) {
 				propis = propisSer.unmarshallDocumentPropis(propisSer.findPropisById(p.getNaziv()));
 				propis.setStatus("U_CELINI");
+				
+				// Postavljanje datuma prihvaćanja
+				GregorianCalendar calender = new GregorianCalendar();
+				calender.setTime(new Date());
+				
+				XMLGregorianCalendar xmlCalender = DatatypeFactory.newInstance().newXMLGregorianCalendar(calender);
+				
+				Propis.DatumUsvajanja datumUsvajanjaPropisa = new Propis.DatumUsvajanja();
+				datumUsvajanjaPropisa.setProperty(datumUsvajanjaPropisa.getProperty());
+				datumUsvajanjaPropisa.setDatatype(datumUsvajanjaPropisa.getDatatype());
+				datumUsvajanjaPropisa.setValue(xmlCalender);
 			}
 		}
 				

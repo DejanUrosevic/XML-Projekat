@@ -1339,6 +1339,8 @@ public class PropisServiceImpl implements PropisService {
 		// Invoke the query
 		invoker.xquery(deleteQuery);
 		
+		
+		
 		// Brisanje metapodataka propisa
 		// Kreiranje graf menadžera za rad sa rdf
 		GraphManager graphManager = client.newGraphManager();
