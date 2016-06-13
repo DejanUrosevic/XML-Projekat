@@ -35,7 +35,7 @@
                     <xs:complexType>
                         <xs:simpleContent>
                             <xs:extension base="xs:date">
-                                <xs:attribute fixed="pred:datumKriranja" name="property"
+                                <xs:attribute fixed="pred:datumKreiranja" name="property"
                                     type="xs:string" use="required"/>
                                 <xs:attribute fixed="xs:date" name="datatype" type="xs:string"
                                     use="required"/>

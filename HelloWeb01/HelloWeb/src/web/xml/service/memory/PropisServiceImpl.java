@@ -441,9 +441,11 @@ public class PropisServiceImpl implements PropisService {
 		propis.setDatum(date2);
 		
 		// Postavljanje metapodatka koji predstavlja datum kriranja propisa
-		Propis.DatumKreiranja datumKreiranjPropisa = new Propis.DatumKreiranja();
-		datumKreiranjPropisa.setValue(date2);
-		propis.setDatumKreiranja(datumKreiranjPropisa);
+		Propis.DatumKreiranja datumKreiranjaPropisa = new Propis.DatumKreiranja();
+		datumKreiranjaPropisa.setProperty(datumKreiranjaPropisa.getProperty()); 		// Pošto neće samo da se izgeneriše
+		datumKreiranjaPropisa.setDatatype(datumKreiranjaPropisa.getDatatype());			// Pošto neće samo da se izgeneriše
+		datumKreiranjaPropisa.setValue(date2);
+		propis.setDatumKreiranja(datumKreiranjaPropisa);
 
 		// Postavljanje about atributa/resursa za metapodatke
 		propis.setAbout("http://www.parlament.gov.rs/rdf/resoruce/"+propis.getID());

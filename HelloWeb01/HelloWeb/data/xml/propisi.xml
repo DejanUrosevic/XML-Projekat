@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<propisi xmlns:pro="http://www.parlament.gov.rs/propis" xmlns:pred="http://www.parlament.gov.rs/predicate" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:akt="http://www.parlament.gov.rs/akt" xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:aman="http://www.parlament.gov.rs/amandman" xmlns:ns8="http://www.w3.org/ns/rdfa#">
+<propisi xmlns:pro="http://www.parlament.gov.rs/propis" xmlns:pred="http://www.parlament.gov.rs/predicate/" xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:akt="http://www.parlament.gov.rs/akt" xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:aman="http://www.parlament.gov.rs/amandman" xmlns:ns8="http://www.w3.org/ns/rdfa#">
     <propis ID="198620" Datum="2016-06-10+02:00" Status="U_CELINI">
         <pro:Naziv>Propis</pro:Naziv>
         <pro:Deo ID="76492">
@@ -63,22 +63,6 @@
             </pro:Glava>
         </pro:Deo>
     </propis>
-    <propis ID="842366" Datum="2016-06-13+02:00" Status="PREDLOZEN" about="http://www.parlament.gov.rs/rdf/resoruce/842366">
-        <pro:Naziv>Propis1</pro:Naziv>
-        <pro:Deo ID="905462">
-            <pro:Naziv>as</pro:Naziv>
-            <clan:Clan ID="267307">
-                <clan:Opis>asdf</clan:Opis>
-                <clan:Naziv>asd</clan:Naziv>
-                <clan:Sadrzaj>
-                    <clan:Tekst>
-                        <clan:text>asdfg</clan:text>
-                    </clan:Tekst>
-                </clan:Sadrzaj>
-            </clan:Clan>
-        </pro:Deo>
-        <pro:DatumKreiranja>2016-06-13+02:00</pro:DatumKreiranja>
-    </propis>
     <propis ID="874537" Datum="2016-06-13+02:00" Status="PREDLOZEN" about="http://www.parlament.gov.rs/rdf/resoruce/874537">
         <pro:Naziv>Propis2</pro:Naziv>
         <pro:Deo ID="356367">
@@ -95,36 +79,20 @@
         </pro:Deo>
         <pro:DatumKreiranja>2016-06-13+02:00</pro:DatumKreiranja>
     </propis>
-    <propis ID="250826" Datum="2016-06-13+02:00" Status="PREDLOZEN" about="http://www.parlament.gov.rs/rdf/resoruce/250826">
-        <pro:Naziv>Propis3</pro:Naziv>
-        <pro:Deo ID="119822">
-            <pro:Naziv>pr</pro:Naziv>
-            <clan:Clan ID="800632">
-                <clan:Opis>asdf</clan:Opis>
-                <clan:Naziv>cl</clan:Naziv>
+    <propis ID="890803" Datum="2016-06-13+02:00" Status="PREDLOZEN" about="http://www.parlament.gov.rs/rdf/resoruce/890803">
+        <pro:Naziv>propisn</pro:Naziv>
+        <pro:Deo ID="888815">
+            <pro:Naziv>dw</pro:Naziv>
+            <clan:Clan ID="791227">
+                <clan:Opis>asdfad</clan:Opis>
+                <clan:Naziv>asdf</clan:Naziv>
                 <clan:Sadrzaj>
                     <clan:Tekst>
-                        <clan:text>asdfg</clan:text>
+                        <clan:text>dsagfas</clan:text>
                     </clan:Tekst>
                 </clan:Sadrzaj>
             </clan:Clan>
         </pro:Deo>
-        <pro:DatumKreiranja>2016-06-13+02:00</pro:DatumKreiranja>
-    </propis>
-    <propis ID="69912" Datum="2016-06-13+02:00" Status="U_CELINI" about="http://www.parlament.gov.rs/rdf/resoruce/69912">
-        <pro:Naziv>Novi propis</pro:Naziv>
-        <pro:Deo ID="882553">
-            <pro:Naziv>deo propis</pro:Naziv>
-            <clan:Clan ID="278120">
-                <clan:Opis>fasjkdfnasdfjn aadf asdf</clan:Opis>
-                <clan:Naziv>clan novi</clan:Naziv>
-                <clan:Sadrzaj>
-                    <clan:Tekst>
-                        <clan:text>dddddd ffffffff</clan:text>
-                    </clan:Tekst>
-                </clan:Sadrzaj>
-            </clan:Clan>
-        </pro:Deo>
-        <pro:DatumKreiranja>2016-06-13+02:00</pro:DatumKreiranja>
+        <pro:DatumKreiranja property="pred:datumKreiranja" datatype="xs:date">2016-06-13+02:00</pro:DatumKreiranja>
     </propis>
 </propisi>
