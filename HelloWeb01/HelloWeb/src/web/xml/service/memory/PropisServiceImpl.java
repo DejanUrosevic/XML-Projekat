@@ -28,6 +28,7 @@ import java.security.UnrecoverableKeyException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -68,6 +69,7 @@ import jaxb.from.xsd.Clan.Sadrzaj.Stav;
 import jaxb.from.xsd.Propis.Deo;
 import jaxb.from.xsd.Propis.Deo.Glava;
 import net.sf.saxon.TransformerFactoryImpl;
+import sun.util.resources.cldr.aa.CalendarData_aa_ER;
 
 import org.apache.fop.apps.FOUserAgent;
 import org.apache.fop.apps.Fop;
@@ -92,6 +94,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.DatabaseClientFactory.Authentication;
@@ -103,12 +106,16 @@ import com.marklogic.client.io.DOMHandle;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.FileHandle;
 import com.marklogic.client.io.InputStreamHandle;
+import com.marklogic.client.io.JacksonHandle;
 import com.marklogic.client.io.SearchHandle;
 import com.marklogic.client.query.MatchDocumentSummary;
 import com.marklogic.client.query.QueryManager;
 import com.marklogic.client.query.StringQueryDefinition;
 import com.marklogic.client.semantics.GraphManager;
 import com.marklogic.client.semantics.RDFMimeTypes;
+import com.marklogic.client.semantics.SPARQLMimeTypes;
+import com.marklogic.client.semantics.SPARQLQueryDefinition;
+import com.marklogic.client.semantics.SPARQLQueryManager;
 import com.sun.org.apache.xml.internal.security.algorithms.MessageDigestAlgorithm;
 import com.sun.org.apache.xml.internal.security.exceptions.XMLSecurityException;
 import com.sun.org.apache.xml.internal.security.signature.XMLSignature;
@@ -245,28 +252,105 @@ public class PropisServiceImpl implements PropisService {
 	}
 	
 	@Override
-	public Propisi pretraziPoMetapodacima(String reqBody) throws JAXBException {
+	public Propisi pretraziPoMetapodacima(String reqBody) throws JAXBException, FileNotFoundException {
+		String kreiranOdStr = null;
+		String usvojenOdStr = null;
+		
+		// Izvačenje neophodnih podataka iz zahteva
 		JSONObject reqBodyJson = new JSONObject(reqBody);
 				
 		if (reqBodyJson.has("kreiranOd") && !reqBodyJson.isNull("kreiranOd")) {
 			JSONObject kreiranOdJSON = reqBodyJson.getJSONObject("kreiranOd");
-			
-			int danKreiranOd = kreiranOdJSON.getInt("day");
-			int mesecKreiranOd = kreiranOdJSON.getInt("mesec");
-			int godinaKreiranOd = kreiranOdJSON.getInt("godina");	
+			try {
+				// Preuzimanje dana, meseca i godine od kada je akt kreiran
+				int danKreiranOd = kreiranOdJSON.getInt("dan");
+				int mesecKreiranOd = kreiranOdJSON.getInt("mesec");
+				int godinaKreiranOd = kreiranOdJSON.getInt("godina");
+				
+				// Formatiranje datuma
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+				Calendar calendar = new GregorianCalendar(godinaKreiranOd, mesecKreiranOd-1, danKreiranOd);
+				kreiranOdStr = sdf.format(calendar.getTime());
+				
+				System.out.println(kreiranOdStr);
+			} catch (Exception e) {
+				kreiranOdStr = null;
+				
+				System.out.println("Some error happend [kreiranOd]");
+			}
 		}
 		
 		if (reqBodyJson.has("usvojenOd") && !reqBodyJson.isNull("usvojenOd")) {
 			JSONObject usvojenOdJSON = reqBodyJson.getJSONObject("usvojenOd");
 			
-			int danUsvojenOd = usvojenOdJSON.getInt("dan");
-			int mesecUsvojenOd = usvojenOdJSON.getInt("mesec");
-			int godinaUsvojenOd = usvojenOdJSON.getInt("godina");
+			try {
+				int danUsvojenOd = usvojenOdJSON.getInt("dan");
+				int mesecUsvojenOd = usvojenOdJSON.getInt("mesec");
+				int godinaUsvojenOd = usvojenOdJSON.getInt("godina");
+
+				// Formatiranje datuma 
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				
+				Calendar calendar = new GregorianCalendar(godinaUsvojenOd, mesecUsvojenOd-1, danUsvojenOd);
+				usvojenOdStr = sdf.format(calendar.getTime());
+				
+				System.out.println(usvojenOdStr);
+			} catch (Exception e) {
+				System.out.println("Some error happend [usvojenOd]");
+			}
 		}
 		
-		// TODO realizovati upit
+		// Realizacija upita
+		// Klijent za rad sa bazom podataka
+		DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37", "tim37", "tim37", Authentication.DIGEST);
 		
-		return new Propisi();
+		// SPARQL menadžer za rad sa upitima nad RDF
+		SPARQLQueryManager sparqlQueryManager = client.newSPARQLQueryManager();
+		
+		// Upit
+		String query = "";
+		query += "PREFIX xs: <http://www.w3.org/2001/XMLSchema#>";
+		query += "SELECT * ";
+		query += "WHERE {";
+		query += "?subject <http://www.parlament.gov.rs/predicate/datumKreiranja> ?datumKreiranja";
+		query += "}";
+		SPARQLQueryDefinition sparqlQueryDef = sparqlQueryManager.newQueryDefinition(query);
+		
+		// Jackson rukovaoc rezultatom
+		JacksonHandle resultsHandle = new JacksonHandle();
+		resultsHandle.setMimetype(SPARQLMimeTypes.SPARQL_JSON);
+		
+		// Izvršavanje upita
+		resultsHandle = sparqlQueryManager.executeSelect(sparqlQueryDef, resultsHandle);
+		
+		// Obrada rezultata
+		String subjectPre = "http://www.parlament.gov.rs/rdf/resoruce/";	// Prefiks kod subjekta
+		Propisi propisi = new Propisi();
+		
+		// JAXB
+		JAXBContext context = JAXBContext.newInstance(Propis.class);
+		Unmarshaller unmarshaller = context.createUnmarshaller();
+		
+		JsonNode tuples = resultsHandle.get().path("results").path("bindings");
+		for (JsonNode row : tuples) {
+			String subject = row.path("subject").path("value").asText();
+			
+			if (!subject.equals("")) {
+				String subjectId = subject.substring(subjectPre.length()); // Izvalčimo id
+				
+				System.out.println(subjectId);
+				
+				// Pronalaženje dokumenta na osnovu izvučenog id
+				Document doc = findPropisById(subjectId);
+				
+				// Pretvaranje u Propis objekat i dodavanje u rezultat
+				Propis propis = (Propis) unmarshaller.unmarshal(doc);
+				propisi.getPropisi().add(propis);
+			}
+		}
+
+		return propisi;
 	}
 
 	@Override
@@ -283,7 +367,7 @@ public class PropisServiceImpl implements PropisService {
 		String docIdPre = propisi.getPropisi().get(propisi.getPropisi().size() - 1).getNaziv().replaceAll("\\s", "");
 		String docId = docIdPre	+ ".xml";
 		String collId = "/skupstina/safePropisi";
-
+		
 		InputStreamHandle handle = new InputStreamHandle(new FileInputStream(f.getAbsolutePath()));
 		DocumentMetadataHandle metadata = new DocumentMetadataHandle();
 		metadata.getCollections().add(collId);
@@ -457,9 +541,11 @@ public class PropisServiceImpl implements PropisService {
 		propis.getDeo().add(deo);
 		propis.setStatus("PREDLOZEN");
 		
-		GregorianCalendar c = new GregorianCalendar();
+
 		
+		GregorianCalendar c = new GregorianCalendar();	
 		c.setTime(new Date()); 
+		
 		XMLGregorianCalendar date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
 		Calendar calendar = date2.toGregorianCalendar();
 		
@@ -473,7 +559,11 @@ public class PropisServiceImpl implements PropisService {
 		propis.setDatumKreiranja(datumKreiranjaPropisa);
 
 		// Postavljanje about atributa/resursa za metapodatke
-		propis.setAbout("http://www.parlament.gov.rs/rdf/resoruce/"+propis.getID());
+		// propis.setAbout("http://www.parlament.gov.rs/rdf/resoruce/"+propis.getID());
+		
+		// svaki novi propis ce imati svoje ime kao naziv xml fajla
+		String docIdPre = propis.getNaziv().replaceAll("\\s", "");
+		propis.setAbout("http://www.parlament.gov.rs/rdf/resoruce/"+docIdPre);
 		
 		return propis;
 	}

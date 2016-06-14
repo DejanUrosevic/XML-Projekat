@@ -1,130 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <propisi xmlns:pro="http://www.parlament.gov.rs/propis" xmlns:pred="http://www.parlament.gov.rs/predicate/" xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:akt="http://www.parlament.gov.rs/akt" xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:aman="http://www.parlament.gov.rs/amandman" xmlns:ns8="http://www.w3.org/ns/rdfa#">
-    <propis ID="198620" Datum="2016-06-10+02:00" Status="U_CELINI">
-        <pro:Naziv>Propis</pro:Naziv>
-        <pro:Deo ID="76492">
-            <pro:Naziv>Deo</pro:Naziv>
-            <clan:Clan ID="533221">
-                <clan:Opis>aiusd fhadfap sdf asdfas dnfksd nf</clan:Opis>
-                <clan:Naziv>Clan</clan:Naziv>
+    <propis ID="240200" Datum="2016-06-14+02:00" Status="PREDLOZEN" about="http://www.parlament.gov.rs/rdf/resoruce/asdfghh">
+        <pro:Naziv>asdfghh</pro:Naziv>
+        <pro:Deo ID="736132">
+            <pro:Naziv>asdf</pro:Naziv>
+            <clan:Clan ID="864285">
+                <clan:Opis>dsfaf</clan:Opis>
+                <clan:Naziv>sdfas</clan:Naziv>
                 <clan:Sadrzaj>
                     <clan:Tekst>
-                        <clan:text>jksd fnkasdhfasdnf asnd fasd fahf</clan:text>
+                        <clan:text>dsafas</clan:text>
                     </clan:Tekst>
                 </clan:Sadrzaj>
             </clan:Clan>
         </pro:Deo>
-    </propis>
-    <propis ID="399350" Datum="2016-06-11+02:00" Status="U_CELINI">
-        <pro:Naziv>ffff</pro:Naziv>
-        <pro:Deo ID="631190">
-            <pro:Naziv>fqwfwq</pro:Naziv>
-            <clan:Clan ID="550065">
-                <clan:Opis>wqfwqwq</clan:Opis>
-                <clan:Naziv>fwqfwq</clan:Naziv>
-                <clan:Sadrzaj>
-                    <clan:Tekst>
-                        <clan:text>nf sdf</clan:text>
-                    </clan:Tekst>
-                </clan:Sadrzaj>
-            </clan:Clan>
-        </pro:Deo>
-    </propis>
-    <propis ID="289650" Datum="2016-06-10+02:00" Status="U_CELINI">
-        <pro:Naziv>123fwe wefwe fwefwe wef</pro:Naziv>
-        <pro:Deo ID="872957">
-            <pro:Naziv>fewfwe</pro:Naziv>
-            <clan:Clan ID="91637">
-                <clan:Opis>fwefwefwefewfwefwefwe</clan:Opis>
-                <clan:Naziv>wefwefwe</clan:Naziv>
-                <clan:Sadrzaj>
-                    <clan:Tekst>
-                        <clan:text>trhrt rthtrhtrhr hr hr hrt htrhrt</clan:text>
-                    </clan:Tekst>
-                </clan:Sadrzaj>
-            </clan:Clan>
-        </pro:Deo>
-    </propis>
-    <propis ID="956691" Datum="2016-06-11+02:00" Status="U_CELINI">
-        <pro:Naziv>AliMePamti</pro:Naziv>
-        <pro:Deo ID="231649">
-            <pro:Naziv>USrcuMePonesi</pro:Naziv>
-            <pro:Glava ID="12322">
-                <pro:Naziv>BicuSaTobom</pro:Naziv>
-                <clan:Clan ID="894288">
-                    <clan:Opis>S tvojim usnama da nazdravim.</clan:Opis>
-                    <clan:Naziv>SveDokVina</clan:Naziv>
-                    <clan:Sadrzaj>
-                        <clan:Tekst>
-                            <clan:text>Nemam srca da te samu ostavim. Dok na stulo gori cigareta, nemam srca da te samu ostavim. Ojsaaa prske.</clan:text>
-                        </clan:Tekst>
-                    </clan:Sadrzaj>
-                </clan:Clan>
-            </pro:Glava>
-        </pro:Deo>
-    </propis>
-    <propis ID="874537" Datum="2016-06-13+02:00" Status="PREDLOZEN" about="http://www.parlament.gov.rs/rdf/resoruce/874537">
-        <pro:Naziv>Propis2</pro:Naziv>
-        <pro:Deo ID="356367">
-            <pro:Naziv>pr</pro:Naziv>
-            <clan:Clan ID="310596">
-                <clan:Opis>asdf</clan:Opis>
-                <clan:Naziv>asd</clan:Naziv>
-                <clan:Sadrzaj>
-                    <clan:Tekst>
-                        <clan:text>asdfg</clan:text>
-                    </clan:Tekst>
-                </clan:Sadrzaj>
-            </clan:Clan>
-        </pro:Deo>
-        <pro:DatumKreiranja>2016-06-13+02:00</pro:DatumKreiranja>
-    </propis>
-    <propis ID="890803" Datum="2016-06-13+02:00" Status="U_CELINI" about="http://www.parlament.gov.rs/rdf/resoruce/890803">
-        <pro:Naziv>propisn</pro:Naziv>
-        <pro:Deo ID="888815">
-            <pro:Naziv>dw</pro:Naziv>
-            <clan:Clan ID="791227">
-                <clan:Opis>asdfad</clan:Opis>
-                <clan:Naziv>asdf</clan:Naziv>
-                <clan:Sadrzaj>
-                    <clan:Tekst>
-                        <clan:text>dsagfas fdasjkfldas</clan:text>
-                    </clan:Tekst>
-                </clan:Sadrzaj>
-            </clan:Clan>
-        </pro:Deo>
-        <pro:DatumKreiranja property="pred:datumKreiranja" datatype="xs:date">2016-06-13+02:00</pro:DatumKreiranja>
-    </propis>
-    <propis ID="838604" Datum="2016-06-13+02:00" Status="U_CELINI" about="http://www.parlament.gov.rs/rdf/resoruce/838604">
-        <pro:Naziv>pr</pro:Naziv>
-        <pro:Deo ID="593227">
-            <pro:Naziv>ljladflajdf</pro:Naziv>
-            <clan:Clan ID="110731">
-                <clan:Opis>ad dsa fda</clan:Opis>
-                <clan:Naziv>dfa das fd</clan:Naziv>
-                <clan:Sadrzaj>
-                    <clan:Tekst>
-                        <clan:text>das fdsa dsa</clan:text>
-                    </clan:Tekst>
-                </clan:Sadrzaj>
-            </clan:Clan>
-        </pro:Deo>
-        <pro:DatumKreiranja property="pred:datumKreiranja" datatype="xs:date">2016-06-13+02:00</pro:DatumKreiranja>
-    </propis>
-    <propis ID="257195" Datum="2016-06-13+02:00" Status="U_CELINI" about="http://www.parlament.gov.rs/rdf/resoruce/257195">
-        <pro:Naziv>asdfg</pro:Naziv>
-        <pro:Deo ID="518015">
-            <pro:Naziv>asd</pro:Naziv>
-            <clan:Clan ID="170034">
-                <clan:Opis>sdfaf</clan:Opis>
-                <clan:Naziv>asd</clan:Naziv>
-                <clan:Sadrzaj>
-                    <clan:Tekst>
-                        <clan:text>adsfad das fdas</clan:text>
-                    </clan:Tekst>
-                </clan:Sadrzaj>
-            </clan:Clan>
-        </pro:Deo>
-        <pro:DatumKreiranja property="pred:datumKreiranja" datatype="xs:date">2016-06-13+02:00</pro:DatumKreiranja>
+        <pro:DatumKreiranja property="pred:datumKreiranja" datatype="xs:date">2016-06-14+02:00</pro:DatumKreiranja>
     </propis>
 </propisi>

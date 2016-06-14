@@ -49,8 +49,9 @@ public interface PropisService extends CrudService<Propisi> {
 	 * @param reqBody
 	 * @return
 	 * @throws JAXBException
+	 * @throws FileNotFoundException 
 	 */
-	public Propisi pretraziPoMetapodacima(String reqBody) throws JAXBException;
+	public Propisi pretraziPoMetapodacima(String reqBody) throws JAXBException, FileNotFoundException;
 
 	/**
 	 * Podaci sa klijenta kojima se puni objekat Propis

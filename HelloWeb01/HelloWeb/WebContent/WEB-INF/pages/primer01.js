@@ -1035,7 +1035,7 @@
 	var pretragaAkataCtrl = function($scope, $state, $resource) {
 		// Resurs za pristup rest servisu za pretragu po sadržaju
 		var pretragaPoSadrzajuResurs = $resource(
-				serverUrl + '/clan/pretragaPoSadrzaju', null, {
+				serverUrl + 'clan/pretragaPoSadrzaju', null, {
 					pretrazi : {
 						method : 'POST'
 					}
@@ -1043,7 +1043,7 @@
 		
 		// Resurs za pristup rest servisu za pretragu po metapodacima
 		var pretragaPoMetapodacimaResurs = $resource(
-				serverUrl + '/clan/pretragaPoMetapodacima', null, {
+				serverUrl + 'clan/pretragaPoMetapodacima', null, {
 					pretrazi : {
 						method : 'POST'
 					}

@@ -412,9 +412,10 @@ public class ClanController {
 	 * @param reqBody
 	 * @return
 	 * @throws JAXBException
+	 * @throws FileNotFoundException 
 	 */
 	@RequestMapping(value = "/pretragaPoMetapodacima", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public @ResponseBody ResponseEntity<Propisi> pretragaAkataPoMetapodacima(@RequestBody String reqBody) throws JAXBException {
+	public @ResponseBody ResponseEntity<Propisi> pretragaAkataPoMetapodacima(@RequestBody String reqBody) throws JAXBException, FileNotFoundException {
 		String cleanPostPayload = Jsoup.clean(reqBody, Whitelist.basic());
 		
 		System.out.println(cleanPostPayload);
