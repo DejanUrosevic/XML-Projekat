@@ -13,13 +13,21 @@
 		<div id="tableContainer-1">
 			<div id="tableContainer-2">
 				<br />
+				
 				<h2 style="text-align: center; color: #0033cc;">
 					<u>Pretraga akata</u>
 				</h2>
+				
 				<br />
 				<hr />
 				<br />
-				<form name="myForm" ng-submit="pretraga.pretrazi()">
+				
+				<!-- Forma za pretragu po sadržaju -->
+				<form ng-submit="pretraga.pretraziPoSadrzaju()">
+					<h3 style="text-align: center; color: #03c;">
+						<u>Pretraga po sadržaju</u>
+					</h3>
+					
 					<table id="myTable">
 						<tr>
 							<th class="sredina">Unesite upit za pretragu</th>
@@ -31,7 +39,7 @@
 						</tr>
 						
 						<tr>
-							<td style="text-align">
+							<td style="text-align:center">
 								<button type="submit"
 										style="background-color: transparent; border-color: transparent;">
 									<img src="css/images/search.jpg" height="35" />
@@ -45,6 +53,47 @@
 				<hr />
 				<br />
 				
+				<!-- Forma za pretragu po metapodacima -->
+				<form ng-submit="pretraga.pretraziPoMetapodacima()">
+					<h3 style="text-align: center; color: #03c;">
+						<u>Pretraga po metapodacima</u>
+					</h3>
+					
+					<table>
+						<tr>
+							<th class="sredina">Kreirani od</th>
+						</tr>
+						<tr>
+							<td class="sredina">
+								<input type="date" ng-model="pretraga.kreiranOd" />
+							</td>
+						</tr>
+						
+						<tr>
+							<th class="sredina">Usvojeni od</th>
+						</tr>
+						<tr>
+							<td class="sredina">
+								<input type="date" ng-model="pretraga.usvojenOd" />
+							</td>
+						</tr>
+						
+						<tr>
+							<td style="text-align: center">
+								<button type="submit"
+										style="background-color: transparent; border-color: transparent;">
+									<img src="css/images/search.jpg" height="35" />
+								</button>
+							</td>
+						</tr>
+					</table>
+				</form>
+				
+				<br />
+				<hr />
+				<br />
+				
+				<!-- Odeljak za prikazivanje rezultata pretrage -->
 				<div>
 					<h2 style="text-align: center; color: #0033cc;">
 						<u>Rezultati pretrage</u>

@@ -1029,13 +1029,21 @@
 	}
 
 	/**
-	 * Angular kontroler zadužen za pronalaženje akata po različitim kriterijuma
-	 * i sadržajima. Za sada je implementirana mogućnost pretreaživanja po
-	 * sadržaju.
+	 * Angular kontroler zadužen za pretragu odnosno pronalaženje.
+	 * Omogućava pretragu po metapodacima i po sadržaju (odvojeno).
 	 */
-	var pretragaAkataCtrl = function($scope, $state, $resource, $http) {
-		var PretragaAkataResurs = $resource(
-				serverUrl + '/clan/pretragaPropisa', null, {
+	var pretragaAkataCtrl = function($scope, $state, $resource) {
+		// Resurs za pristup rest servisu za pretragu po sadržaju
+		var pretragaPoSadrzajuResurs = $resource(
+				serverUrl + '/clan/pretragaPoSadrzaju', null, {
+					pretrazi : {
+						method : 'POST'
+					}
+				});
+		
+		// Resurs za pristup rest servisu za pretragu po metapodacima
+		var pretragaPoMetapodacimaResurs = $resource(
+				serverUrl + '/clan/pretragaPoMetapodacima', null, {
 					pretrazi : {
 						method : 'POST'
 					}
@@ -1043,16 +1051,59 @@
 
 		$scope.pretraga = {};
 		$scope.pretraga.upit = "";
+		$scope.pretraga.kreiranOd = "";
+		$scope.pretraga.usvojenOd = "";
 		$scope.pretraga.rezultat = [];
 
-		$scope.pretraga.pretrazi = function() {
-			PretragaAkataResurs.pretrazi({
+		// Funkcija zakačena za scope koja pokreće pretragu po sadržaju
+		$scope.pretraga.pretraziPoSadrzaju = function() {
+			pretragaPoSadrzajuResurs.pretrazi({
 				upit : $scope.pretraga.upit
 			}, function(data) {
 				$scope.pretraga.rezultat = data.propisi;
 			});
 		};
+		
+		// Funkcija zakačena za scope koja pokreće pretragu po metapodacima
+		$scope.pretraga.pretraziPoMetapodacima = function() {
+			console.log($scope.pretraga.kreiranOd);
+			console.log($scope.pretraga.usvojenOd);
+			
+			var kreiranOd = null;
+			var usvojenOd = null;
+			
+			if ($scope.pretraga.kreiranOd != null) {
+				var kreiranOdObj = new Date($scope.pretraga.kreiranOd);
+				
+				kreiranOd = {};
+				kreiranOd.dan = kreiranOdObj.getDate();
+				kreiranOd.mesec = kreiranOdObj.getMonth()+1;
+				kreiranOd.godina = kreiranOdObj.getFullYear();
+				
+				console.log(kreiranOd);
+			}
+			
+			if ($scope.pretraga.usvojenOd != null) {
+				var usvojenOdObj = new Date($scope.pretraga.usvojenOd);
+				
+				usvojenOd = {};
+				usvojenOd.dan = usvojenOdObj.getDate();
+				usvojenOd.mesec = usvojenOdObj.getMonth()+1;
+				usvojenOd.godina = usvojenOdObj.getFullYear();
+			}
+			
+			console.log(kreiranOdObj);
+			console.log(usvojenOdObj);
+			
+			pretragaPoMetapodacimaResurs.pretrazi({
+				kreiranOd : kreiranOd,
+				usvojenOd : usvojenOd
+			}, function(data) {
+				$scope.pretraga.rezultat = data.propisi;
+			});
+		};
 
+		// Funkcija zakačena za scope koja pokreće prikaz odabranog metapodatka
 		$scope.pretraga.pregledAkta = function(propisId) {
 			$state.go('izabranPropis', {
 				id : propisId

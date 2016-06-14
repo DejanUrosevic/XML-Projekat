@@ -393,17 +393,33 @@ public class ClanController {
 	}
 
 	/**
-	 * Preuzimanje akata tj. propisa koji zadovoljavaju uslov pretrage
+	 * Preuzimanje akata tj. propisa koji zadovoljavaju uslov pretrage po sadržaju
 	 * 
-	 * @param requestBody 
+	 * @param reqBody 
 	 * @return
 	 * @throws JAXBException
 	 */
-	@RequestMapping(value = "/pretragaPropisa", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public @ResponseBody ResponseEntity<Propisi> pretragaPropisa(@RequestBody String reqBody) throws JAXBException {
-		
+	@RequestMapping(value = "/pretragaPoSadrzaju", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	public @ResponseBody ResponseEntity<Propisi> pretragaAkataPoSadrzaju(@RequestBody String reqBody) throws JAXBException {	
 		String cleanPostPayload = Jsoup.clean(reqBody, Whitelist.basic());
-		return new ResponseEntity<Propisi>(propisSer.pretrazi(cleanPostPayload), HttpStatus.OK);
+		
+		return new ResponseEntity<Propisi>(propisSer.pretraziPoSadrzaju(cleanPostPayload), HttpStatus.OK);
+	}
+	
+	/**
+	 * Preuzimanje akata tj. propisa koji zadovoljavaju uslove pretrage po metapodacima
+	 * 
+	 * @param reqBody
+	 * @return
+	 * @throws JAXBException
+	 */
+	@RequestMapping(value = "/pretragaPoMetapodacima", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	public @ResponseBody ResponseEntity<Propisi> pretragaAkataPoMetapodacima(@RequestBody String reqBody) throws JAXBException {
+		String cleanPostPayload = Jsoup.clean(reqBody, Whitelist.basic());
+		
+		System.out.println(cleanPostPayload);
+		
+		return new ResponseEntity<Propisi>(propisSer.pretraziPoMetapodacima(cleanPostPayload), HttpStatus.OK);
 	}
 	
 	/**

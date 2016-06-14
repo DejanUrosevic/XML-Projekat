@@ -163,7 +163,7 @@ public class PropisServiceImpl implements PropisService {
 	}
 	
 	@Override
-	public Propisi pretrazi(String reqBody) throws JAXBException {
+	public Propisi pretraziPoSadrzaju(String reqBody) throws JAXBException {
 		JSONObject reqBodyJson = new JSONObject(reqBody);	
 		String upit = reqBodyJson.getString("upit");
 		System.out.println(upit);
@@ -242,6 +242,31 @@ public class PropisServiceImpl implements PropisService {
 		client.release();
 					
 		return propisi;
+	}
+	
+	@Override
+	public Propisi pretraziPoMetapodacima(String reqBody) throws JAXBException {
+		JSONObject reqBodyJson = new JSONObject(reqBody);
+				
+		if (reqBodyJson.has("kreiranOd") && !reqBodyJson.isNull("kreiranOd")) {
+			JSONObject kreiranOdJSON = reqBodyJson.getJSONObject("kreiranOd");
+			
+			int danKreiranOd = kreiranOdJSON.getInt("day");
+			int mesecKreiranOd = kreiranOdJSON.getInt("mesec");
+			int godinaKreiranOd = kreiranOdJSON.getInt("godina");	
+		}
+		
+		if (reqBodyJson.has("usvojenOd") && !reqBodyJson.isNull("usvojenOd")) {
+			JSONObject usvojenOdJSON = reqBodyJson.getJSONObject("usvojenOd");
+			
+			int danUsvojenOd = usvojenOdJSON.getInt("dan");
+			int mesecUsvojenOd = usvojenOdJSON.getInt("mesec");
+			int godinaUsvojenOd = usvojenOdJSON.getInt("godina");
+		}
+		
+		// TODO realizovati upit
+		
+		return new Propisi();
 	}
 
 	@Override
