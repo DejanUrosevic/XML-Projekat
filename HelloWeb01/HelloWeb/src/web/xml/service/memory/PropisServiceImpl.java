@@ -310,11 +310,35 @@ public class PropisServiceImpl implements PropisService {
 		
 		// Upit
 		String query = "";
-		query += "PREFIX xs: <http://www.w3.org/2001/XMLSchema#>";
+		String filter = "";
+		
+		if (kreiranOdStr != null || usvojenOdStr != null) {
+			filter += "FILTER ( ";
+			
+			if (kreiranOdStr != null && usvojenOdStr != null) {
+				filter += " ?datumKreiranja >= " + "\"" + kreiranOdStr + "\"" + "^^xs:date ";
+				filter += " && ";
+				filter += " ?datumUsvajanja >= " + "\"" + usvojenOdStr + "\"" + "^^xs:date ";
+			} else if (kreiranOdStr != null && usvojenOdStr == null) {
+				filter += " ?datumKreiranja >= " + "\"" + kreiranOdStr + "\"" + "^^xs:date ";
+			} else if (kreiranOdStr == null && usvojenOdStr != null) {
+				filter += " ?datumUsvajanja >= " + "\"" + usvojenOdStr + "\"" + "^^xs:date ";
+			}
+			
+			filter += ")";
+		}
+		
+		query += "PREFIX xs: <http://www.w3.org/2001/XMLSchema#> ";
 		query += "SELECT * ";
-		query += "WHERE {";
-		query += "?subject <http://www.parlament.gov.rs/predicate/datumKreiranja> ?datumKreiranja";
-		query += "}";
+		query += "WHERE { ";
+		query += " ?subject <http://www.parlament.gov.rs/predicate/datumKreiranja> ?datumKreiranja. ";
+		if (usvojenOdStr != null) {
+			query += " ?subject <http://www.parlament.gov.rs/predicate/datumUsvajanja> ?datumUsvajanja. ";
+		}
+		query += filter;
+		query += " }";
+		
+		System.out.println(query);
 		SPARQLQueryDefinition sparqlQueryDef = sparqlQueryManager.newQueryDefinition(query);
 		
 		// Jackson rukovaoc rezultatom
