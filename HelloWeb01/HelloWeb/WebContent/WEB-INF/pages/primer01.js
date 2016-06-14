@@ -48,7 +48,6 @@
 
 							}, function(error) {
 								$scope.error = error
-								alert('Some of data input are invalid!');
 								$scope.userName = '';
 							});
 
@@ -134,7 +133,6 @@
 	}
 	var registerCtrl = function($scope, $resource, $http, $location,
 			$stateParams, $state) {
-		// provera da li ima token u localStorage-u
 		if (localStorage.getItem('key') === null) {
 			$state.go('login');
 		}
@@ -144,7 +142,7 @@
 		// posto imamo token, proveravamo koja je rola, ako je obican gradjanin,
 		// onda dovidjenja!
 		$http.get(serverUrl + '/api/role').success(function(data) {
-			if (data.role === 'gradjanin' || data.role === 'odbornik') {
+			if (data.role === 'gradjanin') {
 				$state.go('main');
 			}
 		})
@@ -1310,6 +1308,7 @@
 
 	app.config(function($stateProvider, $urlRouterProvider) {
 
+		
 		$urlRouterProvider.otherwise('/login');
 
 		$stateProvider.state('login', {
