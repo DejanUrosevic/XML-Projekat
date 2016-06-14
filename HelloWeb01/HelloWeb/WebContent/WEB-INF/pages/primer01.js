@@ -48,6 +48,7 @@
 
 							}, function(error) {
 								$scope.error = error
+								alert('Some of data input are invalid!');
 								$scope.userName = '';
 							});
 
@@ -117,6 +118,38 @@
 		 * Metoda za registraciju korisnika na sistem
 		 */
 		
+//		$scope.register = function() {
+//			$http.post(serverUrl + '/Index/registration', {
+//				ime : $scope.loginKor.ime,
+//				prezime : $scope.loginKor.prezime,
+//				username : $scope.loginKor.username,
+//				password : $scope.loginKor.password,
+//				jksPutanja : $scope.loginKor.jksPutanja,
+//				alias : $scope.loginKor.alias
+//			}).success(function(user, status, headers) {
+//				$location.path('/main');
+//			});
+//		}
+
+	}
+	var registerCtrl = function($scope, $resource, $http, $location,
+			$stateParams, $state) {
+		// provera da li ima token u localStorage-u
+		if (localStorage.getItem('key') === null) {
+			$state.go('login');
+		}
+		// ako ima, zalepi ga na http
+		$http.defaults.headers.common.Authorization = 'Bearer '
+				+ localStorage.getItem('key');
+		// posto imamo token, proveravamo koja je rola, ako je obican gradjanin,
+		// onda dovidjenja!
+		$http.get(serverUrl + '/api/role').success(function(data) {
+			if (data.role === 'gradjanin' || data.role === 'odbornik') {
+				$state.go('main');
+			}
+		})
+		
+		
 		$scope.register = function() {
 			$http.post(serverUrl + '/Index/registration', {
 				ime : $scope.loginKor.ime,
@@ -129,9 +162,7 @@
 				$location.path('/main');
 			});
 		}
-
 	}
-
 	/**
 	 * Kontroler za glavnu stranicu sistema, ovde lepimo na $scope klijenta koji
 	 * se ulogovao.
@@ -1260,6 +1291,7 @@
 	var app = angular
 			.module('app', [ 'ui.router', 'ngResource', 'ngSanitize' ]);
 	app.controller('logInCtrl', logInCtrl);
+	app.controller('registerCtrl', registerCtrl);
 	app.controller('mainPageCtrl', mainPageCtrl);
 	app.controller('sviAktiCtrl', sviAktiCtrl);
 	app.controller('pretragaAkataCtrl', pretragaAkataCtrl);
@@ -1291,7 +1323,7 @@
 		}).state('register', {
 			url : '/register',
 			templateUrl : 'reg-unos.html',
-			controller : 'logInCtrl'
+			controller : 'registerCtrl'
 		}).state('pregledAkata', {
 			url : '/sviAkti',
 			templateUrl : 'sviAkti.html',
