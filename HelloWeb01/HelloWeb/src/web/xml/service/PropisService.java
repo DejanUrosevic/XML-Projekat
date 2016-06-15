@@ -3,6 +3,7 @@ package web.xml.service;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.security.PrivateKey;
 import java.security.cert.Certificate;
 
@@ -270,4 +271,6 @@ public interface PropisService extends CrudService<Propisi> {
 	public boolean verifySignature(Document doc) throws org.apache.xml.security.exceptions.XMLSecurityException;
 	
 	public void toPdf(File propisXml, File propisXsl) throws SAXException, IOException, TransformerConfigurationException, TransformerException;
-}
+	
+	public void saveAgain(File f, BigInteger id) throws FileNotFoundException, JAXBException;
+} 

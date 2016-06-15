@@ -250,7 +250,7 @@ public class AmandmanServiceImpl implements AmandmanService{
 			//	propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");
 				propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
 						"", korisnik.getAlias());
-				propisSer.save(new File("data\\xml\\potpisPropis.xml"));
+				propisSer.saveAgain(new File("data\\xml\\potpisPropis.xml"), propis.getID()); 
 				break;
 			}
 		}

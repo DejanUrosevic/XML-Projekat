@@ -69,7 +69,6 @@ import jaxb.from.xsd.Clan.Sadrzaj.Stav;
 import jaxb.from.xsd.Propis.Deo;
 import jaxb.from.xsd.Propis.Deo.Glava;
 import net.sf.saxon.TransformerFactoryImpl;
-import sun.util.resources.cldr.aa.CalendarData_aa_ER;
 
 import org.apache.fop.apps.FOUserAgent;
 import org.apache.fop.apps.Fop;
@@ -1736,6 +1735,40 @@ public class PropisServiceImpl implements PropisService {
 		out.close();
 		
 		System.out.println("[INFO] End.");
+		
+	}
+
+	@Override
+	public void saveAgain(File f, BigInteger id) throws FileNotFoundException, JAXBException {
+		DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37", "tim37", "tim37",
+				Authentication.valueOf("DIGEST"));
+
+		// Kreiranje menadzera za rad sa xml dokumentima
+		XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+		
+		Propisi propisi = unmarshall(new File("./data/xml/propisi.xml"));
+		
+		String docIdPre = "";
+		
+		for(Propis p : propisi.getPropisi())
+		{
+			if(p.getID().equals(id))
+			{
+				docIdPre = p.getNaziv().replaceAll("\\s", "");
+				break;
+			}
+		}
+		
+		String docId = docIdPre	+ ".xml";
+		String collId = "/skupstina/safePropisi";
+		
+		InputStreamHandle handle = new InputStreamHandle(new FileInputStream(f.getAbsolutePath()));
+		DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+		metadata.getCollections().add(collId);
+		
+		// Zapisivanje xml dokumenta propisa u bazu 
+		xmlManager.write(docId, metadata, handle);
+		
 		
 	}
 

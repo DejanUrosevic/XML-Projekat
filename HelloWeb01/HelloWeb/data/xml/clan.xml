@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?><?xml-stylesheet type='text/xsl' href='clan.xsl' ?>
-<Clan xmlns="http://www.parlament.gov.rs/clan" ID="846289">
-    <Opis>Zgadila mi ljubav, zivot sve.</Opis>
-    <Naziv>Grade moooj</Naziv>
-    <Sadrzaj>
-        <Tekst>
-            <text>Nisam jaaaaa....</text>
-        </Tekst>
-    </Sadrzaj>
-</Clan>
+<clan:Clan xmlns:akt="http://www.parlament.gov.rs/akt" xmlns="http://www.w3.org/ns/rdfa#" xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:aman="http://www.parlament.gov.rs/amandman" xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:pro="http://www.parlament.gov.rs/propis" xmlns:pred="http://www.parlament.gov.rs/predicate/" ID="949167">
+    <clan:Opis>wefwefwefwewefwefew</clan:Opis>
+    <clan:Naziv>fwefewf</clan:Naziv>
+    <clan:Sadrzaj>
+        <clan:Tekst>
+            <clan:text>ewfweeffwe</clan:text>
+        </clan:Tekst>
+    </clan:Sadrzaj>
+</clan:Clan>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns3:Amandman xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" Datum="2016-06-11+02:00" Mesto="Novi Sad" ID="549715" Podnosilac="Odbornik2 Odbornik2">
-    <ns3:Resenje>Nemam srca da te samu ostavim. Dok na stulo gori cigareta, nemam srca da te samu ostavim. fsdf sdf</ns3:Resenje>
-    <ns3:Obrazlozenje>dsfsdfdfds</ns3:Obrazlozenje>
-    <ns2:Clan ID="894288">
-        <ns2:Naziv>SveDokVina</ns2:Naziv>
-        <ns2:Sadrzaj>
-            <ns2:Tekst>
-                <ns2:text>Nemam srca da te samu ostavim. Dok na stulo gori cigareta, nemam srca da te samu ostavim. fsdf sdf</ns2:text>
-            </ns2:Tekst>
-        </ns2:Sadrzaj>
-    </ns2:Clan>
-</ns3:Amandman>
+<aman:Amandman xmlns:akt="http://www.parlament.gov.rs/akt" xmlns="http://www.w3.org/ns/rdfa#" xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:aman="http://www.parlament.gov.rs/amandman" xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:pro="http://www.parlament.gov.rs/propis" xmlns:pred="http://www.parlament.gov.rs/predicate/" Datum="2016-06-15+02:00" Mesto="Novi Sad" ID="587720" Podnosilac="dw dw">
+    <aman:Resenje>1111111</aman:Resenje>
+    <aman:Obrazlozenje>fwqfwqefweq</aman:Obrazlozenje>
+    <clan:Clan ID="791220">
+        <clan:Naziv>wefwe</clan:Naziv>
+        <clan:Sadrzaj>
+            <clan:Tekst>
+                <clan:text>1111111</clan:text>
+            </clan:Tekst>
+        </clan:Sadrzaj>
+    </clan:Clan>
+</aman:Amandman>

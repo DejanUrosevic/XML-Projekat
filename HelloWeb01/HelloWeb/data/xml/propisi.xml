@@ -1,19 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<propisi xmlns:pro="http://www.parlament.gov.rs/propis" xmlns:pred="http://www.parlament.gov.rs/predicate/" xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:akt="http://www.parlament.gov.rs/akt" xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:aman="http://www.parlament.gov.rs/amandman" xmlns:ns8="http://www.w3.org/ns/rdfa#">
-    <propis ID="236333" Datum="2016-06-14+02:00" Status="PREDLOZEN" about="http://www.parlament.gov.rs/rdf/resoruce/asdfg">
-        <pro:Naziv>asdfg</pro:Naziv>
-        <pro:Deo ID="131466">
-            <pro:Naziv>as</pro:Naziv>
-            <clan:Clan ID="639016">
-                <clan:Opis>dsaf</clan:Opis>
-                <clan:Naziv>as</clan:Naziv>
+<propisi xmlns:akt="http://www.parlament.gov.rs/akt" xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:aman="http://www.parlament.gov.rs/amandman" xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:pro="http://www.parlament.gov.rs/propis" xmlns:pred="http://www.parlament.gov.rs/predicate/" xmlns:ns8="http://www.w3.org/ns/rdfa#">
+    <propis ID="449348" Datum="2016-06-15+02:00" Status="PREDLOZEN" about="http://www.parlament.gov.rs/rdf/resoruce/2">
+        <pro:Naziv>2</pro:Naziv>
+        <pro:Deo ID="935061">
+            <pro:Naziv>fqfwqf</pro:Naziv>
+            <clan:Clan ID="343478">
+                <clan:Opis>fqqwfqw</clan:Opis>
+                <clan:Naziv>wqfqw</clan:Naziv>
                 <clan:Sadrzaj>
                     <clan:Tekst>
-                        <clan:text>dfghd</clan:text>
+                        <clan:text>wqfqwwffqw</clan:text>
                     </clan:Tekst>
                 </clan:Sadrzaj>
             </clan:Clan>
         </pro:Deo>
-        <pro:DatumKreiranja property="pred:datumKreiranja" datatype="xs:date">2016-06-14+02:00</pro:DatumKreiranja>
+        <pro:DatumKreiranja property="pred:datumKreiranja" datatype="xs:date">2016-06-15+02:00</pro:DatumKreiranja>
+    </propis>
+    <propis ID="317025" Datum="2016-06-15+02:00" Status="U_CELINI" about="http://www.parlament.gov.rs/rdf/resoruce/1">
+        <pro:Naziv>1</pro:Naziv>
+        <pro:Deo ID="310893">
+            <pro:Naziv>fewfwe</pro:Naziv>
+            <clan:Clan ID="791220">
+                <clan:Opis>ffwefw</clan:Opis>
+                <clan:Naziv>wefwe</clan:Naziv>
+                <clan:Sadrzaj>
+                    <clan:Tekst>
+                        <clan:text>1111111</clan:text>
+                    </clan:Tekst>
+                </clan:Sadrzaj>
+            </clan:Clan>
+        </pro:Deo>
+        <pro:DatumKreiranja property="pred:datumKreiranja" datatype="xs:date">2016-06-15+02:00</pro:DatumKreiranja>
+        <pro:DatumUsvajanja property="pred:datumUsvajanja" datatype="xs:date">2016-06-15+02:00</pro:DatumUsvajanja>
     </propis>
 </propisi>

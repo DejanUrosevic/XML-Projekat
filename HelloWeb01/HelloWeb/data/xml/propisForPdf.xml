@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?><?xml-stylesheet type='text/xsl' href='propis.xsl' ?>
-<pro:Propis xmlns:pro="http://www.parlament.gov.rs/propis" xmlns:pred="http://www.parlament.gov.rs/predicate/" xmlns="http://www.w3.org/ns/rdfa#" xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:akt="http://www.parlament.gov.rs/akt" xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:aman="http://www.parlament.gov.rs/amandman" ID="240200" Datum="2016-06-14+02:00" Status="PREDLOZEN" about="http://www.parlament.gov.rs/rdf/resoruce/asdfghh">
-    <pro:Naziv>asdfghh</pro:Naziv>
-    <pro:Deo ID="736132">
-        <pro:Naziv>asdf</pro:Naziv>
-        <clan:Clan ID="864285">
-            <clan:Opis>dsfaf</clan:Opis>
-            <clan:Naziv>sdfas</clan:Naziv>
+<pro:Propis xmlns:akt="http://www.parlament.gov.rs/akt" xmlns="http://www.w3.org/ns/rdfa#" xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:aman="http://www.parlament.gov.rs/amandman" xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:pro="http://www.parlament.gov.rs/propis" xmlns:pred="http://www.parlament.gov.rs/predicate/" ID="449348" Datum="2016-06-15+02:00" Status="PREDLOZEN" about="http://www.parlament.gov.rs/rdf/resoruce/2">
+    <pro:Naziv>2</pro:Naziv>
+    <pro:Deo ID="935061">
+        <pro:Naziv>fqfwqf</pro:Naziv>
+        <clan:Clan ID="343478">
+            <clan:Opis>fqqwfqw</clan:Opis>
+            <clan:Naziv>wqfqw</clan:Naziv>
             <clan:Sadrzaj>
                 <clan:Tekst>
-                    <clan:text>dsafas</clan:text>
+                    <clan:text>wqfqwwffqw</clan:text>
                 </clan:Tekst>
             </clan:Sadrzaj>
         </clan:Clan>
     </pro:Deo>
-    <pro:DatumKreiranja property="pred:datumKreiranja" datatype="xs:date">2016-06-14+02:00</pro:DatumKreiranja>
+    <pro:DatumKreiranja property="pred:datumKreiranja" datatype="xs:date">2016-06-15+02:00</pro:DatumKreiranja>
 </pro:Propis>

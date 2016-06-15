@@ -163,7 +163,7 @@ public class AmandmanController {
 			propisSer.marshallPropis(propis, new File("data\\xml\\potpisPropis.xml"));
 			propisSer.signPropis(new File("data\\xml\\potpisPropis.xml"), korisnik.getJksPutanja(), korisnik.getAlias(), korisnik.getAlias(),
 					"", korisnik.getAlias());
-			propisSer.save(new File("data\\xml\\potpisPropis.xml"));
+			propisSer.saveAgain(new File("data\\xml\\potpisPropis.xml"), propis.getID());
 			
 			
 		} catch (Exception e) {
