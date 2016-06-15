@@ -1032,7 +1032,7 @@
 	 * Angular kontroler zadužen za pretragu odnosno pronalaženje.
 	 * Omogućava pretragu po metapodacima i po sadržaju (odvojeno).
 	 */
-	var pretragaAkataCtrl = function($scope, $state, $resource) {
+	var pretragaAkataCtrl = function($scope, $state, $resource, $http) {	
 		// Resurs za pristup rest servisu za pretragu po sadržaju
 		var pretragaPoSadrzajuResurs = $resource(
 				serverUrl + 'clan/pretragaPoSadrzaju', null, {
@@ -1108,6 +1108,30 @@
 			$state.go('izabranPropis', {
 				id : propisId
 			});
+		};
+		
+		
+		
+		// odbornici i predsednik skupstine mogu da povuku predloge propisa ili
+		// amandmana
+		// pre nego sto uopste dodje do sednice
+		$scope.povuciPropis = function(propisId, index) {
+			$http.get(serverUrl + '/clan/odbijen/' + propisId)
+				 .success(function(data, header, status) {
+					 $scope.pretraga.rezultat.splice(index, 1);
+				 });
+		};
+		
+		$scope.toPdf = function(propisId) {
+			$http.get(serverUrl + 'clan/toPdf/' + propisId)
+				 .success(function(data, header, status) {
+					 var text = "Your " + data.naziv + " pdf is successfully created.";
+					 
+					 alert(text);
+				 })
+				 .error(function(data, header, status) {
+					 alert("Something went wrong. Please try again.");
+				 });
 		};
 	};
 

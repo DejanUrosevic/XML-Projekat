@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <propisi xmlns:pro="http://www.parlament.gov.rs/propis" xmlns:pred="http://www.parlament.gov.rs/predicate/" xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:akt="http://www.parlament.gov.rs/akt" xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:aman="http://www.parlament.gov.rs/amandman" xmlns:ns8="http://www.w3.org/ns/rdfa#">
-    <propis ID="240200" Datum="2016-06-14+02:00" Status="PREDLOZEN" about="http://www.parlament.gov.rs/rdf/resoruce/asdfghh">
-        <pro:Naziv>asdfghh</pro:Naziv>
-        <pro:Deo ID="736132">
-            <pro:Naziv>asdf</pro:Naziv>
-            <clan:Clan ID="864285">
-                <clan:Opis>dsfaf</clan:Opis>
-                <clan:Naziv>sdfas</clan:Naziv>
-                <clan:Sadrzaj>
-                    <clan:Tekst>
-                        <clan:text>dsafas</clan:text>
-                    </clan:Tekst>
-                </clan:Sadrzaj>
-            </clan:Clan>
-        </pro:Deo>
-        <pro:DatumKreiranja property="pred:datumKreiranja" datatype="xs:date">2016-06-14+02:00</pro:DatumKreiranja>
-    </propis>
     <propis ID="236333" Datum="2016-06-14+02:00" Status="PREDLOZEN" about="http://www.parlament.gov.rs/rdf/resoruce/asdfg">
         <pro:Naziv>asdfg</pro:Naziv>
         <pro:Deo ID="131466">

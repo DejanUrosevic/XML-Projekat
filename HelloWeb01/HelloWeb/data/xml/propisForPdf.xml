@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?><?xml-stylesheet type='text/xsl' href='propis.xsl' ?>
-<Propis xmlns="http://www.parlament.gov.rs/propis" xmlns:ns2="http://www.parlament.gov.rs/clan" xmlns:ns3="http://www.parlament.gov.rs/amandman" ID="956691" Datum="2016-06-11+02:00" Status="U_CELINI">
-    <Naziv>AliMePamti</Naziv>
-    <Deo ID="231649">
-        <Naziv>USrcuMePonesi</Naziv>
-        <Glava ID="12322">
-            <Naziv>BicuSaTobom</Naziv>
-            <ns2:Clan ID="894288">
-                <ns2:Opis>S tvojim usnama da nazdravim.</ns2:Opis>
-                <ns2:Naziv>SveDokVina</ns2:Naziv>
-                <ns2:Sadrzaj>
-                    <ns2:Tekst>
-                        <ns2:text>Nemam srca da te samu ostavim. Dok na stulo gori cigareta, nemam srca da te samu ostavim. Ojsaaa prske.</ns2:text>
-                    </ns2:Tekst>
-                </ns2:Sadrzaj>
-            </ns2:Clan>
-        </Glava>
-    </Deo>
-</Propis>
+<pro:Propis xmlns:pro="http://www.parlament.gov.rs/propis" xmlns:pred="http://www.parlament.gov.rs/predicate/" xmlns="http://www.w3.org/ns/rdfa#" xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:akt="http://www.parlament.gov.rs/akt" xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:aman="http://www.parlament.gov.rs/amandman" ID="240200" Datum="2016-06-14+02:00" Status="PREDLOZEN" about="http://www.parlament.gov.rs/rdf/resoruce/asdfghh">
+    <pro:Naziv>asdfghh</pro:Naziv>
+    <pro:Deo ID="736132">
+        <pro:Naziv>asdf</pro:Naziv>
+        <clan:Clan ID="864285">
+            <clan:Opis>dsfaf</clan:Opis>
+            <clan:Naziv>sdfas</clan:Naziv>
+            <clan:Sadrzaj>
+                <clan:Tekst>
+                    <clan:text>dsafas</clan:text>
+                </clan:Tekst>
+            </clan:Sadrzaj>
+        </clan:Clan>
+    </pro:Deo>
+    <pro:DatumKreiranja property="pred:datumKreiranja" datatype="xs:date">2016-06-14+02:00</pro:DatumKreiranja>
+</pro:Propis>

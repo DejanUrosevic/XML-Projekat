@@ -23,22 +23,28 @@
 					<tr ng-repeat="propis in propisi">
 						<td class="sredina">Pregled propisa <img
 							src="css/images/right.jpg" height="25" /></td>
-						<td class="sredina"><u><b> <a
-									ng-click="pregledAkta(propis.id)"> {{propis.naziv}} </a>
-							</b> </u></td>
-						<td ng-controller="mainPageCtrl" class="sredina"><button
+						<td class="sredina">
+							<u><b> 
+								<a ng-click="pregledAkta(propis.id)"> {{propis.naziv}} </a>
+							</b></u>
+						</td>
+						<td ng-controller="mainPageCtrl" class="sredina">
+							<button
 								ng-if="rolaUser.vrsta === 'odbornik' || rolaUser.vrsta === 'predsednik skupstine'"
 								class="buttonSredina" type="button"
 								style="background-color: transparent; border-color: transparent;"
 								ng-click="povuciPropis(propis.id, $index)">
 								<img src="css/images/reject.ico" height="28" />
-							</button></td>
-						<td ng-controller="mainPageCtrl" class="sredina"><button
+							</button>
+						</td>
+						<td ng-controller="mainPageCtrl" class="sredina">
+							<button
 								class="buttonSredina" type="button"
 								style="background-color: transparent; border-color: transparent;"
 								ng-click="toPdf(propis.id)">
 								<img src="css/images/pdf.png" height="28" />
-							</button></td>
+							</button>
+						</td>
 					</tr>
 				</table>
 			</div>
