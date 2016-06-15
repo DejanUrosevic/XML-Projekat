@@ -54,10 +54,12 @@ import jaxb.from.xsd.Propis;
 import jaxb.from.xsd.Propis.Deo;
 import jaxb.from.xsd.Propis.Deo.Glava;
 
+import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -531,6 +533,37 @@ public class ClanController {
 		
 		return new ResponseEntity<Propis>(HttpStatus.NO_CONTENT);
 		
+	}
+	
+	/**
+	 * Vraća pdf dokumenat sa zadataim imenom 
+	 * 
+	 * @param fileName ime dokumenta bez ekstenzije .pdf
+	 * @return
+	 */
+	@RequestMapping(value = "/file/pdf/{file_name}", method = RequestMethod.GET, produces = "application/pdf")
+	public ResponseEntity<byte[]> getPdfFile(@PathVariable("file_name") String fileName) {
+		fileName += ".pdf";
+		
+		FileInputStream fileStream;
+		try {
+			fileStream = new FileInputStream(new File("data\\pdf\\"+fileName));
+			byte[] contents = IOUtils.toByteArray(fileStream);
+			
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.parseMediaType("application/pdf"));
+			headers.setContentDispositionFormData(fileName, fileName);
+			
+			ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(contents, headers, HttpStatus.OK);
+			
+			return response;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<byte[]>(HttpStatus.NOT_FOUND);
 	}
 
 	/**

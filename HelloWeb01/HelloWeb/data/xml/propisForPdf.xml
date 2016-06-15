@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?><?xml-stylesheet type='text/xsl' href='propis.xsl' ?>
-<pro:Propis xmlns:akt="http://www.parlament.gov.rs/akt" xmlns="http://www.w3.org/ns/rdfa#" xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:aman="http://www.parlament.gov.rs/amandman" xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:pro="http://www.parlament.gov.rs/propis" xmlns:pred="http://www.parlament.gov.rs/predicate/" ID="449348" Datum="2016-06-15+02:00" Status="PREDLOZEN" about="http://www.parlament.gov.rs/rdf/resoruce/2">
-    <pro:Naziv>2</pro:Naziv>
-    <pro:Deo ID="935061">
-        <pro:Naziv>fqfwqf</pro:Naziv>
-        <clan:Clan ID="343478">
-            <clan:Opis>fqqwfqw</clan:Opis>
-            <clan:Naziv>wqfqw</clan:Naziv>
+<pro:Propis xmlns:pro="http://www.parlament.gov.rs/propis" xmlns:pred="http://www.parlament.gov.rs/predicate/" xmlns="http://www.w3.org/ns/rdfa#" xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:akt="http://www.parlament.gov.rs/akt" xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:aman="http://www.parlament.gov.rs/amandman" ID="880763" Datum="2016-06-15+02:00" Status="PREDLOZEN" about="http://www.parlament.gov.rs/rdf/resoruce/PropisPDF">
+    <pro:Naziv>PropisPDF</pro:Naziv>
+    <pro:Deo ID="435094">
+        <pro:Naziv>asd</pro:Naziv>
+        <clan:Clan ID="34570">
+            <clan:Opis>a</clan:Opis>
+            <clan:Naziv>a</clan:Naziv>
             <clan:Sadrzaj>
                 <clan:Tekst>
-                    <clan:text>wqfqwwffqw</clan:text>
+                    <clan:text>a</clan:text>
                 </clan:Tekst>
             </clan:Sadrzaj>
         </clan:Clan>

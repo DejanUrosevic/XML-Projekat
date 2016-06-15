@@ -3,6 +3,26 @@
 	 * Url web server na kome se nalazi aplikacija
 	 */
 	var serverUrl = "//localhost:8443/HelloWeb/";
+	
+	/**
+	 * Obična funkcija koja omogućava download pdf dokumenta
+	 * 
+	 * http treba da bude $http
+	 * fileName naziv pdf fajla bez .pdf ekstenzije
+	 */
+	function downloadPdf(http, fileName) {
+		http.get(serverUrl + 'clan/file/pdf/'+fileName, {responseType: 'arraybuffer'})
+			.success(function(data) {
+				 var blobFile = new Blob([data], {type: 'application/pdf'});
+				 
+				 var fileURL = window.URL.createObjectURL(blobFile);
+				 
+				 var a = document.createElement('a');
+				 a.href = fileURL;
+				 a.download = fileName + '.pdf';
+				 a.click();
+			 });
+	};
 
 	/**
 	 * Ovo je kontroler za logovanje i registraciju korisnika sistema
@@ -257,6 +277,8 @@
 						var text = "Your " + data.naziv
 								+ "pdf is succesfully created."
 						alert(text);
+						
+						downloadPdf($http, "propisPDF");
 					}).error(function(data, header, status) {
 				alert("Something went wrong. Please try again.")
 			})
@@ -1128,6 +1150,8 @@
 					 var text = "Your " + data.naziv + " pdf is successfully created.";
 					 
 					 alert(text);
+					 
+					 downloadPdf($http, "propisPDF");
 				 })
 				 .error(function(data, header, status) {
 					 alert("Something went wrong. Please try again.");
@@ -1281,6 +1305,7 @@
 			$http.get(serverUrl + 'amandman/toPdf/' + amandmanId).success(
 					function(data, status, header) {
 						alert('Your amandman pdf is created');
+						downloadPdf($http, "amandmanPDF");
 					}).error(function(data, status, header) {
 				alert('Something went wrong, please try again.');
 			})
@@ -1360,7 +1385,7 @@
 					$scope.xmlToXsl = data;
 				});
 	}
-
+	
 	var app = angular
 			.module('app', [ 'ui.router', 'ngResource', 'ngSanitize' ]);
 	app.controller('logInCtrl', logInCtrl);
