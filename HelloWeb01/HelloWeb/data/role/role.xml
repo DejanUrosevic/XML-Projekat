@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<role xmlns="https://en.wikipedia.org/wiki/Role-based_access_control">
+    <rola>
+        <permisije>
+            <naziv>unos propisa</naziv>
+        </permisije>
+        <permisije>
+            <naziv>unos amandmana</naziv>
+        </permisije>
+        <permisije>
+            <naziv>unos odbornika</naziv>
+        </permisije>
+        <permisije>
+            <naziv>sednica</naziv>
+        </permisije>
+        <permisije>
+            <naziv>pregled propisa</naziv>
+        </permisije>
+        <permisije>
+            <naziv>pretraga propisa</naziv>
+        </permisije>
+        <permisije>
+            <naziv>brisanje propisa</naziv>
+        </permisije>
+        <naziv>predsednik skupstine</naziv>
+    </rola>
+    <rola>
+        <permisije>
+            <naziv>unos propisa</naziv>
+        </permisije>
+        <permisije>
+            <naziv>unos amandmana</naziv>
+        </permisije>
+        <permisije>
+            <naziv>pregled propisa</naziv>
+        </permisije>
+        <permisije>
+            <naziv>pretraga propisa</naziv>
+        </permisije>
+        <permisije>
+            <naziv>brisanje propisa</naziv>
+        </permisije>
+        <naziv>odbornik</naziv>
+    </rola>
+    <rola>
+        <permisije>
+            <naziv>pregled propisa</naziv>
+        </permisije>
+        <permisije>
+            <naziv>pretraga propisa</naziv>
+        </permisije>
+        <naziv>gradjanin</naziv>
+    </rola>
+</role>

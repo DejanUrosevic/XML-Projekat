@@ -58,6 +58,8 @@ import io.jsonwebtoken.Jwts;
 import web.xml.crl.Sertifikati;
 import web.xml.model.User;
 import web.xml.model.Users;
+import web.xml.role.Role;
+import web.xml.role.Role.Rola;
 import web.xml.service.UserService;
 
 @Service
@@ -93,7 +95,7 @@ public class UserServiceImpl implements UserService {
 
 		JAXBContext context = JAXBContext.newInstance(Users.class);
 
-		// Unmarshaller je objekat zadu�en za konverziju iz XML-a u objektni
+		// Unmarshaller je objekat zaduï¿½en za konverziju iz XML-a u objektni
 		// model
 		Unmarshaller unmarshaller = context.createUnmarshaller();
 
@@ -164,11 +166,11 @@ public class UserServiceImpl implements UserService {
 
 		JAXBContext context = JAXBContext.newInstance(Users.class);
 
-		// Unmarshaller je objekat zadu�en za konverziju iz XML-a u objektni
+		// Unmarshaller je objekat zaduï¿½en za konverziju iz XML-a u objektni
 		// model
 		Unmarshaller unmarshaller = context.createUnmarshaller();
 
-		// Unmarshalling generi�e objektni model na osnovu XML fajla
+		// Unmarshalling generiï¿½e objektni model na osnovu XML fajla
 		return (Users) unmarshaller.unmarshal(f);
 	}
 
@@ -180,10 +182,10 @@ public class UserServiceImpl implements UserService {
 
 		Marshaller marshaller = context.createMarshaller();
 
-		// Pode�avanje marshaller-a
+		// Podeï¿½avanje marshaller-a
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
-		// Umesto System.out-a, mo�e se koristiti FileOutputStream
+		// Umesto System.out-a, moï¿½e se koristiti FileOutputStream
 		marshaller.marshal(t, f);
 	}
 
@@ -225,11 +227,11 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		JAXBContext context = JAXBContext.newInstance(Sertifikati.class);
 
-		// Unmarshaller je objekat zadu�en za konverziju iz XML-a u objektni
+		// Unmarshaller je objekat zaduï¿½en za konverziju iz XML-a u objektni
 		// model
 		Unmarshaller unmarshaller = context.createUnmarshaller();
 
-		// Unmarshalling generi�e objektni model na osnovu XML fajla
+		// Unmarshalling generiï¿½e objektni model na osnovu XML fajla
 		Sertifikati sertifikati = (Sertifikati) unmarshaller.unmarshal(new File("data\\sertifikati\\crl.xml"));
 		
 		for(int i = 0; i < sertifikati.getSerijskiBroj().size(); i++){
@@ -265,6 +267,50 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		return null;
+	}
+	
+	@Override
+	public Rola getRolaPermisije(User user) throws JAXBException {
+		// TODO Auto-generated method stub
+		Role role = getRole();
+		Rola rola = null;
+		
+		for(Rola r : role.getRola()){
+			if(r.getNaziv().equals(user.getVrsta())){
+				rola = r;
+			}
+		}
+		
+		return rola;
+	}
+
+	@Override
+	public Role getRole() throws JAXBException {
+		// TODO Auto-generated method stub
+		DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37", "tim37", "tim37",
+				Authentication.valueOf("DIGEST"));
+		XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+
+		// A handle to receive the document's content.
+		DOMHandle content = new DOMHandle();
+
+		DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+
+		// A document URI identifier.
+		String docId = "/role.xml";
+
+		xmlManager.read(docId, metadata, content);
+
+		// Retrieving a document node form DOM handle.
+		Document doc = content.get();
+
+		JAXBContext context = JAXBContext.newInstance(Role.class);
+
+		// Unmarshaller je objekat zadu�en za konverziju iz XML-a u objektni
+		// model
+		Unmarshaller unmarshaller = context.createUnmarshaller();
+
+		return (Role) unmarshaller.unmarshal(doc);
 	}
 
 }

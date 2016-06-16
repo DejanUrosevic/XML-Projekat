@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<aman:Amandman xmlns:akt="http://www.parlament.gov.rs/akt" xmlns="http://www.w3.org/ns/rdfa#" xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:aman="http://www.parlament.gov.rs/amandman" xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:pro="http://www.parlament.gov.rs/propis" xmlns:pred="http://www.parlament.gov.rs/predicate/" Datum="2016-06-15+02:00" Mesto="Novi Sad" ID="587720" Podnosilac="dw dw">
-    <aman:Resenje>1111111</aman:Resenje>
-    <aman:Obrazlozenje>fwqfwqefweq</aman:Obrazlozenje>
-    <clan:Clan ID="791220">
-        <clan:Naziv>wefwe</clan:Naziv>
+<aman:Amandman xmlns:pro="http://www.parlament.gov.rs/propis" xmlns:pred="http://www.parlament.gov.rs/predicate/" xmlns="http://www.w3.org/ns/rdfa#" xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:akt="http://www.parlament.gov.rs/akt" xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:aman="http://www.parlament.gov.rs/amandman" Datum="2016-06-16+02:00" Mesto="Novi Sad" ID="345190" Podnosilac="dw dw">
+    <aman:Resenje>tekst</aman:Resenje>
+    <aman:Obrazlozenje>zato</aman:Obrazlozenje>
+    <clan:Clan ID="194761">
+        <clan:Naziv>cccccccc</clan:Naziv>
         <clan:Sadrzaj>
             <clan:Tekst>
-                <clan:text>1111111</clan:text>
+                <clan:text>tekst</clan:text>
             </clan:Tekst>
         </clan:Sadrzaj>
     </clan:Clan>

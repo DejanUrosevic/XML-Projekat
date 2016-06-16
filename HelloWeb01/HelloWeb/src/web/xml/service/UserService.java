@@ -14,6 +14,8 @@ import org.json.JSONException;
 
 import web.xml.model.User;
 import web.xml.model.Users;
+import web.xml.role.Role;
+import web.xml.role.Role.Rola;
 
 public interface UserService extends CrudService<Users> {
 
@@ -72,4 +74,8 @@ public interface UserService extends CrudService<Users> {
 	public boolean isValidCertificate(String serialNumber) throws JAXBException;
 	
 	public User getUserFromJWT(HttpServletRequest req) throws ServletException, JAXBException;
+	
+	public Rola getRolaPermisije(User user) throws JAXBException;
+	
+	public Role getRole() throws JAXBException;
 }
