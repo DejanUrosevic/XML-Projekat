@@ -169,11 +169,8 @@
 		})
 		*/
 		
-		// Ukoliko je ulogovan prebaci na main
-		if (localStorage.getItem('key') !== null) {
-			$state.go('main');
-		}
-				
+		
+	
 		$scope.register = function() {
 			$http.post(serverUrl + '/Index/registration', {
 				ime : $scope.loginKor.ime,
@@ -1056,9 +1053,24 @@
 			}
 			$http.post(serverUrl + '/clan/prihvacenUNacelu/' + propisId)
 					.success(function(data, header, status) {
-						$state.go('prihvatanjeAmandmana', {
-							id : propisId
+						$http.get(serverUrl + 'clan/id/' + propisId)
+						.success(function(data, header, status)
+						{
+							if(data.amandman.length === 0)
+							{
+								$state.go('potvrdaPropisaUCelosti',
+								{
+									id: propisId
+								});
+							}
+							else
+							{
+								$state.go('prihvatanjeAmandmana', {
+									id : propisId
+								});
+							}
 						});
+						
 					});
 		};
 	}

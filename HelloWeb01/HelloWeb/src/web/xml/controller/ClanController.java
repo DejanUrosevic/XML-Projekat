@@ -67,10 +67,6 @@ public class ClanController {
 		//ova metoda ne sme da bude koriscena od strane gradjanina
 		//provera da li taj korisnika ima validan sertifikat iz CRL liste.
 		if(rola != null){
-			if(userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
-				return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
-			}	
-			
 			for(int i = 0; i < rola.getPermisije().size(); i++){
 				if(i != rola.getPermisije().size()-1){
 					if(rola.getPermisije().get(i).getNaziv().equals("pregled propisa") || rola.getPermisije().get(i).getNaziv().equals("pretraga propisa")){
@@ -204,10 +200,7 @@ public class ClanController {
 		
 		//ova metoda ne sme da bude koriscena od strane gradjanina
 		//provera da li taj korisnika ima validan sertifikat iz CRL liste.
-		if(rola != null){
-			if(userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
-				return new ResponseEntity<Propis>(HttpStatus.NOT_ACCEPTABLE);
-			}	
+		if(rola != null){	
 			
 			for(int q = 0; q < rola.getPermisije().size(); q++){
 				if(q != rola.getPermisije().size()-1){
@@ -248,10 +241,7 @@ public class ClanController {
 		
 		//ova metoda ne sme da bude koriscena od strane gradjanina
 		//provera da li taj korisnika ima validan sertifikat iz CRL liste.
-		if(rola != null){
-			if(userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
-				return new ResponseEntity<Propis>(HttpStatus.NOT_ACCEPTABLE);
-			}	
+		if(rola != null){	
 			
 			for(int q = 0; q < rola.getPermisije().size(); q++){
 				if(q != rola.getPermisije().size()-1){
@@ -508,10 +498,7 @@ public class ClanController {
 		
 		//ova metoda ne sme da bude koriscena od strane gradjanina
 		//provera da li taj korisnika ima validan sertifikat iz CRL liste.
-		if(rola != null){
-			if(userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
-				return new ResponseEntity<Propisi>(HttpStatus.NOT_ACCEPTABLE);
-			}	
+		if(rola != null){	
 			
 			for(int i = 0; i < rola.getPermisije().size(); i++){
 				if(i != rola.getPermisije().size()-1){
@@ -549,11 +536,7 @@ public class ClanController {
 		
 		//ova metoda ne sme da bude koriscena od strane gradjanina
 		//provera da li taj korisnika ima validan sertifikat iz CRL liste.
-		if(rola != null){
-			if(userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
-				return new ResponseEntity<Propisi>(HttpStatus.NOT_ACCEPTABLE);
-			}	
-			
+		if(rola != null){	
 			for(int q = 0; q < rola.getPermisije().size(); q++){
 				if(q != rola.getPermisije().size()-1){
 					if(rola.getPermisije().get(q).getNaziv().equals("pregled propisa") || rola.getPermisije().get(q).getNaziv().equals("pretraga propisa")){
@@ -591,11 +574,7 @@ public class ClanController {
 		
 		//ova metoda ne sme da bude koriscena od strane gradjanina
 		//provera da li taj korisnika ima validan sertifikat iz CRL liste.
-		if(rola != null){
-			if(userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
-				return new ResponseEntity<Propisi>(HttpStatus.NOT_ACCEPTABLE);
-			}	
-			
+		if(rola != null){	
 			for(int q = 0; q < rola.getPermisije().size(); q++){
 				if(q != rola.getPermisije().size()-1){
 					if(rola.getPermisije().get(q).getNaziv().equals("pregled propisa") || rola.getPermisije().get(q).getNaziv().equals("pretraga propisa")){
@@ -749,11 +728,7 @@ public class ClanController {
 		
 		//ova metoda ne sme da bude koriscena od strane gradjanina
 		//provera da li taj korisnika ima validan sertifikat iz CRL liste.
-		if(rola != null){
-			if(userSer.isValidCertificate(userSer.getCertificateSerialNumber(propisSer.readCertificate(korisnik.getJksPutanja(), korisnik.getAlias())))){
-				return new ResponseEntity<Propis>(HttpStatus.NOT_ACCEPTABLE);
-			}	
-			
+		if(rola != null){		
 			for(int q = 0; q < rola.getPermisije().size(); q++){
 				if(q != rola.getPermisije().size()-1){
 					if(rola.getPermisije().get(q).getNaziv().equals("pregled propisa") || rola.getPermisije().get(q).getNaziv().equals("pretraga propisa") || rola.getPermisije().get(q).equals("sednica")){
@@ -987,7 +962,7 @@ public class ClanController {
 				new File("data\\xml\\potpisPropis.xml"));
 		
 		//radi pretrage po sadrzaju i metapodacima, pamtimo neenkrpitovan i nepotpisan propis
-		propisSer.saveWithoutEncrypt(new File("data\\xml\\potpisPropis.xml"));
+	//	propisSer.saveWithoutEncrypt(new File("data\\xml\\potpisPropis.xml"));
 		
 		//svaki put se kriptuje javnim kljucem istorijskog arhiva, posto se tamo salju propisi
 		//propisSer.encryptXml(new File("data\\xml\\potpisPropis.xml"), new File("data\\sertifikati\\iasgns.jks"), "iasgns");

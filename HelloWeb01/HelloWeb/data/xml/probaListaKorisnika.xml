@@ -88,4 +88,15 @@
         <username>ivan@part</username>
         <vrsta>odbornik</vrsta>
     </korisnik>
+    <korisnik>
+        <alias>aaa</alias>
+        <ID>22191</ID>
+        <ime>aaa</ime>
+        <jksPutanja>aa</jksPutanja>
+        <password>PR2UfXU+h5dsXEpqHyyZkIi8PJ4=</password>
+        <prezime>aaa</prezime>
+        <salt>s8SyGZrGzBs=</salt>
+        <username>aaa@aaa</username>
+        <vrsta>odbornik</vrsta>
+    </korisnik>
 </korisnici>

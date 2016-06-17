@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?><?xml-stylesheet type='text/xsl' href='clan.xsl' ?>
-<clan:Clan xmlns:pro="http://www.parlament.gov.rs/propis" xmlns:pred="http://www.parlament.gov.rs/predicate/" xmlns="http://www.w3.org/ns/rdfa#" xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:akt="http://www.parlament.gov.rs/akt" xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:aman="http://www.parlament.gov.rs/amandman" ID="766763">
-    <clan:Opis>afsdfasd fasdf asdf</clan:Opis>
-    <clan:Naziv>CLAN PROBA</clan:Naziv>
+<clan:Clan xmlns:akt="http://www.parlament.gov.rs/akt" xmlns="http://www.w3.org/ns/rdfa#" xmlns:clan="http://www.parlament.gov.rs/clan" xmlns:aman="http://www.parlament.gov.rs/amandman" xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:pro="http://www.parlament.gov.rs/propis" xmlns:pred="http://www.parlament.gov.rs/predicate/" ID="467348">
+    <clan:Opis>dwqdq</clan:Opis>
+    <clan:Naziv>qwdwq</clan:Naziv>
     <clan:Sadrzaj>
         <clan:Tekst>
-            <clan:text>asdf asdf asdf asdf asd f</clan:text>
+            <clan:text>wqdqwd</clan:text>
         </clan:Tekst>
     </clan:Sadrzaj>
 </clan:Clan>
