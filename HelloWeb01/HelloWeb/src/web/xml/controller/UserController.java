@@ -18,6 +18,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.xml.bind.JAXBContext;
@@ -46,12 +47,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.w3c.dom.Document;
 
 import web.xml.model.User;
 import web.xml.model.Users;
 import web.xml.service.PropisService;
 import web.xml.service.UserService;
 
+import com.marklogic.client.DatabaseClient;
+import com.marklogic.client.DatabaseClientFactory;
+import com.marklogic.client.DatabaseClientFactory.Authentication;
+import com.marklogic.client.document.XMLDocumentManager;
+import com.marklogic.client.io.DOMHandle;
+import com.marklogic.client.io.DocumentMetadataHandle;
 import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 
 @Controller
@@ -165,11 +173,112 @@ public class UserController {
 			throws IOException, JAXBException, NoSuchAlgorithmException, InvalidKeySpecException, JSONException {
 		//zastita od xss napada
 		String cleanPostPayload = Jsoup.clean(postPayload, Whitelist.basic());
+		
+		if (!cleanPostPayload.equals(postPayload)) {
+			return null;
+		} else {
+			JSONObject reqJson = new JSONObject(cleanPostPayload);
+			try {
+				System.out.println(reqJson);
+				System.out.println(postPayload);
+				
+				String ime = reqJson.getString("ime");
+				String prezime = reqJson.getString("prezime");
+				String username = reqJson.getString("username");
+				String password = reqJson.getString("password");
+				String repPassword = reqJson.getString("repPassword");
+				String jksPutanja = reqJson.getString("jksPutanja");
+				String alias = reqJson.getString("alias");
+								
+				if (ime.trim().equals("")) {
+					System.out.println("ERROR ime");
+					
+					return null;
+				} else if (prezime.trim().equals("")) {
+					System.out.println("ERROR prezime");
+					
+					return null;
+				} else if (username.trim().equals("")) {
+					System.out.println("ERROR username");
+					
+					return null;
+				} else if (password.trim().equals("")) {
+					System.out.println("ERROR password");
+					
+					return null;
+				} else if (repPassword.trim().equals("")) {
+					System.out.println("ERROR repPassword");
+					
+					return null;
+				} else if (!password.equals(repPassword)) {
+					System.out.println("ERROR eq repPassword");
+					
+					return null;
+				} else if (password.length() < 8) {
+					System.out.println("ERROR length password");
+					
+					return null;
+				} else if (!Pattern.compile("\\d").matcher(password).find()) { 
+					System.out.println("ERROR pattern passwor digit");
+					
+					return null;
+				} else if (!Pattern.compile("\\p{Upper}").matcher(password).find()) { 
+					System.out.println("ERROR pattern password upper");
+					
+					return null;
+				} else if (jksPutanja.trim().equals("")) {
+					System.out.println("ERROR jksPutanja");
+					
+					return null;
+				} else if (alias.trim().equals("")) {
+					System.out.println("ERROR alias");
+					
+					return null;
+				}  else {
+					DatabaseClient client = DatabaseClientFactory.newClient("147.91.177.194", 8000, "Tim37", "tim37", "tim37", Authentication.DIGEST);
+					
+					XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+					DOMHandle content = new DOMHandle();
+					DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+					
+					String docId = "/korsnici.xml";
+					xmlManager.read(docId, metadata, content);
+					
+					Document doc = content.get();
+					
+					JAXBContext context = JAXBContext.newInstance(Users.class);
+					Unmarshaller unmarshaller = context.createUnmarshaller();
+					
+					Users users = (Users) unmarshaller.unmarshal(doc);
+					
+					for (int i=0; i<users.getKorisnik().size(); i++) {
+						if (users.getKorisnik().get(i).getUsername().equals(username)) {
+							System.out.println("Already exists");
+							
+							return null;
+						}
+					}
+					
+					// Mermorisi ako je prošao sve 
+					userSer.preSave(cleanPostPayload, new File("./data/xml/probaListaKorisnika.xml"));
+
+					userSer.save(new File("./data/xml/probaListaKorisnika.xml"));
+					
+					return new User();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				return null;
+			}
+			
+		}
+		/*
 		userSer.preSave(cleanPostPayload, new File("./data/xml/probaListaKorisnika.xml"));
 
 		userSer.save(new File("./data/xml/probaListaKorisnika.xml"));
 
 		return new User();
+		*/
 	}
 
 	/**

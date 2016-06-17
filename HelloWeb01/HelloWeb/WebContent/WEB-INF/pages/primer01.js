@@ -79,7 +79,6 @@
 			} else {
 				$scope.usernamePassword = "Username: g@g | Password: g";
 			}
-
 		}
 
 		/**
@@ -153,6 +152,8 @@
 	}
 	var registerCtrl = function($scope, $resource, $http, $location,
 			$stateParams, $state) {
+		// Da je ovo ostalo ne bi se moglo na stranicu za registraciju
+		/*
 		if (localStorage.getItem('key') === null) {
 			$state.go('login');
 		}
@@ -166,18 +167,30 @@
 				$state.go('main');
 			}
 		})
+		*/
 		
-		
+		// Ukoliko je ulogovan prebaci na main
+		if (localStorage.getItem('key') !== null) {
+			$state.go('main');
+		}
+				
 		$scope.register = function() {
 			$http.post(serverUrl + '/Index/registration', {
 				ime : $scope.loginKor.ime,
 				prezime : $scope.loginKor.prezime,
 				username : $scope.loginKor.username,
 				password : $scope.loginKor.password,
+				repPassword : $scope.loginKor.repPassword,
 				jksPutanja : $scope.loginKor.jksPutanja,
 				alias : $scope.loginKor.alias
 			}).success(function(user, status, headers) {
-				$location.path('/main');
+				console.log(user);
+				
+				if (user==undefined || user == null || user == '') {
+					alert("Neispravni su uneti podaci");
+				} else {
+					$location.path('/main');
+				}
 			});
 		}
 	}
@@ -1054,7 +1067,15 @@
 	 * Angular kontroler zadužen za pretragu odnosno pronalaženje.
 	 * Omogućava pretragu po metapodacima i po sadržaju (odvojeno).
 	 */
-	var pretragaAkataCtrl = function($scope, $state, $resource, $http) {	
+	var pretragaAkataCtrl = function($scope, $state, $resource, $http) {
+		// provera da li ima token u localStorage-u
+		if (localStorage.getItem('key') === null) {
+			$state.go('login');
+		}
+		// ako ima, zalepi ga na http
+		$http.defaults.headers.common.Authorization = 'Bearer '
+				+ localStorage.getItem('key');
+		
 		// Resurs za pristup rest servisu za pretragu po sadržaju
 		var pretragaPoSadrzajuResurs = $resource(
 				serverUrl + 'clan/pretragaPoSadrzaju', null, {

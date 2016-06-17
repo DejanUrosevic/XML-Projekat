@@ -1,11 +1,18 @@
 <div id="header">
 	<h1>IssgNS</h1>
 	<ul>
+		<!-- 
 		<li><a ui-sref="main">Nazad</a></li>
 		<li><a href="#">Products</a></li>
 		<li><a href="#">Services</a></li>
 		<li><a href="#">About</a></li>
 		<li><a ng-click="logout()">Odjavi se </a></li>
+		-->
+		<li><a href="">.</a></li>
+		<li><a href="">.</a></li>
+		<li><a href="">.</a></li>
+		<li><a href="">.</a></li>
+		<li><a ui-sref="login">Prijavi se</a></li>
 	</ul>
 </div>
 <div id="main">
@@ -39,6 +46,12 @@
 							<td class="sredina"><input type="password" size="30"
 								placeholder="Unesite vasu lozinku" ng-model="loginKor.password"
 								required /></td>
+						</tr>
+						<tr>
+							<td class="sredina">
+								<input type="password" size="30" placeholder="Potvrdite unetu lozinku"
+									   ng-model="loginKor.repPassword" required />
+							</td>
 						</tr>
 						<tr>
 							<td class="sredina"><input type="text" size="30"
