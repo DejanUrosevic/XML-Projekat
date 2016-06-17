@@ -1770,6 +1770,37 @@ public class PropisServiceImpl implements PropisService {
 		xmlManager.write(docId, metadata, handle);
 		
 		
+		
+		// RDF
+		// Kreiranje graf menadzera za rad sa metapodacima
+		GraphManager graphManager = client.newGraphManager();
+				
+		// Postavljanje defaultnog tipa media (RDF/XML)
+		graphManager.setDefaultMimetype(RDFMimeTypes.RDFXML);
+				
+		//
+		String xmlFilePath = f.getAbsolutePath();
+		String rdfFilePath = "./data/rdf/propisMetadata.rdf";
+				
+		String rdfId = docIdPre + "/metadata";
+				
+		//
+		MetadataExtractor metadataExtractor = new MetadataExtractor();
+				
+		try {
+			// Generisanje rdf-a
+			metadataExtractor.extractMetadata(
+											  new FileInputStream(new File(xmlFilePath)),
+											  new FileOutputStream(new File(rdfFilePath)));
+					
+			// 
+			FileHandle rdfFileHandle = new FileHandle(new File(rdfFilePath)).withMimetype(RDFMimeTypes.RDFXML);
+					
+			// Pisanje rdf u bazu podataka
+			graphManager.write(rdfId, rdfFileHandle);
+		} catch (TransformerException e) {
+			e.printStackTrace();
+		}		
 	}
 
 }

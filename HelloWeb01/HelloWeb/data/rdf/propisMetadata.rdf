@@ -1,5 +1,8 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="http://www.parlament.gov.rs/rdf/resoruce/3333">
+  <rdf:Description rdf:about="http://www.parlament.gov.rs/rdf/resoruce/Propis1">
     <pred:datumKreiranja xmlns:pred="http://www.parlament.gov.rs/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2016-06-17+02:00</pred:datumKreiranja>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.parlament.gov.rs/rdf/resoruce/Propis1">
+    <pred:datumUsvajanja xmlns:pred="http://www.parlament.gov.rs/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2016-06-17+02:00</pred:datumUsvajanja>
   </rdf:Description>
 </rdf:RDF>
